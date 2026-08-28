@@ -1,118 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="ROytpwisVsjjPqdBytxIL4s5QVeydaJE_mfEi-YUhyw" />
-  <title>Collins French Academy</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f5f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .container {
-      width: 100%;
-      max-width: 400px;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 30px 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-    .logo-container {
-      width: 130px;
-      height: 130px;
-      margin: 0 auto 25px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #e0e0e0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-    .logo-container img { width: 100%; height: 100%; object-fit: cover; }
-    .link-card {
-      display: flex;
-      align-items: center;
-      background: #f8f9fa;
-      border: 1px solid #e9ecef;
-      border-radius: 30px;
-      padding: 12px 20px;
-      margin-bottom: 15px;
-      text-decoration: none;
-      color: #1a1a1a;
-      font-weight: 600;
-      font-size: 15px;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-    }
-    .link-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-      background: #ffffff;
-    }
-    .icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 15px;
-      font-size: 12px;
-      color: white;
-      font-weight: bold;
-      flex-shrink: 0;
-    }
-    .whatsapp { background-color: #25D366; }
-    .tiktok { background-color: #000000; }
-    .youtube { background-color: #FF0000; }
-    .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .cfa-icon { background-color: #002395; }
-    .link-text { flex-grow: 1; text-align: left; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="ROytpwisVsjjPqdBytxIL4s5QVeydaJE_mfEi-YUhyw" />
+<title>Collins French Academy — CFA</title>
+<meta name="description" content="Collins French Academy — apprendre le français simplement, pratiquer et progresser.">
+<style>
+:root{
+  --blue:#174ea6;
+  --blue-dark:#0d2f70;
+  --red:#e63946;
+  --ink:#10203a;
+  --muted:#64748b;
+  --paper:#f6f9fc;
+  --white:#fff;
+  --line:#e5eaf2;
+  --shadow:0 18px 50px rgba(15,35,70,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);background:var(--paper);line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(229,234,242,.8);
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.2px}
+.logo-container{
+  width:46px;height:46px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--blue);box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  flex-shrink:0;
+}
+.logo-container img { width: 100%; height: 100%; object-fit: cover; }
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.5px}
+nav{display:flex;gap:26px;color:#44536b;font-size:14px;font-weight:650}
+nav a:hover{color:var(--blue)}
+.menu{display:none;border:0;background:none;font-size:25px}
+.hero{padding:82px 0 60px;background:
+ radial-gradient(circle at 80% 20%,rgba(23,78,166,.13),transparent 34%),
+ radial-gradient(circle at 15% 50%,rgba(230,57,70,.08),transparent 28%);}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:65px;align-items:center}
+.badge{display:inline-flex;padding:7px 12px;border-radius:999px;background:#eaf1ff;color:var(--blue);font-size:12px;font-weight:800;margin-bottom:18px}
+h1{font-size:clamp(42px,6vw,72px);line-height:1.02;letter-spacing:-2.8px;margin-bottom:22px}
+h1 span{color:var(--blue)}
+.lead{font-size:18px;color:var(--muted);max-width:620px;margin-bottom:30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:13px 20px;border-radius:12px;font-weight:800;font-size:14px;border:1px solid var(--line);transition:.2s}
+.btn.primary{background:var(--blue);color:white;border-color:var(--blue);box-shadow:0 10px 24px rgba(23,78,166,.22)}
+.btn.primary:hover{transform:translateY(-2px)}
+.btn.secondary{background:white}
+.btn.secondary:hover{border-color:#b7c6dc}
+.hero-card{
+  background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.95);
+  border-radius:28px;padding:20px;box-shadow:var(--shadow);backdrop-filter:blur(20px);
+}
+.mock-window{background:#0e1b31;border-radius:20px;padding:18px;color:white;min-height:410px;overflow:hidden}
+.mock-top{display:flex;justify-content:space-between;color:#9fb0cb;font-size:11px;margin-bottom:22px}
+.mock-title{font-size:27px;font-weight:850;line-height:1.1;margin-bottom:8px}
+.mock-sub{color:#aebbd0;font-size:13px;margin-bottom:22px}
+.progress{height:8px;background:#243653;border-radius:20px;overflow:hidden;margin:12px 0 20px}
+.progress i{display:block;width:64%;height:100%;background:linear-gradient(90deg,#4f83db,var(--red));border-radius:20px}
+.course-list{display:grid;gap:10px}
+.course{padding:13px;background:#172640;border:1px solid #273b5d;border-radius:13px;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.course b{font-size:12px}.course em{font-style:normal;color:#92a8c8;font-size:11px}
+section{padding:76px 0}
+.section-head{max-width:680px;margin-bottom:35px}
+.eyebrow{color:var(--red);font-size:11px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase}
+h2{font-size:36px;letter-spacing:-1.2px;margin:7px 0 10px}
+.section-head p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:white;border:1px solid var(--line);padding:25px;border-radius:18px;box-shadow:0 8px 28px rgba(15,35,70,.05)}
+.card .num{font-size:12px;color:var(--blue);font-weight:900;margin-bottom:25px}
+.card h3{font-size:18px;margin-bottom:7px}.card p{font-size:13px;color:var(--muted)}
+.path{background:#10203a;color:white}
+.path .section-head p{color:#afbdd1}
+.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.level{padding:20px;border:1px solid #29415f;border-radius:16px;background:#142741}
+.level strong{font-size:24px}.level span{display:block;color:#9fb0c8;font-size:12px;margin-top:4px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.resource{padding:28px;background:white;border:1px solid var(--line);border-radius:20px}
+.resource h3{margin-bottom:7px}.resource p{color:var(--muted);font-size:14px;margin-bottom:17px}
+.resource a{color:var(--blue);font-size:13px;font-weight:850}
+.contact{background:linear-gradient(135deg,#edf4ff,#fff)}
+.contact-box{background:white;border:1px solid var(--line);border-radius:24px;padding:35px;display:flex;justify-content:space-between;align-items:center;gap:25px;box-shadow:var(--shadow)}
+.socials{display:flex;gap:9px;flex-wrap:wrap}.social{padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-size:12px;font-weight:800;text-decoration:none}
+.social.whatsapp{background:#25D366;color:white;border-color:#25D366}
+footer{padding:28px 0;background:#0b1830;color:#aab8cc;font-size:12px}
+.footer{display:flex;justify-content:space-between;gap:20px}
+@media(max-width:850px){
+  nav{display:none}.menu{display:block}
+  .hero{padding-top:55px}.hero-grid{grid-template-columns:1fr;gap:35px}
+  .cards{grid-template-columns:1fr 1fr}.levels{grid-template-columns:1fr 1fr}
+  .contact-box{flex-direction:column;align-items:flex-start}.footer{flex-direction:column}
+}
+@media(max-width:520px){
+  .nav{height:68px}.brand{font-size:13px}.logo-container{width:40px;height:40px}
+  h1{font-size:45px;letter-spacing:-2px}.lead{font-size:16px}
+  section{padding:58px 0}.cards,.resource-grid{grid-template-columns:1fr}
+  .levels{grid-template-columns:1fr 1fr}.mock-window{min-height:360px}
+}
+</style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="logo-container">
-      <img src="logo.jpg" alt="Collins French Academy Logo">
-    </div>
-
-    <a href="https://whatsapp.com/channel/0029VbCsnvZEAKWIGVzLE12t" target="_blank" class="link-card">
-      <div class="icon whatsapp">WA</div>
-      <span class="link-text">WhatsApp Channel</span>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#accueil">
+      <div class="logo-container">
+        <img src="logo.jpg" alt="CFA Logo">
+      </div>
+      <div>COLLINS FRENCH ACADEMY<small>APPRENDRE • PRATIQUER • PROGRESSER</small></div>
     </a>
-
-    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="link-card">
-      <div class="icon tiktok">TT</div>
-      <span class="link-text">TikTok</span>
-    </a>
-
-    <a href="https://youtube.com/@yourchannel" target="_blank" class="link-card">
-      <div class="icon youtube">YT</div>
-      <span class="link-text">YouTube</span>
-    </a>
-
-    <a href="https://instagram.com/yourusername" target="_blank" class="link-card">
-      <div class="icon instagram">IG</div>
-      <span class="link-text">Instagram</span>
-    </a>
-
-    <a href="#" target="_blank" class="link-card">
-      <div class="icon cfa-icon">CFA</div>
-      <span class="link-text">CFA Class Schedule</span>
-    </a>
-
-    <a href="#" target="_blank" class="link-card">
-      <div class="icon cfa-icon">CFA</div>
-      <span class="link-text">Register for a Course</span>
-    </a>
+    <nav>
+      <a href="#accueil">Accueil</a><a href="#cours">Cours</a><a href="#ressources">Ressources</a><a href="#compas">COMPAS</a><a href="#contact">Contact</a>
+    </nav>
+    <button class="menu" aria-label="Menu">☰</button>
   </div>
+</header>
 
+<main>
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div>
+      <div class="badge">🇫🇷 Français • 🇰🇪 Kenya</div>
+      <h1>Le français,<br><span>simplement.</span></h1>
+      <p class="lead">Bienvenue à Collins French Academy — un espace moderne pour apprendre le français, développer ses compétences et découvrir la culture francophone.</p>
+      <div class="actions">
+        <a class="btn primary" href="#cours">Découvrir les cours</a>
+        <a class="btn secondary" href="#contact">Rejoindre CFA</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="mock-window">
+        <div class="mock-top"><span>CFA • ESPACE APPRENANT</span><span>A1 → B2[cite: 1]</span></div>
+        <div class="mock-title">Votre parcours<br>commence ici.</div>
+        <div class="mock-sub">Progressez étape par étape avec des leçons claires et pratiques.</div>
+        <small style="color:#9fb0c8">PROGRESSION</small>
+        <div class="progress"><i></i></div>
+        <div class="course-list">
+          <div class="course"><b>01 · Les verbes d'action</b><em>Terminé</em></div>
+          <div class="course"><b>02 · Le présent</b><em>En cours</em></div>
+          <div class="course"><b>03 · Prononciation</b><em>À venir</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cours">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">L'expérience CFA</div>
+      <h2>Apprendre avec méthode.</h2>
+      <p>Une approche structurée qui transforme chaque leçon en une occasion de comprendre, pratiquer et retenir.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="num">01</div><h3>Cours structurés</h3><p>Des leçons progressives adaptées aux niveaux A1, A2, B1 et B2[cite: 1].</p></article>
+      <article class="card"><div class="num">02</div><h3>Pratique</h3><p>Vocabulaire, grammaire, dialogues, prononciation et exercices.</p></article>
+      <article class="card"><div class="num">03</div><h3>Culture francophone</h3><p>Découvrez la langue à travers les pays, les traditions et les réalités francophones.</p></article>
+      <article class="card"><div class="num">04</div><h3>Espace ludique</h3><p>Quiz, défis et activités pour apprendre sans rendre l'apprentissage lourd.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="path" id="parcours">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Votre parcours</div><h2>De débutant à autonome.</h2><p>Construisez vos compétences progressivement.</p></div>
+    <div class="levels">
+      <div class="level"><strong>A1</strong><span>Découverte</span></div>
+      <div class="level"><strong>A2</strong><span>Élémentaire</span></div>
+      <div class="level"><strong>B1</strong><span>Intermédiaire</span></div>
+      <div class="level"><strong>B2</strong><span>Avancé</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="ressources">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">À découvrir</div><h2>Les univers CFA.</h2><p>Retrouvez les différents formats qui donnent vie à l'apprentissage.</p></div>
+    <div class="resource-grid">
+      <article class="resource"><h3>Français Facile 🇰🇪🇫🇷</h3><p>Des contenus courts et accessibles pour apprendre et pratiquer le français au quotidien.</p><a href="#contact">Découvrir →</a></article>
+      <article class="resource" id="compas"><h3>🧭 COMPAS DU JOUR</h3><p>Conseil, Orientation, Motivation, Parole, Apprendre et Sagesse — une dose quotidienne pour avancer.</p><a href="#contact">Explorer →</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div><div class="eyebrow">Rejoignez la communauté</div><h2>Prêt à apprendre ?</h2><p style="color:var(--muted)">Suivez CFA et commencez votre parcours en français.</p></div>
+      <div class="socials">
+        <a class="social whatsapp" href="https://whatsapp.com/channel/0029VbCsnvZEAKWIGVzLE12t" target="_blank">WhatsApp Channel</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <span>© 2026 Collins French Academy (CFA)</span>
+    <span>Apprendre • Pratiquer • Progresser</span>
+  </div>
+</footer>
 </body>
 </html>
