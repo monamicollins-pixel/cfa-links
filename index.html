@@ -185,7 +185,23 @@ footer{padding:32px 0;background:var(--white);border-top:1px solid var(--line);c
     padding: 20px;
 }
 </style>
+
+<style>
+@media (min-width: 768px) {
+    .cards .univers-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+    }
+}
+@media (min-width: 1024px) {
+    .cards .univers-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+</style>
 </head>
+
 <body>
 <header>
   <div class="container nav">
