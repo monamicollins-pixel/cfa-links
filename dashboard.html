@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centre de Création — CFA</title>
+<style>
+:root{--blue:#174ea6;--red:#e63946;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;padding:40px 20px;}
+.container{max-width:900px;margin:auto}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;background:var(--white);padding:24px;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow);}
+.card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--shadow);}
+.form-group{margin-bottom:15px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+input, textarea, select{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:14px;outline:none;}
+textarea{resize:vertical;height:100px}
+.btn{padding:12px 24px;background:var(--blue);color:white;border:0;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="dash-header">
+    <div><h1>🧭 Centre de Création CFA</h1></div>
+    <a href="index.html" style="color:var(--muted);font-weight:700;text-decoration:none;">Déconnexion</a>
+  </div>
+  <div class="card">
+    <h2 style="margin-bottom:15px;color:var(--blue)">Ajouter une nouvelle leçon</h2>
+    <form onsubmit="alert('Leçon enregistrée !'); return false;">
+      <div class="form-group"><label>Titre</label><input type="text" required placeholder="Ex: Les pronoms"></div>
+      <div class="form-group"><label>Niveau</label><select><option>A1</option><option>A2</option><option>B1</option><option>B2</option></select></div>
+      <div class="form-group"><label>Contenu</label><textarea placeholder="Description..."></textarea></div>
+      <button type="submit" class="btn">Publier</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
