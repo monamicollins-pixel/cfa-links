@@ -1,6 +1,7 @@
-python3 -c '
-with open("login.html", "w") as f:
-    f.write("""<!DOCTYPE html>
+cat << 'EOF' > make_pages.py
+import os
+
+login_code = """<!DOCTYPE html>
 <html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8">
@@ -38,13 +39,12 @@ input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--lin
     </div>
     <button type="submit" class="btn-submit">Se connecter</button>
   </form>
-  <a href="index.html" class="back-link">← Retour à l'\''accueil</a>
+  <a href="index.html" class="back-link">← Retour à l'accueil</a>
 </div>
 </body>
-</html>""")
+</html>"""
 
-with open("register.html", "w") as f:
-    f.write("""<!DOCTYPE html>
+register_code = """<!DOCTYPE html>
 <html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8">
@@ -84,16 +84,15 @@ input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--lin
       <label>Mot de passe</label>
       <input type="password" required placeholder="••••••••">
     </div>
-    <button type="submit" class="btn-submit">S'\''inscrire</button>
+    <button type="submit" class="btn-submit">S'inscrire</button>
   </form>
   <a href="login.html" class="back-link">Déjà un compte ? Se connecter</a>
-  <a href="index.html" class="back-link" style="margin-top:10px;">← Retour à l'\''accueil</a>
+  <a href="index.html" class="back-link" style="margin-top:10px;">← Retour à l'accueil</a>
 </div>
 </body>
-</html>""")
+</html>"""
 
-with open("dashboard.html", "w") as f:
-    f.write("""<!DOCTYPE html>
+dashboard_code = """<!DOCTYPE html>
 <html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8">
@@ -121,7 +120,7 @@ textarea{resize:vertical;height:100px}
   </div>
   <div class="card">
     <h2 style="margin-bottom:15px;color:var(--blue)">Ajouter une nouvelle leçon</h2>
-    <form onsubmit="alert('\''Leçon enregistrée !'\''); return false;">
+    <form onsubmit="alert('Leçon enregistrée !'); return false;">
       <div class="form-group"><label>Titre</label><input type="text" required placeholder="Ex: Les pronoms"></div>
       <div class="form-group"><label>Niveau</label><select><option>A1</option><option>A2</option><option>B1</option><option>B2</option></select></div>
       <div class="form-group"><label>Contenu</label><textarea placeholder="Description..."></textarea></div>
@@ -130,6 +129,14 @@ textarea{resize:vertical;height:100px}
   </div>
 </div>
 </body>
-</html>""")
-print("Files generated cleanly!")
-'
+</html>"""
+
+with open("login.html", "w", encoding="utf-8") as f:
+    f.write(login_code)
+with open("register.html", "w", encoding="utf-8") as f:
+    f.write(register_code)
+with open("dashboard.html", "w", encoding="utf-8") as f:
+    f.write(dashboard_code)
+
+print("All files created successfully!")
+EOF
