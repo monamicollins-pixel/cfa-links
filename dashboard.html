@@ -22,6 +22,12 @@ textarea{resize:vertical;height:100px;}
 </style>
 </head>
 <body>
+<script>
+// Check authentication immediately before rendering body content to prevent flash loops
+if(sessionStorage.getItem('cfa_logged_in') !== 'true') {
+  window.location.replace('login.html');
+}
+</script>
 <div class="container">
   <header>
     <div>
@@ -57,18 +63,15 @@ textarea{resize:vertical;height:100px;}
 </div>
 
 <script>
-// Protect dashboard route
-if(localStorage.getItem('cfa_logged_in') !== 'true') {
-  window.location.href = 'login.html';
-} else {
-  const user = localStorage.getItem('cfa_user');
-  if(user) document.getElementById('welcomeUser').innerText = `Connecté en tant que : ${user}`;
+const user = sessionStorage.getItem('cfa_user');
+if(user) {
+  document.getElementById('welcomeUser').innerText = `Connecté en tant que : ${user}`;
 }
 
 function logout() {
-  localStorage.removeItem('cfa_logged_in');
-  localStorage.removeItem('cfa_user');
-  window.location.href = 'login.html';
+  sessionStorage.removeItem('cfa_logged_in');
+  sessionStorage.removeItem('cfa_user');
+  window.location.replace('login.html');
 }
 
 function addLesson(e) {

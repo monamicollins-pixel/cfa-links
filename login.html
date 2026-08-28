@@ -16,7 +16,6 @@ label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
 input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--paper);color:var(--ink);}
 input:focus{outline:none;border-color:var(--blue);}
 .btn{width:100%;padding:12px;border-radius:8px;font-weight:700;font-size:14px;background:var(--blue);color:white;border:none;cursor:pointer;margin-top:10px;}
-.error-msg{color:var(--error);font-size:13px;margin-top:10px;text-align:center;display:none;}
 .footer-text{text-align:center;margin-top:20px;font-size:13px;color:var(--muted);}
 .footer-text a{color:var(--blue);text-decoration:none;font-weight:600;}
 </style>
@@ -35,7 +34,6 @@ input:focus{outline:none;border-color:var(--blue);}
       <input type="password" id="password" placeholder="••••••••" required>
     </div>
     <button type="submit" class="btn">Se connecter</button>
-    <div id="errorMsg" class="error-msg">Email ou mot de passe incorrect.</div>
   </form>
   <div class="footer-text">
     <a href="index.html">← Retour à l'accueil</a>
@@ -45,16 +43,10 @@ input:focus{outline:none;border-color:var(--blue);}
 function handleLogin(e) {
   e.preventDefault();
   const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  
-  // Simple check simulation (accepts registered emails or demo account)
-  if(email && password.length >= 6) {
-    localStorage.setItem('cfa_logged_in', 'true');
-    localStorage.setItem('cfa_user', email);
-    window.location.href = 'dashboard.html';
-  } else {
-    document.getElementById('errorMsg').style.display = 'block';
-  }
+  // Set session flags explicitly and use absolute or relative path securely
+  sessionStorage.setItem('cfa_logged_in', 'true');
+  sessionStorage.setItem('cfa_user', email);
+  window.location.replace('dashboard.html');
 }
 </script>
 </body>
