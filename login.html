@@ -1,1 +1,61 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Connexion</title></head><body style="font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:#f6f9fc;"><div style="background:white;padding:40px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.1);width:100%;max-width:400px;"><h2>Connexion</h2><form action="dashboard.html"><p><label>Email</label><br><input type="email" required style="width:100%;padding:10px;margin-top:5px;"></p><p><label>Mot de passe</label><br><input type="password" required style="width:100%;padding:10px;margin-top:5px;"></p><button type="submit" style="width:100%;padding:12px;background:#174ea6;color:white;border:none;border-radius:8px;font-weight:bold;">Se connecter</button></form><p style="text-align:center;margin-top:15px;"><a href="index.html">← Retour</a></p></div></body></html>
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion - Collins French Academy</title>
+<style>
+:root{--blue:#174ea6;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);--error:#d93025;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.card{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:40px;width:100%;max-width:420px;box-shadow:var(--shadow);}
+h1{font-size:24px;margin-bottom:8px;color:var(--blue);text-align:center;}
+p{color:var(--muted);font-size:14px;margin-bottom:24px;text-align:center;}
+.form-group{margin-bottom:16px;}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--paper);color:var(--ink);}
+input:focus{outline:none;border-color:var(--blue);}
+.btn{width:100%;padding:12px;border-radius:8px;font-weight:700;font-size:14px;background:var(--blue);color:white;border:none;cursor:pointer;margin-top:10px;}
+.error-msg{color:var(--error);font-size:13px;margin-top:10px;text-align:center;display:none;}
+.footer-text{text-align:center;margin-top:20px;font-size:13px;color:var(--muted);}
+.footer-text a{color:var(--blue);text-decoration:none;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Espace CFA</h1>
+  <p>Connectez-vous pour accéder au centre de création</p>
+  <form id="loginForm" onsubmit="handleLogin(event)">
+    <div class="form-group">
+      <label>Adresse Email</label>
+      <input type="email" id="email" placeholder="votre@email.com" required>
+    </div>
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <input type="password" id="password" placeholder="••••••••" required>
+    </div>
+    <button type="submit" class="btn">Se connecter</button>
+    <div id="errorMsg" class="error-msg">Email ou mot de passe incorrect.</div>
+  </form>
+  <div class="footer-text">
+    <a href="index.html">← Retour à l'accueil</a>
+  </div>
+</div>
+<script>
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  
+  // Simple check simulation (accepts registered emails or demo account)
+  if(email && password.length >= 6) {
+    localStorage.setItem('cfa_logged_in', 'true');
+    localStorage.setItem('cfa_user', email);
+    window.location.href = 'dashboard.html';
+  } else {
+    document.getElementById('errorMsg').style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>

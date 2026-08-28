@@ -1,1 +1,81 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Dashboard</title></head><body style="font-family:sans-serif;background:#f6f9fc;padding:40px;"><div style="max-width:800px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.1);"><h2>Centre de Création CFA</h2><p>Bienvenue sur votre tableau de bord.</p><p><a href="index.html">Déconnexion</a></p></div></body></html>
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Collins French Academy</title>
+<style>
+:root{--blue:#174ea6;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;padding:40px;}
+.container{max-width:900px;margin:0 auto;}
+header{display:flex;justify-content:space-between;align-items:center;background:var(--white);padding:20px 30px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:30px;}
+h1{font-size:22px;color:var(--blue);}
+.logout-btn{color:#d93025;text-decoration:none;font-weight:600;font-size:14px;cursor:pointer;}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--shadow);margin-bottom:20px;}
+h2{font-size:18px;margin-bottom:15px;color:var(--ink);}
+.form-group{margin-bottom:15px;}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;}
+input, select, textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--paper);color:var(--ink);}
+textarea{resize:vertical;height:100px;}
+.btn{background:var(--blue);color:white;padding:10px 20px;border:none;border-radius:8px;font-weight:700;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <h1>Centre de Création CFA</h1>
+      <p id="welcomeUser" style="color:var(--muted);font-size:13px;margin-top:4px;">Bienvenue sur votre tableau de bord.</p>
+    </div>
+    <a class="logout-btn" onclick="logout()">Déconnexion</a>
+  </header>
+
+  <div class="card">
+    <h2>Ajouter une nouvelle leçon</h2>
+    <form onsubmit="addLesson(event)">
+      <div class="form-group">
+        <label>Titre</label>
+        <input type="text" id="lessonTitle" placeholder="Ex: Les pronoms" required>
+      </div>
+      <div class="form-group">
+        <label>Niveau</label>
+        <select id="lessonLevel">
+          <option value="A1">A1</option>
+          <option value="A2">A2</option>
+          <option value="B1">B1</option>
+          <option value="B2">B2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Contenu</label>
+        <textarea id="lessonContent" placeholder="Description de la leçon..." required></textarea>
+      </div>
+      <button type="submit" class="btn">Publier la leçon</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// Protect dashboard route
+if(localStorage.getItem('cfa_logged_in') !== 'true') {
+  window.location.href = 'login.html';
+} else {
+  const user = localStorage.getItem('cfa_user');
+  if(user) document.getElementById('welcomeUser').innerText = `Connecté en tant que : ${user}`;
+}
+
+function logout() {
+  localStorage.removeItem('cfa_logged_in');
+  localStorage.removeItem('cfa_user');
+  window.location.href = 'login.html';
+}
+
+function addLesson(e) {
+  e.preventDefault();
+  alert('Leçon ajoutée avec succès !');
+  e.target.reset();
+}
+</script>
+</body>
+</html>
