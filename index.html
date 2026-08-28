@@ -6,22 +6,19 @@
 <title>Collins French Academy</title>
 <style>
 :root{--blue:#174ea6;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);}
-[data-theme="dark"]{--blue:#4285f4;--ink:#f8fafc;--muted:#94a3b8;--paper:#0f172a;--white:#1e293b;--line:#334155;--shadow:0 20px 40px -15px rgba(0,0,0,.5);}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;transition:background 0.3s, color 0.3s;}
-.hero{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:50px;width:100%;max-width:500px;text-align:center;box-shadow:var(--shadow);position:relative;}
+body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.hero{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:50px;width:100%;max-width:500px;text-align:center;box-shadow:var(--shadow);}
 h1{font-size:28px;margin-bottom:12px;color:var(--blue)}
 p{color:var(--muted);font-size:15px;margin-bottom:30px}
 .btn-group{display:flex;gap:15px;justify-content:center;}
 .btn{padding:12px 24px;border-radius:10px;font-weight:800;font-size:14px;text-decoration:none;cursor:pointer;}
 .btn-primary{background:var(--blue);color:white;}
 .btn-secondary{background:var(--paper);color:var(--ink);border:1px solid var(--line);}
-.theme-toggle{position:absolute;top:20px;right:20px;background:var(--paper);border:1px solid var(--line);color:var(--ink);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;}
 </style>
 </head>
 <body>
 <div class="hero">
-  <button class="theme-toggle" onclick="toggleTheme()">🌓 Thème</button>
   <h1>Collins French Academy</h1>
   <p>Votre plateforme d'apprentissage du français.</p>
   <div class="btn-group">
@@ -29,12 +26,5 @@ p{color:var(--muted);font-size:15px;margin-bottom:30px}
     <a href="register.html" class="btn btn-secondary">S'inscrire</a>
   </div>
 </div>
-<script>
-function toggleTheme(){
-  const html = document.documentElement;
-  const current = html.getAttribute('data-theme');
-  html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
-}
-</script>
 </body>
 </html>
