@@ -3,19 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Links</title>
+  <title>Collins French Academy</title>
   <style>
-    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #121212; color: white; margin: 0; }
-    .link-btn { display: block; width: 80%; max-width: 300px; padding: 15px; margin: 10px 0; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; }
-    .whatsapp { background-color: #25D366; color: white; }
-    .tiktok { background-color: #000000; color: white; border: 1px solid #333; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f5f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .logo-container {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #e0e0e0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .logo-container img { width: 100%; height: 100%; object-fit: cover; }
+    .link-card {
+      display: flex;
+      align-items: center;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 30px;
+      padding: 12px 20px;
+      margin-bottom: 15px;
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+      background: #ffffff;
+    }
+    .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .whatsapp { background-color: #25D366; }
+    .tiktok { background-color: #000000; }
+    .youtube { background-color: #FF0000; }
+    .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .cfa-icon { background-color: #002395; }
+    .link-text { flex-grow: 1; text-align: left; }
   </style>
 </head>
 <body>
-  <h2>Connect With Me</h2>
-  <!-- Replace 2547XXXXXXXX with your real phone number using 254... -->
-  <a href="https://wa.me/2547XXXXXXXX" class="link-btn whatsapp" target="_blank">Chat on WhatsApp</a>
-  <!-- Replace username with your TikTok handler -->
-  <a href="https://www.tiktok.com/@username" class="link-btn tiktok" target="_blank">Follow on TikTok</a>
+
+  <div class="container">
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Collins French Academy Logo">
+    </div>
+
+    <a href="https://wa.me/2547XXXXXXXX" target="_blank" class="link-card">
+      <div class="icon whatsapp">WA</div>
+      <span class="link-text">WhatsApp Chat</span>
+    </a>
+
+    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="link-card">
+      <div class="icon tiktok">TT</div>
+      <span class="link-text">TikTok</span>
+    </a>
+
+    <a href="https://youtube.com/@yourchannel" target="_blank" class="link-card">
+      <div class="icon youtube">YT</div>
+      <span class="link-text">YouTube</span>
+    </a>
+
+    <a href="https://instagram.com/yourusername" target="_blank" class="link-card">
+      <div class="icon instagram">IG</div>
+      <span class="link-text">Instagram</span>
+    </a>
+
+    <a href="#" target="_blank" class="link-card">
+      <div class="icon cfa-icon">CFA</div>
+      <span class="link-text">CFA Class Schedule</span>
+    </a>
+
+    <a href="#" target="_blank" class="link-card">
+      <div class="icon cfa-icon">CFA</div>
+      <span class="link-text">Register for a Course</span>
+    </a>
+  </div>
+
 </body>
 </html>
