@@ -1,142 +1,30 @@
-cat << 'EOF' > make_pages.py
-import os
-
-login_code = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Connexion — Collins French Academy</title>
+<title>Collins French Academy</title>
 <style>
 :root{--blue:#174ea6;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
-.auth-card{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:40px;width:100%;max-width:440px;box-shadow:var(--shadow);}
-.auth-header{text-align:center;margin-bottom:30px}
-.auth-header h1{font-size:24px;margin-bottom:8px}
-.auth-header p{color:var(--muted);font-size:14px}
-.form-group{margin-bottom:20px}
-label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
-input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:14px;outline:none;}
-.btn-submit{width:100%;padding:14px;background:var(--blue);color:white;border:0;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;margin-top:10px;}
-.back-link{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted)}
+.hero{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:50px;width:100%;max-width:500px;text-align:center;box-shadow:var(--shadow);}
+h1{font-size:28px;margin-bottom:12px;color:var(--blue)}
+p{color:var(--muted);font-size:15px;margin-bottom:30px}
+.btn-group{display:flex;gap:15px;justify-content:center;}
+.btn{padding:12px 24px;border-radius:10px;font-weight:800;font-size:14px;text-decoration:none;cursor:pointer;}
+.btn-primary{background:var(--blue);color:white;}
+.btn-secondary{background:var(--paper);color:var(--ink);border:1px solid var(--line);}
 </style>
 </head>
 <body>
-<div class="auth-card">
-  <div class="auth-header">
-    <h1>Espace CFA</h1>
-    <p>Connectez-vous pour accéder au centre de création</p>
-  </div>
-  <form action="dashboard.html" method="GET">
-    <div class="form-group">
-      <label>Adresse Email</label>
-      <input type="email" required placeholder="votre@email.com">
-    </div>
-    <div class="form-group">
-      <label>Mot de passe</label>
-      <input type="password" required placeholder="••••••••">
-    </div>
-    <button type="submit" class="btn-submit">Se connecter</button>
-  </form>
-  <a href="index.html" class="back-link">← Retour à l'accueil</a>
-</div>
-</body>
-</html>"""
-
-register_code = """<!DOCTYPE html>
-<html lang="fr" data-theme="light">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscription — Collins French Academy</title>
-<style>
-:root{--blue:#174ea6;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
-.auth-card{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:40px;width:100%;max-width:440px;box-shadow:var(--shadow);}
-.auth-header{text-align:center;margin-bottom:30px}
-.auth-header h1{font-size:24px;margin-bottom:8px}
-.auth-header p{color:var(--muted);font-size:14px}
-.form-group{margin-bottom:20px}
-label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
-input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:14px;outline:none;}
-.btn-submit{width:100%;padding:14px;background:var(--blue);color:white;border:0;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;margin-top:10px;}
-.back-link{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted)}
-</style>
-</head>
-<body>
-<div class="auth-card">
-  <div class="auth-header">
-    <h1>Rejoindre le CFA</h1>
-    <p>Créez votre compte pour commencer</p>
-  </div>
-  <form action="dashboard.html" method="GET">
-    <div class="form-group">
-      <label>Nom complet</label>
-      <input type="text" required placeholder="Votre Nom">
-    </div>
-    <div class="form-group">
-      <label>Adresse Email</label>
-      <input type="email" required placeholder="votre@email.com">
-    </div>
-    <div class="form-group">
-      <label>Mot de passe</label>
-      <input type="password" required placeholder="••••••••">
-    </div>
-    <button type="submit" class="btn-submit">S'inscrire</button>
-  </form>
-  <a href="login.html" class="back-link">Déjà un compte ? Se connecter</a>
-  <a href="index.html" class="back-link" style="margin-top:10px;">← Retour à l'accueil</a>
-</div>
-</body>
-</html>"""
-
-dashboard_code = """<!DOCTYPE html>
-<html lang="fr" data-theme="light">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centre de Création — CFA</title>
-<style>
-:root{--blue:#174ea6;--red:#e63946;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;padding:40px 20px;}
-.container{max-width:900px;margin:auto}
-.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;background:var(--white);padding:24px;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow);}
-.card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--shadow);}
-.form-group{margin-bottom:15px}
-label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
-input, textarea, select{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:14px;outline:none;}
-textarea{resize:vertical;height:100px}
-.btn{padding:12px 24px;background:var(--blue);color:white;border:0;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;}
-</style>
-</head>
-<body>
-<div class="container">
-  <div class="dash-header">
-    <div><h1>🧭 Centre de Création CFA</h1></div>
-    <a href="index.html" style="color:var(--muted);font-weight:700;text-decoration:none;">Déconnexion</a>
-  </div>
-  <div class="card">
-    <h2 style="margin-bottom:15px;color:var(--blue)">Ajouter une nouvelle leçon</h2>
-    <form onsubmit="alert('Leçon enregistrée !'); return false;">
-      <div class="form-group"><label>Titre</label><input type="text" required placeholder="Ex: Les pronoms"></div>
-      <div class="form-group"><label>Niveau</label><select><option>A1</option><option>A2</option><option>B1</option><option>B2</option></select></div>
-      <div class="form-group"><label>Contenu</label><textarea placeholder="Description..."></textarea></div>
-      <button type="submit" class="btn">Publier</button>
-    </form>
+<div class="hero">
+  <h1>Collins French Academy</h1>
+  <p>Votre plateforme d'apprentissage du français.</p>
+  <div class="btn-group">
+    <a href="login.html" class="btn btn-primary">Se connecter</a>
+    <a href="register.html" class="btn btn-secondary">S'inscrire</a>
   </div>
 </div>
 </body>
-</html>"""
-
-with open("login.html", "w", encoding="utf-8") as f:
-    f.write(login_code)
-with open("register.html", "w", encoding="utf-8") as f:
-    f.write(register_code)
-with open("dashboard.html", "w", encoding="utf-8") as f:
-    f.write(dashboard_code)
-
-print("All files created successfully!")
-EOF
+</html>
