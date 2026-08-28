@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>S'inscrire — Collins French Academy</title>
+<link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+<main class="auth-page">
+<div class="auth-card">
+
+<img class="auth-logo" src="../assets/logo.svg" alt="CFA">
+
+<h1 class="auth-title">Créer votre compte</h1>
+
+<p class="auth-subtitle">
+Rejoignez Collins French Academy et commencez votre parcours.
+</p>
+
+<div id="authMessage" class="auth-message"></div>
+
+<form class="auth-form" id="signupForm">
+
+<label>
+Nom complet
+<input id="name" type="text" placeholder="Votre nom" autocomplete="name" required>
+</label>
+
+<label>
+Adresse e-mail
+<input id="email" type="email" placeholder="vous@example.com" autocomplete="email" required>
+</label>
+
+<label>
+Mot de passe
+<input id="password" type="password" placeholder="Minimum 6 caractères" autocomplete="new-password" required>
+</label>
+
+<label>
+Confirmer le mot de passe
+<input id="confirmPassword" type="password" placeholder="Répétez votre mot de passe" autocomplete="new-password" required>
+</label>
+
+<button class="auth-submit" type="submit">
+S'inscrire
+</button>
+
+</form>
+
+<p class="auth-switch">
+Vous avez déjà un compte ?
+<a href="connexion.html">Se connecter</a>
+</p>
+
+<a class="back-home" href="../index.html">
+← Retour à l'accueil
+</a>
+
+</div>
+</main>
+
+<script src="../js/auth.js"></script>
+</body>
+</html>

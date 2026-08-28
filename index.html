@@ -227,6 +227,22 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     font-size: 21px !important;
 }
 </style>
+
+<style>
+.account-links{display:flex;align-items:center;gap:8px;margin-left:15px}
+.login-link,.signup-link{padding:9px 13px;border-radius:10px;font-size:12px;font-weight:850;text-decoration:none}
+.login-link{color:#174ea6}
+.login-link:hover{background:#edf3ff}
+.signup-link{background:#E30613;color:#fff;box-shadow:0 7px 18px rgba(230,6,19,.18)}
+.signup-link:hover{background:#b9000b}
+.user-welcome{font-size:12px;font-weight:750;color:#fff}
+.logout-btn{border:1px solid #dbe2ec;background:#fff;color:#174ea6;padding:8px 12px;border-radius:9px;font-size:11px;font-weight:850;cursor:pointer}
+@media(max-width:700px){
+.account-links{gap:4px;margin-left:5px}
+.login-link,.signup-link{padding:7px 8px;font-size:10px}
+}
+</style>
+
 </head>
 
 
@@ -237,7 +253,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
   <div class="container nav">
     <a class="brand" href="#accueil">
       <div class="logo-container">
-        <img src="logo.jpg" alt="CFA Logo">
+        <img src="file.png" alt="CFA Logo">
       </div>
       <div>COLLINS FRENCH ACADEMY<small>Apprendre • S'amuser • S'inspirer • Découvrir</small></div>
     </a>
@@ -250,7 +266,11 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
         <a href="#contact">Contact</a>
       </nav>
       <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
-      <button class="menu" aria-label="Menu">☰</button>
+      <div class="account-links" id="accountArea">
+<a class="login-link" href="pages/connexion.html">Connexion</a>
+<a class="signup-link" href="pages/inscription.html">S'inscrire</a>
+</div>
+<button class="menu" aria-label="Menu">☰</button>
     </div>
   </div>
 </header>
@@ -359,5 +379,6 @@ toggleBtn.addEventListener('click', () => {
   toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 });
 </script>
+<script src="js/auth.js"></script>
 </body>
 </html>
