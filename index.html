@@ -72,6 +72,11 @@ nav a:hover{color:var(--blue)}
   transition:transform .2s;color:var(--ink);flex-shrink:0;
 }
 .theme-toggle:hover{transform:scale(1.08)}
+.login-btn{
+  background:var(--blue);color:white;padding:8px 16px;border-radius:10px;font-size:13px;font-weight:800;
+  transition:opacity .2s;
+}
+.login-btn:hover{opacity:.9}
 .menu{display:none;border:0;background:none;font-size:25px;color:var(--ink)}
 
 .hero{padding:90px 0 70px;background:
@@ -197,6 +202,7 @@ footer{padding:32px 0;background:var(--white);border-top:1px solid var(--line);c
         <a href="#contact">Contact</a>
       </nav>
       <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
+      <a href="login.html" class="login-btn">Connexion</a>
       <button class="menu" aria-label="Menu">☰</button>
     </div>
   </div>
@@ -308,6 +314,3 @@ toggleBtn.addEventListener('click', () => {
 </body>
 </html>
 EOF
-git add .
-git commit -m "Add dark mode toggle button"
-git push origin main
