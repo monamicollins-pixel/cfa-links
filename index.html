@@ -474,377 +474,19 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 </style>
 
 
-<style id="cfa-mobile-final-fix">
-/* ===== CFA MOBILE NAVIGATION FINAL FIX ===== */
-
-.mobile-menu-icon-container { display:none !important;
-    display: none !important;
-}
-
-@media (max-width: 768px) {
-
-    /* Hide desktop navigation controls */
-    header .nav-right > nav,
-    header .nav-right > .theme-toggle,
-    header .account-links {
-        display: none !important;
-    }
-
-    /* Header */
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 1000 !important;
-    }
-
-    .nav {
-        height: 70px !important;
-        width: 92%;
-    }
-
-    /* Hamburger container */
-    .mobile-menu-icon-container { display:none !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        right: 4%;
-        top: 17px;
-        padding: 0 !important;
-        margin: 0 !important;
-        background: transparent !important;
-        z-index: 1001;
-    }
-
-    /* Hamburger button */
-    #hamburger-menu-trigger {
-        width: 44px !important;
-        height: 44px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-direction: column !important;
-        gap: 5px !important;
-        border: 1px solid var(--line) !important;
-        border-radius: 10px !important;
-        background: var(--white) !important;
-        color: var(--ink) !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,.08);
-    }
-
-    #hamburger-menu-trigger span {
-        display: block !important;
-        width: 22px !important;
-        height: 2.5px !important;
-        background: var(--ink) !important;
-        border-radius: 3px;
-    }
-
-    /* Prevent hero content from touching screen edges */
-    .hero {
-        overflow-x: hidden;
-    }
-
-    .hero .container {
-        width: 88% !important;
-        max-width: 100% !important;
-    }
-
-    h1 {
-        max-width: 100% !important;
-        overflow-wrap: normal !important;
-        word-break: normal !important;
-        letter-spacing: -1.8px !important;
-    }
-
-    .lead {
-        max-width: 100% !important;
-    }
-
-    /* Solid mobile drawer */
-    #site-mobile-drawer {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        display: none;
-        background: var(--white) !important;
-        background-color: var(--white) !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        z-index: 999999 !important;
-        padding: 24px !important;
-        box-sizing: border-box !important;
-        color: var(--ink) !important;
-        overflow-y: auto !important;
-    }
-
-    #site-mobile-drawer > div {
-        color: var(--ink) !important;
-    }
-
-    #site-mobile-drawer a {
-        color: var(--ink) !important;
-    }
-
-    #site-mobile-drawer hr {
-        border-top-color: var(--line) !important;
-    }
-
-    #close-drawer-btn {
-        color: var(--ink) !important;
-        font-size: 32px !important;
-    }
-
-    #drawer-theme-toggle {
-        color: var(--ink) !important;
-        padding: 12px 0;
-        font-weight: 700;
-    }
-
-    #site-mobile-drawer .cfa-mobile-link {
-        display: block;
-        padding: 13px 15px;
-        border-radius: 10px;
-        font-size: 17px;
-        font-weight: 700;
-        color: var(--ink) !important;
-        background: transparent;
-    }
-
-    #site-mobile-drawer .cfa-mobile-link:hover {
-        background: var(--line);
-        color: var(--blue) !important;
-    }
-
-    #site-mobile-drawer .cfa-login {
-        display: block;
-        background: var(--blue) !important;
-        color: #fff !important;
-        padding: 13px 15px;
-        border-radius: 10px;
-        text-align: center;
-        font-weight: 800;
-        margin-top: 8px;
-    }
-}
-</style>
 
 
-<style id="cfa-mobile-nav-final">
-@media (max-width:768px) {
-
-#site-mobile-drawer {
-    display:none;
-    position:fixed;
-    inset:0;
-    width:100vw;
-    height:100vh;
-    z-index:9999999;
-    background:var(--white);
-    color:var(--ink);
-    padding:24px;
-    box-sizing:border-box;
-    overflow-y:auto;
-}
-
-.cfa-mobile-header {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:35px;
-}
-
-.cfa-mobile-header strong {
-    font-size:20px;
-    color:var(--blue);
-}
-
-#close-drawer-btn {
-    border:0;
-    background:transparent;
-    color:var(--ink);
-    font-size:36px;
-    cursor:pointer;
-    line-height:1;
-}
-
-.cfa-mobile-nav {
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    max-width:420px;
-    margin:auto;
-}
-
-.cfa-mobile-link,
-.cfa-mobile-theme {
-    width:100%;
-    box-sizing:border-box;
-    padding:16px;
-    border:0;
-    border-radius:12px;
-    background:transparent;
-    color:var(--ink) !important;
-    text-align:left;
-    text-decoration:none;
-    font:inherit;
-    font-size:17px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.cfa-mobile-link:hover,
-.cfa-mobile-theme:hover {
-    background:var(--line);
-    color:var(--blue) !important;
-}
-
-.cfa-mobile-login {
-    width:100%;
-    box-sizing:border-box;
-    margin-top:15px;
-    padding:16px;
-    border-radius:12px;
-    background:var(--blue);
-    color:white !important;
-    text-align:center;
-    text-decoration:none;
-    font-weight:800;
-}
-}
-</style>
 
 
-<style id="cfa-mobile-drawer-final">
-/* CFA MOBILE MENU — FINAL */
-.mobile-menu-icon-container {
-    display: none !important;
-}
-
-#site-mobile-drawer {
-    display: none !important;
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    margin: 0 !important;
-    padding: 30px !important;
-    box-sizing: border-box !important;
-    z-index: 999999 !important;
-}
-
-@media (max-width: 768px) {
-    .mobile-menu-icon-container {
-        display: block !important;
-    }
-
-    #site-mobile-drawer {
-        display: none !important;
-    }
-
-    #site-mobile-drawer.cfa-open {
-        display: flex !important;
-    }
-}
-</style>
 
 
-<style id="cfa-mobile-menu-final">
-.cfa-mobile-menu-button {
-    display: none;
-    width: 42px;
-    height: 42px;
-    padding: 8px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--white);
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    flex-shrink: 0;
-}
-
-.cfa-mobile-menu-button span {
-    display: block;
-    width: 23px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--ink);
-}
-
-@media (max-width: 768px) {
-    .cfa-mobile-menu-button {
-        display: flex !important;
-    }
-
-    .nav-right {
-        gap: 8px;
-    }
-}
-
-@media (min-width: 769px) {
-    .cfa-mobile-menu-button {
-        display: none !important;
-    }
-}
-</style>
 
 
-<style id="cfa-mobile-menu-repair">
-.cfa-mobile-menu-button {
-    display: none;
-    width: 42px;
-    height: 42px;
-    padding: 7px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--white);
-    cursor: pointer;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    flex-shrink: 0;
-    z-index: 1000001;
-}
 
-.cfa-mobile-menu-button span {
-    display: block;
-    width: 24px;
-    height: 3px;
-    background: var(--ink);
-    border-radius: 3px;
-}
 
-@media (max-width: 768px) {
-    .cfa-mobile-menu-button {
-        display: flex !important;
-    }
-}
 
-@media (min-width: 769px) {
-    .cfa-mobile-menu-button {
-        display: none !important;
-    }
-}
 
-#site-mobile-drawer {
-    display: none !important;
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: 999999 !important;
-}
 
-#site-mobile-drawer.cfa-open {
-    display: flex !important;
-}
-</style>
 \n</head>
 
 
@@ -891,66 +533,173 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 
 
 
-<!-- Mobile Navigation Menu -->
+
+<!-- CFA MOBILE MENU -->
 <style>
-.mobile-menu-icon-container { display:none !important;
-    display: none;
-}
-
-#hamburger-menu-trigger {
-    background: none;
-    border: 0;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-#hamburger-menu-trigger span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background: #ffffff;
-    border-radius: 2px;
-}
-
 @media (max-width: 768px) {
-    header .nav-right nav,
-    header .nav-right .account-links {
+
+    /* Hide desktop navigation on phones */
+    header .nav-right > nav,
+    header .nav-right > .theme-toggle,
+    header .account-links {
         display: none !important;
     }
 
-    header .nav {
-        display: flex;
+    /* Hamburger */
+    #hamburger-menu-trigger {
+        display: flex !important;
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+        margin: 0;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--white);
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        flex-shrink: 0;
+        z-index: 1001;
     }
 
-    header .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .mobile-menu-icon-container { display:none !important;
+    #hamburger-menu-trigger span {
         display: block;
+        width: 23px;
+        height: 3px;
+        border-radius: 3px;
+        background: var(--ink);
     }
+
+    /* Keep hero safely inside phone screen */
+    .hero .container {
+        width: 88%;
+        max-width: 100%;
+    }
+
+    h1 {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+}
+
+/* Drawer is completely hidden by default */
+#site-mobile-drawer {
+    display: none;
+}
+
+/* Drawer when opened */
+#site-mobile-drawer.cfa-open {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    color: var(--ink);
+    z-index: 2147483647;
+    padding: 24px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Drawer header */
+.cfa-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.cfa-mobile-header strong {
+    font-size: 22px;
+    color: var(--blue);
+}
+
+#close-drawer-btn {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: 36px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Drawer links */
+.cfa-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.cfa-mobile-link,
+.cfa-mobile-theme {
+    width: 100%;
+    padding: 15px 16px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--ink) !important;
+    text-align: left;
+    text-decoration: none;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cfa-mobile-link:hover,
+.cfa-mobile-theme:hover {
+    background: var(--line);
+    color: var(--blue) !important;
+}
+
+.cfa-mobile-login {
+    width: 100%;
+    margin-top: 14px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background: var(--blue);
+    color: #fff !important;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 800;
 }
 </style>
 
-<div id="site-mobile-drawer">
+<div id="site-mobile-drawer" aria-hidden="true">
+
     <div class="cfa-mobile-header">
         <strong>CFA</strong>
-        <button id="close-drawer-btn" aria-label="Fermer le menu">&times;</button>
+
+        <button
+            type="button"
+            id="close-drawer-btn"
+            aria-label="Fermer le menu">
+            ×
+        </button>
     </div>
 
     <nav class="cfa-mobile-nav">
-        <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">
+
+        <button
+            type="button"
+            id="drawer-theme-toggle"
+            class="cfa-mobile-theme">
             🌙 Mode sombre
         </button>
 
-        <a class="cfa-mobile-link" href="index.html#accueil">
+        <a class="cfa-mobile-link" href="#accueil">
             Accueil
         </a>
 
@@ -958,29 +707,24 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
             Cours
         </a>
 
-        <a class="cfa-mobile-link" href="index.html#ressources">
+        <a class="cfa-mobile-link" href="#ressources">
             Ressources
         </a>
 
-        <a class="cfa-mobile-link" href="index.html#compas">
+        <a class="cfa-mobile-link" href="#compas">
             COMPAS
         </a>
 
-        <a class="cfa-mobile-link" href="index.html#contact">
+        <a class="cfa-mobile-link" href="#contact">
             Contact
         </a>
 
         <a class="cfa-mobile-login" href="pages/connexion.html">
             Connexion
         </a>
-    </nav>
-</div>>
 
-<style>
-@media (max-width: 768px) {
-    .mobile-menu-icon-container { display:none !important; display: block !important; }
-}
-</style>
+    </nav>
+</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -989,77 +733,82 @@ document.addEventListener("DOMContentLoaded", function () {
     const drawer = document.getElementById("site-mobile-drawer");
     const closeBtn = document.getElementById("close-drawer-btn");
     const drawerTheme = document.getElementById("drawer-theme-toggle");
+    const html = document.documentElement;
+
+    if (!trigger || !drawer) return;
+
+    function updateThemeButton() {
+        const dark = html.getAttribute("data-theme") === "dark";
+
+        if (drawerTheme) {
+            drawerTheme.textContent =
+                dark ? "☀️ Mode clair" : "🌙 Mode sombre";
+        }
+    }
 
     function openMenu() {
-        if (drawer) {
-            drawer.classList.add("cfa-open");
-            drawer.style.visibility = "visible";
-            drawer.style.opacity = "1";
-            document.body.style.overflow = "hidden";
-        }
+        drawer.classList.add("cfa-open");
+        drawer.setAttribute("aria-hidden", "false");
+        trigger.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+        updateThemeButton();
     }
 
     function closeMenu() {
-        if (drawer) {
-            drawer.classList.remove("cfa-open");
-            document.body.style.overflow = "";
-        }
+        drawer.classList.remove("cfa-open");
+        drawer.setAttribute("aria-hidden", "true");
+        trigger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
     }
 
-    if (trigger) {
-        trigger.addEventListener("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openMenu();
-        });
-    }
+    /* Open hamburger */
+    trigger.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openMenu();
+    });
 
+    /* Close X */
     if (closeBtn) {
-        closeBtn.addEventListener("click", function(e) {
-            e.preventDefault();
+        closeBtn.addEventListener("click", function () {
             closeMenu();
         });
     }
 
-    /*
-     * Mobile menu navigation
-     * Close the drawer first, then follow the link.
-     */
-    if (drawer) {
-        drawer.querySelectorAll("a").forEach(function(link) {
-            link.addEventListener("click", function() {
-                closeMenu();
-            });
-        });
-    }
-
-    /*
-     * Mobile theme button
-     * Uses the same theme system as the desktop theme button.
-     */
+    /* Mobile theme button */
     if (drawerTheme) {
-        drawerTheme.addEventListener("click", function(e) {
-            e.preventDefault();
+        drawerTheme.addEventListener("click", function () {
 
-            const html = document.documentElement;
-            const current = html.getAttribute("data-theme") || "light";
-            const next = current === "dark" ? "light" : "dark";
+            const current =
+                html.getAttribute("data-theme") || "light";
+
+            const next =
+                current === "dark" ? "light" : "dark";
 
             html.setAttribute("data-theme", next);
             localStorage.setItem("cfa_theme", next);
 
-            const desktopToggle = document.getElementById("themeToggle");
-            if (desktopToggle) {
-                desktopToggle.textContent = next === "dark" ? "☀️" : "🌙";
+            /* Keep desktop theme button synchronized */
+            const desktopTheme =
+                document.getElementById("themeToggle");
+
+            if (desktopTheme) {
+                desktopTheme.textContent =
+                    next === "dark" ? "☀️" : "🌙";
             }
 
-            drawerTheme.innerHTML =
-                next === "dark"
-                ? "☀️ Passer au mode clair"
-                : "🌙 Passer au mode sombre";
+            updateThemeButton();
         });
     }
 
+    /* Close drawer after clicking navigation */
+    drawer.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            closeMenu();
+        });
+    });
+
+    updateThemeButton();
 });
 </script>
 
@@ -1193,61 +942,4 @@ toggleBtn.addEventListener('click', () => {
 </script>
 
 
-<style id="cfa-mobile-menu-ultimate">
-/* FINAL MOBILE HEADER FIX */
-@media screen and (max-width: 900px) {
-    header .nav {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        width: 100% !important;
-    }
 
-    header .nav-right {
-        display: flex !important;
-        align-items: center !important;
-        margin-left: auto !important;
-    }
-
-    header .nav-right nav {
-        display: none !important;
-    }
-
-    header .account-links {
-        display: none !important;
-    }
-
-    header .theme-toggle {
-        display: none !important;
-    }
-
-    header .cfa-mobile-menu-button {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        width: 44px !important;
-        height: 44px !important;
-        min-width: 44px !important;
-        margin-left: 8px !important;
-        background: var(--white) !important;
-        border: 1px solid var(--line) !important;
-        z-index: 9999999 !important;
-    }
-
-    header .cfa-mobile-menu-button span {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 24px !important;
-        height: 3px !important;
-        background: var(--ink) !important;
-    }
-}
-
-@media screen and (min-width: 901px) {
-    header .cfa-mobile-menu-button {
-        display: none !important;
-    }
-}
-</style>
