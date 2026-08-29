@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Connexion — Collins French Academy</title>
+<title>Envoyer le lien — Collins French Academy</title>
 <link rel="stylesheet" href="../css/auth.css">
 
         <style>
@@ -31,35 +31,26 @@
 
 <img class="auth-logo" src="../file.png" alt="CFA">
 
-<h1 class="auth-title">Bienvenue à nouveau</h1>
+<h1 class="auth-title">Mot de passe oublié</h1>
 
 <p class="auth-subtitle">
-Connectez-vous pour continuer votre parcours CFA.
+Entrez votre adresse e-mail pour réinitialiser votre mot de passe.
 </p>
 
 <div id="authMessage" class="auth-message"></div>
 
-<form class="auth-form" id="loginForm">
 
-<label>
-Adresse e-mail
-<input id="email" type="email" placeholder="vous@example.com" autocomplete="email" required>
-</label>
-
-<label>
-Mot de passe
-<input id="password" type="password" placeholder="Votre mot de passe" autocomplete="current-password" required>
-</label>
-
-<button class="auth-submit" type="submit">
-Connexion
-</button>
-
-
-        <div style="text-align: right; margin-bottom: 15px;">
-            <a href="mot-de-passe-oublie.html" style="font-size: 0.9rem; color: #0056b3; text-decoration: none;">Mot de passe oublié ?</a>
+    <form onsubmit="event.preventDefault(); alert('Un e-mail de réinitialisation a été envoyé !'); window.location.href='connexion.html';">
+        <div style="margin-bottom: 20px; text-align: left;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem;">Adresse e-mail</label>
+            <input type="email" required placeholder="nom@exemple.com" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
         </div>
-        </form>
+        <button type="submit" style="width: 100%; padding: 12px; background-color: #0056b3; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Envoyer le lien de réinitialisation</button>
+    </form>
+    <div style="text-align: center; margin-top: 15px;">
+        <a href="connexion.html" style="color: #0056b3; text-decoration: underline;">← Retour à la connexion</a>
+    </div>
+    
 
 <p class="auth-switch">
 Vous n'avez pas encore de compte ? <a href="sinscrire.html" style="color: #0056b3; font-weight: bold; text-decoration: underline;">S'inscrire</a>
