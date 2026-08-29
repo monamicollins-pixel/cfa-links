@@ -21,6 +21,18 @@ input:focus{outline:none;border-color:var(--blue);}
 </style>
 </head>
 <body>
+
+<div class="mobile-menu-bar" style="display: none; padding: 10px 20px; background: inherit;">
+    <button id="site-menu-btn" style="background: #1e293b; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 500;">
+        <span>☰ Menu</span>
+    </button>
+</div>
+<style>
+@media (max-width: 768px) {
+    .mobile-menu-bar { display: block !important; }
+}
+</style>
+
 <div class="card">
   <h1>Espace CFA</h1>
   <p>Connectez-vous pour accéder au centre de création</p>

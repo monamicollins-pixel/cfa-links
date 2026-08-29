@@ -35,7 +35,19 @@ if(sessionStorage.getItem('cfa_logged_in') !== 'true') {
       <p id="welcomeUser" style="color:var(--muted);font-size:13px;margin-top:4px;">Bienvenue sur votre tableau de bord.</p>
     </div>
     <a class="logout-btn" onclick="logout()">Déconnexion</a>
-  </header>
+  
+<div class="mobile-menu-bar" style="display: none; padding: 10px 20px; background: inherit;">
+    <button id="site-menu-btn" style="background: #1e293b; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 500;">
+        <span>☰ Menu</span>
+    </button>
+</div>
+<style>
+@media (max-width: 768px) {
+    .mobile-menu-bar { display: block !important; }
+}
+</style>
+
+</header>
 
   <div class="card">
     <h2>Ajouter une nouvelle leçon</h2>
