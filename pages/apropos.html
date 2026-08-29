@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — Collins French Academy</title>
+
+<style>
+:root {
+    --blue: #174ea6;
+    --navy: #0f172a;
+    --orange: #ff6600;
+    --white: #ffffff;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #f8fafc;
+    --card: #ffffff;
+}
+
+[data-theme="dark"] {
+    --white: #0f172a;
+    --ink: #f8fafc;
+    --muted: #cbd5e1;
+    --line: #334155;
+    --bg: #020617;
+    --card: #0f172a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: auto;
+}
+
+/* HEADER */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.brand-name {
+    font-size: 18px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.nav-right a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.nav-right a:hover {
+    color: var(--blue);
+}
+
+.theme-toggle {
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* HERO */
+.hero {
+    padding: 100px 0 80px;
+    text-align: center;
+    background:
+        radial-gradient(circle at top right, rgba(23,78,166,.12), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(255,102,0,.10), transparent 30%),
+        var(--bg);
+}
+
+.eyebrow {
+    color: var(--orange);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    margin: 15px auto;
+    max-width: 850px;
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    color: var(--blue);
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 25px auto 0;
+    font-size: 20px;
+    color: var(--muted);
+}
+
+/* CONTENT */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 45px;
+}
+
+.section-title h2 {
+    font-size: clamp(30px, 5vw, 48px);
+    line-height: 1.1;
+    margin: 10px 0;
+}
+
+.section-title p {
+    color: var(--muted);
+}
+
+/* MISSION */
+.mission {
+    background: var(--card);
+}
+
+.mission-box {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.mission-box .big {
+    font-size: clamp(25px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--blue);
+}
+
+.mission-box p {
+    color: var(--muted);
+    font-size: 18px;
+}
+
+/* VALUES */
+.values {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.value {
+    padding: 28px 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.value-icon {
+    font-size: 32px;
+}
+
+.value h3 {
+    margin: 10px 0 5px;
+}
+
+.value p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* PHILOSOPHY */
+.philosophy {
+    background: var(--card);
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.philosophy-card {
+    padding: 30px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--bg);
+}
+
+.philosophy-card strong {
+    display: block;
+    color: var(--orange);
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+/* COMPAS */
+.compas {
+    background: var(--navy);
+    color: white;
+}
+
+.compas .section-title p {
+    color: #cbd5e1;
+}
+
+.compas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.compas-card {
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 18px;
+    background: rgba(255,255,255,.06);
+}
+
+.compas-letter {
+    font-size: 42px;
+    font-weight: 900;
+    color: #ff6600;
+}
+
+.compas-card h3 {
+    margin: 5px 0;
+}
+
+.compas-card p {
+    color: #cbd5e1;
+    margin-bottom: 0;
+}
+
+/* AMBITION */
+.ambition {
+    text-align: center;
+}
+
+.ambition-box {
+    max-width: 850px;
+    margin: auto;
+}
+
+.ambition-box h2 {
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+}
+
+.ambition-box p {
+    font-size: 19px;
+    color: var(--muted);
+}
+
+.desire {
+    margin: 40px auto;
+    padding: 30px;
+    border-left: 5px solid var(--orange);
+    background: var(--card);
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* CTA */
+.cta {
+    padding: 70px 0;
+    background: var(--blue);
+    color: white;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: clamp(32px, 5vw, 52px);
+    margin: 0 0 12px;
+}
+
+.cta p {
+    color: #dbeafe;
+}
+
+.cta a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 24px;
+    background: white;
+    color: var(--blue);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+/* FOOTER */
+footer {
+    padding: 30px 0;
+    background: var(--navy);
+    color: #cbd5e1;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+    .nav-right a {
+        display: none;
+    }
+
+    .values {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .philosophy-grid,
+    .compas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 70px 0 60px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .values {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+
+        <a class="brand" href="../index.html">
+            <img class="logo" src="../file.png" alt="CFA Logo">
+            <span class="brand-name">Collins French Academy</span>
+        </a>
+
+        <div class="nav-right">
+            <a href="../index.html#accueil">Accueil</a>
+            <a href="../index.html#cours">Cours</a>
+            <a href="../index.html#ressources">Ressources</a>
+            <a href="../index.html#compas">COMPAS</a>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                🌙
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+
+        <div class="eyebrow">À propos de CFA</div>
+
+        <h1>
+            Le français,<br>
+            <span>une aventure.</span><br>
+            Pas une corvée.
+        </h1>
+
+        <p>
+            Rendre le français facile, accessible, aventureux,
+            motivant et amusant — pour donner envie d'apprendre,
+            plutôt que le sentiment d'avoir à apprendre.
+        </p>
+
+    </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+    <div class="container">
+
+        <div class="section-title">
+            <div class="eyebrow">Notre mission</div>
+            <h2>Apprendre parce qu'on en a envie.</h2>
+        </div>
+
+        <div class="mission-box">
+
+            <div class="big">
+                Nous voulons donner aux apprenants
+                l'envie d'apprendre.
+            </div>
+
+            <p>
+                Pas parce qu'ils y sont obligés.
+                Pas parce que c'est une corvée.
+                Mais parce qu'ils sont curieux, motivés
+                et heureux de découvrir quelque chose de nouveau.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- VALUES -->
+<section>
+    <div class="container">
+
+        <div class="section-title">
+            <div class="eyebrow">Notre vision</div>
+            <h2>Rendre le français...</h2>
+        </div>
+
+        <div class="values">
+
+            <div class="value">
+                <div class="value-icon">📖</div>
+                <h3>Facile</h3>
+                <p>Pour que chacun puisse commencer.</p>
+            </div>
+
+            <div class="value">
+                <div class="value-icon">🌍</div>
+                <h3>Accessible</h3>
+                <p>Pour que chacun puisse apprendre.</p>
+            </div>
+
+            <div class="value">
+                <div class="value-icon">🧭</div>
+                <h3>Aventureux</h3>
+                <p>Pour que chaque leçon devienne une découverte.</p>
+            </div>
+
+            <div class="value">
+                <div class="value-icon">💡</div>
+                <h3>Motivant</h3>
+                <p>Pour donner envie de continuer.</p>
+            </div>
+
+            <div class="value">
+                <div class="value-icon">🎲</div>
+                <h3>Amusant</h3>
+                <p>Pour apprendre avec plaisir.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+    <div class="container">
+
+        <div class="section-title">
+            <div class="eyebrow">Notre philosophie</div>
+            <h2>Apprendre sans avoir l'impression d'étudier.</h2>
+            <p>
+                Pourquoi choisir entre apprendre et s'amuser ?
+                Chez CFA, nous voulons réunir les deux.
+            </p>
+        </div>
+
+        <div class="philosophy-grid">
+
+            <div class="philosophy-card">
+                <strong>🌍 Découvrir</strong>
+                Une nouvelle expression peut ouvrir une conversation.
+                Un mot peut révéler une culture.
+                Une histoire peut donner envie de comprendre davantage.
+            </div>
+
+            <div class="philosophy-card">
+                <strong>🎲 S'amuser</strong>
+                Quiz, défis, jeux, histoires, expressions et découvertes :
+                chaque contenu devient une occasion de progresser.
+            </div>
+
+            <div class="philosophy-card">
+                <strong>❤️ Donner envie</strong>
+                Notre objectif n'est pas seulement de vous faire retenir
+                le français. Nous voulons vous donner envie d'y revenir.
+            </div>
+
+            <div class="philosophy-card">
+                <strong>🧭 Avancer</strong>
+                Débutant ou avancé, chacun doit pouvoir progresser
+                à son propre rythme et trouver sa place dans l'aventure CFA.
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- COMPAS -->
+<section class="compas">
+    <div class="container">
+
+        <div class="section-title">
+            <div class="eyebrow">La méthode CFA</div>
+            <h2>🧭 LA MÉTHODE COMPAS</h2>
+            <p>
+                CFA accompagne les apprenants comme une boussole
+                accompagne un voyageur.
+            </p>
+        </div>
+
+        <div class="compas-grid">
+
+            <div class="compas-card">
+                <div class="compas-letter">C</div>
+                <h3>Cours structurés</h3>
+                <p>Apprendre avec une progression claire.</p>
+            </div>
+
+            <div class="compas-card">
+                <div class="compas-letter">O</div>
+                <h3>Ouverture francophone</h3>
+                <p>Découvrir la langue à travers sa culture et son monde.</p>
+            </div>
+
+            <div class="compas-card">
+                <div class="compas-letter">M</div>
+                <h3>Motivation</h3>
+                <p>Trouver chaque jour une raison de continuer.</p>
+            </div>
+
+            <div class="compas-card">
+                <div class="compas-letter">P</div>
+                <h3>Pratique</h3>
+                <p>Utiliser le français dans des situations concrètes.</p>
+            </div>
+
+            <div class="compas-card">
+                <div class="compas-letter">A</div>
+                <h3>Apprendre</h3>
+                <p>Explorer, jouer, découvrir et expérimenter.</p>
+            </div>
+
+            <div class="compas-card">
+                <div class="compas-letter">S</div>
+                <h3>Sagesse</h3>
+                <p>Apprendre une langue, mais aussi grandir à travers elle.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- AMBITION -->
+<section class="ambition">
+    <div class="container">
+
+        <div class="section-title">
+            <div class="eyebrow">Notre ambition</div>
+            <h2>Créer une expérience d'apprentissage.</h2>
+        </div>
+
+        <div class="ambition-box">
+
+            <p>
+                Nous ne voulons pas simplement créer des cours de français.
+                Nous voulons créer une expérience qui donne envie de découvrir
+                un nouveau mot, d'essayer une nouvelle expression,
+                de parler et de continuer.
+            </p>
+
+            <div class="desire">
+                Parce qu'au fond, apprendre une langue commence
+                souvent par une chose très simple :
+                <br><br>
+                <strong>L'ENVIE.</strong>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+
+        <h2>Bienvenue dans l'aventure du français.</h2>
+
+        <p>
+            Apprendre · S'amuser · S'inspirer · Découvrir
+        </p>
+
+        <a href="../index.html#cours">
+            Commencer l'aventure →
+        </a>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    © 2026 Collins French Academy (CFA)
+    <br>
+    Apprendre • S'amuser • S'inspirer • Découvrir
+</footer>
+
+<script>
+const html = document.documentElement;
+const toggle = document.getElementById("themeToggle");
+
+const savedTheme = localStorage.getItem("cfa_theme") || "light";
+html.setAttribute("data-theme", savedTheme);
+toggle.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+
+toggle.addEventListener("click", () => {
+    const current = html.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+
+    html.setAttribute("data-theme", next);
+    localStorage.setItem("cfa_theme", next);
+    toggle.textContent = next === "dark" ? "☀️" : "🌙";
+});
+</script>
+
+</body>
+</html>
