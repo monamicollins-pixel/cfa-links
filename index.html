@@ -481,25 +481,8 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 
 
 
-\n
-<style id="cfa-desktop-mobile-menu-fix">
-/* CFA: mobile menu only on touch/mobile devices */
-#hamburger-menu-trigger {
-    display: none !important;
-}
 
-/* Phones/tablets with touch input */
-@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
-    #hamburger-menu-trigger {
-        display: flex !important;
-    }
-}
-</style>
-
-
-
-\n
-<style id="cfa-hamburger-display-fix">
+<style id="cfa-hamburger-clean">
 #hamburger-menu-trigger {
     display: none !important;
 }
@@ -507,20 +490,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 @media (max-width: 768px) {
     #hamburger-menu-trigger {
         display: flex !important;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
-        width: 42px;
-        height: 42px;
-        padding: 8px;
-        margin: 0;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        background: var(--white);
-        cursor: pointer;
-        flex-shrink: 0;
-        z-index: 1001;
     }
 }
 </style>
