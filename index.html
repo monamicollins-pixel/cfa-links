@@ -793,7 +793,59 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
-</head>
+
+<style id="cfa-mobile-menu-repair">
+.cfa-mobile-menu-button {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 7px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-shrink: 0;
+    z-index: 1000001;
+}
+
+.cfa-mobile-menu-button span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: var(--ink);
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .cfa-mobile-menu-button {
+        display: flex !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .cfa-mobile-menu-button {
+        display: none !important;
+    }
+}
+
+#site-mobile-drawer {
+    display: none !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 999999 !important;
+}
+
+#site-mobile-drawer.cfa-open {
+    display: flex !important;
+}
+</style>
+\n</head>
 
 
 
@@ -810,12 +862,15 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     <div class="nav-right">
 <button id="hamburger-menu-trigger"
         class="cfa-mobile-menu-button"
+        type="button"
         aria-label="Ouvrir le menu"
         aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
 </button>
+
+
 
       <nav>
         <a href="#accueil">Accueil</a>
