@@ -71,3 +71,26 @@ Vous avez déjà un compte ? <a href="connexion.html" style="color: #0056b3; fon
         });
     });
 </script>
+
+<script>
+    // Universal Dark Mode Handler
+    (function() {
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme === "dark" || localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+        
+        // Also sync any dark mode toggle click handlers across pages
+        window.addEventListener("load", () => {
+            const toggleBtn = document.querySelector("#darkModeToggle, .sun-icon, [onclick*=\x27dark\x27], .dark-toggle");
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", () => {
+                    document.body.classList.toggle("dark-mode");
+                    let isDark = document.body.classList.contains("dark-mode");
+                    localStorage.setItem("theme", isDark ? "dark" : "light");
+                    localStorage.setItem("darkMode", isDark);
+                });
+            }
+        });
+    })();
+</script>
