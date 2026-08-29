@@ -274,14 +274,19 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     </div>
   </div>
 
-<div class="mobile-menu-bar" style="display: none; padding: 10px 20px; background: inherit;">
-    <button id="site-menu-btn" style="background: #1e293b; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 500;">
-        <span>☰ Menu</span>
+
+
+
+<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
+    <button id="hamburger-menu-trigger" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; display: flex; flex-direction: column; gap: 5px;">
+        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
+        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
+        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
     </button>
 </div>
 <style>
 @media (max-width: 768px) {
-    .mobile-menu-bar { display: block !important; }
+    .mobile-menu-icon-container { display: block !important; }
 }
 </style>
 
