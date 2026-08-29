@@ -497,9 +497,20 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 </style>
 
 
+
+\n
+<style id="cfa-hamburger-display-fix">
+#hamburger-menu-trigger {
+    display: none !important;
+}
+
 @media (max-width: 768px) {
     #hamburger-menu-trigger {
         display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
         width: 42px;
         height: 42px;
         padding: 8px;
@@ -507,16 +518,14 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
         border: 1px solid var(--line);
         border-radius: 10px;
         background: var(--white);
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
         cursor: pointer;
         flex-shrink: 0;
         z-index: 1001;
     }
 }
-\n</head>
+</style>
+
+</head>
 
 
 
