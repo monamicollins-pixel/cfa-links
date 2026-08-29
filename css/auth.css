@@ -125,3 +125,7 @@
             }
         }
         
+        .brand-title, .logo-text, .academy-title, header .logo span {
+            font-size: 1.15rem !important;
+        }
+        
