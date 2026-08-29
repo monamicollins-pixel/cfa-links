@@ -1,1 +1,20 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Inscription</title></head><body style="font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:#f6f9fc;"><div style="background:white;padding:40px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.1);width:100%;max-width:400px;"><h2>Inscription</h2><form action="dashboard.html"><p><label>Nom</label><br><input type="text" required style="width:100%;padding:10px;margin-top:5px;"></p><p><label>Email</label><br><input type="email" required style="width:100%;padding:10px;margin-top:5px;"></p><p><label>Mot de passe</label><br><input type="password" required style="width:100%;padding:10px;margin-top:5px;"></p><button type="submit" style="width:100%;padding:12px;background:#174ea6;color:white;border:none;border-radius:8px;font-weight:bold;">S inscrire</button></form><p style="text-align:center;margin-top:15px;"><a href="index.html">← Retour</a></p></div></body></html>
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Inscription</title></head><body style="font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:#f6f9fc;"><div style="background:white;padding:40px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.1);width:100%;max-width:400px;"><h2>Inscription</h2><form action="dashboard.html"><p><label>Nom</label><br><input type="text" required style="width:100%;padding:10px;margin-top:5px;"></p><p><label>Email</label><br><input type="email" required style="width:100%;padding:10px;margin-top:5px;"></p><p><label>Mot de passe</label><br><input type="password" required style="width:100%;padding:10px;margin-top:5px;"></p><button type="submit" style="width:100%;padding:12px;background:#174ea6;color:white;border:none;border-radius:8px;font-weight:bold;">S inscrire</button></form><p style="text-align:center;margin-top:15px;"><a href="index.html">← Retour</a></p></div>
+<script>
+    // Global Dark Mode Synchronizer
+    document.addEventListener("DOMContentLoaded", () => {
+        const isDarkMode = localStorage.getItem("darkMode") === "true";
+        if (isDarkMode) {
+            document.body.classList.add("dark-mode");
+        }
+        
+        // Listen for any theme toggle buttons across pages
+        const toggles = document.querySelectorAll("#darkModeToggle, .dark-mode-toggle, [onclick*=\x27dark\x27]");
+        toggles.forEach(toggle => {
+            toggle.addEventListener("click", () => {
+                document.body.classList.toggle("dark-mode");
+                localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+            });
+        });
+    });
+</script>
+</body></html>
