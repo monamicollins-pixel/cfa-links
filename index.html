@@ -750,6 +750,49 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
+
+<style id="cfa-mobile-menu-final">
+.cfa-mobile-menu-button {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.cfa-mobile-menu-button span {
+    display: block;
+    width: 23px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ink);
+}
+
+@media (max-width: 768px) {
+    .cfa-mobile-menu-button {
+        display: flex !important;
+    }
+
+    .nav-right {
+        gap: 8px;
+    }
+}
+
+@media (min-width: 769px) {
+    .cfa-mobile-menu-button {
+        display: none !important;
+    }
+}
+</style>
+
 </head>
 
 
@@ -765,6 +808,15 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
       <div><span style="font-size: 1.12em; font-weight: bold; text-transform: none !important;">Collins French Academy</span></span><small></small></div>
     </a>
     <div class="nav-right">
+<button id="hamburger-menu-trigger"
+        class="cfa-mobile-menu-button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
       <nav>
         <a href="#accueil">Accueil</a>
         <a href="#cours">Cours</a>
