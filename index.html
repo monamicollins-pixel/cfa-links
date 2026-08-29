@@ -327,7 +327,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     }
 
     /* Hamburger */
-    .mobile-menu-icon-container {
+    .mobile-menu-icon-container { display:none !important;
         display: block !important;
         padding: 0 !important;
         margin: 0 !important;
@@ -477,7 +477,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 <style id="cfa-mobile-final-fix">
 /* ===== CFA MOBILE NAVIGATION FINAL FIX ===== */
 
-.mobile-menu-icon-container {
+.mobile-menu-icon-container { display:none !important;
     display: none !important;
 }
 
@@ -503,7 +503,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     }
 
     /* Hamburger container */
-    .mobile-menu-icon-container {
+    .mobile-menu-icon-container { display:none !important;
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -716,6 +716,40 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
+
+<style id="cfa-mobile-drawer-final">
+/* CFA MOBILE MENU — FINAL */
+.mobile-menu-icon-container {
+    display: none !important;
+}
+
+#site-mobile-drawer {
+    display: none !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 30px !important;
+    box-sizing: border-box !important;
+    z-index: 999999 !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-icon-container {
+        display: block !important;
+    }
+
+    #site-mobile-drawer {
+        display: none !important;
+    }
+
+    #site-mobile-drawer.cfa-open {
+        display: flex !important;
+    }
+}
+</style>
+
 </head>
 
 
@@ -763,7 +797,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 </div>
 
 <style>
-.mobile-menu-icon-container {
+.mobile-menu-icon-container { display:none !important;
     display: none;
 }
 
@@ -803,7 +837,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
         gap: 8px;
     }
 
-    .mobile-menu-icon-container {
+    .mobile-menu-icon-container { display:none !important;
         display: block;
     }
 }
@@ -848,7 +882,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 
 <style>
 @media (max-width: 768px) {
-    .mobile-menu-icon-container { display: block !important; }
+    .mobile-menu-icon-container { display:none !important; display: block !important; }
 }
 </style>
 
@@ -862,7 +896,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function openMenu() {
         if (drawer) {
-            drawer.style.display = "flex";
+            drawer.classList.add("cfa-open");
             drawer.style.visibility = "visible";
             drawer.style.opacity = "1";
             document.body.style.overflow = "hidden";
@@ -871,7 +905,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function closeMenu() {
         if (drawer) {
-            drawer.style.display = "none";
+            drawer.classList.remove("cfa-open");
             document.body.style.overflow = "";
         }
     }
