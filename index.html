@@ -1192,3 +1192,62 @@ toggleBtn.addEventListener('click', () => {
     });
 </script>
 
+
+<style id="cfa-mobile-menu-ultimate">
+/* FINAL MOBILE HEADER FIX */
+@media screen and (max-width: 900px) {
+    header .nav {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+
+    header .nav-right {
+        display: flex !important;
+        align-items: center !important;
+        margin-left: auto !important;
+    }
+
+    header .nav-right nav {
+        display: none !important;
+    }
+
+    header .account-links {
+        display: none !important;
+    }
+
+    header .theme-toggle {
+        display: none !important;
+    }
+
+    header .cfa-mobile-menu-button {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        margin-left: 8px !important;
+        background: var(--white) !important;
+        border: 1px solid var(--line) !important;
+        z-index: 9999999 !important;
+    }
+
+    header .cfa-mobile-menu-button span {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 24px !important;
+        height: 3px !important;
+        background: var(--ink) !important;
+    }
+}
+
+@media screen and (min-width: 901px) {
+    header .cfa-mobile-menu-button {
+        display: none !important;
+    }
+}
+</style>
