@@ -334,14 +334,8 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     }
 
     #hamburger-menu-trigger {
-        width: 42px;
-        height: 42px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
-        border-radius: 10px;
-    }
+    display: none !important;
+}
 
     #hamburger-menu-trigger:hover,
     #hamburger-menu-trigger:focus {
@@ -487,6 +481,41 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 
 
 
+\n
+<style id="cfa-desktop-mobile-menu-fix">
+/* CFA: mobile menu only on touch/mobile devices */
+#hamburger-menu-trigger {
+    display: none !important;
+}
+
+/* Phones/tablets with touch input */
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+    #hamburger-menu-trigger {
+        display: flex !important;
+    }
+}
+</style>
+
+
+@media (max-width: 768px) {
+    #hamburger-menu-trigger {
+        display: flex !important;
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+        margin: 0;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--white);
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        flex-shrink: 0;
+        z-index: 1001;
+    }
+}
 \n</head>
 
 
@@ -904,11 +933,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <footer>
   <div class="container footer">
-    <span>© 2026 Collins French Academy (CFA)</span>
-    <span></span>
+    <div>Apprendre • S'amuser • S'inspirer • Découvrir</div>
+    <div>© 2026 Collins French Academy (CFA)</div>
   </div>
-
-<div style="text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">Apprendre • S'amuser • S'inspirer • Découvrir</div>
 </footer>
 
 <script>
