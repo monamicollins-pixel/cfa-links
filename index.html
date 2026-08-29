@@ -631,6 +631,91 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
+
+<style id="cfa-mobile-nav-final">
+@media (max-width:768px) {
+
+#site-mobile-drawer {
+    display:none;
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    z-index:9999999;
+    background:var(--white);
+    color:var(--ink);
+    padding:24px;
+    box-sizing:border-box;
+    overflow-y:auto;
+}
+
+.cfa-mobile-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:35px;
+}
+
+.cfa-mobile-header strong {
+    font-size:20px;
+    color:var(--blue);
+}
+
+#close-drawer-btn {
+    border:0;
+    background:transparent;
+    color:var(--ink);
+    font-size:36px;
+    cursor:pointer;
+    line-height:1;
+}
+
+.cfa-mobile-nav {
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    max-width:420px;
+    margin:auto;
+}
+
+.cfa-mobile-link,
+.cfa-mobile-theme {
+    width:100%;
+    box-sizing:border-box;
+    padding:16px;
+    border:0;
+    border-radius:12px;
+    background:transparent;
+    color:var(--ink) !important;
+    text-align:left;
+    text-decoration:none;
+    font:inherit;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.cfa-mobile-link:hover,
+.cfa-mobile-theme:hover {
+    background:var(--line);
+    color:var(--blue) !important;
+}
+
+.cfa-mobile-login {
+    width:100%;
+    box-sizing:border-box;
+    margin-top:15px;
+    padding:16px;
+    border-radius:12px;
+    background:var(--blue);
+    color:white !important;
+    text-align:center;
+    text-decoration:none;
+    font-weight:800;
+}
+}
+</style>
+
 </head>
 
 
@@ -724,20 +809,42 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
-<div id="site-mobile-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; flex-direction: column; padding: 30px; box-sizing: border-box; color: #fff; font-family: inherit;">
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
-        <button id="close-drawer-btn" style="background: none; border: none; color: #fff; font-size: 32px; cursor: pointer;">&times;</button>
+<div id="site-mobile-drawer">
+    <div class="cfa-mobile-header">
+        <strong>CFA</strong>
+        <button id="close-drawer-btn" aria-label="Fermer le menu">&times;</button>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 320px; width: 100%; margin: 0 auto;">
-        <div id="drawer-theme-toggle" style="cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 17px;">☀️ Mode clair / sombre</div>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="index.html" style="color: inherit; text-decoration: none; font-size: 17px;">Accueil</a>
-        <a href="#cours" style="color: inherit; text-decoration: none; font-size: 17px;">Cours</a>
-        <a href="#contact" style="color: inherit; text-decoration: none; font-size: 17px;">À propos</a>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="pages/connexion.html" style="background: #2563eb; color: white; padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; display: block; font-size: 17px;">Connexion</a>
-    </div>
-</div>
+
+    <nav class="cfa-mobile-nav">
+        <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">
+            🌙 Mode sombre
+        </button>
+
+        <a class="cfa-mobile-link" href="index.html#accueil">
+            Accueil
+        </a>
+
+        <a class="cfa-mobile-link" href="index.html#cours">
+            Cours
+        </a>
+
+        <a class="cfa-mobile-link" href="index.html#ressources">
+            Ressources
+        </a>
+
+        <a class="cfa-mobile-link" href="index.html#compas">
+            COMPAS
+        </a>
+
+        <a class="cfa-mobile-link" href="index.html#contact">
+            Contact
+        </a>
+
+        <a class="cfa-mobile-login" href="pages/connexion.html">
+            Connexion
+        </a>
+    </nav>
+</div>>
 
 <style>
 @media (max-width: 768px) {
