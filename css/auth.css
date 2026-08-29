@@ -130,3 +130,5 @@
         }
         
 header *, .brand, .logo { text-transform: none !important; }
+
+span[style*="font-size"], .brand, .logo-text, header span { text-transform: none !important; }
