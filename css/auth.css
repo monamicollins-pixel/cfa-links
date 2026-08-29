@@ -129,3 +129,4 @@
             font-size: 1.15rem !important;
         }
         
+header *, .brand, .logo { text-transform: none !important; }
