@@ -824,7 +824,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
             Accueil
         </a>
 
-        <a class="cfa-mobile-link" href="index.html#cours">
+        <a class="cfa-mobile-link" href="#cours">
             Cours
         </a>
 
@@ -853,25 +853,83 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+
     const trigger = document.getElementById("hamburger-menu-trigger");
     const drawer = document.getElementById("site-mobile-drawer");
     const closeBtn = document.getElementById("close-drawer-btn");
-    
-    if (trigger && drawer) {
-        trigger.addEventListener("click", () => {
+    const drawerTheme = document.getElementById("drawer-theme-toggle");
+
+    function openMenu() {
+        if (drawer) {
             drawer.style.display = "flex";
-            document.body.classList.add("cfa-drawer-open");
-            trigger.setAttribute("aria-expanded", "true");
-        });
+            drawer.style.visibility = "visible";
+            drawer.style.opacity = "1";
+            document.body.style.overflow = "hidden";
+        }
     }
-    if (closeBtn && drawer) {
-        closeBtn.addEventListener("click", () => {
+
+    function closeMenu() {
+        if (drawer) {
             drawer.style.display = "none";
-            document.body.classList.remove("cfa-drawer-open");
-            trigger.setAttribute("aria-expanded", "false");
+            document.body.style.overflow = "";
+        }
+    }
+
+    if (trigger) {
+        trigger.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openMenu();
         });
     }
+
+    if (closeBtn) {
+        closeBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            closeMenu();
+        });
+    }
+
+    /*
+     * Mobile menu navigation
+     * Close the drawer first, then follow the link.
+     */
+    if (drawer) {
+        drawer.querySelectorAll("a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                closeMenu();
+            });
+        });
+    }
+
+    /*
+     * Mobile theme button
+     * Uses the same theme system as the desktop theme button.
+     */
+    if (drawerTheme) {
+        drawerTheme.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            const html = document.documentElement;
+            const current = html.getAttribute("data-theme") || "light";
+            const next = current === "dark" ? "light" : "dark";
+
+            html.setAttribute("data-theme", next);
+            localStorage.setItem("cfa_theme", next);
+
+            const desktopToggle = document.getElementById("themeToggle");
+            if (desktopToggle) {
+                desktopToggle.textContent = next === "dark" ? "☀️" : "🌙";
+            }
+
+            drawerTheme.innerHTML =
+                next === "dark"
+                ? "☀️ Passer au mode clair"
+                : "🌙 Passer au mode sombre";
+        });
+    }
+
 });
 </script>
 
