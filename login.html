@@ -22,6 +22,56 @@ input:focus{outline:none;border-color:var(--blue);}
 </head>
 <body>
 
+<!-- Mobile Navigation Drawer & 3-line Menu Integration -->
+<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
+    <button id="hamburger-menu-trigger" style="background: none; border: none; color: white; cursor: pointer; padding: 5px; display: flex; flex-direction: column; gap: 5px;">
+        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
+        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
+        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
+    </button>
+</div>
+
+<div id="site-mobile-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; flex-direction: column; padding: 30px; box-sizing: border-box; color: #fff; font-family: inherit;">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+        <button id="close-drawer-btn" style="background: none; border: none; color: #fff; font-size: 32px; cursor: pointer;">&times;</button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 320px; width: 100%; margin: 0 auto;">
+        <div id="drawer-theme-toggle" style="cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 17px;">☀️ Mode clair / sombre</div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
+        <a href="index.html" style="color: inherit; text-decoration: none; font-size: 17px;">Accueil</a>
+        <a href="index.html#cours" style="color: inherit; text-decoration: none; font-size: 17px;">Cours</a>
+        <a href="pages/apropos.html" style="color: inherit; text-decoration: none; font-size: 17px;">À propos</a>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
+        <a href="pages/connexion.html" style="background: #2563eb; color: white; padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; display: block; font-size: 17px;">Connexion</a>
+    </div>
+</div>
+
+<style>
+@media (max-width: 768px) {
+    .mobile-menu-icon-container { display: block !important; }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.getElementById("hamburger-menu-trigger");
+    const drawer = document.getElementById("site-mobile-drawer");
+    const closeBtn = document.getElementById("close-drawer-btn");
+    
+    if (trigger && drawer) {
+        trigger.addEventListener("click", () => {
+            drawer.style.display = "flex";
+        });
+    }
+    if (closeBtn && drawer) {
+        closeBtn.addEventListener("click", () => {
+            drawer.style.display = "none";
+        });
+    }
+});
+</script>
+
+
 <div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
     <button id="hamburger-menu-trigger" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; display: flex; flex-direction: column; gap: 5px;">
         <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
