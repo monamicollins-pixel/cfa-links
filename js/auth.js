@@ -352,18 +352,18 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     /*
      * ==============================
-     * CFA — PASSWORD TOGGLE
+     * CFA — UNIVERSAL PASSWORD TOGGLE
      * ==============================
      */
 
     const passwordToggles =
-        document.querySelectorAll(
-            "[data-password-toggle], #togglePassword"
-        );
+        document.querySelectorAll("[data-password-toggle], #togglePassword");
 
     passwordToggles.forEach(function (button) {
 
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
 
             const field =
                 button.closest(
@@ -372,10 +372,18 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             if (!field) return;
 
-            field.type =
-                field.type === "password"
-                    ? "text"
-                    : "password";
+            const visible = field.type === "text";
+
+            field.type = visible ? "password" : "text";
+
+            button.textContent = "👁️";
+
+            button.setAttribute(
+                "aria-label",
+                visible
+                    ? "Afficher le mot de passe"
+                    : "Masquer le mot de passe"
+            );
 
         });
 

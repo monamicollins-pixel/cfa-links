@@ -94,9 +94,7 @@
             class="password-toggle"
             data-password-toggle
             aria-label="Afficher le mot de passe"
-        >
-            👁
-        </button>
+        >👁️</button>
 
     </div>
 
@@ -122,9 +120,7 @@
             class="password-toggle"
             data-password-toggle
             aria-label="Afficher le mot de passe"
-        >
-            👁
-        </button>
+        >👁️</button>
 
     </div>
 
@@ -166,6 +162,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabase.js"></script>
+<script src="../js/auth.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
@@ -174,62 +171,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const message = document.getElementById("authMessage");
 
     if (!form || !message) return;
-
-
-    /*
-     * PASSWORD VISIBILITY
-     *
-     * Either eye controls BOTH password fields.
-     */
-
-    const passwordInputs = [
-        document.getElementById("newPassword"),
-        document.getElementById("confirmNewPassword")
-    ];
-
-    const toggleButtons =
-        document.querySelectorAll("[data-password-toggle]");
-
-    let passwordsVisible = false;
-
-    function updatePasswordVisibility() {
-
-        passwordInputs.forEach(function(input) {
-
-            if (!input) return;
-
-            input.type =
-                passwordsVisible ? "text" : "password";
-
-        });
-
-        toggleButtons.forEach(function(button) {
-
-            button.textContent =
-                passwordsVisible ? "🙈" : "👁";
-
-            button.setAttribute(
-                "aria-label",
-                passwordsVisible
-                    ? "Masquer les mots de passe"
-                    : "Afficher les mots de passe"
-            );
-
-        });
-    }
-
-    toggleButtons.forEach(function(button) {
-
-        button.addEventListener("click", function() {
-
-            passwordsVisible = !passwordsVisible;
-
-            updatePasswordVisibility();
-
-        });
-
-    });
-
 
     /*
      * PASSWORD RECOVERY SESSION
@@ -420,6 +361,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 });
 </script>
+
+
 
 </body>
 </html>
