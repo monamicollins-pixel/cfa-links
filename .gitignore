@@ -1,0 +1,5 @@
+
+# Local development backups
+*.backup
+*.before-*
+backups/
