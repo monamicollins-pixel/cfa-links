@@ -24,7 +24,41 @@
                 border-color: #444 !important;
             }
         </style>
-        </head>
+        
+<style>
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 48px !important;
+    box-sizing: border-box;
+}
+
+.password-toggle {
+    position: absolute !important;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    font-size: 18px !important;
+    line-height: 1;
+}
+</style>
+
+</head>
 <body>
 
 <!-- Mobile Navigation Drawer & 3-line Menu Integration -->
@@ -114,17 +148,41 @@ Adresse e-mail
 <input id="email" type="email" placeholder="vous@example.com" autocomplete="email" required>
 </label>
 
-<label>
+<label class="password-field">
 Mot de passe
-<input id="password" type="password" placeholder="Minimum 6 caractères" autocomplete="new-password" required>
+<div class="password-wrap">
+    <input id="password" type="password"
+           placeholder="Minimum 6 caractères"
+           autocomplete="new-password"
+           required>
+    <button type="button"
+            class="password-toggle"
+            data-password-toggle
+            aria-label="Afficher le mot de passe">
+        👁
+    </button>
+</div>
 </label>
 
-<label>
+<label class="password-field">
 Confirmer le mot de passe
-<input id="confirmPassword" type="password" placeholder="Répétez votre mot de passe" autocomplete="new-password" required>
+<div class="password-wrap">
+    <input id="confirmPassword" type="password"
+           placeholder="Répétez votre mot de passe"
+           autocomplete="new-password"
+           required>
+    <button type="button"
+            class="password-toggle"
+            data-password-toggle
+            aria-label="Afficher le mot de passe">
+        👁
+    </button>
+</div>
 </label>
 
-
+<button class="auth-submit" type="submit">
+    Créer mon compte
+</button>
 
 </form>
 
@@ -140,7 +198,161 @@ Vous avez déjà un compte ?
 </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
 <script src="../js/auth.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const firstName = document.getElementById("firstName");
+    const lastName = document.getElementById("lastName");
+    const form = document.getElementById("signupForm");
+
+    /*
+     * Allowed:
+     * Letters, French accents, spaces, hyphens and apostrophes.
+     */
+    const invalidCharacters = /[^\p{L}\s'’-]/gu;
+
+    function normalizeName(value) {
+
+        // Remove invalid characters
+        value = value.replace(invalidCharacters, "");
+
+        // Normalize repeated spaces
+        value = value.replace(/\s+/g, " ");
+
+        // Normalize repeated hyphens
+        value = value.replace(/-{2,}/g, "-");
+
+        // Normalize repeated apostrophes
+        value = value.replace(/['’]{2,}/g, "'");
+
+        // Trim
+        value = value.trim();
+
+        // Capitalize every word
+        value = value
+            .toLowerCase()
+            .replace(/(^|[\s'’-])\p{L}/gu, function(match) {
+                return match.toUpperCase();
+            });
+
+        return value;
+    }
+
+    function validateName(value) {
+
+        /*
+         * Must contain letters.
+         * Spaces, apostrophes and hyphens are allowed
+         * only between letters.
+         */
+        return /^[\p{L}]+(?:[\s'’-][\p{L}]+)*$/u.test(value);
+    }
+
+    function setupNameField(field) {
+
+        if (!field) return;
+
+        field.addEventListener("input", function () {
+
+            const cursorPosition = field.selectionStart;
+
+            field.value = normalizeName(field.value);
+
+            field.setSelectionRange(
+                Math.min(cursorPosition, field.value.length),
+                Math.min(cursorPosition, field.value.length)
+            );
+
+            field.setCustomValidity("");
+
+        });
+
+        field.addEventListener("blur", function () {
+
+            field.value = normalizeName(field.value);
+
+            if (field.value && !validateName(field.value)) {
+
+                field.setCustomValidity(
+                    "Veuillez utiliser uniquement des lettres, espaces, apostrophes ou tirets."
+                );
+
+            } else {
+
+                field.setCustomValidity("");
+
+            }
+
+        });
+
+    }
+
+    setupNameField(firstName);
+    setupNameField(lastName);
+
+    if (form) {
+
+        form.addEventListener("submit", function (event) {
+
+            firstName.value = normalizeName(firstName.value);
+            lastName.value = normalizeName(lastName.value);
+
+            if (!validateName(firstName.value)) {
+
+                firstName.setCustomValidity(
+                    "Prénom invalide. Utilisez uniquement des lettres."
+                );
+
+                firstName.reportValidity();
+
+                event.preventDefault();
+                return;
+
+            }
+
+            if (!validateName(lastName.value)) {
+
+                lastName.setCustomValidity(
+                    "Nom invalide. Utilisez uniquement des lettres."
+                );
+
+                lastName.reportValidity();
+
+                event.preventDefault();
+                return;
+
+            }
+
+            /*
+             * auth.js expects a single "name" field.
+             * Create it automatically from Prénom + Nom.
+             */
+            let nameField = document.getElementById("name");
+
+            if (!nameField) {
+
+                nameField = document.createElement("input");
+                nameField.type = "hidden";
+                nameField.id = "name";
+                nameField.name = "name";
+
+                form.appendChild(nameField);
+
+            }
+
+            nameField.value =
+                firstName.value + " " + lastName.value;
+
+        });
+
+    }
+
+});
+</script>
+
 
 <script>
     // Global Dark Mode Synchronizer
@@ -185,3 +397,90 @@ Vous avez déjà un compte ?
 </script>
 <div style="text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">Apprendre • S'amuser • S'inspirer • Découvrir</div>
 
+
+<style>
+.password-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrap input {
+    width: 100%;
+    padding-right: 52px;
+    box-sizing: border-box;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #174ea6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.password-toggle:hover {
+    background: rgba(23,78,166,.08);
+}
+
+.password-toggle:focus {
+    outline: 2px solid rgba(23,78,166,.25);
+    outline-offset: 1px;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const passwordFields = [
+        document.getElementById("password"),
+        document.getElementById("confirmPassword")
+    ];
+
+    const toggles = document.querySelectorAll("[data-password-toggle]");
+
+    let visible = false;
+
+    function updatePasswordVisibility() {
+
+        passwordFields.forEach(function (field) {
+            if (field) {
+                field.type = visible ? "text" : "password";
+            }
+        });
+
+        toggles.forEach(function (button) {
+            button.textContent = visible ? "🙈" : "👁";
+            button.setAttribute(
+                "aria-label",
+                visible
+                    ? "Masquer les mots de passe"
+                    : "Afficher les mots de passe"
+            );
+        });
+    }
+
+    toggles.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            visible = !visible;
+
+            updatePasswordVisibility();
+
+        });
+
+    });
+
+});
+</script>

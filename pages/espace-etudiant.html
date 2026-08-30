@@ -314,58 +314,117 @@ footer{
     Apprendre • S'amuser • S'inspirer • Découvrir
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
 <script src="../js/auth.js"></script>
 
 <script>
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", async function(){
 
-    const current =
-        localStorage.getItem("cfa_current_user");
+    /*
+     * CFA / Supabase authentication
+     *
+     * The learner area now checks the real
+     * Supabase session instead of localStorage.
+     */
 
-    if(!current){
+    const {
+        data: { session },
+        error
+    } = await cfaSupabase.auth.getSession();
 
-        window.location.href="connexion.html";
+
+    if (error || !session || !session.user) {
+
+        window.location.href = "connexion.html";
         return;
 
     }
 
-    try{
 
-        const user=JSON.parse(current);
+    /*
+     * Get learner information from Supabase.
+     */
 
-        const hour = new Date().getHours();
+    const user = session.user;
 
-        let greeting;
+    const name =
+        user.user_metadata?.name ||
+        user.user_metadata?.full_name ||
+        user.email?.split("@")[0] ||
+        "Apprenant";
 
-        if (hour >= 5 && hour < 12) {
-            greeting = "Bonjour";
-        } else if (hour >= 12 && hour < 18) {
-            greeting = "Bon après-midi";
-        } else {
-            greeting = "Bonsoir";
-        }
 
-        document.getElementById("timeGreeting").textContent =
-            greeting + " ";
+    /*
+     * Time-based greeting.
+     */
 
-        document.getElementById("studentName").textContent =
-            user.name + " 👋";
+    const hour = new Date().getHours();
 
-    }catch(e){
+    let greeting;
 
-        window.location.href="connexion.html";
+    if (hour >= 5 && hour < 12) {
+
+        greeting = "Bonjour";
+
+    } else if (hour >= 12 && hour < 18) {
+
+        greeting = "Bon après-midi";
+
+    } else {
+
+        greeting = "Bonsoir";
 
     }
 
-    document.getElementById("logoutBtn")
-        .addEventListener("click",function(){
 
-            localStorage.removeItem("cfa_current_user");
+    const greetingElement =
+        document.getElementById("timeGreeting");
 
-            window.location.href="connexion.html";
+    const nameElement =
+        document.getElementById("studentName");
 
-        });
+
+    if (greetingElement) {
+
+        greetingElement.textContent =
+            greeting + " ";
+
+    }
+
+
+    if (nameElement) {
+
+        nameElement.textContent =
+            name + " 👋";
+
+    }
+
+
+    /*
+     * Logout
+     */
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
+            async function(){
+
+                await cfaSupabase.auth.signOut();
+
+                window.location.href =
+                    "connexion.html";
+
+            }
+        );
+
+    }
 
 });
 

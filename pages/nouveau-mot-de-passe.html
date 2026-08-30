@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nouveau mot de passe | Collins French Academy</title>
+
+<link rel="stylesheet" href="../css/auth.css">
+
+<style>
+.password-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrap input {
+    width: 100%;
+    padding-right: 50px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.reset-note {
+    margin: 0 0 20px;
+    color: #667085;
+    line-height: 1.5;
+    font-size: 14px;
+}
+</style>
+
+</head>
+
+<body>
+
+<main class="auth-page">
+
+<div class="auth-card">
+
+<img
+    class="auth-logo"
+    src="../file.png"
+    alt="CFA"
+>
+
+<h1 class="auth-title">
+    Nouveau mot de passe
+</h1>
+
+<p class="auth-subtitle">
+    Choisissez un nouveau mot de passe pour votre compte CFA.
+</p>
+
+<div
+    id="authMessage"
+    class="auth-message"
+></div>
+
+<form
+    class="auth-form"
+    id="newPasswordForm"
+>
+
+<label>
+    Nouveau mot de passe
+
+    <div class="password-wrap">
+
+        <input
+            id="newPassword"
+            type="password"
+            placeholder="Minimum 6 caractères"
+            autocomplete="new-password"
+            minlength="6"
+            required
+        >
+
+        <button
+            type="button"
+            class="password-toggle"
+            data-password-toggle
+            aria-label="Afficher le mot de passe"
+        >
+            👁
+        </button>
+
+    </div>
+
+</label>
+
+
+<label>
+    Confirmer le mot de passe
+
+    <div class="password-wrap">
+
+        <input
+            id="confirmNewPassword"
+            type="password"
+            placeholder="Répétez votre mot de passe"
+            autocomplete="new-password"
+            minlength="6"
+            required
+        >
+
+        <button
+            type="button"
+            class="password-toggle"
+            data-password-toggle
+            aria-label="Afficher le mot de passe"
+        >
+            👁
+        </button>
+
+    </div>
+
+</label>
+
+
+<button
+    class="auth-submit"
+    type="submit"
+>
+    Enregistrer le nouveau mot de passe
+</button>
+
+</form>
+
+
+<p class="auth-switch">
+
+    Vous vous souvenez de votre mot de passe ?
+
+    <a href="connexion.html">
+        Se connecter
+    </a>
+
+</p>
+
+
+<a
+    class="back-home"
+    href="../index.html"
+>
+    ← Retour à l'accueil
+</a>
+
+</div>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const form = document.getElementById("newPasswordForm");
+    const message = document.getElementById("authMessage");
+
+    if (!form || !message) return;
+
+
+    /*
+     * PASSWORD VISIBILITY
+     *
+     * Either eye controls BOTH password fields.
+     */
+
+    const passwordInputs = [
+        document.getElementById("newPassword"),
+        document.getElementById("confirmNewPassword")
+    ];
+
+    const toggleButtons =
+        document.querySelectorAll("[data-password-toggle]");
+
+    let passwordsVisible = false;
+
+    function updatePasswordVisibility() {
+
+        passwordInputs.forEach(function(input) {
+
+            if (!input) return;
+
+            input.type =
+                passwordsVisible ? "text" : "password";
+
+        });
+
+        toggleButtons.forEach(function(button) {
+
+            button.textContent =
+                passwordsVisible ? "🙈" : "👁";
+
+            button.setAttribute(
+                "aria-label",
+                passwordsVisible
+                    ? "Masquer les mots de passe"
+                    : "Afficher les mots de passe"
+            );
+
+        });
+    }
+
+    toggleButtons.forEach(function(button) {
+
+        button.addEventListener("click", function() {
+
+            passwordsVisible = !passwordsVisible;
+
+            updatePasswordVisibility();
+
+        });
+
+    });
+
+
+    /*
+     * PASSWORD RECOVERY SESSION
+     *
+     * Supabase emits PASSWORD_RECOVERY when the
+     * reset link successfully establishes the
+     * recovery session.
+     */
+
+    let recoverySession = null;
+
+
+    const { data: sessionData } =
+        await cfaSupabase.auth.getSession();
+
+    if (sessionData && sessionData.session) {
+        recoverySession = sessionData.session;
+    }
+
+
+    const recoveryPromise = new Promise(function(resolve) {
+
+        const { data: listener } =
+            cfaSupabase.auth.onAuthStateChange(
+                function(event, session) {
+
+                    console.log(
+                        "CFA Auth Event:",
+                        event
+                    );
+
+                    if (
+                        event === "PASSWORD_RECOVERY" &&
+                        session
+                    ) {
+
+                        recoverySession = session;
+
+                        resolve(session);
+                    }
+
+                }
+            );
+
+
+        /*
+         * If a session already exists,
+         * allow the page to continue.
+         */
+
+        if (recoverySession) {
+            resolve(recoverySession);
+        }
+
+        /*
+         * Safety timeout.
+         */
+
+        setTimeout(function() {
+
+            resolve(recoverySession);
+
+        }, 3000);
+
+    });
+
+
+    recoverySession = await recoveryPromise;
+
+
+    if (!recoverySession) {
+
+        message.textContent =
+            "Ce lien de réinitialisation est invalide ou a expiré. Demandez un nouveau lien.";
+
+        message.className =
+            "auth-message error";
+
+        form.style.display = "none";
+
+        return;
+    }
+
+
+    /*
+     * PASSWORD UPDATE
+     */
+
+    form.addEventListener("submit", async function(e) {
+
+        e.preventDefault();
+
+        const password =
+            document
+                .getElementById("newPassword")
+                .value;
+
+        const confirm =
+            document
+                .getElementById("confirmNewPassword")
+                .value;
+
+
+        if (password.length < 6) {
+
+            message.textContent =
+                "Le mot de passe doit contenir au moins 6 caractères.";
+
+            message.className =
+                "auth-message error";
+
+            return;
+        }
+
+
+        if (password !== confirm) {
+
+            message.textContent =
+                "Les mots de passe ne correspondent pas.";
+
+            message.className =
+                "auth-message error";
+
+            return;
+        }
+
+
+        message.textContent =
+            "Enregistrement du nouveau mot de passe...";
+
+        message.className =
+            "auth-message success";
+
+
+        try {
+
+            const { error } =
+                await cfaSupabase.auth.updateUser({
+                    password: password
+                });
+
+
+            if (error) {
+                throw error;
+            }
+
+
+            message.textContent =
+                "Votre mot de passe a été modifié avec succès. Redirection vers la connexion...";
+
+            message.className =
+                "auth-message success";
+
+
+            /*
+             * End recovery session.
+             */
+
+            await cfaSupabase.auth.signOut();
+
+
+            setTimeout(function() {
+
+                window.location.replace(
+                    "connexion.html"
+                );
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            console.error(
+                "CFA password update error:",
+                error
+            );
+
+            message.textContent =
+                "Impossible de modifier le mot de passe : " +
+                (error.message || "Erreur inconnue.");
+
+            message.className =
+                "auth-message error";
+
+        }
+
+    });
+
+});
+</script>
+
+</body>
+</html>

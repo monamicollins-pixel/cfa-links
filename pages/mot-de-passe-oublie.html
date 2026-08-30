@@ -122,12 +122,28 @@ Entrez votre adresse e-mail pour réinitialiser votre mot de passe.
 <div id="authMessage" class="auth-message"></div>
 
 
-    <form onsubmit="event.preventDefault(); alert('Un e-mail de réinitialisation a été envoyé !'); window.location.href='connexion.html';">
+    <form id="resetForm">
         <div style="margin-bottom: 20px; text-align: left;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem;">Adresse e-mail</label>
-            <input type="email" required placeholder="nom@exemple.com" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <label for="resetEmail" style="display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem;">
+                Adresse e-mail
+            </label>
+
+            <input
+                id="resetEmail"
+                type="email"
+                required
+                autocomplete="email"
+                placeholder="nom@exemple.com"
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
+            >
         </div>
-        <button type="submit" style="width: 100%; padding: 12px; background-color: #0056b3; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Envoyer le lien de réinitialisation</button>
+
+        <button
+            type="submit"
+            style="width: 100%; padding: 12px; background-color: #0056b3; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;"
+        >
+            Envoyer le lien de réinitialisation
+        </button>
     </form>
     <div style="text-align: center; margin-top: 15px;">
         <a href="connexion.html" style="color: #0056b3; text-decoration: underline;">← Retour à la connexion</a>
@@ -146,7 +162,105 @@ Vous n'avez pas encore de compte ? <a href="sinscrire.html" style="color: #0056b
 </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
 <script src="../js/auth.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const resetForm = document.getElementById("resetForm");
+
+    if (!resetForm) return;
+
+    resetForm.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        const email =
+            document.getElementById("resetEmail").value
+            .trim()
+            .toLowerCase();
+
+        const message =
+            document.getElementById("authMessage");
+
+        if (!email) {
+            if (message) {
+                message.textContent =
+                    "Veuillez saisir votre adresse e-mail.";
+                message.className =
+                    "auth-message error";
+            }
+            return;
+        }
+
+        if (message) {
+            message.textContent =
+                "Envoi du lien de réinitialisation...";
+            message.className =
+                "auth-message success";
+        }
+
+        try {
+
+            const { error } =
+                await cfaSupabase.auth.resetPasswordForEmail(
+                    email,
+                    {
+                        redirectTo:
+                            window.location.origin +
+                            "/pages/nouveau-mot-de-passe.html"
+                    }
+                );
+
+            if (error) {
+                throw error;
+            }
+
+            if (message) {
+                message.textContent =
+                    "Si cette adresse correspond à un compte CFA, un lien de réinitialisation vient d'être envoyé. Vérifiez votre boîte e-mail.";
+                message.className =
+                    "auth-message success";
+            }
+
+            resetForm.reset();
+
+        } catch (error) {
+
+            console.error(
+                "CFA password reset error:",
+                error
+            );
+
+            if (message) {
+                console.error(
+                    "CFA password reset error:",
+                    error
+                );
+
+                let errorMessage =
+                    "Impossible d'envoyer le lien. Veuillez réessayer.";
+
+                if (
+                    error.message &&
+                    error.message.toLowerCase().includes("rate limit")
+                ) {
+                    errorMessage =
+                        "Trop de demandes ont été effectuées récemment. Veuillez patienter quelques minutes avant de demander un nouveau lien.";
+                }
+
+                message.textContent = errorMessage;
+                message.className =
+                    "auth-message error";
+            }
+        }
+
+    });
+
+});
+</script>
+
 
         
 <script>

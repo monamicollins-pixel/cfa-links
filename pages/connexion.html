@@ -43,6 +43,40 @@
 }
 </style>
 
+
+<style>
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 48px !important;
+    box-sizing: border-box;
+}
+
+.password-toggle {
+    position: absolute !important;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    font-size: 18px !important;
+    line-height: 1;
+}
+</style>
+
 </head>
 <body>
 
@@ -130,7 +164,10 @@ Adresse e-mail
 
 <label>
 Mot de passe
-<input id="password" type="password" placeholder="Votre mot de passe" autocomplete="current-password" required>
+<div class="password-wrapper">
+    <input id="password" type="password" placeholder="Votre mot de passe" autocomplete="current-password" required>
+    <button type="button" class="password-toggle" id="togglePassword" aria-label="Afficher le mot de passe">👁️</button>
+</div>
 </label>
 
 <button class="auth-submit" type="submit">
@@ -155,7 +192,71 @@ Vous n'avez pas encore de compte ? <a href="sinscrire.html" style="color: #0056b
 </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
 <script src="../js/auth.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const passwordInput = document.getElementById("password");
+    const passwordButton = document.getElementById("togglePassword");
+
+    if (!passwordInput || !passwordButton) {
+        console.error("CFA: Login password toggle elements not found.");
+        return;
+    }
+
+    passwordButton.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (passwordInput.type === "password") {
+
+            passwordInput.type = "text";
+
+            passwordButton.textContent = "🙈";
+            passwordButton.setAttribute(
+                "aria-label",
+                "Masquer le mot de passe"
+            );
+
+        } else {
+
+            passwordInput.type = "password";
+
+            passwordButton.textContent = "👁️";
+            passwordButton.setAttribute(
+                "aria-label",
+                "Afficher le mot de passe"
+            );
+
+        }
+
+    });
+
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const password = document.getElementById("password");
+    const toggle = document.getElementById("togglePassword");
+
+    if (password && toggle) {
+        toggle.addEventListener("click", function () {
+            const visible = password.type === "text";
+            password.type = visible ? "password" : "text";
+            toggle.textContent = visible ? "👁️" : "🙈";
+            toggle.setAttribute(
+                "aria-label",
+                visible ? "Afficher le mot de passe" : "Masquer le mot de passe"
+            );
+        });
+    }
+});
+</script>
+
 
         
 <script>
