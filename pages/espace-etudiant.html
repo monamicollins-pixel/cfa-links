@@ -309,9 +309,8 @@ footer{
 </main>
 
 <footer>
-    © 2026 Collins French Academy (CFA)
-    <br>
-    Apprendre • S'amuser • S'inspirer • Découvrir
+    <div>Apprendre • S'amuser • S'inspirer • Découvrir</div>
+    <div>© 2026 Collins French Academy (CFA)</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -350,9 +349,7 @@ document.addEventListener("DOMContentLoaded", async function(){
     const user = session.user;
 
     const name =
-        user.user_metadata?.name ||
-        user.user_metadata?.full_name ||
-        user.email?.split("@")[0] ||
+        user.user_metadata?.first_name ||
         "Apprenant";
 
 

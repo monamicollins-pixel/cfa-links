@@ -11,8 +11,8 @@
                 background-color: #121212 !important;
                 color: #e0e0e0 !important;
             }
-            body.dark-mode .card, 
-            body.dark-mode .login-container, 
+            body.dark-mode .card,
+            body.dark-mode .login-container,
             body.dark-mode .form-container {
                 background-color: #1e1e1e !important;
                 color: #e0e0e0 !important;
@@ -24,7 +24,7 @@
                 border-color: #444 !important;
             }
         </style>
-        
+
 <style>
 #mobile-menu-drawer.solid-drawer {
     background: #070a12 !important;
@@ -48,7 +48,7 @@
 
 <!-- Mobile Navigation Drawer & 3-line Menu Integration -->
 <div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    
+
 </div>
 
 <div id="site-mobile-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; flex-direction: column; padding: 30px; box-sizing: border-box; color: #fff; font-family: inherit;">
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const trigger = document.getElementById("hamburger-menu-trigger");
     const drawer = document.getElementById("site-mobile-drawer");
     const closeBtn = document.getElementById("close-drawer-btn");
-    
+
     if (trigger && drawer) {
         trigger.addEventListener("click", () => {
             drawer.style.display = "flex";
@@ -119,18 +119,60 @@ document.addEventListener("DOMContentLoaded", () => {
 Inscrivez-vous pour commencer votre parcours CFA.
 </p>
 
+<div class="form-group">
+    <label for="firstName">
+        Prénom
+    </label>
+
+    <input
+        id="firstName"
+        type="text"
+        placeholder="Votre prénom"
+        autocomplete="given-name"
+        required
+    >
+</div>
+
 <div id="authMessage" class="auth-message"></div>
 
 <form onsubmit="event.preventDefault(); alert('Inscription réussie !'); window.location.href='connexion.html';" class="auth-form" id="loginForm">
 
 <label>
 Adresse e-mail
+
+
 <input id="email" type="email" placeholder="vous@example.com" autocomplete="email" required>
 </label>
 
 <label>
 Mot de passe
 <input id="password" type="password" placeholder="Votre mot de passe" autocomplete="current-password" required>
+
+<div class="form-group">
+    <label for="confirmPassword">
+        Confirmer le mot de passe
+    </label>
+
+    <div class="password-wrapper">
+        <input
+            id="confirmPassword"
+            type="password"
+            placeholder="Confirmez votre mot de passe"
+            autocomplete="new-password"
+            required
+        >
+
+        <button
+            type="button"
+            id="toggleConfirmPassword"
+            data-password-toggle
+            aria-label="Afficher le mot de passe"
+        >
+            👁
+        </button>
+    </div>
+</div>
+
 </label>
 
 <button class="auth-submit" type="submit" onclick="event.preventDefault(); alert('Inscription réussie !'); window.location.href='connexion.html';">
@@ -155,7 +197,7 @@ Vous avez déjà un compte ? <a href="connexion.html" style="color: #0056b3; fon
 <script src="../js/supabase.js"></script>
 <script src="../js/auth.js"></script>
 
-        
+
 <script>
     // Global Dark Mode Synchronizer
     document.addEventListener("DOMContentLoaded", () => {
@@ -163,7 +205,7 @@ Vous avez déjà un compte ? <a href="connexion.html" style="color: #0056b3; fon
         if (isDarkMode) {
             document.body.classList.add("dark-mode");
         }
-        
+
         // Listen for any theme toggle buttons across pages
         const toggles = document.querySelectorAll("#darkModeToggle, .dark-mode-toggle, [onclick*=\x27dark\x27]");
         toggles.forEach(toggle => {
@@ -182,7 +224,7 @@ Vous avez déjà un compte ? <a href="connexion.html" style="color: #0056b3; fon
         if (currentTheme === "dark" || localStorage.getItem("darkMode") === "true") {
             document.body.classList.add("dark-mode");
         }
-        
+
         // Also sync any dark mode toggle click handlers across pages
         window.addEventListener("load", () => {
             const toggleBtn = document.querySelector("#darkModeToggle, .sun-icon, [onclick*=\x27dark\x27], .dark-toggle");

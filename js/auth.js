@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             e.preventDefault();
 
             const name =
-                document.getElementById("name")?.value.trim() || "";
+                document.getElementById("firstName")?.value.trim() || "";
 
             const email =
                 document.getElementById("email")?.value.trim().toLowerCase() || "";
@@ -35,7 +35,84 @@ document.addEventListener("DOMContentLoaded", async function () {
             const confirm =
                 document.getElementById("confirmPassword")?.value || "";
 
+            /*
+             * CFA — FIRST NAME VALIDATION
+             *
+             * Accept international names while blocking
+             * numbers, emojis, URLs and obvious junk.
+             */
+
+            const firstNamePattern =
+                /^[\p{L}]+(?:[ .'-][\p{L}]+)*$/u;
+
+            const blockedNames = [
+                "test",
+                "testing",
+                "admin",
+                "administrator",
+                "asdf",
+                "qwerty",
+                "xxx",
+                "xxxx",
+                "none",
+                "null",
+                "anonymous",
+                "unknown"
+            ];
+
+            const normalizedName =
+                name
+                    .normalize("NFKC")
+                    .trim();
+
+            const normalizedNameLower =
+                normalizedName.toLocaleLowerCase();
+
+
             if (!name || !email || !password || !confirm) {
+                authMessage(
+                    "Veuillez remplir tous les champs.",
+                    "error"
+                );
+                return;
+            }
+
+            if (!normalizedName) {
+                authMessage(
+                    "Veuillez saisir votre prénom.",
+                    "error"
+                );
+                return;
+            }
+
+            if (
+                normalizedName.length < 2 ||
+                normalizedName.length > 40
+            ) {
+                authMessage(
+                    "Votre prénom doit contenir entre 2 et 40 caractères.",
+                    "error"
+                );
+                return;
+            }
+
+            if (!firstNamePattern.test(normalizedName)) {
+                authMessage(
+                    "Veuillez saisir un prénom valide.",
+                    "error"
+                );
+                return;
+            }
+
+            if (blockedNames.includes(normalizedNameLower)) {
+                authMessage(
+                    "Veuillez saisir votre vrai prénom.",
+                    "error"
+                );
+                return;
+            }
+
+            if (!email || !password || !confirm) {
                 authMessage(
                     "Veuillez remplir tous les champs.",
                     "error"
@@ -75,7 +152,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                         options: {
                             data: {
-                                full_name: name
+                                first_name: name
                             },
 
                             emailRedirectTo:
@@ -234,8 +311,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (user) {
 
                 const name =
-                    user.user_metadata?.full_name ||
-                    user.email ||
+                    user.user_metadata?.first_name ||
                     "Apprenant";
 
                 area.innerHTML =
