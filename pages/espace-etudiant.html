@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Espace Apprenant | Collins French Academy</title>
+
+<style>
+:root{
+    --blue:#174ea6;
+    --ink:#172033;
+    --muted:#667085;
+    --white:#ffffff;
+    --line:#e5e7eb;
+    --bg:#f7f9fc;
+    --orange:#ff6600;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+}
+
+header{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.nav{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:800;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.logout{
+    border:0;
+    border-radius:10px;
+    padding:11px 16px;
+    background:#f1f3f7;
+    color:var(--ink);
+    font-weight:700;
+    cursor:pointer;
+}
+
+.hero{
+    padding:55px 0 35px;
+}
+
+.eyebrow{
+    color:var(--blue);
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+h1{
+    margin:10px 0;
+    font-size:clamp(34px,6vw,54px);
+    letter-spacing:-1.5px;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:18px;
+    max-width:650px;
+    line-height:1.6;
+}
+
+.dashboard{
+    padding-bottom:70px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:26px;
+    min-height:180px;
+    text-decoration:none;
+    color:inherit;
+    transition:.2s ease;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+.icon{
+    font-size:32px;
+    margin-bottom:18px;
+}
+
+.card h2{
+    margin:0 0 8px;
+    font-size:20px;
+}
+
+.card p{
+    margin:0;
+    color:var(--muted);
+    line-height:1.5;
+}
+
+.progress-box{
+    margin-top:22px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:26px;
+}
+
+.progress{
+    height:10px;
+    background:#edf0f5;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:14px;
+}
+
+.progress span{
+    display:block;
+    width:0%;
+    height:100%;
+    background:var(--orange);
+}
+
+footer{
+    padding:30px 0;
+    text-align:center;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    font-size:14px;
+}
+
+@media(max-width:768px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding-top:40px;
+    }
+
+    .brand span{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+
+        <a href="../index.html" class="brand">
+            <img src="file.png" class="logo" alt="CFA">
+            <span>Collins French Academy</span>
+        </a>
+
+        <button class="logout" id="logoutBtn">
+            Déconnexion
+        </button>
+
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+
+        <div class="eyebrow">
+            Espace Apprenant
+        </div>
+
+        <h1>
+            Bonjour <span id="studentName">👋</span>
+        </h1>
+
+        <p>
+            Bienvenue dans votre espace d'apprentissage.
+            Ici, vous pouvez apprendre, pratiquer, vous amuser
+            et suivre votre progression à votre propre rythme.
+        </p>
+
+    </div>
+</section>
+
+<section class="dashboard">
+    <div class="container">
+
+        <div class="grid">
+
+            <a class="card" href="../index.html#cours">
+                <div class="icon">📚</div>
+                <h2>Mes cours</h2>
+                <p>
+                    Explorez les cours CFA et poursuivez votre parcours
+                    en français.
+                </p>
+            </a>
+
+            <a class="card" href="../index.html#ressources">
+                <div class="icon">📝</div>
+                <h2>Exercices</h2>
+                <p>
+                    Pratiquez vos connaissances avec des activités
+                    et des défis.
+                </p>
+            </a>
+
+            <div class="card">
+                <div class="icon">📊</div>
+                <h2>Ma progression</h2>
+                <p>
+                    Suivez votre évolution et voyez jusqu'où vous êtes arrivé.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏆</div>
+                <h2>Mes réussites</h2>
+                <p>
+                    Retrouvez vos objectifs, réussites et futures récompenses.
+                </p>
+            </div>
+
+            <a class="card" href="../index.html#ressources">
+                <div class="icon">🎧</div>
+                <h2>Ressources</h2>
+                <p>
+                    Audio, vocabulaire, culture et contenus pour apprendre
+                    autrement.
+                </p>
+            </a>
+
+            <a class="card" href="../index.html#compas">
+                <div class="icon">🧭</div>
+                <h2>COMPAS DU JOUR</h2>
+                <p>
+                    Une dose de motivation, de sagesse et de français
+                    pour avancer chaque jour.
+                </p>
+            </a>
+
+        </div>
+
+        <div class="progress-box">
+
+            <strong>Votre parcours CFA</strong>
+
+            <div class="progress">
+                <span id="progressBar"></span>
+            </div>
+
+            <p id="progressText"
+               style="color:var(--muted);margin-bottom:0;">
+                Votre aventure commence maintenant.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    © 2026 Collins French Academy (CFA)
+    <br>
+    Apprendre • S'amuser • S'inspirer • Découvrir
+</footer>
+
+<script src="../js/auth.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    const current =
+        localStorage.getItem("cfa_current_user");
+
+    if(!current){
+
+        window.location.href="connexion.html";
+        return;
+
+    }
+
+    try{
+
+        const user=JSON.parse(current);
+
+        document.getElementById("studentName").textContent =
+            user.name + " 👋";
+
+    }catch(e){
+
+        window.location.href="connexion.html";
+
+    }
+
+    document.getElementById("logoutBtn")
+        .addEventListener("click",function(){
+
+            localStorage.removeItem("cfa_current_user");
+
+            window.location.href="connexion.html";
+
+        });
+
+});
+
+</script>
+
+</body>
+</html>

@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded",function(){
       authMessage("Compte créé avec succès !","success");
 
       setTimeout(function(){
-        window.location.href="../index.html";
+        window.location.href="espace-etudiant.html";
       },900);
     });
   }
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded",function(){
       authMessage("Connexion réussie !","success");
 
       setTimeout(function(){
-        window.location.href="../index.html";
+        window.location.href="espace-etudiant.html";
       },700);
     });
   }
