@@ -216,7 +216,8 @@ footer{
         </div>
 
         <h1>
-            Bonjour <span id="studentName">👋</span>
+            <span id="timeGreeting">Bonjour</span>
+            <span id="studentName">👋</span>
         </h1>
 
         <p>
@@ -332,6 +333,21 @@ document.addEventListener("DOMContentLoaded",function(){
     try{
 
         const user=JSON.parse(current);
+
+        const hour = new Date().getHours();
+
+        let greeting;
+
+        if (hour >= 5 && hour < 12) {
+            greeting = "Bonjour";
+        } else if (hour >= 12 && hour < 18) {
+            greeting = "Bon après-midi";
+        } else {
+            greeting = "Bonsoir";
+        }
+
+        document.getElementById("timeGreeting").textContent =
+            greeting + " ";
 
         document.getElementById("studentName").textContent =
             user.name + " 👋";
