@@ -214,6 +214,128 @@ Vous avez déjà un compte ? <a href="connexion.html" style="color: #0056b3; fon
 <script src="../js/supabase.js"></script>
 <script src="../js/auth.js"></script>
 
+<script>
+/*
+ * CFA — REGISTRATION PASSWORD CONTROLS
+ *
+ * Explicitly connects each eye button to its
+ * corresponding password field.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+
+    function setupPasswordToggle(buttonId, inputId) {
+
+        const button = document.getElementById(buttonId);
+        const input = document.getElementById(inputId);
+
+        if (!button || !input) {
+            console.error(
+                "CFA password control missing:",
+                buttonId,
+                inputId
+            );
+            return;
+        }
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            const showing =
+                input.type === "text";
+
+            input.type =
+                showing ? "password" : "text";
+
+            button.textContent =
+                showing ? "👁️" : "🙈";
+
+            button.setAttribute(
+                "aria-label",
+                showing
+                    ? "Afficher le mot de passe"
+                    : "Masquer le mot de passe"
+            );
+
+        });
+    }
+
+    setupPasswordToggle(
+        "togglePassword",
+        "password"
+    );
+
+    setupPasswordToggle(
+        "toggleConfirmPassword",
+        "confirmPassword"
+    );
+
+
+    /*
+     * Live password confirmation check.
+     */
+
+    const password =
+        document.getElementById("password");
+
+    const confirmPassword =
+        document.getElementById("confirmPassword");
+
+    const form =
+        document.getElementById("signupForm");
+
+    if (!password || !confirmPassword || !form) {
+        return;
+    }
+
+    function passwordsMatch() {
+
+        const p =
+            password.value;
+
+        const c =
+            confirmPassword.value;
+
+        if (!c) {
+            confirmPassword.setCustomValidity("");
+            return;
+        }
+
+        if (p !== c) {
+
+            confirmPassword.setCustomValidity(
+                "Les mots de passe ne correspondent pas."
+            );
+
+        } else {
+
+            confirmPassword.setCustomValidity("");
+
+        }
+    }
+
+    password.addEventListener(
+        "input",
+        passwordsMatch
+    );
+
+    confirmPassword.addEventListener(
+        "input",
+        passwordsMatch
+    );
+
+    form.addEventListener(
+        "submit",
+        function () {
+            passwordsMatch();
+        }
+    );
+
+});
+</script>
+
+
 
 <script>
     // Global Dark Mode Synchronizer
