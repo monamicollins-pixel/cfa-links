@@ -1,0 +1,125 @@
+/* =========================================================
+   CFA SHARED THEME
+   Visual layer only — existing page layouts remain intact.
+   ========================================================= */
+
+:root {
+    --cfa-blue: #174ea6;
+    --cfa-blue-dark: #0d2f70;
+    --cfa-red: #e63946;
+    --cfa-orange: #ff6600;
+    --cfa-ink: #10203a;
+    --cfa-muted: #64748b;
+    --cfa-paper: #f6f9fc;
+    --cfa-white: #ffffff;
+    --cfa-line: #e5eaf2;
+}
+
+/* Light theme */
+html[data-theme="light"] body {
+    background: var(--cfa-paper);
+    color: var(--cfa-ink);
+}
+
+html[data-theme="light"] header,
+html[data-theme="light"] footer,
+html[data-theme="light"] .card,
+html[data-theme="light"] .lesson,
+html[data-theme="light"] .progress-box,
+html[data-theme="light"] .resource,
+html[data-theme="light"] .level,
+html[data-theme="light"] .form-container,
+html[data-theme="light"] .login-container {
+    background-color: var(--cfa-white);
+    color: var(--cfa-ink);
+    border-color: var(--cfa-line);
+}
+
+/* Dark theme */
+html[data-theme="dark"] {
+    --cfa-paper: #0b1320;
+    --cfa-white: #111c2e;
+    --cfa-ink: #f1f5f9;
+    --cfa-muted: #94a3b8;
+    --cfa-line: #1e293b;
+    --cfa-blue: #4f83db;
+    --cfa-blue-dark: #7aa2e3;
+    --cfa-red: #ff4d5e;
+    --cfa-orange: #ff7a2f;
+}
+
+html[data-theme="dark"] body {
+    background: var(--cfa-paper);
+    color: var(--cfa-ink);
+}
+
+html[data-theme="dark"] header,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .lesson,
+html[data-theme="dark"] .progress-box,
+html[data-theme="dark"] .resource,
+html[data-theme="dark"] .level,
+html[data-theme="dark"] .form-container,
+html[data-theme="dark"] .login-container {
+    background-color: var(--cfa-white);
+    color: var(--cfa-ink);
+    border-color: var(--cfa-line);
+}
+
+html[data-theme="dark"] p,
+html[data-theme="dark"] .muted,
+html[data-theme="dark"] .lesson p,
+html[data-theme="dark"] .hero p {
+    color: var(--cfa-muted);
+}
+
+/* Common CFA accents */
+html[data-theme="light"] a {
+    color: var(--cfa-blue);
+}
+
+html[data-theme="dark"] a {
+    color: var(--cfa-blue-dark);
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select {
+    background: #ffffff;
+    color: var(--cfa-ink);
+    border-color: var(--cfa-line);
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+    background: #131f33;
+    color: var(--cfa-ink);
+    border-color: var(--cfa-line);
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+    color: #718096;
+}
+
+/* Smooth transition without changing layout */
+body,
+header,
+footer,
+.card,
+.lesson,
+.progress-box,
+.resource,
+.level,
+.form-container,
+.login-container,
+input,
+textarea,
+select {
+    transition:
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+}

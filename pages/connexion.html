@@ -7,21 +7,31 @@
 <link rel="stylesheet" href="../css/auth.css">
 
         <style>
-            body.dark-mode {
-                background-color: #121212 !important;
-                color: #e0e0e0 !important;
+            /* CFA shared theme — preserve the original auth layout */
+            html[data-theme="dark"] body {
+                background: var(--paper) !important;
+                color: var(--ink) !important;
             }
-            body.dark-mode .card, 
-            body.dark-mode .login-container, 
-            body.dark-mode .form-container {
-                background-color: #1e1e1e !important;
-                color: #e0e0e0 !important;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+
+            html[data-theme="dark"] input,
+            html[data-theme="dark"] textarea,
+            html[data-theme="dark"] select {
+                background: var(--card-bg) !important;
+                color: var(--ink) !important;
+                border-color: var(--line) !important;
             }
-            body.dark-mode input {
-                background-color: #2c2c2c !important;
-                color: #ffffff !important;
-                border-color: #444 !important;
+
+            html[data-theme="dark"] input::placeholder,
+            html[data-theme="dark"] textarea::placeholder {
+                color: var(--muted) !important;
+            }
+
+            html[data-theme="light"] input,
+            html[data-theme="light"] textarea,
+            html[data-theme="light"] select {
+                background: #ffffff !important;
+                color: #10203a !important;
+                border-color: #e5eaf2 !important;
             }
         </style>
         
@@ -77,6 +87,8 @@
 }
 </style>
 
+    <link rel="stylesheet" href="../css/cfa-shared-theme.css">
+    <script src="../js/cfa-shared-theme.js"></script>
 </head>
 <body>
 
@@ -236,3 +248,95 @@ Vous n'avez pas encore de compte ? <a href="sinscrire.html" style="color: #0056b
         });
     })();
 </script>
+
+
+<style id="cfa-auth-theme-fix">
+html[data-theme="dark"] body {
+    background: #0b1320 !important;
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .login-container,
+html[data-theme="dark"] .form-container,
+html[data-theme="dark"] .auth-card,
+html[data-theme="dark"] .auth-container {
+    background: #131f33 !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+}
+
+html[data-theme="dark"] label {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] input {
+    background: #131f33 !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+}
+
+html[data-theme="dark"] input::placeholder {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .auth-form {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] body {
+    background: #f6f9fc !important;
+    color: #10203a !important;
+}
+
+html[data-theme="light"] input {
+    background: #ffffff !important;
+    color: #10203a !important;
+    border-color: #e5eaf2 !important;
+}
+</style>
+
+<style id="cfa-auth-page-background">
+/* CFA — authentication page background */
+
+html[data-theme="dark"] body {
+    background: #0b1320 !important;
+}
+
+html[data-theme="dark"] main,
+html[data-theme="dark"] .auth-page,
+html[data-theme="dark"] .login-page,
+html[data-theme="dark"] .page,
+html[data-theme="dark"] .container {
+    background: transparent !important;
+}
+
+html[data-theme="light"] body {
+    background: #f6f9fc !important;
+}
+
+html[data-theme="light"] main,
+html[data-theme="light"] .auth-page,
+html[data-theme="light"] .login-page,
+html[data-theme="light"] .page,
+html[data-theme="light"] .container {
+    background: transparent !important;
+}
+</style>
+
+<style id="cfa-auth-heading-theme">
+/* CFA warm accent — authentication heading */
+html[data-theme="light"] .auth-card h1,
+html[data-theme="light"] .login-container h1,
+html[data-theme="light"] .form-container h1,
+html[data-theme="light"] main h1 {
+    color: #FF6600 !important;
+}
+
+html[data-theme="dark"] .auth-card h1,
+html[data-theme="dark"] .login-container h1,
+html[data-theme="dark"] .form-container h1,
+html[data-theme="dark"] main h1 {
+    color: #FF6600 !important;
+}
+</style>
