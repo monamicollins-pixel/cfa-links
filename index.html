@@ -433,19 +433,49 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
         z-index: 2;
     }
 
-    #site-mobile-drawer a {
+    /* =====================================================
+       CFA PREMIUM MOBILE MENU TEXT SYSTEM
+       Consistent brand colours in light and dark modes.
+       ===================================================== */
+
+    #site-mobile-drawer {
+        background: #FAFAF7 !important;
+        color: #002366 !important;
+    }
+
+    #site-mobile-drawer a.cfa-mobile-link {
+        color: #002366 !important;
+    }
+
+    #site-mobile-drawer a.cfa-mobile-link:hover {
+        color: #FF6600 !important;
+    }
+
+    #site-mobile-drawer button.cfa-mobile-theme {
+        color: #002366 !important;
+    }
+
+    #site-mobile-drawer button.cfa-mobile-theme:hover {
+        color: #FF6600 !important;
+    }
+
+    #site-mobile-drawer a.cfa-mobile-login {
         color: #ffffff !important;
     }
 
     #site-mobile-drawer hr {
-        border-top-color: rgba(255,255,255,.18) !important;
+        border-top-color: #002366 !important;
     }
 
     #close-drawer-btn {
-        color: #ffffff !important;
+        color: #002366 !important;
         font-size: 34px !important;
         width: 44px;
         height: 44px;
+    }
+
+    #close-drawer-btn:hover {
+        color: #FF6600 !important;
     }
 
     body.cfa-drawer-open {
