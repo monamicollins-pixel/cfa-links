@@ -282,9 +282,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                 console.error("CFA login error:", error);
 
                 authMessage(
-                    "E-mail ou mot de passe incorrect.",
+                    "Erreur : " + (error?.message || "Connexion impossible."),
                     "error"
                 );
+
+                console.error("SUPABASE LOGIN ERROR:", {
+                    message: error?.message,
+                    status: error?.status,
+                    code: error?.code
+                });
             }
 
         });
