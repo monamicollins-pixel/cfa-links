@@ -140,6 +140,77 @@ html[data-theme="dark"] .learner-entry .course {
     border-color: #FF6600 !important;
 }
 
+
+/* =========================================================
+   CFA LEARNER CARD — THEME-AWARE TEXT
+   Light surface → navy text
+   Dark surface → soft white text
+   Orange → accent only
+   ========================================================= */
+
+html[data-theme="light"] .learner-entry {
+    background: #FFFFFF !important;
+    color: #002366 !important;
+    border-color: var(--line) !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-top,
+html[data-theme="light"] .learner-entry .mock-title,
+html[data-theme="light"] .learner-entry .mock-sub,
+html[data-theme="light"] .learner-entry .course,
+html[data-theme="light"] .learner-entry .course b,
+html[data-theme="light"] .learner-entry .course em {
+    color: #002366 !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-sub {
+    color: #64748B !important;
+}
+
+html[data-theme="light"] .learner-entry small {
+    color: #FF6600 !important;
+}
+
+html[data-theme="light"] .learner-entry .progress {
+    background: #E5EAF2 !important;
+}
+
+html[data-theme="light"] .learner-entry .progress i {
+    background: #FF6600 !important;
+}
+
+/* Dark mode */
+html[data-theme="dark"] .learner-entry {
+    background: #131F33 !important;
+    color: #F8FAFC !important;
+    border-color: #1E293B !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-top,
+html[data-theme="dark"] .learner-entry .mock-title,
+html[data-theme="dark"] .learner-entry .mock-sub,
+html[data-theme="dark"] .learner-entry .course,
+html[data-theme="dark"] .learner-entry .course b,
+html[data-theme="dark"] .learner-entry .course em {
+    color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-sub {
+    color: #94A3B8 !important;
+}
+
+html[data-theme="dark"] .learner-entry small {
+    color: #FF7A2F !important;
+}
+
+html[data-theme="dark"] .learner-entry .progress {
+    background: #1E293B !important;
+}
+
+html[data-theme="dark"] .learner-entry .progress i {
+    background: #FF7A2F !important;
+}
+
 .learner-entry{
   display:block;
   color:inherit;
