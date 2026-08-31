@@ -434,81 +434,40 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     }
 
     /* =====================================================
-       CFA PREMIUM MOBILE MENU TEXT SYSTEM
-       Consistent brand colours in light and dark modes.
+       CFA GLOBAL TEXT SYSTEM
+       All mobile menu text inherits the shared CFA theme.
        ===================================================== */
 
     #site-mobile-drawer {
-        background: #FAFAF7 !important;
-        color: #002366 !important;
+        background: var(--cfa-white) !important;
+        color: var(--cfa-ink) !important;
     }
 
-    #site-mobile-drawer a.cfa-mobile-link {
-        color: #002366 !important;
-    }
-
-    #site-mobile-drawer a.cfa-mobile-link:hover {
-        color: #FF6600 !important;
-    }
-
+    #site-mobile-drawer a.cfa-mobile-link,
     #site-mobile-drawer button.cfa-mobile-theme {
-        color: #002366 !important;
+        color: var(--cfa-ink) !important;
     }
 
+    #site-mobile-drawer a.cfa-mobile-link:hover,
     #site-mobile-drawer button.cfa-mobile-theme:hover {
-        color: #FF6600 !important;
+        color: var(--cfa-orange) !important;
     }
 
-    #site-mobile-drawer a.cfa-mobile-login {
-        color: #ffffff !important;
-    }
-
-    #site-mobile-drawer hr {
-        border-top-color: #002366 !important;
+    #site-mobile-drawer .cfa-mobile-header strong {
+        color: var(--cfa-ink) !important;
     }
 
     #close-drawer-btn {
-        color: #002366 !important;
-        font-size: 34px !important;
-        width: 44px;
-        height: 44px;
+        color: var(--cfa-ink) !important;
     }
 
     #close-drawer-btn:hover {
-        color: #FF6600 !important;
+        color: var(--cfa-orange) !important;
     }
 
-    /* =====================================================
-       CFA DARK MODE TEXT
-       Soft white replaces navy on dark surfaces.
-       Orange remains the universal CFA accent.
-       ===================================================== */
-
-    html[data-theme="dark"] #site-mobile-drawer {
-        background: #020617 !important;
-        color: #F8FAFC !important;
-    }
-
-    html[data-theme="dark"] #site-mobile-drawer a.cfa-mobile-link,
-    html[data-theme="dark"] #site-mobile-drawer button.cfa-mobile-theme {
-        color: #F8FAFC !important;
-    }
-
-    html[data-theme="dark"] #site-mobile-drawer a.cfa-mobile-link:hover,
-    html[data-theme="dark"] #site-mobile-drawer button.cfa-mobile-theme:hover {
-        color: #FF6600 !important;
-    }
-
-    html[data-theme="dark"] #site-mobile-drawer .cfa-mobile-header strong {
-        color: #F8FAFC !important;
-    }
-
-    html[data-theme="dark"] #close-drawer-btn {
-        color: #F8FAFC !important;
-    }
-
-    html[data-theme="dark"] #close-drawer-btn:hover {
-        color: #FF6600 !important;
+    /* Action button remains intentionally inverted */
+    #site-mobile-drawer a.cfa-mobile-login {
+        color: #ffffff !important;
     }
 
     body.cfa-drawer-open {
