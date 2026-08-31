@@ -315,6 +315,64 @@ footer{
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabase.js"></script>
+
+<script>
+/*
+ * CFA — LOGOUT
+ *
+ * Sign the learner out of Supabase, then return
+ * to the main CFA page.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    if (!logoutBtn) {
+        console.error("CFA logout button not found.");
+        return;
+    }
+
+    logoutBtn.addEventListener("click", async function () {
+
+        logoutBtn.disabled = true;
+        logoutBtn.textContent = "Déconnexion...";
+
+        try {
+
+            const { error } =
+                await cfaSupabase.auth.signOut({
+                    scope: "local"
+                });
+
+            if (error) {
+                throw error;
+            }
+
+            window.location.href =
+                "../index.html";
+
+        } catch (error) {
+
+            console.error(
+                "CFA logout error:",
+                error
+            );
+
+            logoutBtn.disabled = false;
+            logoutBtn.textContent = "Déconnexion";
+
+            alert(
+                "Impossible de vous déconnecter.\\n\\n" +
+                (error?.message || "Erreur inconnue.")
+            );
+        }
+
+    });
+
+});
+</script>
+
 <script src="../js/auth.js"></script>
 
 <script>
