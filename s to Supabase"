@@ -1,0 +1,138 @@
+[1mdiff --git a/pages/espace-etudiant.html b/pages/espace-etudiant.html[m
+[1mindex 5441692..57afa1c 100644[m
+[1m--- a/pages/espace-etudiant.html[m
+[1m+++ b/pages/espace-etudiant.html[m
+[36m@@ -298,7 +298,7 @@[m [mfooter{[m
+ [m
+             <p id="progressText"[m
+                style="color:var(--muted);margin-bottom:0;">[m
+[31m-                Votre aventure commence maintenant.[m
+[32m+[m[32m                Progression : <strong id="progressPercent">0.00%</strong>[m
+             </p>[m
+ [m
+         </div>[m
+[36m@@ -400,29 +400,113 @@[m [mdocument.addEventListener("DOMContentLoaded", async function(){[m
+ [m
+ [m
+     /*[m
+[31m-     * Logout[m
+[32m+[m[32m     * CFA — PROGRESSION[m
+[32m+[m[32m     *[m
+[32m+[m[32m     * The displayed percentage and progress bar[m
+[32m+[m[32m     * use exactly the same value.[m
+[32m+[m[32m     */[m
+[32m+[m
+[32m+[m[32m    /*[m
+[32m+[m[32m     * CFA — REAL LEARNER PROGRESS[m
+[32m+[m[32m     *[m
+[32m+[m[32m     * Progress is calculated from Supabase.[m
+[32m+[m[32m     * New learners start at 0.00%.[m
+      */[m
+ [m
+[31m-    const logoutBtn =[m
+[31m-        document.getElementById("logoutBtn");[m
+[32m+[m[32m    const progressBar =[m
+[32m+[m[32m        document.getElementById("progressBar");[m
+[32m+[m
+[32m+[m[32m    const progressPercent =[m
+[32m+[m[32m        document.getElementById("progressPercent");[m
+[32m+[m
+[32m+[m[32m    const progressText =[m
+[32m+[m[32m        document.getElementById("progressText");[m
+[32m+[m
+[32m+[m[32m    let progressValue = 0;[m
+[32m+[m
+[32m+[m[32m    const {[m
+[32m+[m[32m        data: progressData,[m
+[32m+[m[32m        error: progressError[m
+[32m+[m[32m    } = await cfaSupabase[m
+[32m+[m[32m        .from("learner_progress")[m
+[32m+[m[32m        .select("progress_percentage")[m
+[32m+[m[32m        .eq("user_id", user.id)[m
+[32m+[m[32m        .maybeSingle();[m
+[32m+[m
+[32m+[m[32m    if (!progressError && progressData) {[m
+[32m+[m
+[32m+[m[32m        progressValue =[m
+[32m+[m[32m            Number(progressData.progress_percentage) || 0;[m
+[32m+[m
+[32m+[m[32m    } else if (!progressError && !progressData) {[m
+[32m+[m
+[32m+[m[32m        const {[m
+[32m+[m[32m            error: createProgressError[m
+[32m+[m[32m        } = await cfaSupabase[m
+[32m+[m[32m            .from("learner_progress")[m
+[32m+[m[32m            .insert({[m
+[32m+[m[32m                user_id: user.id,[m
+[32m+[m[32m                progress_percentage: 0[m
+[32m+[m[32m            });[m
+[32m+[m
+[32m+[m[32m        if (createProgressError) {[m
+[32m+[m
+[32m+[m[32m            console.warn([m
+[32m+[m[32m                "Unable to initialize learner progress:",[m
+[32m+[m[32m                createProgressError[m
+[32m+[m[32m            );[m
+ [m
+[32m+[m[32m        }[m
+ [m
+[31m-    if (logoutBtn) {[m
+[32m+[m[32m        progressValue = 0;[m
+[32m+[m[32m    }[m
+ [m
+[31m-        logoutBtn.addEventListener([m
+[31m-            "click",[m
+[31m-            async function(){[m
+[32m+[m[32m    progressValue =[m
+[32m+[m[32m        Math.max(0, Math.min(100, progressValue));[m
+ [m
+[31m-                await cfaSupabase.auth.signOut();[m
+[32m+[m[32m    if (progressBar) {[m
+ [m
+[31m-                window.location.href =[m
+[31m-                    "connexion.html";[m
+[32m+[m[32m        progressBar.style.width =[m
+[32m+[m[32m            progressValue + "%";[m
+ [m
+[31m-            }[m
+[32m+[m[32m        progressBar.setAttribute([m
+[32m+[m[32m            "aria-valuenow",[m
+[32m+[m[32m            progressValue.toFixed(2)[m
+         );[m
+ [m
+     }[m
+ [m
+[32m+[m[32m    if (progressPercent) {[m
+[32m+[m
+[32m+[m[32m        progressPercent.textContent =[m
+[32m+[m[32m            progressValue.toFixed(2) + "%";[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    if (progressText) {[m
+[32m+[m
+[32m+[m[32m        if (progressValue === 0) {[m
+[32m+[m
+[32m+[m[32m            progressText.textContent =[m
+[32m+[m[32m                "Votre aventure commence maintenant.";[m
+[32m+[m
+[32m+[m[32m        } else if (progressValue >= 100) {[m
+[32m+[m
+[32m+[m[32m            progressText.textContent =[m
+[32m+[m[32m                "Félicitations ! Votre parcours CFA est terminé.";[m
+[32m+[m
+[32m+[m[32m        } else {[m
+[32m+[m
+[32m+[m[32m            progressText.textContent =[m
+[32m+[m[32m                "Vous avez complété " +[m
+[32m+[m[32m                progressValue.toFixed(2) +[m
+[32m+[m[32m                "% de votre parcours CFA.";[m
+[32m+[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+ });[m
+ [m
+ </script>[m
