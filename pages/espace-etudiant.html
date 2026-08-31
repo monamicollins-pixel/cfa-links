@@ -298,7 +298,7 @@ footer{
 
             <p id="progressText"
                style="color:var(--muted);margin-bottom:0;">
-                Votre aventure commence maintenant.
+                Progression : <strong id="progressPercent">0.00%</strong>
             </p>
 
         </div>
@@ -400,28 +400,112 @@ document.addEventListener("DOMContentLoaded", async function(){
 
 
     /*
-     * Logout
+     * CFA — PROGRESSION
+     *
+     * The displayed percentage and progress bar
+     * use exactly the same value.
      */
 
-    const logoutBtn =
-        document.getElementById("logoutBtn");
+    /*
+     * CFA — REAL LEARNER PROGRESS
+     *
+     * Progress is calculated from Supabase.
+     * New learners start at 0.00%.
+     */
 
+    const progressBar =
+        document.getElementById("progressBar");
 
-    if (logoutBtn) {
+    const progressPercent =
+        document.getElementById("progressPercent");
 
-        logoutBtn.addEventListener(
-            "click",
-            async function(){
+    const progressText =
+        document.getElementById("progressText");
 
-                await cfaSupabase.auth.signOut();
+    let progressValue = 0;
 
-                window.location.href =
-                    "connexion.html";
+    const {
+        data: progressData,
+        error: progressError
+    } = await cfaSupabase
+        .from("learner_progress")
+        .select("progress_percentage")
+        .eq("user_id", user.id)
+        .maybeSingle();
 
-            }
+    if (!progressError && progressData) {
+
+        progressValue =
+            Number(progressData.progress_percentage) || 0;
+
+    } else if (!progressError && !progressData) {
+
+        const {
+            error: createProgressError
+        } = await cfaSupabase
+            .from("learner_progress")
+            .insert({
+                user_id: user.id,
+                progress_percentage: 0
+            });
+
+        if (createProgressError) {
+
+            console.warn(
+                "Unable to initialize learner progress:",
+                createProgressError
+            );
+
+        }
+
+        progressValue = 0;
+    }
+
+    progressValue =
+        Math.max(0, Math.min(100, progressValue));
+
+    if (progressBar) {
+
+        progressBar.style.width =
+            progressValue + "%";
+
+        progressBar.setAttribute(
+            "aria-valuenow",
+            progressValue.toFixed(2)
         );
 
     }
+
+    if (progressPercent) {
+
+        progressPercent.textContent =
+            progressValue.toFixed(2) + "%";
+
+    }
+
+    if (progressText) {
+
+        if (progressValue === 0) {
+
+            progressText.textContent =
+                "Votre aventure commence maintenant.";
+
+        } else if (progressValue >= 100) {
+
+            progressText.textContent =
+                "Félicitations ! Votre parcours CFA est terminé.";
+
+        } else {
+
+            progressText.textContent =
+                "Vous avez complété " +
+                progressValue.toFixed(2) +
+                "% de votre parcours CFA.";
+
+        }
+
+    }
+
 
 });
 
