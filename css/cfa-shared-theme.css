@@ -11,6 +11,8 @@
     --cfa-ink: #10203a;
     --cfa-muted: #64748b;
     --cfa-paper: #f6f9fc;
+    --cfa-surface: #ffffff;
+    --cfa-input: #ffffff;
     --cfa-white: #ffffff;
     --cfa-line: #e5eaf2;
 }
@@ -38,6 +40,8 @@ html[data-theme="light"] .login-container {
 /* Dark theme */
 html[data-theme="dark"] {
     --cfa-paper: #0b1320;
+    --cfa-surface: #111c2e;
+    --cfa-input: #131f33;
     --cfa-white: #111c2e;
     --cfa-ink: #f1f5f9;
     --cfa-muted: #94a3b8;
@@ -62,7 +66,7 @@ html[data-theme="dark"] .resource,
 html[data-theme="dark"] .level,
 html[data-theme="dark"] .form-container,
 html[data-theme="dark"] .login-container {
-    background-color: var(--cfa-white);
+    background-color: var(--cfa-surface);
     color: var(--cfa-ink);
     border-color: var(--cfa-line);
 }
@@ -86,7 +90,7 @@ html[data-theme="dark"] a {
 html[data-theme="light"] input,
 html[data-theme="light"] textarea,
 html[data-theme="light"] select {
-    background: #ffffff;
+    background: var(--cfa-input);
     color: var(--cfa-ink);
     border-color: var(--cfa-line);
 }
@@ -94,7 +98,7 @@ html[data-theme="light"] select {
 html[data-theme="dark"] input,
 html[data-theme="dark"] textarea,
 html[data-theme="dark"] select {
-    background: #131f33;
+    background: var(--cfa-input);
     color: var(--cfa-ink);
     border-color: var(--cfa-line);
 }
