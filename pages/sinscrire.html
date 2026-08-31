@@ -43,6 +43,8 @@
 }
 </style>
 
+    <link rel="stylesheet" href="../css/cfa-shared-theme.css">
+    <script src="../js/cfa-shared-theme.js"></script>
 </head>
 <body>
 
@@ -377,4 +379,171 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     })();
+</script>
+
+
+<style id="cfa-auth-theme-fix">
+html[data-theme="dark"] body {
+    background: #0b1320 !important;
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .login-container,
+html[data-theme="dark"] .form-container,
+html[data-theme="dark"] .auth-card,
+html[data-theme="dark"] .auth-container {
+    background: #131f33 !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+}
+
+html[data-theme="dark"] label {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] input {
+    background: #131f33 !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+}
+
+html[data-theme="dark"] input::placeholder {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .auth-form {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] body {
+    background: #f6f9fc !important;
+    color: #10203a !important;
+}
+
+html[data-theme="light"] input {
+    background: #ffffff !important;
+    color: #10203a !important;
+    border-color: #e5eaf2 !important;
+}
+</style>
+
+<style id="cfa-auth-page-background">
+/* CFA — authentication page background */
+
+html[data-theme="dark"] body {
+    background: #0b1320 !important;
+}
+
+html[data-theme="dark"] main,
+html[data-theme="dark"] .auth-page,
+html[data-theme="dark"] .login-page,
+html[data-theme="dark"] .page,
+html[data-theme="dark"] .container {
+    background: transparent !important;
+}
+
+html[data-theme="light"] body {
+    background: #f6f9fc !important;
+}
+
+html[data-theme="light"] main,
+html[data-theme="light"] .auth-page,
+html[data-theme="light"] .login-page,
+html[data-theme="light"] .page,
+html[data-theme="light"] .container {
+    background: transparent !important;
+}
+</style>
+
+<style id="cfa-auth-heading-theme">
+/* CFA warm accent — authentication heading */
+html[data-theme="light"] .auth-card h1,
+html[data-theme="light"] .login-container h1,
+html[data-theme="light"] .form-container h1,
+html[data-theme="light"] main h1 {
+    color: #FF6600 !important;
+}
+
+html[data-theme="dark"] .auth-card h1,
+html[data-theme="dark"] .login-container h1,
+html[data-theme="dark"] .form-container h1,
+html[data-theme="dark"] main h1 {
+    color: #FF6600 !important;
+}
+</style>
+
+<script id="cfa-clean-password-toggle">
+(function () {
+
+    function toggle(inputId, button) {
+
+        const input = document.getElementById(inputId);
+
+        if (!input) {
+            console.error("CFA password input not found:", inputId);
+            return;
+        }
+
+        input.type =
+            input.type === "password"
+                ? "text"
+                : "password";
+
+        /* CFA uses the eye icon only */
+        button.textContent = "👁️";
+
+    }
+
+    function init() {
+
+        const passwordButton =
+            document.getElementById("togglePassword");
+
+        const confirmButton =
+            document.getElementById("toggleConfirmPassword");
+
+        if (passwordButton) {
+
+            passwordButton.type = "button";
+
+            passwordButton.onclick = function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                toggle("password", passwordButton);
+
+                return false;
+            };
+        }
+
+        if (confirmButton) {
+
+            confirmButton.type = "button";
+
+            confirmButton.onclick = function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                toggle("confirmPassword", confirmButton);
+
+                return false;
+            };
+        }
+
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            init,
+            { once: true }
+        );
+    } else {
+        init();
+    }
+
+})();
 </script>
