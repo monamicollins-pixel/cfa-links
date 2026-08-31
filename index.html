@@ -19,7 +19,7 @@
   --shadow:0 20px 40px -15px rgba(15,35,70,.12);
   --shadow-hover:0 24px 50px -12px rgba(23,78,166,.18);
   --card-bg:#fff;
-  --hero-card-bg:rgba(255,255,255,.8);
+  --hero-card-bg:#ffffff;
 }
 
 [data-theme="dark"]{
@@ -97,6 +97,47 @@ h1 span{color:var(--blue)}
 .hero-card{
   background:var(--hero-card-bg);border:1px solid var(--line);
   border-radius:32px;padding:24px;box-shadow:var(--shadow);backdrop-filter:blur(20px);
+}
+
+
+/* =========================================================
+   CFA LEARNER CARD — GLOBAL THEME SYSTEM
+   ========================================================= */
+
+/* Light mode */
+html[data-theme="light"] .learner-entry {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #174EA6 !important;
+    border-color: #E2E8F0 !important;
+    box-shadow: 0 20px 40px -15px rgba(15,35,70,.12) !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-window,
+html[data-theme="light"] .learner-entry .mock-title,
+html[data-theme="light"] .learner-entry .mock-sub,
+html[data-theme="light"] .learner-entry .course-list,
+html[data-theme="light"] .learner-entry .course {
+    color: #002366 !important;
+}
+
+/* Dark mode */
+html[data-theme="dark"] .learner-entry {
+    background: #111C2E !important;
+    color: #F1F5F9 !important;
+    border-color: #1E293B !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-window,
+html[data-theme="dark"] .learner-entry .mock-title,
+html[data-theme="dark"] .learner-entry .mock-sub,
+html[data-theme="dark"] .learner-entry .course-list,
+html[data-theme="dark"] .learner-entry .course {
+    color: #F1F5F9 !important;
+}
+
+.learner-entry:hover {
+    border-color: #FF6600 !important;
 }
 
 .learner-entry{
