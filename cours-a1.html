@@ -3,103 +3,907 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Cours A1 — Collins French Academy</title>
+
 <style>
-:root{--blue:#174ea6;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--line:#e5eaf2}
-body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;margin:0;padding:40px 20px}
-.container{max-width:800px;margin:auto;background:white;padding:40px;border-radius:24px;border:1px solid var(--line)}
-h1{color:var(--blue);margin-bottom:10px}
-p{color:var(--muted);margin-bottom:20px}
-a{color:var(--blue);text-decoration:none;font-weight:700}
+:root{
+    --blue:#174ea6;
+    --orange:#ff6600;
+    --ink:#172033;
+    --muted:#667085;
+    --white:#ffffff;
+    --line:#e5e7eb;
+    --bg:#f7f9fc;
+    --green:#16a34a;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+}
+
+.container{
+    width:92%;
+    max-width:1000px;
+    margin:auto;
+}
+
+header{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+}
+
+.nav{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:800;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.back{
+    color:var(--blue);
+    text-decoration:none;
+    font-weight:700;
+}
+
+.hero{
+    padding:45px 0 25px;
+}
+
+.eyebrow{
+    color:var(--blue);
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+h1{
+    margin:10px 0;
+    font-size:clamp(32px,6vw,50px);
+    letter-spacing:-1.5px;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:700px;
+    line-height:1.6;
+}
+
+.progress-box{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px;
+    margin:10px 0 28px;
+}
+
+.progress-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.progress-number{
+    color:var(--orange);
+    font-size:24px;
+    font-weight:800;
+}
+
+.progress{
+    height:12px;
+    background:#edf0f5;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:14px;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    width:0%;
+    background:var(--orange);
+    transition:width .35s ease;
+}
+
+.progress-message{
+    color:var(--muted);
+    margin:12px 0 0;
+}
+
+.lessons{
+    display:grid;
+    gap:14px;
+    padding-bottom:60px;
+}
+
+.lesson{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.lesson-info{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.lesson-number{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:#eef4ff;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    flex-shrink:0;
+}
+
+.lesson h2{
+    margin:0 0 5px;
+    font-size:18px;
+}
+
+.lesson p{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.lesson button{
+    border:0;
+    border-radius:10px;
+    padding:11px 16px;
+    background:var(--blue);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.lesson button:hover{
+    opacity:.9;
+}
+
+.lesson button.completed{
+    background:var(--green);
+    cursor:default;
+}
+
+.status{
+    color:var(--green);
+    font-weight:700;
+    font-size:14px;
+}
+
+.loading,
+.error{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:25px;
+    color:var(--muted);
+}
+
+.error{
+    color:#b42318;
+}
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+}
+
+@media(max-width:650px){
+
+    .nav{
+        padding:14px 0;
+    }
+
+    .brand span{
+        font-size:14px;
+    }
+
+    .lesson{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .lesson button{
+        width:100%;
+    }
+
+    .progress-header{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:6px;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<!-- Mobile Navigation Drawer & 3-line Menu Integration -->
-<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    
-</div>
+<header>
+    <div class="container nav">
 
-<div id="site-mobile-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; flex-direction: column; padding: 30px; box-sizing: border-box; color: #fff; font-family: inherit;">
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
-        <button id="close-drawer-btn" style="background: none; border: none; color: #fff; font-size: 32px; cursor: pointer;">&times;</button>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 320px; width: 100%; margin: 0 auto;">
-        <div id="drawer-theme-toggle" style="cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 17px;">☀️ Mode clair / sombre</div>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="index.html" style="color: inherit; text-decoration: none; font-size: 17px;">Accueil</a>
-        <a href="index.html#cours" style="color: inherit; text-decoration: none; font-size: 17px;">Cours</a>
-        <a href="pages/apropos.html" style="color: inherit; text-decoration: none; font-size: 17px;">À propos</a>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="pages/connexion.html" style="background: #2563eb; color: white; padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; display: block; font-size: 17px;">Connexion</a>
-    </div>
-</div>
+        <a href="index.html" class="brand">
+            <img src="file.png" class="logo" alt="CFA">
+            <span>Collins French Academy</span>
+        </a>
 
-<style>
-@media (max-width: 768px) {
-    .mobile-menu-icon-container { display: block !important; }
-}
-</style>
+        <a href="pages/espace-etudiant.html" class="back">
+            ← Espace Apprenant
+        </a>
+
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+
+        <div class="eyebrow">
+            Français A1 · Découverte
+        </div>
+
+        <h1>Votre parcours A1</h1>
+
+        <p>
+            Progressez étape par étape à travers les dix unités
+            de votre parcours CFA.
+        </p>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="progress-box">
+
+            <div class="progress-header">
+                <strong>Progression CFA</strong>
+                <span
+                    class="progress-number"
+                    id="progressNumber">
+                    0.00%
+                </span>
+            </div>
+
+            <div class="progress">
+                <span id="progressBar"></span>
+            </div>
+
+            <p
+                class="progress-message"
+                id="progressMessage">
+                Votre aventure commence maintenant.
+            </p>
+
+        </div>
+
+        <div id="lessonsContainer" class="lessons">
+
+            <div class="loading">
+                Chargement de votre parcours...
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div>Apprendre • S'amuser • S'inspirer • Découvrir</div>
+    <div>© 2026 Collins French Academy (CFA)</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const trigger = document.getElementById("hamburger-menu-trigger");
-    const drawer = document.getElementById("site-mobile-drawer");
-    const closeBtn = document.getElementById("close-drawer-btn");
-    
-    if (trigger && drawer) {
-        trigger.addEventListener("click", () => {
-            drawer.style.display = "flex";
-        });
+
+document.addEventListener("DOMContentLoaded", async function(){
+
+    const lessonsContainer =
+        document.getElementById("lessonsContainer");
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+    const progressNumber =
+        document.getElementById("progressNumber");
+
+    const progressMessage =
+        document.getElementById("progressMessage");
+
+
+    /*
+     * --------------------------------------------------
+     * 1. CHECK AUTHENTICATION
+     * --------------------------------------------------
+     */
+
+    const {
+        data: { session },
+        error: sessionError
+    } = await cfaSupabase.auth.getSession();
+
+
+    if (
+        sessionError ||
+        !session ||
+        !session.user
+    ){
+
+        window.location.href =
+            "pages/connexion.html";
+
+        return;
     }
-    if (closeBtn && drawer) {
-        closeBtn.addEventListener("click", () => {
-            drawer.style.display = "none";
-        });
-    }
-});
-</script>
 
 
-<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    <button id="hamburger-menu-trigger" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; display: flex; flex-direction: column; gap: 5px;">
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-    </button>
-</div>
-<style>
-@media (max-width: 768px) {
-    .mobile-menu-icon-container { display: block !important; }
-}
-</style>
+    const user =
+        session.user;
 
 
+    /*
+     * --------------------------------------------------
+     * 2. UPDATE PROGRESS DISPLAY
+     * --------------------------------------------------
+     */
+
+    async function updateProgress(){
+
+        const {
+            data,
+            error
+        } = await cfaSupabase
+
+            .from("learner_progress")
+
+            .select(
+                "total_lessons, completed_lessons, progress_percentage"
+            )
+
+            .eq("user_id", user.id)
+
+            .maybeSingle();
 
 
-<div class="container">
-  <a href="index.html">← Retour à l'accueil</a>
-  <h1>Niveau A1 · Découverte</h1>
-  <p>Bienvenue dans votre espace de cours A1. Les leçons et exercices pratiques seront bientôt disponibles ici.</p>
-</div>
+        if(error){
 
-<script>
-    // Global Dark Mode Synchronizer
-    document.addEventListener("DOMContentLoaded", () => {
-        const isDarkMode = localStorage.getItem("darkMode") === "true";
-        if (isDarkMode) {
-            document.body.classList.add("dark-mode");
+            console.error(
+                "Progress loading error:",
+                error
+            );
+
+            return;
         }
-        
-        // Listen for any theme toggle buttons across pages
-        const toggles = document.querySelectorAll("#darkModeToggle, .dark-mode-toggle, [onclick*=\x27dark\x27]");
-        toggles.forEach(toggle => {
-            toggle.addEventListener("click", () => {
-                document.body.classList.toggle("dark-mode");
-                localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-            });
-        });
-    });
-</script>
-<div style="text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">Apprendre • S'amuser • S'inspirer • Découvrir</div>
 
+
+        let percentage = 0;
+
+        let completed = 0;
+
+        let total = 10;
+
+
+        if(data){
+
+            percentage =
+                Number(
+                    data.progress_percentage
+                ) || 0;
+
+            completed =
+                Number(
+                    data.completed_lessons
+                ) || 0;
+
+            total =
+                Number(
+                    data.total_lessons
+                ) || 10;
+        }
+
+
+        percentage =
+            Math.max(
+                0,
+                Math.min(100, percentage)
+            );
+
+
+        progressBar.style.width =
+            percentage + "%";
+
+
+        progressNumber.textContent =
+            percentage.toFixed(2) + "%";
+
+
+        if(percentage === 0){
+
+            progressMessage.textContent =
+                "Votre aventure commence maintenant.";
+
+        }
+        else if(completed >= total){
+
+            progressMessage.textContent =
+                "Révision A1 terminée. Passez l'examen final.";
+
+        }
+        else{
+
+            progressMessage.textContent =
+                completed +
+                " unité" +
+                (completed === 1 ? "" : "s") +
+                " sur " +
+                total +
+                " terminée" +
+                (completed === 1 ? "" : "s") +
+                ".";
+
+        }
+
+    }
+
+
+    /*
+     * --------------------------------------------------
+     * 3. LOAD LESSONS
+     * --------------------------------------------------
+     */
+
+    async function loadLessons(){
+
+        const {
+            data: lessons,
+            error
+        } = await cfaSupabase
+
+            .from("lessons")
+
+            .select(
+                "id, course_id, title"
+            )
+
+            .eq("course_id", 1)
+
+            .order("id", {
+                ascending:true
+            });
+
+
+        if(error){
+
+            console.error(
+                "Lessons loading error:",
+                error
+            );
+
+            lessonsContainer.innerHTML =
+                '<div class="error">' +
+                'Impossible de charger les leçons.' +
+                '</div>';
+
+            return;
+        }
+
+
+        if(!lessons || lessons.length === 0){
+
+            lessonsContainer.innerHTML =
+                '<div class="error">' +
+                'Aucune leçon A1 disponible.' +
+                '</div>';
+
+            return;
+        }
+
+
+        /*
+         * --------------------------------------------------
+         * 4. LOAD THIS USER'S COMPLETIONS
+         * --------------------------------------------------
+         */
+
+        const {
+            data: progressRows,
+            error: progressError
+        } = await cfaSupabase
+
+            .from("lesson_progress")
+
+            .select(
+                "lesson_id, completed"
+            )
+
+            .eq(
+                "user_id",
+                user.id
+            );
+
+
+        if(progressError){
+
+            console.error(
+                "Lesson progress loading error:",
+                progressError
+            );
+        }
+
+
+        const completedLessons =
+            new Set(
+                (progressRows || [])
+
+                .filter(
+                    row => row.completed === true
+                )
+
+                .map(
+                    row => Number(row.lesson_id)
+                )
+            );
+
+
+        /*
+         * --------------------------------------------------
+         * 5. RENDER LESSONS
+         * --------------------------------------------------
+         */
+
+        lessonsContainer.innerHTML = "";
+
+
+        lessons.forEach(
+            function(lesson, index){
+
+                const isCompleted =
+                    completedLessons.has(
+                        Number(lesson.id)
+                    );
+
+
+                const article =
+                    document.createElement("article");
+
+                article.className =
+                    "lesson";
+
+
+                const info =
+                    document.createElement("div");
+
+                info.className =
+                    "lesson-info";
+
+
+                const number =
+                    document.createElement("div");
+
+                number.className =
+                    "lesson-number";
+
+                number.textContent =
+                    String(index + 1)
+                    .padStart(2, "0");
+
+
+                const text =
+                    document.createElement("div");
+
+
+                const title =
+                    document.createElement("h2");
+
+                title.textContent =
+                    lesson.title;
+
+
+                const description =
+                    document.createElement("p");
+
+                description.textContent =
+                    isCompleted
+                        ? "Unité terminée."
+                        : "Continuez votre parcours CFA.";
+
+
+                text.appendChild(title);
+
+                text.appendChild(description);
+
+
+                info.appendChild(number);
+
+                info.appendChild(text);
+
+
+                const action =
+                    document.createElement("div");
+
+
+                if(isCompleted){
+
+                    const status =
+                        document.createElement("div");
+
+                    status.className =
+                        "status";
+
+                    status.textContent =
+                        "✓ Terminé";
+
+                    action.appendChild(status);
+
+                }
+                else{
+
+                    const button =
+                        document.createElement("button");
+
+                    button.type =
+                        "button";
+
+                    button.textContent =
+                        "Terminer l'unité";
+
+
+                    button.addEventListener(
+                        "click",
+                        function(){
+
+                            completeLesson(
+                                lesson.id,
+                                button,
+                                description,
+                                action
+                            );
+
+                        }
+                    );
+
+
+                    action.appendChild(button);
+
+                }
+
+
+                article.appendChild(info);
+
+                article.appendChild(action);
+
+                lessonsContainer.appendChild(article);
+
+            }
+        );
+
+    }
+
+
+    /*
+     * --------------------------------------------------
+     * 6. COMPLETE LESSON
+     * --------------------------------------------------
+     */
+
+    async function completeLesson(
+        lessonId,
+        button,
+        description,
+        action
+    ){
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Enregistrement...";
+
+
+        const {
+            data: existing,
+            error: existingError
+        } = await cfaSupabase
+
+            .from("lesson_progress")
+
+            .select("id")
+
+            .eq("user_id", user.id)
+
+            .eq("lesson_id", lessonId)
+
+            .maybeSingle();
+
+
+        if(existingError){
+
+            console.error(
+                existingError
+            );
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Terminer l'unité";
+
+            return;
+        }
+
+
+        let saveError = null;
+
+
+        if(existing){
+
+            const result =
+                await cfaSupabase
+
+                .from("lesson_progress")
+
+                .update({
+                    completed:true,
+                    completed_at:
+                        new Date().toISOString(),
+                    updated_at:
+                        new Date().toISOString()
+                })
+
+                .eq(
+                    "id",
+                    existing.id
+                );
+
+
+            saveError =
+                result.error;
+
+        }
+        else{
+
+            const result =
+                await cfaSupabase
+
+                .from("lesson_progress")
+
+                .insert({
+
+                    user_id:
+                        user.id,
+
+                    lesson_id:
+                        lessonId,
+
+                    completed:
+                        true,
+
+                    completed_at:
+                        new Date().toISOString(),
+
+                    created_at:
+                        new Date().toISOString(),
+
+                    updated_at:
+                        new Date().toISOString()
+
+                });
+
+
+            saveError =
+                result.error;
+
+        }
+
+
+        if(saveError){
+
+            console.error(
+                "Lesson completion error:",
+                saveError
+            );
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Terminer l'unité";
+
+            alert(
+                "Impossible d'enregistrer votre progression."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Immediately update the interface.
+         */
+
+        description.textContent =
+            "Unité terminée.";
+
+
+        const status =
+            document.createElement("div");
+
+        status.className =
+            "status";
+
+        status.textContent =
+            "✓ Terminé";
+
+
+        action.innerHTML = "";
+
+        action.appendChild(status);
+
+
+        await updateProgress();
+
+    }
+
+
+    /*
+     * --------------------------------------------------
+     * 7. INITIALIZE
+     * --------------------------------------------------
+     */
+
+    await updateProgress();
+
+    await loadLessons();
+
+});
+
+</script>
+
+</body>
+</html>
