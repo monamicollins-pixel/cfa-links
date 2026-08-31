@@ -228,18 +228,18 @@ html[data-theme="dark"] .learner-entry .progress i {
   outline:3px solid var(--orange);
   outline-offset:5px;
 }
-.mock-window{background:#0e1b31;border-radius:22px;padding:24px;color:white;min-height:410px;overflow:hidden}
-.mock-top{display:flex;justify-content:space-between;color:#9fb0cb;font-size:11px;margin-bottom:24px;letter-spacing:0.5px}
+.mock-window{background:var(--card-bg);border:1px solid var(--line);border-radius:22px;padding:24px;color:var(--ink);min-height:410px;overflow:hidden}
+.mock-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-bottom:24px;letter-spacing:0.5px}
 .mock-title{font-size:27px;font-weight:850;line-height:1.1;margin-bottom:8px}
-.mock-sub{color:#aebbd0;font-size:13.5px;margin-bottom:24px}
-.progress{height:8px;background:#243653;border-radius:20px;overflow:hidden;margin:12px 0 24px}
+.mock-sub{color:var(--muted);font-size:13.5px;margin-bottom:24px}
+.progress{height:8px;background:var(--line);border-radius:20px;overflow:hidden;margin:12px 0 24px}
 .progress i{display:block;width:64%;height:100%;background:linear-gradient(90deg,#4f83db,var(--red));border-radius:20px}
 .course-list{display:grid;gap:12px}
 .course{
-  padding:14px 16px;background:#172640;border:1px solid #273b5d;border-radius:14px;
-  display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#fff;
+  padding:14px 16px;background:var(--white);border:1px solid var(--line);border-radius:14px;
+  display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink);
 }
-.course b{font-size:12.5px}.course em{font-style:normal;color:#92a8c8;font-size:11.5px}
+.course b{font-size:12.5px;color:var(--ink)}.course em{font-style:normal;color:var(--muted);font-size:11.5px}
 
 section{padding:85px 0}
 .section-head{max-width:680px;margin-bottom:40px}
@@ -306,6 +306,147 @@ footer{padding:32px 0;background:var(--white);border-top:1px solid var(--line);c
   section{padding:60px 0}.cards,.resource-grid,.levels{grid-template-columns:1fr}
   .mock-window{min-height:360px}
 }
+
+/* =====================================================
+   CFA LEARNER CARD THEME SYSTEM
+   Theme-aware colours for the homepage learner card.
+   ===================================================== */
+
+.learner-entry {
+    color: var(--ink) !important;
+}
+
+.learner-entry .mock-window {
+    background: var(--card-bg) !important;
+    color: var(--ink) !important;
+    border-color: var(--line) !important;
+}
+
+.learner-entry .mock-top,
+.learner-entry .mock-title {
+    color: var(--ink) !important;
+}
+
+.learner-entry .mock-sub {
+    color: var(--muted) !important;
+}
+
+.learner-entry .course {
+    background: var(--white) !important;
+    color: var(--ink) !important;
+    border-color: var(--line) !important;
+}
+
+.learner-entry .course b {
+    color: var(--ink) !important;
+}
+
+.learner-entry .course em {
+    color: var(--blue) !important;
+}
+
+.learner-entry .progress {
+    background: var(--line) !important;
+}
+
+.learner-entry .progress i {
+    background: var(--orange, #ff6600) !important;
+}
+
+/* Dark mode: use soft white instead of blue text */
+html[data-theme="dark"] .learner-entry,
+html[data-theme="dark"] .learner-entry .mock-window,
+html[data-theme="dark"] .learner-entry .mock-top,
+html[data-theme="dark"] .learner-entry .mock-title,
+html[data-theme="dark"] .learner-entry .course,
+html[data-theme="dark"] .learner-entry .course b {
+    color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-sub {
+    color: var(--muted) !important;
+}
+
+html[data-theme="dark"] .learner-entry .course em {
+    color: var(--blue-dark) !important;
+}
+
+
+
+/* =========================================================
+   CFA LEARNER CARD — FINAL THEME SYSTEM
+   ========================================================= */
+
+/* LIGHT MODE */
+html[data-theme="light"] .learner-entry .mock-window {
+    background: #f8fafc !important;
+    color: #002366 !important;
+    border-color: #e5eaf2 !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-top,
+html[data-theme="light"] .learner-entry .mock-title,
+html[data-theme="light"] .learner-entry .course b {
+    color: #002366 !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-sub {
+    color: #64748b !important;
+}
+
+html[data-theme="light"] .learner-entry .course {
+    background: #ffffff !important;
+    color: #002366 !important;
+    border-color: #e5eaf2 !important;
+}
+
+html[data-theme="light"] .learner-entry .course em {
+    color: #ff6600 !important;
+}
+
+html[data-theme="light"] .learner-entry .progress {
+    background: #e5eaf2 !important;
+}
+
+html[data-theme="light"] .learner-entry .progress i {
+    background: #ff6600 !important;
+}
+
+/* DARK MODE */
+html[data-theme="dark"] .learner-entry .mock-window {
+    background: #111c2e !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-top,
+html[data-theme="dark"] .learner-entry .mock-title,
+html[data-theme="dark"] .learner-entry .course b {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-sub {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .learner-entry .course {
+    background: #131f33 !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+}
+
+html[data-theme="dark"] .learner-entry .course em {
+    color: #ff7a2f !important;
+}
+
+html[data-theme="dark"] .learner-entry .progress {
+    background: #1e293b !important;
+}
+
+html[data-theme="dark"] .learner-entry .progress i {
+    background: #ff7a2f !important;
+}
+
 </style>
 <style>
 .univers-grid {
@@ -707,6 +848,94 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 </style>
 
     <link rel="stylesheet" href="css/cfa-shared-theme.css">
+
+<style>
+
+/* =========================================================
+   CFA LEARNER CARD — DEFINITIVE THEME OVERRIDE
+   Must appear AFTER the original learner-card styles.
+   ========================================================= */
+
+/* LIGHT MODE */
+html[data-theme="light"] .learner-entry .mock-window {
+    background: #f8fafc !important;
+    color: #002366 !important;
+    border-color: #e5eaf2 !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-top {
+    color: #002366 !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-title {
+    color: #002366 !important;
+}
+
+html[data-theme="light"] .learner-entry .mock-sub {
+    color: #64748b !important;
+}
+
+html[data-theme="light"] .learner-entry .course {
+    background: #ffffff !important;
+    color: #002366 !important;
+    border-color: #e5eaf2 !important;
+}
+
+html[data-theme="light"] .learner-entry .course b {
+    color: #002366 !important;
+}
+
+html[data-theme="light"] .learner-entry .course em {
+    color: #ff6600 !important;
+}
+
+html[data-theme="light"] .learner-entry .progress {
+    background: #e5eaf2 !important;
+}
+
+html[data-theme="light"] .learner-entry .progress i {
+    background: #ff6600 !important;
+}
+
+/* DARK MODE */
+html[data-theme="dark"] .learner-entry .mock-window {
+    background: #111c2e !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-top,
+html[data-theme="dark"] .learner-entry .mock-title {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .learner-entry .mock-sub {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .learner-entry .course {
+    background: #131f33 !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+}
+
+html[data-theme="dark"] .learner-entry .course b {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .learner-entry .course em {
+    color: #ff7a2f !important;
+}
+
+html[data-theme="dark"] .learner-entry .progress {
+    background: #1e293b !important;
+}
+
+html[data-theme="dark"] .learner-entry .progress i {
+    background: #ff7a2f !important;
+}
+
+</style>
 </head>
 
 <body>
