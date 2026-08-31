@@ -98,6 +98,24 @@ h1 span{color:var(--blue)}
   background:var(--hero-card-bg);border:1px solid var(--line);
   border-radius:32px;padding:24px;box-shadow:var(--shadow);backdrop-filter:blur(20px);
 }
+
+.learner-entry{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+
+.learner-entry:hover{
+  transform:translateY(-4px);
+  filter:brightness(1.04);
+}
+
+.learner-entry:focus-visible{
+  outline:3px solid var(--orange);
+  outline-offset:5px;
+}
 .mock-window{background:#0e1b31;border-radius:22px;padding:24px;color:white;min-height:410px;overflow:hidden}
 .mock-top{display:flex;justify-content:space-between;color:#9fb0cb;font-size:11px;margin-bottom:24px;letter-spacing:0.5px}
 .mock-title{font-size:27px;font-weight:850;line-height:1.1;margin-bottom:8px}
@@ -508,8 +526,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
       </nav>
       <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
       <div class="account-links" id="accountArea">
-<a class="login-link" href="pages/connexion.html">Connexion</a>
-
+  <a class="login-link" href="pages/connexion.html">Connexion</a>
 </div>
 
     </div>
@@ -708,7 +725,9 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
             📞 +254 759 583 038
         </a>
 
-        <a class="cfa-mobile-login" href="pages/connexion.html">
+        <a class="cfa-mobile-login"
+           id="mobileLearnerEntry"
+           href="pages/connexion.html">
             Connexion
         </a>
 
@@ -797,6 +816,57 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    /* =========================================
+       CFA LEARNER NAVIGATION
+       ========================================= */
+
+    const learnerLoggedIn =
+        sessionStorage.getItem("cfa_logged_in") === "true";
+
+    const accountArea =
+        document.getElementById("accountArea");
+
+    const mobileLearnerEntry =
+        document.getElementById("mobileLearnerEntry");
+
+    const learnerEntry =
+        document.getElementById("learnerEntry");
+
+    /* Desktop account */
+    if (accountArea) {
+        if (learnerLoggedIn) {
+            accountArea.innerHTML = `
+                <a class="login-link" href="dashboard.html">
+                    👤 Espace apprenant
+                </a>
+            `;
+        } else {
+            accountArea.innerHTML = `
+                <a class="login-link" href="pages/connexion.html">
+                    Connexion
+                </a>
+            `;
+        }
+    }
+
+    /* Mobile menu */
+    if (mobileLearnerEntry) {
+        if (learnerLoggedIn) {
+            mobileLearnerEntry.href = "dashboard.html";
+            mobileLearnerEntry.textContent = "👤 Espace apprenant";
+        } else {
+            mobileLearnerEntry.href = "pages/connexion.html";
+            mobileLearnerEntry.textContent = "Connexion";
+        }
+    }
+
+    /* Large hero learner card */
+    if (learnerEntry) {
+        learnerEntry.href = learnerLoggedIn
+            ? "dashboard.html"
+            : "pages/connexion.html";
+    }
+
     updateThemeButton();
 });
 </script>
@@ -815,7 +885,10 @@ document.addEventListener("DOMContentLoaded", function () {
         <a class="btn secondary" href="#contact">Rejoindre CFA</a>
       </div>
     </div>
-    <div class="hero-card">
+    <a class="hero-card learner-entry"
+       id="learnerEntry"
+       href="pages/connexion.html"
+       aria-label="Ouvrir l'espace apprenant">
       <div class="mock-window">
         <div class="mock-top"><span>CFA • ESPACE APPRENANT</span><span>A1 → B2</span></div>
         <div class="mock-title">Votre parcours<br>commence ici.</div>
@@ -828,7 +901,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="course"><b>03 · Prononciation</b><em>À venir</em></div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
