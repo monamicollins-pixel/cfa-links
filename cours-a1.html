@@ -856,7 +856,11 @@ document.addEventListener("DOMContentLoaded", async function(){
                 "Terminer l'unité";
 
             alert(
-                "Impossible d'enregistrer votre progression."
+                "ERREUR SUPABASE\\n\\n" +
+                "Message : " + (saveError?.message || "inconnu") +
+                "\\nCode : " + (saveError?.code || "inconnu") +
+                "\\nDetails : " + (saveError?.details || "aucun") +
+                "\\nHint : " + (saveError?.hint || "aucun")
             );
 
             return;
