@@ -443,36 +443,67 @@ document.addEventListener("DOMContentLoaded", async function(){
         }
 
 
-        let percentage = 0;
+        /*
+         * Calculate progress directly from completed lessons.
+         *
+         * A1 contains exactly 10 units:
+         *
+         * 0 / 10 = 0.00%
+         * 1 / 10 = 10.00%
+         * 2 / 10 = 20.00%
+         * ...
+         * 10 / 10 = 100.00%
+         *
+         * The database view remains useful as a summary,
+         * but the lesson records are the source of truth.
+         */
 
-        let completed = 0;
+        const {
+            data: completedRows,
+            error: completedError
+        } = await cfaSupabase
 
-        let total = 10;
+            .from("lesson_progress")
+
+            .select("lesson_id")
+
+            .eq("user_id", user.id)
+
+            .eq("completed", true);
 
 
-        if(data){
+        if(completedError){
 
-            percentage =
-                Number(
-                    data.progress_percentage
-                ) || 0;
+            console.error(
+                "Completed lessons loading error:",
+                completedError
+            );
 
-            completed =
-                Number(
-                    data.completed_lessons
-                ) || 0;
-
-            total =
-                Number(
-                    data.total_lessons
-                ) || 10;
+            return;
         }
 
 
-        percentage =
+        const completedIds =
+            new Set(
+                (completedRows || [])
+                    .map(row => Number(row.lesson_id))
+            );
+
+
+        const completed =
+            completedIds.size;
+
+
+        const total = 10;
+
+
+        const percentage =
             Math.max(
                 0,
-                Math.min(100, percentage)
+                Math.min(
+                    100,
+                    (completed / total) * 100
+                )
             );
 
 
