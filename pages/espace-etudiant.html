@@ -487,20 +487,24 @@ document.addEventListener("DOMContentLoaded", async function(){
 
         if (progressValue === 0) {
 
-            progressText.textContent =
-                "Votre aventure commence maintenant.";
+            progressText.innerHTML =
+                '<strong id="progressPercent">' +
+                progressValue.toFixed(2) +
+                '%</strong> — Votre aventure commence maintenant.';
 
         } else if (progressValue >= 100) {
 
-            progressText.textContent =
-                "Félicitations ! Votre parcours CFA est terminé.";
+            progressText.innerHTML =
+                '<strong id="progressPercent">' +
+                progressValue.toFixed(2) +
+                '%</strong> — Félicitations ! Votre parcours CFA est terminé.';
 
         } else {
 
-            progressText.textContent =
-                "Vous avez complété " +
+            progressText.innerHTML =
+                '<strong id="progressPercent">' +
                 progressValue.toFixed(2) +
-                "% de votre parcours CFA.";
+                '%</strong> — Vous avez complété votre parcours CFA.';
 
         }
 
