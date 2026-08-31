@@ -1,0 +1,671 @@
+/* =========================================================
+   COLLINS FRENCH ACADEMY
+   GLOBAL DESIGN SYSTEM
+   Matches the Premium CFA Homepage
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
+
+:root {
+  --cfa-bg: #03132B;
+  --cfa-section: #061B3A;
+  --cfa-card: #081F40;
+
+  --cfa-blue: #2563EB;
+  --cfa-accent: #4F8DFF;
+
+  --cfa-white: #FFFFFF;
+  --cfa-text: #FFFFFF;
+  --cfa-muted: #A7B8D6;
+
+  --cfa-border: #1E335E;
+  --cfa-gold: #F4B740;
+
+  --cfa-radius-sm: 12px;
+  --cfa-radius-md: 18px;
+  --cfa-radius-lg: 22px;
+  --cfa-radius-xl: 24px;
+
+  --cfa-shadow:
+    0 18px 45px rgba(0, 0, 0, .18);
+
+  --cfa-transition:
+    280ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html {
+  background: var(--cfa-bg) !important;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 !important;
+  background: var(--cfa-bg) !important;
+  color: var(--cfa-text) !important;
+
+  font-family: 'Manrope',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif !important;
+
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  transition:
+    background-color .3s ease,
+    color .3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+nav,
+.brand,
+.brand-title,
+.logo-title,
+.academy-title {
+  font-family: 'Poppins',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--cfa-white) !important;
+}
+
+p {
+  color: var(--cfa-muted);
+}
+
+small {
+  color: var(--cfa-muted);
+}
+
+/* =========================================================
+   COMMON PAGE CONTAINERS
+   ========================================================= */
+
+.container,
+.page-container,
+.content-container,
+.main-container {
+  color: var(--cfa-text);
+}
+
+/* =========================================================
+   HEADER / NAVIGATION
+   ========================================================= */
+
+header,
+.navbar,
+.site-header {
+  background: var(--cfa-bg) !important;
+  color: var(--cfa-white) !important;
+  border-bottom: 1px solid var(--cfa-border) !important;
+  box-shadow: none !important;
+}
+
+nav,
+.nav {
+  color: var(--cfa-muted) !important;
+}
+
+nav a,
+.nav a {
+  color: var(--cfa-muted) !important;
+  transition:
+    color var(--cfa-transition),
+    opacity var(--cfa-transition);
+}
+
+nav a:hover,
+.nav a:hover {
+  color: var(--cfa-white) !important;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand,
+.brand-title,
+.logo-text,
+.academy-title {
+  color: var(--cfa-white) !important;
+}
+
+.brand small,
+.brand-subtitle,
+.logo-subtitle,
+.nav-subtitle,
+.tagline-sub {
+  color: var(--cfa-muted) !important;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card,
+.resource,
+.level,
+.course-card,
+.lesson-card,
+.dashboard-card,
+.auth-card,
+.login-container,
+.form-container,
+.panel,
+.box,
+.feature-card {
+  background: var(--cfa-card) !important;
+  color: var(--cfa-text) !important;
+
+  border: 1px solid var(--cfa-border) !important;
+
+  border-radius: var(--cfa-radius-lg);
+
+  box-shadow: none !important;
+
+  transition:
+    transform var(--cfa-transition),
+    border-color var(--cfa-transition),
+    background-color var(--cfa-transition);
+}
+
+.card:hover,
+.resource:hover,
+.level:hover,
+.course-card:hover,
+.lesson-card:hover,
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--cfa-accent) !important;
+}
+
+/* =========================================================
+   CARD TEXT
+   ========================================================= */
+
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6,
+.resource h1,
+.resource h2,
+.resource h3,
+.resource h4,
+.level strong {
+  color: var(--cfa-white) !important;
+}
+
+.card p,
+.resource p,
+.level span {
+  color: var(--cfa-muted) !important;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn,
+button,
+.auth-submit,
+.login-btn,
+.signup-btn,
+.primary-btn,
+.cta-button {
+  transition:
+    transform var(--cfa-transition),
+    background-color var(--cfa-transition),
+    border-color var(--cfa-transition),
+    color var(--cfa-transition);
+}
+
+.btn.primary,
+.btn-primary,
+.primary-btn,
+.auth-submit,
+.login-btn,
+.signup-btn,
+.cta-button {
+  background: var(--cfa-blue) !important;
+  color: var(--cfa-white) !important;
+  border-color: var(--cfa-blue) !important;
+  box-shadow: none !important;
+}
+
+.btn.primary:hover,
+.btn-primary:hover,
+.primary-btn:hover,
+.auth-submit:hover,
+.login-btn:hover,
+.signup-btn:hover,
+.cta-button:hover {
+  background: var(--cfa-accent) !important;
+  border-color: var(--cfa-accent) !important;
+  transform: translateY(-2px);
+}
+
+.btn.secondary,
+.btn-secondary,
+.secondary-btn {
+  background: transparent !important;
+  color: var(--cfa-white) !important;
+  border: 1px solid var(--cfa-border) !important;
+}
+
+.btn.secondary:hover,
+.btn-secondary:hover,
+.secondary-btn:hover {
+  border-color: var(--cfa-accent) !important;
+  color: var(--cfa-accent) !important;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a:not(.btn):not(.btn-primary):not(.btn-secondary) {
+  transition:
+    color var(--cfa-transition);
+}
+
+a:hover {
+  color: var(--cfa-accent);
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+label {
+  color: var(--cfa-white) !important;
+}
+
+input,
+textarea,
+select {
+  background: #061B3A !important;
+  color: var(--cfa-white) !important;
+
+  border: 1px solid var(--cfa-border) !important;
+
+  border-radius: var(--cfa-radius-sm);
+
+  outline: none;
+
+  transition:
+    border-color var(--cfa-transition),
+    box-shadow var(--cfa-transition),
+    background-color var(--cfa-transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7185A6 !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--cfa-accent) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(79, 141, 255, .12) !important;
+}
+
+/* =========================================================
+   AUTHENTICATION PAGES
+   ========================================================= */
+
+.auth-page {
+  min-height: 100vh !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  padding: 40px 20px !important;
+
+  background: var(--cfa-bg) !important;
+}
+
+.auth-card {
+  width: min(460px, 100%) !important;
+
+  background: var(--cfa-card) !important;
+
+  border: 1px solid var(--cfa-border) !important;
+
+  border-radius: var(--cfa-radius-xl) !important;
+
+  padding: 36px !important;
+
+  box-shadow: var(--cfa-shadow) !important;
+}
+
+.auth-logo {
+  width: 88px !important;
+  height: 88px !important;
+
+  object-fit: contain;
+
+  display: block;
+
+  margin: 0 auto 20px;
+}
+
+.auth-title {
+  color: var(--cfa-white) !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  font-size: 30px;
+
+  line-height: 1.2;
+
+  text-align: center;
+}
+
+.auth-subtitle {
+  color: var(--cfa-muted) !important;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  margin-bottom: 28px;
+}
+
+.auth-message.error {
+  background: rgba(220, 38, 38, .12) !important;
+  color: #ff9b9b !important;
+  border: 1px solid rgba(220, 38, 38, .25);
+}
+
+.auth-message.success {
+  background: rgba(37, 99, 235, .12) !important;
+  color: #8db4ff !important;
+  border: 1px solid rgba(79, 141, 255, .25);
+}
+
+.auth-switch,
+.back-home {
+  color: var(--cfa-muted) !important;
+}
+
+.auth-switch a,
+.back-home:hover {
+  color: var(--cfa-accent) !important;
+}
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.progress {
+  background: var(--cfa-border) !important;
+}
+
+.progress i {
+  background: var(--cfa-accent) !important;
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+  background: rgba(37, 99, 235, .12) !important;
+  color: var(--cfa-accent) !important;
+  border: 1px solid rgba(79, 141, 255, .18);
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+table {
+  background: var(--cfa-card) !important;
+  color: var(--cfa-white) !important;
+  border-color: var(--cfa-border) !important;
+}
+
+th {
+  background: var(--cfa-section) !important;
+  color: var(--cfa-white) !important;
+}
+
+td {
+  border-color: var(--cfa-border) !important;
+  color: var(--cfa-muted) !important;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer,
+.site-footer {
+  background: var(--cfa-bg) !important;
+  color: var(--cfa-muted) !important;
+  border-top: 1px solid var(--cfa-border) !important;
+}
+
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer strong {
+  color: var(--cfa-white) !important;
+}
+
+footer a {
+  color: var(--cfa-muted) !important;
+}
+
+footer a:hover {
+  color: var(--cfa-accent) !important;
+}
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.theme-toggle,
+.dark-toggle,
+.dark-mode-toggle {
+  background: var(--cfa-section) !important;
+  color: var(--cfa-gold) !important;
+
+  border: 1px solid var(--cfa-border) !important;
+
+  transition:
+    transform var(--cfa-transition),
+    border-color var(--cfa-transition);
+}
+
+.theme-toggle:hover,
+.dark-toggle:hover,
+.dark-mode-toggle:hover {
+  border-color: var(--cfa-gold) !important;
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   MOBILE DRAWER
+   ========================================================= */
+
+#site-mobile-drawer,
+#mobile-menu-drawer,
+.mobile-drawer {
+  background: var(--cfa-section) !important;
+  color: var(--cfa-white) !important;
+  border-left: 1px solid var(--cfa-border);
+}
+
+#site-mobile-drawer a,
+#mobile-menu-drawer a,
+.mobile-drawer a {
+  color: var(--cfa-white) !important;
+}
+
+#site-mobile-drawer a:hover,
+#mobile-menu-drawer a:hover,
+.mobile-drawer a:hover {
+  color: var(--cfa-accent) !important;
+}
+
+#site-mobile-drawer hr,
+#mobile-menu-drawer hr,
+.mobile-drawer hr {
+  border-color: var(--cfa-border) !important;
+}
+
+/* =========================================================
+   GOLD — COMPAS / THEME ONLY
+   ========================================================= */
+
+.compas,
+.compas-title,
+.compas-icon,
+.gold-accent {
+  color: var(--cfa-gold) !important;
+}
+
+/* =========================================================
+   REMOVE LEGACY LIGHT THEME OVERRIDES
+   ========================================================= */
+
+body.dark-mode {
+  background: var(--cfa-bg) !important;
+  color: var(--cfa-white) !important;
+}
+
+body.dark-mode .card,
+body.dark-mode .login-container,
+body.dark-mode .form-container {
+  background: var(--cfa-card) !important;
+  color: var(--cfa-white) !important;
+  border-color: var(--cfa-border) !important;
+}
+
+body.dark-mode input {
+  background: var(--cfa-section) !important;
+  color: var(--cfa-white) !important;
+  border-color: var(--cfa-border) !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .auth-page {
+    padding: 24px 16px !important;
+  }
+
+  .auth-card {
+    padding: 28px 22px !important;
+    border-radius: 20px !important;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .auth-submit {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .auth-card {
+    padding: 24px 18px !important;
+  }
+
+  .auth-logo {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .auth-title {
+    font-size: 26px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--cfa-accent);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCE MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
