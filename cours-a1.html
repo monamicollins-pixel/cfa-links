@@ -386,6 +386,27 @@ document.addEventListener("DOMContentLoaded", async function(){
     const user =
         session.user;
 
+    console.log("CFA AUTH USER:", user);
+
+    const { data: authCheck, error: authCheckError } =
+        await cfaSupabase.auth.getUser();
+
+    if (authCheckError) {
+        alert(
+            "AUTH ERROR\\n\\n" +
+            "Message: " +
+            (authCheckError.message || "inconnu")
+        );
+    } else {
+        alert(
+            "CFA AUTHENTIFICATION\\n\\n" +
+            "User ID: " +
+            (authCheck?.user?.id || "AUCUN") +
+            "\\nE-mail: " +
+            (authCheck?.user?.email || "AUCUN")
+        );
+    }
+
 
     /*
      * --------------------------------------------------
