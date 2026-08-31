@@ -478,6 +478,39 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
         color: #FF6600 !important;
     }
 
+    /* =====================================================
+       CFA DARK MODE TEXT
+       Soft white replaces navy on dark surfaces.
+       Orange remains the universal CFA accent.
+       ===================================================== */
+
+    html[data-theme="dark"] #site-mobile-drawer {
+        background: #020617 !important;
+        color: #F8FAFC !important;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer a.cfa-mobile-link,
+    html[data-theme="dark"] #site-mobile-drawer button.cfa-mobile-theme {
+        color: #F8FAFC !important;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer a.cfa-mobile-link:hover,
+    html[data-theme="dark"] #site-mobile-drawer button.cfa-mobile-theme:hover {
+        color: #FF6600 !important;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer .cfa-mobile-header strong {
+        color: #F8FAFC !important;
+    }
+
+    html[data-theme="dark"] #close-drawer-btn {
+        color: #F8FAFC !important;
+    }
+
+    html[data-theme="dark"] #close-drawer-btn:hover {
+        color: #FF6600 !important;
+    }
+
     body.cfa-drawer-open {
         overflow: hidden !important;
         height: 100vh !important;
