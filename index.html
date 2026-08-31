@@ -420,8 +420,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 
         background: #020617 !important;
         background-color: #020617 !important;
-        opacity: 1 !important;
-        visibility: visible !important;
 
         z-index: 2147483647 !important;
         isolation: isolate !important;
@@ -482,16 +480,96 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
-<style id="cfa-hamburger-clean">
+<style id="cfa-hamburger-fix">
+
+/* Desktop: hamburger hidden */
 #hamburger-menu-trigger {
     display: none !important;
 }
 
+/* Mobile: hamburger visible and clickable */
 @media (max-width: 768px) {
+
     #hamburger-menu-trigger {
         display: flex !important;
+        position: relative !important;
+        z-index: 999999 !important;
+
+        width: 42px !important;
+        height: 42px !important;
+        padding: 8px !important;
+        margin: 0 !important;
+
+        border: 1px solid var(--line) !important;
+        border-radius: 10px !important;
+
+        background: var(--white) !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+        gap: 5px !important;
+
+        cursor: pointer !important;
+        pointer-events: auto !important;
+    }
+
+    #hamburger-menu-trigger span {
+        display: block !important;
+        width: 23px !important;
+        height: 3px !important;
+        border-radius: 3px !important;
+        background: var(--ink) !important;
+        pointer-events: none !important;
     }
 }
+
+/* =========================================================
+   MOBILE DRAWER — CLOSED BY DEFAULT
+   ========================================================= */
+
+#site-mobile-drawer {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* =========================================================
+   MOBILE DRAWER — OPEN
+   ========================================================= */
+
+#site-mobile-drawer.cfa-open {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100dvh !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    padding: 24px !important;
+    box-sizing: border-box !important;
+
+    background: var(--white) !important;
+    color: var(--ink) !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+
+    z-index: 2147483647 !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+#site-mobile-drawer.cfa-open * {
+    pointer-events: auto;
+}
+
 </style>
 
     <link rel="stylesheet" href="css/cfa-shared-theme.css">
@@ -737,86 +815,205 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const trigger = document.getElementById("hamburger-menu-trigger");
-    const drawer = document.getElementById("site-mobile-drawer");
-    const closeBtn = document.getElementById("close-drawer-btn");
-    const drawerTheme = document.getElementById("drawer-theme-toggle");
-    const html = document.documentElement;
+    const trigger =
+        document.getElementById("hamburger-menu-trigger");
 
-    if (!trigger || !drawer) return;
+    const drawer =
+        document.getElementById("site-mobile-drawer");
+
+    const closeBtn =
+        document.getElementById("close-drawer-btn");
+
+    const drawerTheme =
+        document.getElementById("drawer-theme-toggle");
+
+    const html =
+        document.documentElement;
+
+    console.log("CFA mobile menu initialized:", {
+        trigger: !!trigger,
+        drawer: !!drawer,
+        closeBtn: !!closeBtn
+    });
+
+    if (!trigger || !drawer) {
+        console.error("CFA mobile menu elements missing.");
+        return;
+    }
 
     function updateThemeButton() {
-        const dark = html.getAttribute("data-theme") === "dark";
+
+        const dark =
+            html.getAttribute("data-theme") === "dark";
 
         if (drawerTheme) {
+
             drawerTheme.textContent =
-                dark ? "☀️ Mode clair" : "🌙 Mode sombre";
+                dark
+                    ? "☀️ Mode clair"
+                    : "🌙 Mode sombre";
         }
     }
 
     function openMenu() {
+
+        console.log("CFA: opening mobile menu");
+
         drawer.classList.add("cfa-open");
-        drawer.setAttribute("aria-hidden", "false");
-        trigger.setAttribute("aria-expanded", "true");
+
+        drawer.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        trigger.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+        document.body.classList.add(
+            "cfa-drawer-open"
+        );
+
         document.body.style.overflow = "hidden";
+
         updateThemeButton();
     }
 
     function closeMenu() {
+
+        console.log("CFA: closing mobile menu");
+
         drawer.classList.remove("cfa-open");
-        drawer.setAttribute("aria-hidden", "true");
-        trigger.setAttribute("aria-expanded", "false");
+
+        drawer.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        trigger.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        document.body.classList.remove(
+            "cfa-drawer-open"
+        );
+
         document.body.style.overflow = "";
     }
 
-    /* Open hamburger */
-    trigger.addEventListener("click", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        openMenu();
-    });
+    /* =====================================================
+       HAMBURGER
+       ===================================================== */
 
-    /* Close X */
-    if (closeBtn) {
-        closeBtn.addEventListener("click", function () {
-            closeMenu();
-        });
-    }
+    trigger.addEventListener(
+        "click",
+        function (event) {
 
-    /* Mobile theme button */
-    if (drawerTheme) {
-        drawerTheme.addEventListener("click", function () {
+            event.preventDefault();
+            event.stopPropagation();
 
-            const current =
-                html.getAttribute("data-theme") || "light";
-
-            const next =
-                current === "dark" ? "light" : "dark";
-
-            html.setAttribute("data-theme", next);
-            localStorage.setItem("cfa_theme", next);
-
-            /* Keep desktop theme button synchronized */
-            const desktopTheme =
-                document.getElementById("themeToggle");
-
-            if (desktopTheme) {
-                desktopTheme.textContent =
-                    next === "dark" ? "☀️" : "🌙";
+            if (
+                drawer.classList.contains(
+                    "cfa-open"
+                )
+            ) {
+                closeMenu();
+            } else {
+                openMenu();
             }
+        },
+        false
+    );
 
-            updateThemeButton();
-        });
+    /* =====================================================
+       CLOSE BUTTON
+       ===================================================== */
+
+    if (closeBtn) {
+
+        closeBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                closeMenu();
+            },
+            false
+        );
     }
 
-    /* Close drawer after clicking navigation */
-    drawer.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            closeMenu();
+    /* =====================================================
+       THEME
+       ===================================================== */
+
+    if (drawerTheme) {
+
+        drawerTheme.addEventListener(
+            "click",
+            function () {
+
+                const current =
+                    html.getAttribute(
+                        "data-theme"
+                    ) || "light";
+
+                const next =
+                    current === "dark"
+                        ? "light"
+                        : "dark";
+
+                html.setAttribute(
+                    "data-theme",
+                    next
+                );
+
+                localStorage.setItem(
+                    "cfa_theme",
+                    next
+                );
+
+                const desktopTheme =
+                    document.getElementById(
+                        "themeToggle"
+                    );
+
+                if (desktopTheme) {
+
+                    desktopTheme.textContent =
+                        next === "dark"
+                            ? "☀️"
+                            : "🌙";
+                }
+
+                updateThemeButton();
+            },
+            false
+        );
+    }
+
+    /* =====================================================
+       CLOSE AFTER NAVIGATION
+       ===================================================== */
+
+    drawer
+        .querySelectorAll(
+            "a.cfa-mobile-link"
+        )
+        .forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+                    closeMenu();
+                }
+            );
         });
-    });
 
-
+});
 </script>
 
 </header>
