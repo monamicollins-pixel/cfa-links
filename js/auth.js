@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 setTimeout(function () {
 
                     window.location.href =
-                        "espace-etudiant.html";
+                        "../dashboard.html";
 
                 }, 500);
 

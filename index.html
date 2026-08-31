@@ -816,59 +816,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    /* =========================================
-       CFA LEARNER NAVIGATION
-       ========================================= */
 
-    const learnerLoggedIn =
-        sessionStorage.getItem("cfa_logged_in") === "true";
-
-    const accountArea =
-        document.getElementById("accountArea");
-
-    const mobileLearnerEntry =
-        document.getElementById("mobileLearnerEntry");
-
-    const learnerEntry =
-        document.getElementById("learnerEntry");
-
-    /* Desktop account */
-    if (accountArea) {
-        if (learnerLoggedIn) {
-            accountArea.innerHTML = `
-                <a class="login-link" href="dashboard.html">
-                    👤 Espace apprenant
-                </a>
-            `;
-        } else {
-            accountArea.innerHTML = `
-                <a class="login-link" href="pages/connexion.html">
-                    Connexion
-                </a>
-            `;
-        }
-    }
-
-    /* Mobile menu */
-    if (mobileLearnerEntry) {
-        if (learnerLoggedIn) {
-            mobileLearnerEntry.href = "dashboard.html";
-            mobileLearnerEntry.textContent = "👤 Espace apprenant";
-        } else {
-            mobileLearnerEntry.href = "pages/connexion.html";
-            mobileLearnerEntry.textContent = "Connexion";
-        }
-    }
-
-    /* Large hero learner card */
-    if (learnerEntry) {
-        learnerEntry.href = learnerLoggedIn
-            ? "dashboard.html"
-            : "pages/connexion.html";
-    }
-
-    updateThemeButton();
-});
 </script>
 
 </header>
@@ -980,5 +928,122 @@ toggleBtn.addEventListener('click', () => {
   toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 });
 </script>
-<script src="js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+<script>
+/* =========================================================
+   CFA — HOMEPAGE AUTHENTICATION NAVIGATION
+   Supabase is the single source of truth.
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const accountArea =
+        document.getElementById("accountArea");
+
+    const mobileLearnerEntry =
+        document.getElementById("mobileLearnerEntry");
+
+    const learnerEntry =
+        document.getElementById("learnerEntry");
+
+    if (!window.cfaSupabase) {
+        console.error("CFA Supabase client unavailable.");
+        return;
+    }
+
+    let user = null;
+
+    try {
+        const {
+            data: { session }
+        } = await cfaSupabase.auth.getSession();
+
+        user = session?.user || null;
+    } catch (error) {
+        console.error("CFA session check failed:", error);
+    }
+
+    const learnerLoggedIn = !!user;
+
+    /* Desktop account */
+    if (accountArea) {
+
+        if (learnerLoggedIn) {
+
+            accountArea.innerHTML = `
+                <a class="login-link" href="#" id="desktopLogout">
+                    🚪 Déconnexion
+                </a>
+            `;
+
+        } else {
+
+            accountArea.innerHTML = `
+                <a class="login-link" href="pages/connexion.html">
+                    Connexion
+                </a>
+            `;
+        }
+    }
+
+    /* Mobile learner link */
+    if (mobileLearnerEntry) {
+
+        if (learnerLoggedIn) {
+
+            mobileLearnerEntry.href = "#";
+            mobileLearnerEntry.textContent = "🚪 Déconnexion";
+            mobileLearnerEntry.onclick = async function (event) {
+
+                event.preventDefault();
+
+                try {
+                    await cfaSupabase.auth.signOut();
+                } catch (error) {
+                    console.error("CFA logout error:", error);
+                }
+
+                window.location.href = "index.html";
+            };
+
+        } else {
+
+            mobileLearnerEntry.href = "pages/connexion.html";
+            mobileLearnerEntry.textContent = "Connexion";
+            mobileLearnerEntry.onclick = null;
+        }
+    }
+
+    /* Desktop logout */
+    const desktopLogout =
+        document.getElementById("desktopLogout");
+
+    if (desktopLogout) {
+
+        desktopLogout.addEventListener("click", async function (event) {
+
+            event.preventDefault();
+
+            try {
+                await cfaSupabase.auth.signOut();
+            } catch (error) {
+                console.error("CFA logout error:", error);
+            }
+
+            window.location.href = "index.html";
+        });
+    }
+
+    /* Large learner card */
+    if (learnerEntry) {
+
+        learnerEntry.href =
+            learnerLoggedIn
+                ? "dashboard.html"
+                : "pages/connexion.html";
+    }
+});
+</script>
 

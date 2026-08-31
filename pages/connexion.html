@@ -154,6 +154,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/auth.js"></script>
+
+<script>
+/* =========================================================
+   CFA — PREVENT MULTIPLE LOGIN
+   Already authenticated learners go directly to their space.
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    try {
+
+        const {
+            data: { user }
+        } = await cfaSupabase.auth.getUser();
+
+        if (user) {
+            window.location.replace("../dashboard.html");
+        }
+
+    } catch (error) {
+
+        console.error("CFA existing-session check failed:", error);
+    }
+});
+</script>
+
 <main class="auth-page">
 <div class="auth-card">
 
@@ -204,9 +233,7 @@ Vous n'avez pas encore de compte ? <a href="sinscrire.html" style="color: #0056b
 </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../js/supabase.js"></script>
-<script src="../js/auth.js"></script>
+
 <script>
     // Global Dark Mode Synchronizer
     document.addEventListener("DOMContentLoaded", () => {

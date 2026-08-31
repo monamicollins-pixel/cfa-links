@@ -7,3 +7,6 @@ const cfaSupabase = createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
 );
+
+/* Make the CFA Supabase client available to page-level scripts. */
+window.cfaSupabase = cfaSupabase;
