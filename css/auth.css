@@ -4,11 +4,11 @@
   display:grid;
   place-items:center;
   padding:40px 20px;
-  background:#f6f9fc;
+  background: var(--cfa-paper);
 }
 .auth-card{
   width:min(460px,100%);
-  background:#fff;
+  background: var(--cfa-white);
   border:1px solid #e5eaf2;
   border-radius:26px;
   padding:34px;
@@ -22,10 +22,11 @@
 }
 .auth-title{
   text-align:center;
-  color:#0A2351;
+
   font-size:30px;
   line-height:1.15;
   margin-bottom:8px;
+  color: var(--cfa-orange) !important;
 }
 .auth-subtitle{
   text-align:center;
@@ -40,7 +41,7 @@
 .auth-form label{
   font-size:12px;
   font-weight:800;
-  color:#10203a;
+  color: var(--cfa-ink);
 }
 .auth-form input{
   width:100%;
@@ -50,7 +51,7 @@
   border-radius:11px;
   outline:none;
   font:inherit;
-  background:#fbfcfe;
+  background: var(--cfa-input);
 }
 .auth-form input:focus{
   border-color:#174ea6;
@@ -60,14 +61,14 @@
   border:0;
   border-radius:12px;
   padding:14px;
-  background:#174ea6;
+  background: var(--cfa-blue);
   color:#fff;
   font-weight:850;
   font-size:14px;
   cursor:pointer;
 }
 .auth-submit:hover{
-  background:#0A2351;
+  background: var(--cfa-blue-dark);
 }
 .auth-message{
   display:none;
@@ -93,7 +94,7 @@
   margin-top:22px;
 }
 .auth-switch a{
-  color:#174ea6;
+  color: var(--cfa-blue);
   font-weight:850;
 }
 .back-home{
@@ -114,21 +115,17 @@
                 align-items: center !important;
                 gap: 10px !important;
             }
-            .hero h1, h1 {
-                font-size: 2rem !important;
-                line-height: 1.2 !important;
-            }
-            .card, .login-container {
+.card, .login-container {
                 width: 90% !important;
                 margin: 20px auto !important;
                 padding: 15px !important;
             }
         }
-        
+
         .brand-title, .logo-text, .academy-title, header .logo span {
             font-size: 1.15rem !important;
         }
-        
+
 header *, .brand, .logo { text-transform: none !important; }
 
 span[style*="font-size"], .brand, .logo-text, header span { text-transform: none !important; }

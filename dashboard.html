@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@ input, select, textarea{width:100%;padding:10px;border:1px solid var(--line);bor
 textarea{resize:vertical;height:100px;}
 .btn{background:var(--blue);color:white;padding:10px 20px;border:none;border-radius:8px;font-weight:700;cursor:pointer;}
 </style>
+    <link rel="stylesheet" href="css/cfa-shared-theme.css">
 </head>
 <body>
 <script>
@@ -35,19 +36,15 @@ if(sessionStorage.getItem('cfa_logged_in') !== 'true') {
       <p id="welcomeUser" style="color:var(--muted);font-size:13px;margin-top:4px;">Bienvenue sur votre tableau de bord.</p>
     </div>
     <a class="logout-btn" onclick="logout()">Déconnexion</a>
-  
-
-
 
 <div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    
+
 </div>
 <style>
 @media (max-width: 768px) {
     .mobile-menu-icon-container { display: block !important; }
 }
 </style>
-
 
 <!-- Mobile Navigation Drawer & 3-line Menu Integration -->
 <div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
@@ -84,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const trigger = document.getElementById("hamburger-menu-trigger");
     const drawer = document.getElementById("site-mobile-drawer");
     const closeBtn = document.getElementById("close-drawer-btn");
-    
+
     if (trigger && drawer) {
         trigger.addEventListener("click", () => {
             drawer.style.display = "flex";
@@ -144,23 +141,5 @@ function addLesson(e) {
 }
 </script>
 
-<script>
-    // Global Dark Mode Synchronizer
-    document.addEventListener("DOMContentLoaded", () => {
-        const isDarkMode = localStorage.getItem("darkMode") === "true";
-        if (isDarkMode) {
-            document.body.classList.add("dark-mode");
-        }
-        
-        // Listen for any theme toggle buttons across pages
-        const toggles = document.querySelectorAll("#darkModeToggle, .dark-mode-toggle, [onclick*=\x27dark\x27]");
-        toggles.forEach(toggle => {
-            toggle.addEventListener("click", () => {
-                document.body.classList.toggle("dark-mode");
-                localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-            });
-        });
-    });
-</script>
 <div style="text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">Apprendre • S'amuser • S'inspirer • Découvrir</div>
 

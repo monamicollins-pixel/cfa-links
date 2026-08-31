@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -243,7 +243,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
-
 <style>
 #mobile-menu-drawer.solid-drawer {
     background: #070a12 !important;
@@ -253,7 +252,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
-
 <style>
 #mobile-menu-drawer {
     background: #020617 !important;
@@ -261,7 +259,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     opacity: 1 !important;
 }
 </style>
-
 
 <style id="cfa-mobile-fix">
 /* =========================================
@@ -467,21 +464,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style id="cfa-hamburger-clean">
 #hamburger-menu-trigger {
     display: none !important;
@@ -494,10 +476,8 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
+    <link rel="stylesheet" href="css/cfa-shared-theme.css">
 </head>
-
-
-
 
 <body>
 <header>
@@ -519,8 +499,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
   <span></span>
 </button>
 
-
-
       <nav>
         <a href="#accueil">Accueil</a>
         <a href="#cours">Cours</a>
@@ -536,10 +514,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 
     </div>
   </div>
-
-
-
-
 
 <!-- CFA MOBILE MENU -->
 <style>
@@ -927,32 +901,11 @@ toggleBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 toggleBtn.addEventListener('click', () => {
   const currentTheme = htmlEl.getAttribute('data-theme');
   const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  
+
   htmlEl.setAttribute('data-theme', newTheme);
   localStorage.setItem('cfa_theme', newTheme);
   toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 });
 </script>
 <script src="js/auth.js"></script>
-
-<script>
-    // Global Dark Mode Synchronizer
-    document.addEventListener("DOMContentLoaded", () => {
-        const isDarkMode = localStorage.getItem("darkMode") === "true";
-        if (isDarkMode) {
-            document.body.classList.add("dark-mode");
-        }
-        
-        // Listen for any theme toggle buttons across pages
-        const toggles = document.querySelectorAll("#darkModeToggle, .dark-mode-toggle, [onclick*=\x27dark\x27]");
-        toggles.forEach(toggle => {
-            toggle.addEventListener("click", () => {
-                document.body.classList.toggle("dark-mode");
-                localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-            });
-        });
-    });
-</script>
-
-
 

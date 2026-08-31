@@ -7,50 +7,19 @@
 <link rel="stylesheet" href="../css/auth.css">
 
         <style>
-            body.dark-mode {
-                background-color: #121212 !important;
-                color: #e0e0e0 !important;
-            }
-            body.dark-mode .card, 
-            body.dark-mode .login-container, 
-            body.dark-mode .form-container {
-                background-color: #1e1e1e !important;
-                color: #e0e0e0 !important;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
-            }
-            body.dark-mode input {
-                background-color: #2c2c2c !important;
-                color: #ffffff !important;
-                border-color: #444 !important;
-            }
+
+
         </style>
-        
-<style>
-#mobile-menu-drawer.solid-drawer {
-    background: #070a12 !important;
-    background-color: #070a12 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-</style>
-
-
-<style>
-#mobile-menu-drawer {
-    background: #020617 !important;
-    background-color: #020617 !important;
-    opacity: 1 !important;
-}
-</style>
 
     <link rel="stylesheet" href="../css/cfa-shared-theme.css">
     <script src="../js/cfa-shared-theme.js"></script>
+
 </head>
 <body>
 
 <!-- Mobile Navigation Drawer & 3-line Menu Integration -->
 <div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    
+
 </div>
 
 <div id="site-mobile-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; flex-direction: column; padding: 30px; box-sizing: border-box; color: #fff; font-family: inherit;">
@@ -79,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const trigger = document.getElementById("hamburger-menu-trigger");
     const drawer = document.getElementById("site-mobile-drawer");
     const closeBtn = document.getElementById("close-drawer-btn");
-    
+
     if (trigger && drawer) {
         trigger.addEventListener("click", () => {
             drawer.style.display = "flex";
@@ -93,12 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-
 <div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
     <button id="hamburger-menu-trigger" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; display: flex; flex-direction: column; gap: 5px;">
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
+        <span style="display: block; width: 24px; height: 2px; "></span>
+        <span style="display: block; width: 24px; height: 2px; "></span>
+        <span style="display: block; width: 24px; height: 2px; "></span>
     </button>
 </div>
 <style>
@@ -106,9 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .mobile-menu-icon-container { display: block !important; }
 }
 </style>
-
-
-
 
 <main class="auth-page">
 <div class="auth-card">
@@ -122,7 +87,6 @@ Entrez votre adresse e-mail pour réinitialiser votre mot de passe.
 </p>
 
 <div id="authMessage" class="auth-message"></div>
-
 
     <form id="resetForm">
         <div style="margin-bottom: 20px; text-align: left;">
@@ -150,7 +114,6 @@ Entrez votre adresse e-mail pour réinitialiser votre mot de passe.
     <div style="text-align: center; margin-top: 15px;">
         <a href="connexion.html" style="color: #0056b3; text-decoration: underline;">← Retour à la connexion</a>
     </div>
-    
 
 <p class="auth-switch">
 Vous n'avez pas encore de compte ? <a href="sinscrire.html" style="color: #0056b3; font-weight: bold; text-decoration: underline;">S'inscrire</a>
@@ -264,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
-        
 <script>
     // Global Dark Mode Synchronizer
     document.addEventListener("DOMContentLoaded", () => {
@@ -272,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isDarkMode) {
             document.body.classList.add("dark-mode");
         }
-        
+
         // Listen for any theme toggle buttons across pages
         const toggles = document.querySelectorAll("#darkModeToggle, .dark-mode-toggle, [onclick*=\x27dark\x27]");
         toggles.forEach(toggle => {
@@ -291,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentTheme === "dark" || localStorage.getItem("darkMode") === "true") {
             document.body.classList.add("dark-mode");
         }
-        
+
         // Also sync any dark mode toggle click handlers across pages
         window.addEventListener("load", () => {
             const toggleBtn = document.querySelector("#darkModeToggle, .sun-icon, [onclick*=\x27dark\x27], .dark-toggle");
