@@ -38,12 +38,18 @@ document.addEventListener("DOMContentLoaded", async function () {
             /*
              * CFA — FIRST NAME VALIDATION
              *
-             * Accept international names while blocking
-             * numbers, emojis, URLs and obvious junk.
+             * Accept legitimate international names while blocking:
+             * - lowercase-only names
+             * - numbers
+             * - symbols
+             * - emojis
+             * - URLs / junk
+             * - obvious fake names
+             * - offensive / profane names
              */
 
             const firstNamePattern =
-                /^[\p{L}]+(?:[ .'-][\p{L}]+)*$/u;
+                /^[\p{Lu}][\p{L}]*(?:[ .'-][\p{Lu}][\p{L}]*)*$/u;
 
             const blockedNames = [
                 "test",
@@ -57,7 +63,25 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "none",
                 "null",
                 "anonymous",
-                "unknown"
+                "unknown",
+
+                /* Offensive / abusive terms */
+                "fuck",
+                "fucking",
+                "shit",
+                "bitch",
+                "bastard",
+                "asshole",
+                "dick",
+                "pussy",
+                "cunt",
+                "whore",
+                "slut",
+                "nigger",
+                "nigga",
+                "fucker",
+                "fuckface",
+                "motherfucker"
             ];
 
             const normalizedName =
@@ -66,7 +90,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                     .trim();
 
             const normalizedNameLower =
-                normalizedName.toLocaleLowerCase();
+                normalizedName
+                    .toLocaleLowerCase();
+
+            const nameForBlocklist =
+                normalizedNameLower
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "");
 
 
             if (!name || !email || !password || !confirm) {
@@ -104,9 +134,21 @@ document.addEventListener("DOMContentLoaded", async function () {
                 return;
             }
 
-            if (blockedNames.includes(normalizedNameLower)) {
+            const nameWords =
+                nameForBlocklist
+                    .split(/[ .'-]+/)
+                    .filter(Boolean);
+
+            const containsBlockedName =
+                blockedNames.some(
+                    blocked =>
+                        nameWords.includes(blocked) ||
+                        nameForBlocklist === blocked
+                );
+
+            if (containsBlockedName) {
                 authMessage(
-                    "Veuillez saisir votre vrai prénom.",
+                    "Veuillez saisir un prénom approprié.",
                     "error"
                 );
                 return;

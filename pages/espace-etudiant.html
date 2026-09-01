@@ -408,9 +408,80 @@ document.addEventListener("DOMContentLoaded", async function(){
 
     const user = session.user;
 
+    /*
+     * CFA — SAFE LEARNER NAME
+     *
+     * Never display an unsafe or invalid stored first name.
+     * Existing accounts may contain metadata created before
+     * the current signup validation was introduced.
+     */
+
+    const storedName =
+        String(user.user_metadata?.first_name || "")
+            .normalize("NFKC")
+            .trim();
+
+    const learnerNamePattern =
+        /^[\\p{Lu}][\\p{L}]*(?:[ .'-][\\p{Lu}][\\p{L}]*)*$/u;
+
+    const blockedLearnerNames = [
+        "test",
+        "testing",
+        "admin",
+        "administrator",
+        "asdf",
+        "qwerty",
+        "xxx",
+        "xxxx",
+        "none",
+        "null",
+        "anonymous",
+        "unknown",
+        "fuck",
+        "fucker",
+        "fuckface",
+        "fucking",
+        "motherfucker",
+        "shit",
+        "bitch",
+        "bastard",
+        "asshole",
+        "dick",
+        "pussy",
+        "cunt",
+        "whore",
+        "slut",
+        "nigger",
+        "nigga"
+    ];
+
+    const learnerNameLower =
+        storedName.toLocaleLowerCase();
+
+    const learnerNameBlocklist =
+        learnerNameLower
+            .normalize("NFD")
+            .replace(/[\\u0300-\\u036f]/g, "");
+
+    const learnerNameWords =
+        learnerNameBlocklist
+            .split(/[ .'-]+/)
+            .filter(Boolean);
+
+    const learnerNameBlocked =
+        blockedLearnerNames.some(
+            blocked =>
+                learnerNameWords.includes(blocked) ||
+                learnerNameBlocklist === blocked
+        );
+
     const name =
-        user.user_metadata?.first_name ||
-        "Apprenant";
+        storedName &&
+        storedName.length <= 40 &&
+        learnerNamePattern.test(storedName) &&
+        !learnerNameBlocked
+            ? storedName
+            : "Apprenant";
 
 
     /*
