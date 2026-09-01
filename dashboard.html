@@ -375,6 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script src="js/name-validation.js"></script>
 <script src="js/auth.js"></script>
 
 <script>
@@ -408,9 +409,23 @@ document.addEventListener("DOMContentLoaded", async function(){
 
     const user = session.user;
 
-    const name =
+    const storedName =
         user.user_metadata?.first_name ||
-        "Apprenant";
+        "";
+
+    const nameValidation =
+        window.CFANameValidation
+            ? window.CFANameValidation.validateName(storedName)
+            : {
+                valid: false,
+                value: "",
+                message: ""
+            };
+
+    const name =
+        nameValidation.valid
+            ? nameValidation.value
+            : "Apprenant";
 
 
     /*

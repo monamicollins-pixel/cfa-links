@@ -375,6 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script src="../js/name-validation.js"></script>
 <script src="../js/auth.js"></script>
 
 <script>
@@ -416,130 +417,29 @@ document.addEventListener("DOMContentLoaded", async function(){
      * the current signup validation was introduced.
      */
 
+    /*
+     * CFA — SHARED SAFE LEARNER NAME
+     *
+     * Use the same authoritative validator as signup.
+     * This also protects the interface from unsafe legacy
+     * metadata created before the validation rules existed.
+     */
+
     const storedName =
-        String(user.user_metadata?.first_name || "")
-            .normalize("NFKC")
-            .trim();
+        String(user.user_metadata?.first_name || "");
 
-    const learnerNamePattern =
-        /^(?:[\p{Lu}][\p{Ll}\p{M}]*(?:[ .'-][\p{Lu}][\p{Ll}\p{M}]*)*|[\p{Lu}]+(?:[ .'-][\p{Lu}]+)*)$/u;
-
-    const blockedLearnerNames = new Set([
-        "test",
-        "testing",
-        "admin",
-        "administrator",
-        "asdf",
-        "qwerty",
-        "xxx",
-        "xxxx",
-        "none",
-        "null",
-        "anonymous",
-        "unknown",
-        "user",
-        "username",
-        "guest",
-        "root",
-        "superuser",
-
-        "fuck",
-        "fucker",
-        "fucking",
-        "fuckface",
-        "motherfucker",
-        "shit",
-        "shithead",
-        "shitface",
-        "bitch",
-        "bastard",
-        "asshole",
-        "arsehole",
-        "asshat",
-        "asswipe",
-        "dick",
-        "dickhead",
-        "pussy",
-        "cunt",
-        "cock",
-        "prick",
-        "twat",
-        "wanker",
-        "jackass",
-        "dumbass",
-        "dipshit",
-        "douche",
-        "douchebag",
-        "sonofabitch",
-
-        "whore",
-        "slut",
-        "hoe",
-        "hooker",
-        "porn",
-        "porno",
-        "pornography",
-        "nude",
-        "nudes",
-        "xxx",
-        "nsfw",
-
-        "idiot",
-        "stupid",
-        "moron",
-        "imbecile",
-        "loser",
-        "fool",
-        "scum",
-        "trash",
-        "garbage",
-        "pathetic",
-        "creep",
-        "creepy",
-        "retard",
-        "retarded",
-
-        "nigger",
-        "nigga",
-        "chink",
-        "gook",
-        "kike",
-        "spic",
-        "wetback",
-        "coon",
-        "fag",
-        "faggot",
-        "dyke",
-        "tranny",
-
-        "punami"
-    ]);
-
-    const learnerNameLower =
-        storedName.toLocaleLowerCase();
-
-    const learnerNameBlocklist =
-        learnerNameLower
-            .normalize("NFD")
-            .replace(/[\\u0300-\\u036f]/g, "");
-
-    const learnerNameWords =
-        learnerNameBlocklist
-            .split(/[ .'-]+/)
-            .filter(Boolean);
-
-    const learnerNameBlocked =
-        blockedLearnerNames.has(learnerNameBlocklist) ||
-        learnerNameWords.some(
-            word => blockedLearnerNames.has(word)
-        );
+    const learnerNameValidation =
+        window.CFANameValidation
+            ? window.CFANameValidation.validateName(storedName)
+            : {
+                valid: false,
+                value: "",
+                message: ""
+            };
 
     const name =
-        storedName &&
-        storedName.length <= 40 &&
-        learnerNamePattern.test(storedName) &&
-        !learnerNameBlocked
-            ? storedName
+        learnerNameValidation.valid
+            ? learnerNameValidation.value
             : "Apprenant";
 
 
