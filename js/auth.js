@@ -36,40 +36,52 @@ document.addEventListener("DOMContentLoaded", async function () {
                 document.getElementById("confirmPassword")?.value || "";
 
             /*
-             * CFA — FIRST NAME VALIDATION
+             * CFA — PRODUCTION FIRST-NAME VALIDATION
              *
-             * Accept legitimate international names while blocking:
-             * - lowercase-only names
-             * - numbers
-             * - symbols
-             * - emojis
-             * - URLs / junk
-             * - obvious fake names
-             * - offensive / profane names
+             * Validation order:
+             * 1. Normalize the submitted value.
+             * 2. Detect globally recognized offensive / abusive
+             *    / obscene / fake-name terms.
+             * 3. Validate legitimate name structure.
+             * 4. Require either Title Case components or FULL CAPS.
+             *
+             * IMPORTANT:
+             * This filter is a safety filter. It does not attempt
+             * to determine whether an uncommon cultural name is
+             * "real" or "fake".
              */
 
-            const firstNamePattern =
-                /^[\p{Lu}][\p{L}]*(?:[ .'-][\p{Lu}][\p{L}]*)*$/u;
+            const normalizedName =
+                String(name)
+                    .normalize("NFKC")
+                    .trim()
+                    .replace(/\s+/g, " ");
+
+            const normalizedNameLower =
+                normalizedName.toLocaleLowerCase();
+
+            const nameForBlocklist =
+                normalizedNameLower
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "");
 
             /*
-             * CFA — GLOBAL OFFENSIVE NAME FILTER
+             * GLOBAL OFFENSIVE / ABUSIVE NAME FILTER
              *
-             * The check is deliberately case-insensitive.
-             * It rejects common profanity, vulgarity, sexual
-             * terms, insults, abusive terminology and common
-             * deliberately offensive entries.
-             *
-             * This is a content-safety filter, not a test of
-             * whether an uncommon cultural name is "real".
+             * Keep this list deliberately focused on terms that
+             * are clearly inappropriate as learner names.
              */
 
-            const blockedNames = [
-                /* Profanity / vulgarity */
+            const blockedNames = new Set([
+                /* Profanity */
                 "fuck",
                 "fucker",
                 "fucking",
+                "fuckface",
                 "motherfucker",
                 "shit",
+                "shithead",
+                "shitface",
                 "shitty",
                 "bullshit",
                 "bitch",
@@ -77,6 +89,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "bastard",
                 "asshole",
                 "arsehole",
+                "asshat",
+                "asswipe",
                 "dick",
                 "dickhead",
                 "pussy",
@@ -85,13 +99,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "prick",
                 "twat",
                 "wanker",
-                "jerkoff",
                 "jackass",
                 "dumbass",
                 "dipshit",
-                "shithead",
+                "douche",
+                "douchebag",
+                "sonofabitch",
 
-                /* Sexual / obscene terms */
+                /* Sexual / obscene */
                 "whore",
                 "slut",
                 "hoe",
@@ -99,21 +114,16 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "porn",
                 "porno",
                 "pornography",
-                "sex",
-                "sexy",
                 "nude",
                 "nudes",
                 "xxx",
                 "nsfw",
 
-                /* Common insults / abusive terms */
+                /* Abusive insults */
                 "idiot",
                 "stupid",
                 "moron",
-                "retard",
-                "retarded",
                 "imbecile",
-                "dumb",
                 "loser",
                 "fool",
                 "scum",
@@ -122,8 +132,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "pathetic",
                 "creep",
                 "creepy",
+                "retard",
+                "retarded",
 
-                /* Hate / slur terminology */
+                /* Hate / slur terms */
                 "nigger",
                 "nigga",
                 "chink",
@@ -131,15 +143,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "kike",
                 "spic",
                 "wetback",
-                "cracker",
-                "honky",
                 "coon",
                 "fag",
                 "faggot",
                 "dyke",
                 "tranny",
 
-                /* Fake / test / system-style names */
+                /* Fake / system identities */
                 "test",
                 "testing",
                 "admin",
@@ -156,36 +166,30 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "root",
                 "superuser",
 
-                /* Deliberately disrespectful / abusive entries */
-                "fucker",
-                "fuckface",
-                "shitface",
-                "asshat",
-                "asswipe",
-                "douche",
-                "douchebag",
-                "motherless",
-                "sonofabitch"
-            ];
+                /* Known locally prohibited entry */
+                "punami"
+            ]);
 
-            const normalizedName =
-                name
-                    .normalize("NFKC")
-                    .trim();
+            /*
+             * Detect offensive terms BEFORE capitalization validation.
+             * Therefore:
+             * idiot / Idiot / IDIOT
+             * fucker / Fucker / FUCKER
+             * are all rejected as inappropriate names.
+             */
 
-            const normalizedNameLower =
-                normalizedName
-                    .toLocaleLowerCase();
+            const nameWords =
+                nameForBlocklist
+                    .split(/[ .'-]+/)
+                    .filter(Boolean);
 
-            const nameForBlocklist =
-                normalizedNameLower
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "");
+            const containsBlockedName =
+                blockedNames.has(nameForBlocklist) ||
+                nameWords.some(word => blockedNames.has(word));
 
-
-            if (!name || !email || !password || !confirm) {
+            if (containsBlockedName) {
                 authMessage(
-                    "Veuillez remplir tous les champs.",
+                    "Ce prénom n’est pas approprié. Veuillez saisir votre vrai prénom.",
                     "error"
                 );
                 return;
@@ -210,29 +214,35 @@ document.addEventListener("DOMContentLoaded", async function () {
                 return;
             }
 
-            if (!firstNamePattern.test(normalizedName)) {
+            /*
+             * Allowed:
+             *   John
+             *   Jean-Pierre
+             *   Jean Pierre
+             *   O'Connor
+             *
+             * Also allowed:
+             *   JOHN
+             *   JEAN-PIERRE
+             *
+             * Not allowed:
+             *   john
+             *   jean-pierre
+             */
+
+            const titleCaseNamePattern =
+                /^[\p{Lu}][\p{Ll}\p{M}]*(?:[ .'-][\p{Lu}][\p{Ll}\p{M}]*)*$/u;
+
+            const fullCapsNamePattern =
+                /^[\p{Lu}]+(?:[ .'-][\p{Lu}]+)*$/u;
+
+            const validName =
+                titleCaseNamePattern.test(normalizedName) ||
+                fullCapsNamePattern.test(normalizedName);
+
+            if (!validName) {
                 authMessage(
-                    "Veuillez saisir un prénom valide.",
-                    "error"
-                );
-                return;
-            }
-
-            const nameWords =
-                nameForBlocklist
-                    .split(/[ .'-]+/)
-                    .filter(Boolean);
-
-            const containsBlockedName =
-                blockedNames.some(
-                    blocked =>
-                        nameWords.includes(blocked) ||
-                        nameForBlocklist === blocked
-                );
-
-            if (containsBlockedName) {
-                authMessage(
-                    "Veuillez saisir un prénom approprié.",
+                    "Veuillez saisir votre prénom avec une majuscule au début de chaque nom (ex. John, Jean-Pierre) ou écrire le nom entièrement en MAJUSCULES (ex. JOHN).",
                     "error"
                 );
                 return;

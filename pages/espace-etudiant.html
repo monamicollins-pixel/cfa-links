@@ -422,9 +422,9 @@ document.addEventListener("DOMContentLoaded", async function(){
             .trim();
 
     const learnerNamePattern =
-        /^[\\p{Lu}][\\p{L}]*(?:[ .'-][\\p{Lu}][\\p{L}]*)*$/u;
+        /^(?:[\p{Lu}][\p{Ll}\p{M}]*(?:[ .'-][\p{Lu}][\p{Ll}\p{M}]*)*|[\p{Lu}]+(?:[ .'-][\p{Lu}]+)*)$/u;
 
-    const blockedLearnerNames = [
+    const blockedLearnerNames = new Set([
         "test",
         "testing",
         "admin",
@@ -437,23 +437,83 @@ document.addEventListener("DOMContentLoaded", async function(){
         "null",
         "anonymous",
         "unknown",
+        "user",
+        "username",
+        "guest",
+        "root",
+        "superuser",
+
         "fuck",
         "fucker",
-        "fuckface",
         "fucking",
+        "fuckface",
         "motherfucker",
         "shit",
+        "shithead",
+        "shitface",
         "bitch",
         "bastard",
         "asshole",
+        "arsehole",
+        "asshat",
+        "asswipe",
         "dick",
+        "dickhead",
         "pussy",
         "cunt",
+        "cock",
+        "prick",
+        "twat",
+        "wanker",
+        "jackass",
+        "dumbass",
+        "dipshit",
+        "douche",
+        "douchebag",
+        "sonofabitch",
+
         "whore",
         "slut",
+        "hoe",
+        "hooker",
+        "porn",
+        "porno",
+        "pornography",
+        "nude",
+        "nudes",
+        "xxx",
+        "nsfw",
+
+        "idiot",
+        "stupid",
+        "moron",
+        "imbecile",
+        "loser",
+        "fool",
+        "scum",
+        "trash",
+        "garbage",
+        "pathetic",
+        "creep",
+        "creepy",
+        "retard",
+        "retarded",
+
         "nigger",
-        "nigga"
-    ];
+        "nigga",
+        "chink",
+        "gook",
+        "kike",
+        "spic",
+        "wetback",
+        "coon",
+        "fag",
+        "faggot",
+        "dyke",
+        "tranny",
+
+        "punami"
+    ]);
 
     const learnerNameLower =
         storedName.toLocaleLowerCase();
@@ -469,10 +529,9 @@ document.addEventListener("DOMContentLoaded", async function(){
             .filter(Boolean);
 
     const learnerNameBlocked =
-        blockedLearnerNames.some(
-            blocked =>
-                learnerNameWords.includes(blocked) ||
-                learnerNameBlocklist === blocked
+        blockedLearnerNames.has(learnerNameBlocklist) ||
+        learnerNameWords.some(
+            word => blockedLearnerNames.has(word)
         );
 
     const name =
