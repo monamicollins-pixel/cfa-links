@@ -51,37 +51,121 @@ document.addEventListener("DOMContentLoaded", async function () {
             const firstNamePattern =
                 /^[\p{Lu}][\p{L}]*(?:[ .'-][\p{Lu}][\p{L}]*)*$/u;
 
+            /*
+             * CFA — GLOBAL OFFENSIVE NAME FILTER
+             *
+             * The check is deliberately case-insensitive.
+             * It rejects common profanity, vulgarity, sexual
+             * terms, insults, abusive terminology and common
+             * deliberately offensive entries.
+             *
+             * This is a content-safety filter, not a test of
+             * whether an uncommon cultural name is "real".
+             */
+
             const blockedNames = [
+                /* Profanity / vulgarity */
+                "fuck",
+                "fucker",
+                "fucking",
+                "motherfucker",
+                "shit",
+                "shitty",
+                "bullshit",
+                "bitch",
+                "bitches",
+                "bastard",
+                "asshole",
+                "arsehole",
+                "dick",
+                "dickhead",
+                "pussy",
+                "cunt",
+                "cock",
+                "prick",
+                "twat",
+                "wanker",
+                "jerkoff",
+                "jackass",
+                "dumbass",
+                "dipshit",
+                "shithead",
+
+                /* Sexual / obscene terms */
+                "whore",
+                "slut",
+                "hoe",
+                "hooker",
+                "porn",
+                "porno",
+                "pornography",
+                "sex",
+                "sexy",
+                "nude",
+                "nudes",
+                "xxx",
+                "nsfw",
+
+                /* Common insults / abusive terms */
+                "idiot",
+                "stupid",
+                "moron",
+                "retard",
+                "retarded",
+                "imbecile",
+                "dumb",
+                "loser",
+                "fool",
+                "scum",
+                "trash",
+                "garbage",
+                "pathetic",
+                "creep",
+                "creepy",
+
+                /* Hate / slur terminology */
+                "nigger",
+                "nigga",
+                "chink",
+                "gook",
+                "kike",
+                "spic",
+                "wetback",
+                "cracker",
+                "honky",
+                "coon",
+                "fag",
+                "faggot",
+                "dyke",
+                "tranny",
+
+                /* Fake / test / system-style names */
                 "test",
                 "testing",
                 "admin",
                 "administrator",
                 "asdf",
                 "qwerty",
-                "xxx",
-                "xxxx",
                 "none",
                 "null",
                 "anonymous",
                 "unknown",
+                "user",
+                "username",
+                "guest",
+                "root",
+                "superuser",
 
-                /* Offensive / abusive terms */
-                "fuck",
-                "fucking",
-                "shit",
-                "bitch",
-                "bastard",
-                "asshole",
-                "dick",
-                "pussy",
-                "cunt",
-                "whore",
-                "slut",
-                "nigger",
-                "nigga",
+                /* Deliberately disrespectful / abusive entries */
                 "fucker",
                 "fuckface",
-                "motherfucker"
+                "shitface",
+                "asshat",
+                "asswipe",
+                "douche",
+                "douchebag",
+                "motherless",
+                "sonofabitch"
             ];
 
             const normalizedName =
