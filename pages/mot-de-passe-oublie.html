@@ -173,8 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     email,
                     {
                         redirectTo:
-                            window.location.origin +
-                            "/pages/nouveau-mot-de-passe.html"
+                            new URL(
+                                "nouveau-mot-de-passe.html",
+                                window.location.href
+                            ).href
                     }
                 );
 
