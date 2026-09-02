@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                             emailRedirectTo:
                                 window.location.origin +
-                                "/cfa-links/pages/connexion.html"
+                                "/cfa-links/pages/connexion.html?verification=success"
                         }
                     });
 

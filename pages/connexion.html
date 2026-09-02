@@ -168,17 +168,60 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
 
+        const params = new URLSearchParams(window.location.search);
+        const verification = params.get("verification");
+
         const {
             data: { user }
         } = await cfaSupabase.auth.getUser();
 
+        /*
+         * CFA — Email verification success experience
+         */
+        if (user && verification === "success") {
+
+            const message = document.getElementById("authMessage");
+
+            const firstName =
+                user.user_metadata?.first_name ||
+                "Apprenant";
+
+            if (message) {
+
+                message.className =
+                    "auth-message success";
+
+                message.innerHTML =
+                    '<div style="font-size:42px; margin-bottom:10px;">✓</div>' +
+                    '<strong style="font-size:20px;">Adresse e-mail confirmée</strong>' +
+                    '<div style="margin-top:8px;">Bienvenue dans votre Espace Apprenant, ' +
+                    firstName +
+                    '.</div>' +
+                    '<div style="margin-top:6px; opacity:.85;">' +
+                    'Votre compte CFA est maintenant activé.' +
+                    '</div>';
+            }
+
+            setTimeout(function () {
+                window.location.replace("../dashboard.html");
+            }, 1800);
+
+            return;
+        }
+
+        /*
+         * CFA — Existing authenticated learner
+         */
         if (user) {
             window.location.replace("../dashboard.html");
         }
 
     } catch (error) {
 
-        console.error("CFA existing-session check failed:", error);
+        console.error(
+            "CFA existing-session check failed:",
+            error
+        );
     }
 });
 </script>
