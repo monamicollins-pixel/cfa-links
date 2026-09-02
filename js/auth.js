@@ -215,6 +215,19 @@ document.addEventListener("DOMContentLoaded", async function () {
                     return;
                 }
 
+                // Vérification obligatoire de l'adresse e-mail
+                if (!data.user.email_confirmed_at) {
+
+                    await cfaSupabase.auth.signOut({ scope: "local" });
+
+                    authMessage(
+                        "Votre adresse e-mail n'est pas encore vérifiée. Consultez votre boîte de réception et cliquez sur le lien de confirmation.",
+                        "error"
+                    );
+
+                    return;
+                }
+
                 authMessage(
                     "Connexion réussie !",
                     "success"
