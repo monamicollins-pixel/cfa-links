@@ -1,0 +1,122 @@
+/* =========================================================
+   CFA COMPAS LOADER
+   Reusable site-wide loading animation
+   ========================================================= */
+
+#cfa-page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cfa-loader-bg, #ffffff);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+#cfa-page-loader.cfa-loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cfa-loader-core {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cfa-loader-orbit {
+  position: absolute;
+  inset: 0;
+  animation: cfaLoaderSpin 1.35s linear infinite;
+}
+
+.cfa-loader-line {
+  position: absolute;
+  width: 38px;
+  height: 6px;
+  left: 24px;
+  top: 40px;
+  border-radius: 999px;
+  transform-origin: 19px 3px;
+}
+
+.cfa-loader-line:nth-child(1) {
+  transform: rotate(0deg) translateX(20px);
+  background: #002366;
+}
+
+.cfa-loader-line:nth-child(2) {
+  transform: rotate(120deg) translateX(20px);
+  background: #C8102E;
+}
+
+.cfa-loader-line:nth-child(3) {
+  transform: rotate(240deg) translateX(20px);
+  background: #FF6600;
+}
+
+.cfa-loader-center {
+  position: relative;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #002366;
+  box-shadow: 0 2px 12px rgba(0, 35, 102, 0.10);
+}
+
+@keyframes cfaLoaderSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cfa-loader-orbit {
+    animation-duration: 3s;
+  }
+
+  #cfa-page-loader {
+    transition-duration: 0.2s;
+  }
+}
+
+
+/* CFA theme-aware loader */
+html[data-theme="dark"] {
+  --cfa-loader-bg: #020617;
+  --cfa-loader-surface: #0f172a;
+  --cfa-loader-ink: #ffffff;
+}
+
+html[data-theme="light"] {
+  --cfa-loader-bg: #ffffff;
+  --cfa-loader-surface: #ffffff;
+  --cfa-loader-ink: #002366;
+}
+
+html[data-theme="dark"] .cfa-loader-center {
+  background: var(--cfa-loader-surface);
+  color: var(--cfa-loader-ink);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
