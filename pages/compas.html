@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>COMPAS DU JOUR | Collins French Academy</title>
+
+<style>
+:root{
+    --blue:#174ea6;
+    --blue-dark:#0d2f70;
+    --ink:#172033;
+    --muted:#667085;
+    --white:#ffffff;
+    --line:#e5e7eb;
+    --bg:#f7f9fc;
+    --orange:#ff6600;
+    --red:#c8102e;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+}
+
+header{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.nav{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:800;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.home-link{
+    text-decoration:none !important;
+    border-radius:10px;
+    padding:11px 16px;
+    background:#f1f3f7;
+    color:var(--ink);
+    font-weight:700;
+}
+
+.hero{
+    padding:55px 0 35px;
+}
+
+.eyebrow{
+    color:var(--blue);
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+h1{
+    margin:10px 0;
+    font-size:clamp(34px,6vw,54px);
+    letter-spacing:-1.5px;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:18px;
+    max-width:700px;
+    line-height:1.6;
+}
+
+.archive{
+    padding-bottom:70px;
+}
+
+.archive-list{
+    display:grid;
+    gap:14px;
+    margin-bottom:35px;
+}
+
+.archive-item{
+    display:grid;
+    grid-template-columns:130px 170px 1fr auto;
+    align-items:center;
+    gap:18px;
+    padding:20px 22px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+    text-decoration:none;
+    color:inherit;
+    transition:.2s ease;
+}
+
+.archive-item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+}
+
+.number{
+    color:var(--blue);
+    font-weight:800;
+}
+
+.date{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.title{
+    font-weight:800;
+}
+
+.arrow{
+    color:var(--orange);
+    font-size:22px;
+    font-weight:800;
+}
+
+.compass-entry{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:34px;
+    margin-top:25px;
+}
+
+.entry-header{
+    border-bottom:1px solid var(--line);
+    padding-bottom:22px;
+    margin-bottom:25px;
+}
+
+.entry-number{
+    color:var(--blue);
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.entry-title{
+    margin:8px 0 6px;
+    font-size:clamp(28px,5vw,42px);
+}
+
+.entry-date{
+    color:var(--muted);
+}
+
+.compass-heading{
+    margin:0 0 22px;
+    font-size:24px;
+}
+
+.pillar{
+    padding:18px 0;
+    border-bottom:1px solid #eef0f3;
+}
+
+.pillar:last-child{
+    border-bottom:0;
+}
+
+.pillar strong{
+    color:var(--blue);
+}
+
+.pillar p{
+    margin:7px 0 0;
+    line-height:1.7;
+    color:#344054;
+}
+
+.quote{
+    margin:8px 0 0;
+    padding:18px 20px;
+    border-left:4px solid var(--orange);
+    background:#fff8f2;
+    line-height:1.7;
+    font-style:italic;
+}
+
+.brief{
+    margin-top:35px;
+    padding-top:30px;
+    border-top:2px solid var(--line);
+}
+
+.brief-item{
+    margin:20px 0;
+}
+
+.brief-item h3{
+    margin:0 0 7px;
+    font-size:17px;
+}
+
+.brief-item p{
+    margin:0;
+    color:#344054;
+    line-height:1.7;
+}
+
+.challenge{
+    border-left:4px solid var(--orange);
+    background:#fff8f2;
+    padding:18px 20px;
+    border-radius:0 12px 12px 0;
+}
+
+.reflection{
+    border-left:4px solid var(--blue);
+    background:#f1f6ff;
+    padding:18px 20px;
+    border-radius:0 12px 12px 0;
+    font-weight:700;
+}
+
+footer{
+    padding:30px 0;
+    text-align:center;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    font-size:14px;
+    line-height:1.8;
+}
+
+@media(max-width:768px){
+
+    .brand span{
+        font-size:14px;
+    }
+
+    .archive-item{
+        grid-template-columns:1fr auto;
+        gap:7px 12px;
+    }
+
+    .number{
+        grid-column:1;
+    }
+
+    .date{
+        grid-column:1;
+    }
+
+    .title{
+        grid-column:1;
+    }
+
+    .arrow{
+        grid-column:2;
+        grid-row:1 / span 3;
+        align-self:center;
+    }
+
+    .compass-entry{
+        padding:24px 20px;
+    }
+}
+</style>
+
+<link rel="stylesheet" href="../css/cfa-shared-theme.css">
+<script src="../js/cfa-shared-theme.js"></script>
+<link rel="stylesheet" href="../css/cfa-loader.css" data-cfa-loader="css">
+<script src="../js/cfa-loader.js" defer data-cfa-loader="js"></script>
+
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+
+        <a href="../index.html" class="brand">
+            <img src="file.png" class="logo" alt="CFA">
+            <span>Collins French Academy</span>
+        </a>
+
+        <a class="home-link" href="espace-etudiant.html">
+            Espace apprenant
+        </a>
+
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+
+        <div class="eyebrow">
+            🧭 Collins French Academy
+        </div>
+
+        <h1>COMPAS DU JOUR</h1>
+
+        <p>
+            Une dose quotidienne de sagesse, de motivation,
+            de français et d'inspiration pour avancer avec confiance.
+        </p>
+
+    </div>
+</section>
+
+<section class="archive">
+    <div class="container">
+
+        <div class="archive-list">
+
+            <a class="archive-item" href="#compas-001">
+
+                <span class="number">
+                    COMPAS 001
+                </span>
+
+                <span class="date">
+                    Date à définir
+                </span>
+
+                <span class="title">
+                    La Force de l'Impact
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+        <article class="compass-entry" id="compas-001">
+
+            <div class="entry-header">
+
+                <div class="entry-number">
+                    🧭 COMPAS DU JOUR — 001
+                </div>
+
+                <h2 class="entry-title">
+                    La Force de l'Impact
+                </h2>
+
+                <div class="entry-date">
+                    📅 Date à définir
+                </div>
+
+            </div>
+
+            <h3 class="compass-heading">
+                🧭 C.O.M.P.A.S.
+            </h3>
+
+            <div class="pillar">
+                <strong>C — Conseil</strong>
+                <p>
+                    Ne restez pas isolé. Cherchez les frottements
+                    qui vous font grandir.
+                </p>
+            </div>
+
+            <div class="pillar">
+                <strong>O — Orientation</strong>
+                <p>
+                    Entourez-vous de personnes exigeantes :
+                    elles sont le miroir de votre excellence.
+                </p>
+            </div>
+
+            <div class="pillar">
+                <strong>M — Motivation</strong>
+                <p>
+                    Le fer ne s'aiguise pas dans la mollesse,
+                    mais dans le contact. Votre entourage révèle votre valeur.
+                </p>
+            </div>
+
+            <div class="pillar">
+                <strong>P — Parole</strong>
+
+                <div class="quote">
+                    « Comme le fer aiguise le fer, l'homme aiguise son prochain. »
+                    <br>
+                    — Proverbes 27:17
+                </div>
+            </div>
+
+            <div class="pillar">
+                <strong>A — Apprendre</strong>
+                <p>
+                    La critique constructive n'est pas une attaque,
+                    c'est votre affûtage.
+                </p>
+            </div>
+
+            <div class="pillar">
+                <strong>S — Sagesse</strong>
+                <p>
+                    Seul on s'émousse. Ensemble, on devient tranchant.
+                </p>
+            </div>
+
+            <div class="brief">
+
+                <h3 class="compass-heading">
+                    ⚡ En Bref
+                </h3>
+
+                <div class="brief-item">
+                    <h3>💡 Sagesse</h3>
+                    <p>
+                        « Seul on va plus vite, ensemble on va plus loin. »
+                    </p>
+                </div>
+
+                <div class="brief-item">
+                    <h3>🧩 Énigme</h3>
+                    <p>
+                        Deux lames se frottent pour devenir tranchantes.
+                        Qui sont-elles ?
+                    </p>
+                    <p>
+                        <strong>Réponse :</strong>
+                        Deux esprits en synergie.
+                    </p>
+                </div>
+
+                <div class="brief-item challenge">
+                    <h3>🎯 Défi du jour</h3>
+                    <p>
+                        Offrez aujourd'hui un retour franc et constructif
+                        à un proche pour l'aider à monter d'un cran.
+                    </p>
+                </div>
+
+                <div class="brief-item reflection">
+                    <h3>🤔 Réflexion</h3>
+                    <p>
+                        Qui vous aiguise aujourd'hui… et qui émoussez-vous ?
+                    </p>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div>Apprendre • S'amuser • S'inspirer • Découvrir</div>
+    <div>© 2026 Collins French Academy (CFA)</div>
+</footer>
+
+</body>
+</html>
