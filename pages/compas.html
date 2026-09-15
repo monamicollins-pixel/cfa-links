@@ -14,29 +14,19 @@
    ========================================================= */
 
 :root{
-    --compas-blue:var(--blue,#174ea6);
-    --compas-blue-dark:var(--blue-dark,#0d2f70);
-    --compas-ink:var(--ink,#172033);
-    --compas-muted:var(--muted,#667085);
-    --compas-bg:var(--bg,#f7f9fc);
-    --compas-white:var(--white,#ffffff);
-    --compas-line:var(--line,#e5e7eb);
-}
-
-/* ---------- Base ---------- */
-
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
+    --compas-blue:var(--cfa-blue);
+    --compas-blue-dark:var(--cfa-blue-dark);
+    --compas-ink:var(--cfa-ink);
+    --compas-muted:var(--cfa-muted);
+    --compas-bg:var(--cfa-paper);
+    --compas-white:var(--cfa-surface);
+    --compas-line:var(--cfa-line);
 }
 
 body{
     margin:0;
-    color:var(--compas-ink);
-    background:var(--compas-bg);
+    color:var(--cfa-ink);
+    background:var(--cfa-paper);
 }
 
 a{
@@ -362,7 +352,7 @@ footer{
     <div class="container nav">
 
         <a href="../index.html" class="brand">
-            <img src="file.png" class="logo" alt="CFA">
+
             <span>Collins French Academy</span>
         </a>
 
