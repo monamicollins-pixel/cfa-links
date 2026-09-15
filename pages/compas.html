@@ -271,10 +271,14 @@ footer{
 
 /* ---------- Mobile ---------- */
 
-@media(max-width:700px){
+@media(max-width:768px){
 
     .container{
         width:min(100% - 28px,1160px);
+    }
+
+    .brand span{
+        font-size:14px;
     }
 
     .hero{
@@ -295,7 +299,7 @@ footer{
 
     .archive-item{
         grid-template-columns:1fr auto;
-        gap:6px 14px;
+        gap:7px 12px;
         padding:16px;
     }
 
@@ -317,9 +321,32 @@ footer{
     .archive-item .arrow{
         grid-column:2;
         grid-row:1 / span 3;
+        align-self:center;
     }
 
+    .compass-entry{
+        margin-top:28px;
+    }
 
+    .entry-header{
+        padding:24px 20px;
+    }
+
+    .compass-entry > .compass-heading{
+        padding:22px 20px 8px;
+    }
+
+    .pillar{
+        margin:0 20px;
+        padding:20px 0;
+    }
+
+    .brief{
+        margin:24px 20px 24px;
+        padding:20px;
+    }
+
+}
 </style>
 
 <link rel="stylesheet" href="../css/cfa-shared-theme.css">
