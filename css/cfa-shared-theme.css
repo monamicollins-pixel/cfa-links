@@ -155,3 +155,95 @@ button[type="submit"]:hover{
     color:#fff !important;
     border-color:var(--cfa-blue-dark) !important;
 }
+
+/* =========================================================
+   CFA UNIVERSAL BUTTON STANDARD
+   Applies to all visible button and button-style controls
+   ========================================================= */
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn,
+.primary,
+.secondary,
+.auth-submit,
+.logout,
+.back,
+.nav-button,
+.cta a,
+.cta a.primary,
+.cta .btn,
+button[type="submit"]{
+    background:var(--cfa-blue) !important;
+    color:#fff !important;
+    border-color:var(--cfa-blue) !important;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.btn:hover,
+.primary:hover,
+.secondary:hover,
+.auth-submit:hover,
+.logout:hover,
+.back:hover,
+.nav-button:hover,
+.cta a:hover,
+.cta a.primary:hover,
+.cta .btn:hover,
+button[type="submit"]:hover{
+    background:var(--cfa-blue-dark) !important;
+    color:#fff !important;
+    border-color:var(--cfa-blue-dark) !important;
+}
+
+
+/* =========================================================
+   CFA UNIVERSAL BUTTON STANDARD
+   Applies to all visible button and button-style controls
+   ========================================================= */
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn,
+.primary,
+.secondary,
+.auth-submit,
+.logout,
+.back,
+.nav-button,
+.cta a,
+.cta a.primary,
+.cta .btn,
+button[type="submit"]{
+    background:var(--cfa-blue) !important;
+    color:#fff !important;
+    border-color:var(--cfa-blue) !important;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.btn:hover,
+.primary:hover,
+.secondary:hover,
+.auth-submit:hover,
+.logout:hover,
+.back:hover,
+.nav-button:hover,
+.cta a:hover,
+.cta a.primary:hover,
+.cta .btn:hover,
+button[type="submit"]:hover{
+    background:var(--cfa-blue-dark) !important;
+    color:#fff !important;
+    border-color:var(--cfa-blue-dark) !important;
+}
+
