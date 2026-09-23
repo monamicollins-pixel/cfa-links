@@ -168,11 +168,36 @@ h1{
 }
 
 footer{
-    padding:30px 0;
-    text-align:center;
-    color:var(--muted);
-    border-top:1px solid var(--line);
-    font-size:14px;
+  padding:42px 0 36px;
+  background:var(--white);
+  border-top:1px solid var(--line);
+  color:var(--muted);
+}
+
+.footer{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.footer-tagline{
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.15px;
+  color:var(--ink);
+  line-height:1.5;
+}
+
+.footer-copyright{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  min-width:260px;
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.5;
 }
 
 @media(max-width:768px){
@@ -315,8 +340,10 @@ footer{
 </main>
 
 <footer>
-    <div>Apprendre • S'amuser • S'inspirer • Découvrir</div>
-    <div>© 2026 Collins French Academy (CFA)</div>
+  <div class="container footer">
+    <div class="footer-tagline">Apprendre · S’amuser · S’inspirer · Découvrir</div>
+    <div class="footer-copyright">© 2026 Collins French Academy (CFA)</div>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
