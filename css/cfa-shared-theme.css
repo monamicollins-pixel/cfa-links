@@ -247,3 +247,11 @@ button[type="submit"]:hover{
     border-color:var(--cfa-blue-dark) !important;
 }
 
+
+/* Theme toggle keeps its own control styling */
+button.theme-toggle,
+button.theme-toggle:hover{
+    background:transparent !important;
+    color:inherit !important;
+    border-color:transparent !important;
+}
