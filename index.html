@@ -44,6 +44,10 @@ body{
   color:var(--ink);background:var(--paper);line-height:1.6;
   -webkit-font-smoothing:antialiased;
   transition:background .3s ease, color .3s ease;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
 }
 a{text-decoration:none;color:inherit}
 .container{width:min(1160px,92%);margin:auto}
@@ -264,6 +268,10 @@ html[data-theme="dark"] .learner-entry .progress i {
     background: #ff7a2f;
 }
 
+
+main{
+  flex:1;
+}
 
 section{padding:85px 0}
 .section-head{max-width:680px;margin-bottom:40px}
