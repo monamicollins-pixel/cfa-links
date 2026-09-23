@@ -131,7 +131,9 @@ select {
 
 /* CFA GLOBAL ACTION BUTTON STANDARD */
 .cfa-action-button,
+.btn,
 .btn.primary,
+.btn.secondary,
 .auth-submit,
 .cta .btn,
 .cta a.primary,
@@ -142,7 +144,9 @@ button[type="submit"]{
 }
 
 .cfa-action-button:hover,
+.btn:hover,
 .btn.primary:hover,
+.btn.secondary:hover,
 .auth-submit:hover,
 .cta .btn:hover,
 .cta a.primary:hover,
