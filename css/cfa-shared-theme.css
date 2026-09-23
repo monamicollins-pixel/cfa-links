@@ -281,3 +281,25 @@ button.theme-toggle:hover{
     background-color:#fff !important;
     background: #fff !important;
 }
+
+/* =========================================================
+   THEME TOGGLE — EXCLUDE FROM CFA BUTTON STANDARD
+   ========================================================= */
+
+button.theme-toggle,
+button#themeToggle,
+#themeToggle{
+    background:transparent !important;
+    color:inherit !important;
+    border-color:transparent !important;
+    box-shadow:none !important;
+}
+
+button.theme-toggle:hover,
+button#themeToggle:hover,
+#themeToggle:hover{
+    background:transparent !important;
+    color:inherit !important;
+    border-color:transparent !important;
+    box-shadow:none !important;
+}
