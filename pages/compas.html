@@ -366,6 +366,35 @@ footer{
     }
 
 }
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-button{
+    text-decoration:none !important;
+    border:0;
+    border-radius:10px;
+    padding:11px 16px;
+    background:#f1f3f7;
+    color:var(--ink);
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+    .nav-actions{
+        gap:8px;
+    }
+
+    .nav-button{
+        padding:9px 12px;
+        font-size:14px;
+    }
+}
+
 </style>
 
 <link rel="stylesheet" href="../css/cfa-shared-theme.css">
@@ -381,13 +410,13 @@ footer{
     <div class="container nav">
 
         <a href="../index.html" class="brand">
-
             <span>Collins French Academy</span>
         </a>
 
-        <a class="home-link" href="espace-etudiant.html">
-            Espace apprenant
-        </a>
+        <div class="nav-actions">
+            <a class="nav-button" href="../index.html">Accueil</a>
+            <a class="nav-button" href="espace-etudiant.html">Espace étudiante</a>
+        </div>
 
     </div>
 </header>
