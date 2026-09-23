@@ -255,3 +255,29 @@ button.theme-toggle:hover{
     color:inherit !important;
     border-color:transparent !important;
 }
+
+/* =========================================================
+   CFA MOBILE MENU BUTTON
+   ========================================================= */
+
+#hamburger-menu-trigger,
+.cfa-mobile-menu-button{
+    background:var(--cfa-blue) !important;
+    color:#fff !important;
+    border-color:var(--cfa-blue) !important;
+}
+
+#hamburger-menu-trigger:hover,
+#hamburger-menu-trigger:focus,
+.cfa-mobile-menu-button:hover,
+.cfa-mobile-menu-button:focus{
+    background:var(--cfa-blue-dark) !important;
+    color:#fff !important;
+    border-color:var(--cfa-blue-dark) !important;
+}
+
+#hamburger-menu-trigger span,
+.cfa-mobile-menu-button span{
+    background-color:#fff !important;
+    background: #fff !important;
+}
