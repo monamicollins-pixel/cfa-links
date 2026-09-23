@@ -19,16 +19,33 @@
   );
 
   loader.innerHTML = `
-    <div class="cfa-loader-core">
-      <div class="cfa-loader-orbit" aria-hidden="true">
-        <span class="cfa-loader-line"></span>
-        <span class="cfa-loader-line"></span>
-        <span class="cfa-loader-line"></span>
+    <div class="cfa-loader-wrap">
+
+      <div class="cfa-loader-core">
+
+        <div class="cfa-loader-orbit" aria-hidden="true">
+          <span class="cfa-loader-direction"></span>
+          <span class="cfa-loader-direction"></span>
+          <span class="cfa-loader-direction"></span>
+          <span class="cfa-loader-direction"></span>
+        </div>
+
+        <div class="cfa-loader-needle" aria-hidden="true"></div>
+
+        <div class="cfa-loader-center" aria-hidden="true">
+          CFA
+        </div>
+
       </div>
 
-      <div class="cfa-loader-center" aria-hidden="true">
-        CFA
+      <div class="cfa-loader-brand">
+        Collins French Academy
       </div>
+
+      <div class="cfa-loader-tagline">
+        Apprendre · S’amuser · S’inspirer · Découvrir
+      </div>
+
     </div>
   `;
 

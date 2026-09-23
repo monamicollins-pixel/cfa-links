@@ -1,6 +1,6 @@
 /* =========================================================
    CFA COMPAS LOADER
-   Reusable site-wide loading animation
+   Premium site-wide loading animation
    ========================================================= */
 
 #cfa-page-loader {
@@ -23,76 +23,193 @@
   pointer-events: none;
 }
 
+.cfa-loader-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .cfa-loader-core {
   position: relative;
-  width: 86px;
-  height: 86px;
+  width: 108px;
+  height: 108px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* =========================================================
+   COMPASS RING
+   ========================================================= */
 
 .cfa-loader-orbit {
   position: absolute;
   inset: 0;
-  animation: cfaLoaderSpin 1.35s linear infinite;
+  border: 2px solid var(--cfa-loader-ring);
+  border-radius: 50%;
 }
 
-.cfa-loader-line {
+.cfa-loader-orbit::before {
+  content: "";
   position: absolute;
-  width: 38px;
-  height: 6px;
-  left: 24px;
-  top: 40px;
+  inset: 8px;
+  border: 1px solid var(--cfa-loader-ring-soft);
+  border-radius: 50%;
+}
+
+/* =========================================================
+   DIRECTION MARKERS
+   ========================================================= */
+
+.cfa-loader-direction {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cfa-loader-ring);
+}
+
+.cfa-loader-direction:nth-child(1) {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cfa-loader-orange);
+}
+
+.cfa-loader-direction:nth-child(2) {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cfa-loader-direction:nth-child(3) {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cfa-loader-direction:nth-child(4) {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =========================================================
+   COMPASS NEEDLE
+   ========================================================= */
+
+.cfa-loader-needle {
+  position: absolute;
+  width: 2px;
+  height: 76px;
+  animation: cfaLoaderSpin 1.35s linear infinite;
+  background: linear-gradient(
+    to bottom,
+    var(--cfa-loader-red) 0 50%,
+    var(--cfa-loader-ring) 50% 100%
+  );
   border-radius: 999px;
-  transform-origin: 19px 3px;
+  transform: rotate(45deg);
+  opacity: 0.9;
 }
 
-.cfa-loader-line:nth-child(1) {
-  transform: rotate(0deg) translateX(20px);
-  background: #002366;
-}
-
-.cfa-loader-line:nth-child(2) {
-  transform: rotate(120deg) translateX(20px);
-  background: #C8102E;
-}
-
-.cfa-loader-line:nth-child(3) {
-  transform: rotate(240deg) translateX(20px);
-  background: #FF6600;
-}
+/* =========================================================
+   CFA CENTER
+   ========================================================= */
 
 .cfa-loader-center {
   position: relative;
-  z-index: 2;
-  width: 30px;
-  height: 30px;
+  z-index: 3;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--cfa-loader-surface);
+  border: 2px solid var(--cfa-loader-ring);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #002366;
-  box-shadow: 0 2px 12px rgba(0, 35, 102, 0.10);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--cfa-loader-ink);
+  box-shadow: 0 5px 20px var(--cfa-loader-shadow);
 }
+
+/* =========================================================
+   BRANDING
+   ========================================================= */
+
+.cfa-loader-brand {
+  margin-top: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--cfa-loader-ink);
+  text-transform: none;
+}
+
+.cfa-loader-tagline {
+  margin-top: 7px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cfa-loader-muted);
+  line-height: 1.5;
+}
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
 
 @keyframes cfaLoaderSpin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(45deg);
   }
 
   to {
-    transform: rotate(-360deg);
+    transform: rotate(-315deg);
   }
 }
 
+/* =========================================================
+   THEME
+   ========================================================= */
+
+html[data-theme="light"] {
+  --cfa-loader-bg: #ffffff;
+  --cfa-loader-surface: #ffffff;
+  --cfa-loader-ink: #002366;
+  --cfa-loader-muted: #64748b;
+  --cfa-loader-ring: #174ea6;
+  --cfa-loader-ring-soft: rgba(23, 78, 166, 0.16);
+  --cfa-loader-red: #c8102e;
+  --cfa-loader-orange: #ff6600;
+  --cfa-loader-shadow: rgba(0, 35, 102, 0.12);
+}
+
+html[data-theme="dark"] {
+  --cfa-loader-bg: #020617;
+  --cfa-loader-surface: #0f172a;
+  --cfa-loader-ink: #ffffff;
+  --cfa-loader-muted: #94a3b8;
+  --cfa-loader-ring: #4f83db;
+  --cfa-loader-ring-soft: rgba(79, 131, 219, 0.20);
+  --cfa-loader-red: #e63946;
+  --cfa-loader-orange: #ff6600;
+  --cfa-loader-shadow: rgba(0, 0, 0, 0.38);
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .cfa-loader-orbit {
+  .cfa-loader-needle {
     animation-duration: 3s;
   }
 
@@ -101,22 +218,28 @@
   }
 }
 
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
-/* CFA theme-aware loader */
-html[data-theme="dark"] {
-  --cfa-loader-bg: #020617;
-  --cfa-loader-surface: #0f172a;
-  --cfa-loader-ink: #ffffff;
-}
+@media (max-width: 520px) {
+  .cfa-loader-core {
+    width: 94px;
+    height: 94px;
+  }
 
-html[data-theme="light"] {
-  --cfa-loader-bg: #ffffff;
-  --cfa-loader-surface: #ffffff;
-  --cfa-loader-ink: #002366;
-}
+  .cfa-loader-center {
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+  }
 
-html[data-theme="dark"] .cfa-loader-center {
-  background: var(--cfa-loader-surface);
-  color: var(--cfa-loader-ink);
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  .cfa-loader-brand {
+    font-size: 11px;
+    letter-spacing: 0.13em;
+  }
+
+  .cfa-loader-tagline {
+    font-size: 10px;
+  }
 }
