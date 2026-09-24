@@ -1,3 +1,35 @@
+/* =========================================================
+ * CFA — COURSE AUTH ROUTING
+ * Only approved course destinations are allowed.
+ * ========================================================= */
+
+const CFA_COURSE_REDIRECTS = {
+    a1: "../cours-a1.html"
+    // a2: "../cours-a2.html",
+    // b1: "../cours-b1.html",
+    // b2: "../cours-b2.html"
+};
+
+function cfaRequestedCourse() {
+    const params = new URLSearchParams(window.location.search);
+    const course = params.get("course");
+
+    return Object.prototype.hasOwnProperty.call(
+        CFA_COURSE_REDIRECTS,
+        course
+    ) ? course : null;
+}
+
+function cfaCourseRedirectUrl() {
+    const course = cfaRequestedCourse();
+
+    if (!course) {
+        return "../dashboard.html";
+    }
+
+    return CFA_COURSE_REDIRECTS[course];
+}
+
 function authMessage(text, type) {
     const box = document.getElementById("authMessage");
 
@@ -8,6 +40,38 @@ function authMessage(text, type) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
+
+    /*
+     * Preserve the requested course when switching
+     * between the login and signup pages.
+     */
+    const requestedCourse = cfaRequestedCourse();
+
+    if (requestedCourse) {
+
+        const signupLink =
+            document.querySelector(
+                '.auth-switch a[href="sinscrire.html"]'
+            );
+
+        if (signupLink) {
+            signupLink.href =
+                "sinscrire.html?course=" +
+                encodeURIComponent(requestedCourse);
+        }
+
+        const loginLink =
+            document.querySelector(
+                '.auth-switch a[href="connexion.html"]'
+            );
+
+        if (loginLink) {
+            loginLink.href =
+                "connexion.html?course=" +
+                encodeURIComponent(requestedCourse);
+        }
+    }
+
 
     /*
      * ==============================
@@ -93,6 +157,31 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             try {
 
+                /*
+                 * Preserve the requested course through
+                 * Supabase's email-confirmation link.
+                 */
+                const requestedCourse =
+                    cfaRequestedCourse();
+
+                const confirmationUrl =
+                    new URL(
+                        "/cfa-links/pages/connexion.html",
+                        window.location.origin
+                    );
+
+                confirmationUrl.searchParams.set(
+                    "verification",
+                    "success"
+                );
+
+                if (requestedCourse) {
+                    confirmationUrl.searchParams.set(
+                        "course",
+                        requestedCourse
+                    );
+                }
+
                 const { data, error } =
                     await cfaSupabase.auth.signUp({
 
@@ -106,8 +195,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             },
 
                             emailRedirectTo:
-                                window.location.origin +
-                                "/cfa-links/pages/connexion.html?verification=success"
+                                confirmationUrl.toString()
                         }
                     });
 
@@ -137,13 +225,34 @@ document.addEventListener("DOMContentLoaded", async function () {
                 );
 
                 setTimeout(function () {
+
+                    /*
+                     * If signup was started from a course,
+                     * open that course after successful signup.
+                     *
+                     * Otherwise preserve the normal signup
+                     * destination.
+                     */
+                    const signupCourse =
+                        cfaRequestedCourse();
+
                     window.location.href =
-                        "espace-etudiant.html";
+                        signupCourse
+                            ? cfaCourseRedirectUrl()
+                            : "espace-etudiant.html";
+
                 }, 800);
 
             } catch (error) {
 
                 console.error("CFA signup error:", error);
+
+                console.error("CFA signup error details:", {
+                    message: error.message,
+                    code: error.code,
+                    status: error.status,
+                    name: error.name
+                });
 
                 authMessage(
                     error.message ||
@@ -236,7 +345,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 setTimeout(function () {
 
                     window.location.href =
-                        "../dashboard.html";
+                        cfaCourseRedirectUrl();
 
                 }, 500);
 

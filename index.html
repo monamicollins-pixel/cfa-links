@@ -1266,10 +1266,18 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="container">
     <div class="section-head"><div class="eyebrow">Votre parcours</div><h2>De débutant à autonome.</h2><p>Construisez vos compétences progressivement.</p></div>
     <div class="levels">
-      <div class="level"><strong>A1</strong><span>Découverte</span></div>
-      <div class="level"><strong>A2</strong><span>Élémentaire</span></div>
-      <div class="level"><strong>B1</strong><span>Intermédiaire</span></div>
-      <div class="level"><strong>B2</strong><span>Avancé</span></div>
+      <a class="level cfa-course-level" href="pages/connexion.html?course=a1" data-cfa-course="a1">
+        <strong>A1</strong><span>Découverte</span>
+      </a>
+      <div class="level cfa-course-level cfa-course-coming-soon" data-cfa-course="a2">
+        <strong>A2</strong><span>Élémentaire</span>
+      </div>
+      <div class="level cfa-course-level cfa-course-coming-soon" data-cfa-course="b1">
+        <strong>B1</strong><span>Intermédiaire</span>
+      </div>
+      <div class="level cfa-course-level cfa-course-coming-soon" data-cfa-course="b2">
+        <strong>B2</strong><span>Avancé</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1439,6 +1447,72 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 </script>
 
+
+<script>
+/* =========================================================
+   CFA COURSE ENTRY ROUTING
+   A1 active — A2/B1/B2 reserved for future course pages
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", function () {
+
+    const courseDestinations = {
+        a1: "cours-a1.html"
+        // a2: "cours-a2.html",
+        // b1: "cours-b1.html",
+        // b2: "cours-b2.html"
+    };
+
+    const courseEntries =
+        document.querySelectorAll("[data-cfa-course]");
+
+    courseEntries.forEach(function (entry) {
+
+        const course = entry.dataset.cfaCourse;
+
+        /* Future levels remain inactive until their pages exist */
+        if (!courseDestinations[course]) {
+            entry.classList.add("cfa-course-disabled");
+            return;
+        }
+
+        entry.addEventListener("click", async function (event) {
+
+            event.preventDefault();
+
+            try {
+
+                const { data: { session } } =
+                    await cfaSupabase.auth.getSession();
+
+                if (session && session.user) {
+
+                    /* Logged in → open the requested course */
+                    window.location.href =
+                        courseDestinations[course];
+
+                } else {
+
+                    /* Not logged in → preserve requested course */
+                    window.location.href =
+                        "pages/connexion.html?course=" +
+                        encodeURIComponent(course);
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "CFA course routing error:",
+                    error
+                );
+
+                window.location.href =
+                    "pages/connexion.html?course=" +
+                    encodeURIComponent(course);
+            }
+        });
+    });
+});
+</script>
 
 <style id="cfa-mobile-menu-theme-fix">
 /* =========================================================
