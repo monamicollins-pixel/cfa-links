@@ -28,25 +28,31 @@
       }, 650);
     }
 
-    if (document.readyState === "complete") {
-      window.setTimeout(hideCfaLoader, 120);
-    } else {
-      window.addEventListener("load", hideCfaLoader, {
+    /*
+     * Hide as soon as the document structure is ready.
+     * This is more reliable on mobile than waiting only
+     * for the window load event.
+     */
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", hideCfaLoader, {
         once: true
       });
+    } else {
+      hideCfaLoader();
     }
 
-    /* Safety fallback */
+    /*
+     * Also hide on the normal browser load event.
+     */
+    window.addEventListener("load", hideCfaLoader, {
+      once: true
+    });
+
+    /*
+     * Absolute safety fallback.
+     */
     window.setTimeout(hideCfaLoader, 8000);
   }
 
-  /*
-   * The loader HTML is already present immediately after <body>.
-   * This script only controls its removal.
-   */
-  if (document.readyState === "loading") {
-    startCfaLoader();
-  } else {
-    startCfaLoader();
-  }
+  startCfaLoader();
 })();
