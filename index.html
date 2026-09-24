@@ -93,10 +93,9 @@ h1 span{color:var(--blue)}
   padding:14px 24px;border-radius:12px;font-weight:800;font-size:14px;
   border:1px solid var(--line);transition:all .25s ease;display:inline-flex;align-items:center;justify-content:center;
 }
-.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 10px 24px rgba(23,78,166,.25)}
+.btn.primary{box-shadow:0 10px 24px rgba(23,78,166,.25)}
 .btn.primary:hover{transform:translateY(-2px);opacity:.9}
-.btn.secondary{background:var(--blue);color:#fff;border-color:var(--blue)}
-.btn.secondary:hover{border-color:var(--blue);transform:translateY(-2px)}
+
 
 .hero-card{
   background:var(--hero-card-bg);border:1px solid var(--line);
@@ -432,7 +431,7 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 .signup-link{background:#E30613;color:#fff;box-shadow:0 7px 18px rgba(230,6,19,.18)}
 .signup-link:hover{background:#b9000b}
 .user-welcome{font-size:12px;font-weight:750;color:#fff}
-.logout-btn{border:1px solid #dbe2ec;background:#fff;color:#174ea6;padding:8px 12px;border-radius:9px;font-size:11px;font-weight:850;cursor:pointer}
+.logout-btn{padding:8px 12px;border-radius:9px;font-size:11px;font-weight:850;cursor:pointer}
 @media(max-width:700px){
 .account-links{gap:4px;margin-left:5px}
 .login-link,.signup-link{padding:7px 8px;font-size:10px}
@@ -943,8 +942,6 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     padding: 15px;
     box-sizing: border-box;
     border-radius: 12px;
-    background: var(--blue);
-    color: #fff !important;
     text-align: center;
     text-decoration: none;
     font-weight: 800;

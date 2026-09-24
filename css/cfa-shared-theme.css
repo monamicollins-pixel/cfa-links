@@ -129,39 +129,12 @@ select {
 }
 
 
-/* CFA GLOBAL ACTION BUTTON STANDARD */
-.cfa-action-button,
-.btn,
-.btn.primary,
-.btn.secondary,
-.auth-submit,
-.cta .btn,
-.cta a.primary,
-button[type="submit"]{
-    background:var(--cfa-blue) !important;
-    color:#fff !important;
-    border-color:var(--cfa-blue) !important;
-}
-
-.cfa-action-button:hover,
-.btn:hover,
-.btn.primary:hover,
-.btn.secondary:hover,
-.auth-submit:hover,
-.cta .btn:hover,
-.cta a.primary:hover,
-button[type="submit"]:hover{
-    background:var(--cfa-blue-dark) !important;
-    color:#fff !important;
-    border-color:var(--cfa-blue-dark) !important;
-}
-
 /* =========================================================
    CFA UNIVERSAL BUTTON STANDARD
    Applies to all visible button and button-style controls
    ========================================================= */
 
-button,
+button:not(.theme-toggle):not(#themeToggle):not(#close-drawer-btn):not(.password-toggle):not(#togglePassword):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button),
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
@@ -175,13 +148,14 @@ input[type="reset"],
 .cta a,
 .cta a.primary,
 .cta .btn,
+.cfa-mobile-login,
 button[type="submit"]{
     background:var(--cfa-blue) !important;
     color:#fff !important;
     border-color:var(--cfa-blue) !important;
 }
 
-button:hover,
+button:not(.theme-toggle):not(#themeToggle):not(#close-drawer-btn):not(.password-toggle):not(#togglePassword):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button):hover,
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
@@ -195,52 +169,7 @@ input[type="reset"]:hover,
 .cta a:hover,
 .cta a.primary:hover,
 .cta .btn:hover,
-button[type="submit"]:hover{
-    background:var(--cfa-blue-dark) !important;
-    color:#fff !important;
-    border-color:var(--cfa-blue-dark) !important;
-}
-
-
-/* =========================================================
-   CFA UNIVERSAL BUTTON STANDARD
-   Applies to all visible button and button-style controls
-   ========================================================= */
-
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-.btn,
-.primary,
-.secondary,
-.auth-submit,
-.logout,
-.back,
-.nav-button,
-.cta a,
-.cta a.primary,
-.cta .btn,
-button[type="submit"]{
-    background:var(--cfa-blue) !important;
-    color:#fff !important;
-    border-color:var(--cfa-blue) !important;
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-.btn:hover,
-.primary:hover,
-.secondary:hover,
-.auth-submit:hover,
-.logout:hover,
-.back:hover,
-.nav-button:hover,
-.cta a:hover,
-.cta a.primary:hover,
-.cta .btn:hover,
+.cfa-mobile-login:hover,
 button[type="submit"]:hover{
     background:var(--cfa-blue-dark) !important;
     color:#fff !important;
@@ -250,10 +179,21 @@ button[type="submit"]:hover{
 
 /* Theme toggle keeps its own control styling */
 button.theme-toggle,
-button.theme-toggle:hover{
+button#themeToggle,
+#themeToggle{
     background:transparent !important;
     color:inherit !important;
     border-color:transparent !important;
+    box-shadow:none !important;
+}
+
+button.theme-toggle:hover,
+button#themeToggle:hover,
+#themeToggle:hover{
+    background:transparent !important;
+    color:inherit !important;
+    border-color:transparent !important;
+    box-shadow:none !important;
 }
 
 /* =========================================================
@@ -280,26 +220,4 @@ button.theme-toggle:hover{
 .cfa-mobile-menu-button span{
     background-color:#fff !important;
     background: #fff !important;
-}
-
-/* =========================================================
-   THEME TOGGLE — EXCLUDE FROM CFA BUTTON STANDARD
-   ========================================================= */
-
-button.theme-toggle,
-button#themeToggle,
-#themeToggle{
-    background:transparent !important;
-    color:inherit !important;
-    border-color:transparent !important;
-    box-shadow:none !important;
-}
-
-button.theme-toggle:hover,
-button#themeToggle:hover,
-#themeToggle:hover{
-    background:transparent !important;
-    color:inherit !important;
-    border-color:transparent !important;
-    box-shadow:none !important;
 }
