@@ -431,7 +431,8 @@ header .nav-actions{
 
     header .brand{
         min-width:0;
-        max-width:calc(100% - 120px);
+        flex:1 1 auto;
+        max-width:none;
         gap:9px;
     }
 
@@ -443,8 +444,10 @@ header .nav-actions{
     header .brand > span,
     header .brand-name{
         min-width:0;
-        overflow:hidden;
-        text-overflow:ellipsis;
+        overflow:visible;
+        text-overflow:clip;
+        white-space:normal;
+        line-height:1.15;
     }
 
     header .nav-right{
@@ -470,7 +473,8 @@ header .nav-actions{
 @media(max-width:520px){
 
     header .brand{
-        max-width:calc(100% - 105px);
+        flex:1 1 auto;
+        max-width:none;
     }
 
     header .logout,
