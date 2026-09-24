@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +7,6 @@
 <title>Cours A1 — Collins French Academy</title>
 
 <style>
-:root{
-    --blue:#174ea6;
-    --blue-dark:#0d2f70;
-    --red:#e63946;
-    --orange:#ff6600;
-    --ink:#10203a;
-    --muted:#64748b;
-    --paper:#f6f9fc;
-    --white:#fff;
-    --line:#e5eaf2;
-    --shadow:0 20px 40px -15px rgba(15,35,70,.12);
-    --card-bg:#fff;
-    --hero-card-bg:#ffffff;
-    --green:#16a34a;
-}
-
-[data-theme="dark"]{
-    --blue:#4f83db;
-    --blue-dark:#7aa2e3;
-    --red:#ff4d5e;
-    --orange:#ff6600;
-    --ink:#f1f5f9;
-    --muted:#94a3b8;
-    --paper:#0b1320;
-    --white:#111c2e;
-    --line:#1e293b;
-    --shadow:0 20px 40px -15px rgba(0,0,0,.4);
-    --card-bg:#131f33;
-    --hero-card-bg:rgba(19,31,51,.8);
-}
-
 *{
     box-sizing:border-box;
 }
@@ -535,7 +504,6 @@ header .nav-actions{
         </a>
 
         <div class="nav-right">
-            <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
             <a class="back" href="pages/espace-etudiant.html">Espace Apprenant</a>
         </div>
 
@@ -607,24 +575,7 @@ header .nav-actions{
   </div>
 </footer>
 
-<script>
-const toggleBtn = document.getElementById('themeToggle');
-const htmlEl = document.documentElement;
 
-if (toggleBtn) {
-    const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
-    toggleBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
-
-    toggleBtn.addEventListener('click', () => {
-        const current = htmlEl.getAttribute('data-theme') || 'light';
-        const next = current === 'light' ? 'dark' : 'light';
-
-        htmlEl.setAttribute('data-theme', next);
-        localStorage.setItem('cfa_theme', next);
-        toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
-    });
-}
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
