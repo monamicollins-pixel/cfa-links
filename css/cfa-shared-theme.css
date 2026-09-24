@@ -221,3 +221,41 @@ button#themeToggle:hover,
     background-color:#fff !important;
     background: #fff !important;
 }
+
+/* =========================================================
+   CFA FINAL BUTTON TEXT ENFORCEMENT
+   Action buttons always use white text in both themes.
+   Special controls remain excluded.
+   ========================================================= */
+
+button:not(.theme-toggle):not(#themeToggle):not(#close-drawer-btn):not(.password-toggle):not(#togglePassword):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button),
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn,
+.primary,
+.secondary,
+.auth-submit,
+.logout,
+.back,
+.nav-button,
+.cta a,
+.cta a.primary,
+.cta .btn,
+.cfa-mobile-login,
+button[type="submit"]{
+    color:#fff !important;
+    -webkit-text-fill-color:#fff !important;
+}
+
+#hamburger-menu-trigger,
+.cfa-mobile-menu-button{
+    color:#fff !important;
+    -webkit-text-fill-color:#fff !important;
+}
+
+#hamburger-menu-trigger span,
+.cfa-mobile-menu-button span{
+    color:#fff !important;
+    -webkit-text-fill-color:#fff !important;
+}
