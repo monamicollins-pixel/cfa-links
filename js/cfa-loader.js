@@ -1,79 +1,52 @@
 /* =========================================================
    CFA COMPAS LOADER
-   Site-wide reusable loader
+   Early-render site-wide loader controller
    ========================================================= */
 
 (function () {
   "use strict";
 
-  if (document.getElementById("cfa-page-loader")) {
-    return;
+  function startCfaLoader() {
+    const loader = document.getElementById("cfa-page-loader");
+
+    if (!loader) {
+      return;
+    }
+
+    let hidden = false;
+
+    function hideCfaLoader() {
+      if (hidden) return;
+
+      hidden = true;
+      loader.classList.add("cfa-loader-hidden");
+
+      window.setTimeout(function () {
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
+        }
+      }, 650);
+    }
+
+    if (document.readyState === "complete") {
+      window.setTimeout(hideCfaLoader, 120);
+    } else {
+      window.addEventListener("load", hideCfaLoader, {
+        once: true
+      });
+    }
+
+    /* Safety fallback */
+    window.setTimeout(hideCfaLoader, 8000);
   }
 
-  const loader = document.createElement("div");
-
-  loader.id = "cfa-page-loader";
-  loader.setAttribute(
-    "aria-label",
-    "Chargement de Collins French Academy"
-  );
-
-  loader.innerHTML = `
-    <div class="cfa-loader-wrap">
-
-      <div class="cfa-loader-core">
-
-        <div class="cfa-loader-orbit" aria-hidden="true">
-          <span class="cfa-loader-direction"></span>
-          <span class="cfa-loader-direction"></span>
-          <span class="cfa-loader-direction"></span>
-          <span class="cfa-loader-direction"></span>
-        </div>
-
-        <div class="cfa-loader-needle" aria-hidden="true"></div>
-
-        <div class="cfa-loader-center" aria-hidden="true">
-          CFA
-        </div>
-
-      </div>
-
-      <div class="cfa-loader-brand">
-        Collins French Academy
-      </div>
-
-      <div class="cfa-loader-tagline">
-        Apprendre · S’amuser · S’inspirer · Découvrir
-      </div>
-
-    </div>
-  `;
-
-  document.body.insertBefore(loader, document.body.firstChild);
-
-  let hidden = false;
-
-  function hideCfaLoader() {
-    if (hidden) return;
-
-    hidden = true;
-    loader.classList.add("cfa-loader-hidden");
-
-    window.setTimeout(function () {
-      if (loader && loader.parentNode) {
-        loader.parentNode.removeChild(loader);
-      }
-    }, 650);
-  }
-
-  if (document.readyState === "complete") {
-    window.setTimeout(hideCfaLoader, 120);
+  /*
+   * The loader HTML is already present immediately after <body>.
+   * This script only controls its removal.
+   */
+  if (document.readyState === "loading") {
+    startCfaLoader();
   } else {
-    window.addEventListener("load", hideCfaLoader, {
-      once: true
-    });
+    startCfaLoader();
   }
-
-  /* Safety fallback */
-  window.setTimeout(hideCfaLoader, 8000);
 })();
