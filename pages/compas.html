@@ -48,6 +48,80 @@ body{
     letter-spacing:.04em;
 }
 
+.compas-search{
+    position:relative;
+    margin-bottom:16px;
+}
+
+.compas-search input{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px 14px;
+    border:1px solid var(--compas-line);
+    border-radius:10px;
+    background:var(--compas-bg);
+    color:var(--compas-ink);
+    font:inherit;
+    font-size:.92rem;
+    outline:none;
+}
+
+.compas-search input::placeholder{
+    color:var(--compas-muted);
+}
+
+.compas-search input:focus{
+    border-color:var(--compas-blue);
+    box-shadow:0 0 0 3px rgba(23,78,166,.10);
+}
+
+.compas-search-results{
+    position:absolute;
+    top:calc(100% + 5px);
+    left:0;
+    right:0;
+    z-index:30;
+    overflow:hidden;
+    border:1px solid var(--compas-line);
+    border-radius:10px;
+    background:var(--compas-white);
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+.compas-search-result{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    padding:11px 14px;
+    border-bottom:1px solid var(--compas-line);
+    color:inherit;
+    text-decoration:none;
+}
+
+.compas-search-result:last-child{
+    border-bottom:0;
+}
+
+.compas-search-result:hover{
+    background:var(--compas-bg);
+}
+
+.compas-search-result strong{
+    color:var(--compas-blue);
+    font-size:.8rem;
+}
+
+.compas-search-result span{
+    color:var(--compas-ink);
+    font-size:.9rem;
+}
+
+.compas-search-empty{
+    padding:12px 14px;
+    color:var(--compas-muted);
+    font-size:.88rem;
+}
+
 .compas-navigation-list{
     display:flex;
     flex-wrap:wrap;
@@ -758,6 +832,22 @@ header .nav-button{
                 Navigation rapide
             </div>
 
+            <div class="compas-search">
+                <input
+                    type="search"
+                    id="compas-search-input"
+                    placeholder="Rechercher un numéro ou un titre de COMPAS…"
+                    autocomplete="off"
+                    aria-label="Rechercher un numéro ou un titre de COMPAS"
+                >
+
+                <div
+                    class="compas-search-results"
+                    id="compas-search-results"
+                    aria-live="polite"
+                ></div>
+            </div>
+
             <div class="compas-navigation-list" id="compas-navigation-list">
                 <!-- COMPAS entries are generated automatically -->
             </div>
@@ -1034,27 +1124,131 @@ header .nav-button{
 
 <script>
 (function () {
-    const navigation = document.getElementById("compas-navigation-list");
+    const navigation =
+        document.getElementById("compas-navigation-list");
 
-    if (!navigation) return;
+    const searchInput =
+        document.getElementById("compas-search-input");
 
-    const entries = document.querySelectorAll(".compass-entry");
+    const searchResults =
+        document.getElementById("compas-search-results");
 
-    entries.forEach(function (entry) {
-        const match = entry.id.match(/^compas-(\d+)$/);
+    const entries =
+        Array.from(document.querySelectorAll(".compass-entry"));
 
-        if (!match) return;
+    if (!navigation || !searchInput || !searchResults) return;
 
-        const number = match[1].padStart(3, "0");
+    const compasEntries = entries
+        .map(function (entry) {
+            const match =
+                entry.id.match(/^compas-(\d+)$/);
 
+            if (!match) return null;
+
+            const number =
+                match[1].padStart(3, "0");
+
+            const titleElement =
+                entry.querySelector(".entry-title");
+
+            const title =
+                titleElement
+                    ? titleElement.textContent.trim()
+                    : "";
+
+            return {
+                id: entry.id,
+                number: number,
+                title: title
+            };
+        })
+        .filter(Boolean);
+
+    compasEntries.forEach(function (item) {
         const link = document.createElement("a");
-        link.href = "#" + entry.id;
+
+        link.href = "#" + item.id;
         link.className = "compas-nav-number";
-        link.textContent = number;
-        link.setAttribute("aria-label", "COMPAS " + number);
+        link.textContent = item.number;
+        link.setAttribute(
+            "aria-label",
+            "COMPAS " + item.number +
+            (item.title ? " — " + item.title : "")
+        );
 
         navigation.appendChild(link);
     });
+
+    function renderResults(query) {
+        searchResults.innerHTML = "";
+
+        const cleanQuery =
+            query.trim().toLowerCase();
+
+        if (!cleanQuery) return;
+
+        const matches = compasEntries.filter(function (item) {
+            return (
+                item.number.toLowerCase()
+                    .includes(cleanQuery) ||
+                item.title.toLowerCase()
+                    .includes(cleanQuery)
+            );
+        });
+
+        if (!matches.length) {
+            const empty =
+                document.createElement("div");
+
+            empty.className =
+                "compas-search-empty";
+
+            empty.textContent =
+                "Aucun COMPAS trouvé.";
+
+            searchResults.appendChild(empty);
+
+            return;
+        }
+
+        matches.slice(0, 10).forEach(function (item) {
+            const link =
+                document.createElement("a");
+
+            link.href = "#" + item.id;
+            link.className =
+                "compas-search-result";
+
+            const number =
+                document.createElement("strong");
+
+            number.textContent =
+                "COMPAS " + item.number;
+
+            const title =
+                document.createElement("span");
+
+            title.textContent =
+                item.title || "Sans titre";
+
+            link.appendChild(number);
+            link.appendChild(title);
+
+            link.addEventListener("click", function () {
+                searchInput.value = "";
+                searchResults.innerHTML = "";
+            });
+
+            searchResults.appendChild(link);
+        });
+    }
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+            renderResults(searchInput.value);
+        }
+    );
 })();
 </script>
 
