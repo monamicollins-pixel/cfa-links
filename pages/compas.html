@@ -29,6 +29,80 @@ body{
     background:var(--cfa-paper);
 }
 
+.compas-navigation{
+    padding:28px 0 8px;
+}
+
+.compas-navigation-box{
+    padding:20px 22px;
+    border:1px solid var(--compas-line);
+    border-radius:14px;
+    background:var(--compas-white);
+}
+
+.compas-navigation-title{
+    margin-bottom:14px;
+    color:var(--compas-ink);
+    font-size:.9rem;
+    font-weight:800;
+    letter-spacing:.04em;
+}
+
+.compas-navigation-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.compas-nav-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:48px;
+    height:34px;
+    padding:0 9px;
+    border:1px solid var(--compas-line);
+    border-radius:8px;
+    background:var(--compas-bg);
+    color:var(--compas-blue);
+    font-size:.78rem;
+    font-weight:800;
+    text-decoration:none;
+    transition:
+        background .18s ease,
+        border-color .18s ease,
+        color .18s ease,
+        transform .18s ease;
+}
+
+.compas-nav-number:hover{
+    transform:translateY(-1px);
+    border-color:var(--compas-blue);
+    background:var(--compas-blue);
+    color:#fff;
+}
+
+@media(max-width:600px){
+    .compas-navigation{
+        padding-top:20px;
+    }
+
+    .compas-navigation-box{
+        padding:16px;
+    }
+
+    .compas-navigation-list{
+        gap:6px;
+    }
+
+    .compas-nav-number{
+        min-width:44px;
+        height:32px;
+        padding:0 7px;
+        font-size:.74rem;
+    }
+}
+
 a{
     color:inherit;
 }
@@ -675,6 +749,24 @@ header .nav-button{
     </div>
 </section>
 
+<section class="compas-navigation">
+    <div class="container">
+
+        <div class="compas-navigation-box">
+
+            <div class="compas-navigation-title">
+                Navigation rapide
+            </div>
+
+            <div class="compas-navigation-list" id="compas-navigation-list">
+                <!-- COMPAS entries are generated automatically -->
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
 <section class="archive">
     <div class="container">
 
@@ -938,6 +1030,33 @@ header .nav-button{
 
     </div>
 </section>
+
+
+<script>
+(function () {
+    const navigation = document.getElementById("compas-navigation-list");
+
+    if (!navigation) return;
+
+    const entries = document.querySelectorAll(".compass-entry");
+
+    entries.forEach(function (entry) {
+        const match = entry.id.match(/^compas-(\d+)$/);
+
+        if (!match) return;
+
+        const number = match[1].padStart(3, "0");
+
+        const link = document.createElement("a");
+        link.href = "#" + entry.id;
+        link.className = "compas-nav-number";
+        link.textContent = number;
+        link.setAttribute("aria-label", "COMPAS " + number);
+
+        navigation.appendChild(link);
+    });
+})();
+</script>
 
 </main>
 
