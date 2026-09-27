@@ -4,141 +4,248 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connexion - Collins French Academy</title>
+
+<link rel="stylesheet" href="css/cfa-shared-theme.css">
+<link rel="stylesheet" href="css/cfa-loader.css" data-cfa-loader="css">
+<script src="js/cfa-loader.js" defer data-cfa-loader="js"></script>
+
 <style>
-:root{--blue:#174ea6;--ink:#10203a;--muted:#64748b;--paper:#f6f9fc;--white:#fff;--line:#e5eaf2;--shadow:0 20px 40px -15px rgba(15,35,70,.12);--error:#d93025;}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
-.card{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:40px;width:100%;max-width:420px;box-shadow:var(--shadow);}
-h1{font-size:24px;margin-bottom:8px;color:var(--blue);text-align:center;}
-p{color:var(--muted);font-size:14px;margin-bottom:24px;text-align:center;}
-.form-group{margin-bottom:16px;}
-label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
-input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--paper);color:var(--ink);}
-input:focus{outline:none;border-color:var(--blue);}
-.btn{width:100%;padding:12px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;margin-top:10px;}
-.footer-text{text-align:center;margin-top:20px;font-size:13px;color:var(--muted);}
-.footer-text a{color:var(--blue);text-decoration:none;font-weight:600;}
+/* =========================================================
+   LOGIN PAGE
+   Uses the shared CFA visual system
+   ========================================================= */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main.login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--cfa-white);
+    border: 1px solid var(--cfa-line);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 40px -15px rgba(15,35,70,.12);
+}
+
+.login-card h1 {
+    color: var(--cfa-blue);
+    text-align: center;
+    margin: 0 0 8px;
+}
+
+.login-card .intro {
+    color: var(--cfa-muted);
+    text-align: center;
+    margin: 0 0 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--cfa-line);
+    border-radius: 8px;
+    background: var(--cfa-input);
+    color: var(--cfa-ink);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--cfa-blue);
+}
+
+.login-card .btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.login-return {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-return a {
+    color: var(--cfa-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media (max-width: 700px) {
+    main.login-main {
+        padding: 32px 16px;
+    }
+
+    .login-card {
+        padding: 28px 22px;
+        border-radius: 20px;
+    }
+}
 </style>
-    <link rel="stylesheet" href="css/cfa-shared-theme.css">
-  <link rel="stylesheet" href="css/cfa-loader.css" data-cfa-loader="css">
-  <script src="js/cfa-loader.js" defer data-cfa-loader="js"></script>
 </head>
+
 <body>
+
 <div id="cfa-page-loader" aria-label="Chargement de Collins French Academy">
-  <div class="cfa-loader-wrap">
-    <div class="cfa-loader-core">
-      <div class="cfa-loader-orbit" aria-hidden="true">
-        <span class="cfa-loader-direction"></span>
-        <span class="cfa-loader-direction"></span>
-        <span class="cfa-loader-direction"></span>
-        <span class="cfa-loader-direction"></span>
-      </div>
-      <div class="cfa-loader-needle" aria-hidden="true"></div>
-      <div class="cfa-loader-center" aria-hidden="true">CFA</div>
-    </div>
+    <div class="cfa-loader-wrap">
+        <div class="cfa-loader-core">
+            <div class="cfa-loader-orbit" aria-hidden="true">
+                <span class="cfa-loader-direction"></span>
+                <span class="cfa-loader-direction"></span>
+                <span class="cfa-loader-direction"></span>
+                <span class="cfa-loader-direction"></span>
+            </div>
+            <div class="cfa-loader-needle" aria-hidden="true"></div>
+            <div class="cfa-loader-center" aria-hidden="true">CFA</div>
+        </div>
 
-    <div class="cfa-loader-brand">
-      Collins French Academy
-    </div>
+        <div class="cfa-loader-brand">
+            Collins French Academy
+        </div>
 
-    <div class="cfa-loader-tagline">
-      Apprendre · S’amuser · S’inspirer · Découvrir
-    </div>
-  </div>
-</div>
-
-
-<!-- Mobile Navigation Drawer & 3-line Menu Integration -->
-<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-
-</div>
-
-<div id="site-mobile-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; flex-direction: column; padding: 30px; box-sizing: border-box; color: #fff; font-family: inherit;">
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
-        <button id="close-drawer-btn" style="background: none; border: none; color: #fff; font-size: 32px; cursor: pointer;">&times;</button>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 320px; width: 100%; margin: 0 auto;">
-        <div id="drawer-theme-toggle" style="cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 17px;">☀️ Mode clair / sombre</div>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="index.html" style="color: inherit; text-decoration: none; font-size: 17px;">Accueil</a>
-        <a href="index.html#cours" style="color: inherit; text-decoration: none; font-size: 17px;">Cours</a>
-        <a href="pages/apropos.html" style="color: inherit; text-decoration: none; font-size: 17px;">À propos</a>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="pages/connexion.html" style=" padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; display: block; font-size: 17px;">Connexion</a>
+        <div class="cfa-loader-tagline">
+            Apprendre · S’amuser · S’inspirer · Découvrir
+        </div>
     </div>
 </div>
 
-<style>
-@media (max-width: 768px) {
-    .mobile-menu-icon-container { display: block !important; }
-}
-</style>
+<header>
+    <div class="container nav">
+        <a class="brand" href="index.html">
+            <div class="logo-container">
+                <img src="file.png" alt="CFA Logo">
+            </div>
+            <div>
+                <span>
+                    Collins French Academy
+                </span>
+            </div>
+        </a>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const trigger = document.getElementById("hamburger-menu-trigger");
-    const drawer = document.getElementById("site-mobile-drawer");
-    const closeBtn = document.getElementById("close-drawer-btn");
+        <div class="nav-right">
+            <button
+                id="hamburger-menu-trigger"
+                class="cfa-mobile-menu-button"
+                type="button"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-    if (trigger && drawer) {
-        trigger.addEventListener("click", () => {
-            drawer.style.display = "flex";
-        });
-    }
-    if (closeBtn && drawer) {
-        closeBtn.addEventListener("click", () => {
-            drawer.style.display = "none";
-        });
-    }
-});
-</script>
+            <nav>
+                <a href="index.html#accueil">Accueil</a>
+                <a href="index.html#cours">Cours</a>
+                <a href="index.html#ressources">Ressources</a>
+                <a href="pages/compas.html">COMPAS</a>
+                <a href="pages/apropos.html">À propos</a>
+            </nav>
 
-<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    <button id="hamburger-menu-trigger" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; display: flex; flex-direction: column; gap: 5px;">
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-    </button>
-</div>
-<style>
-@media (max-width: 768px) {
-    .mobile-menu-icon-container { display: block !important; }
-}
-</style>
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Changer de thème"
+            >🌙</button>
 
-<div class="card">
-  <h1>Espace CFA</h1>
-  <p>Connectez-vous pour accéder au centre de création</p>
-  <form id="loginForm" onsubmit="handleLogin(event)">
-    <div class="form-group">
-      <label>Adresse Email</label>
-      <input type="email" id="email" placeholder="votre@email.com" required>
+            <div class="account-links" id="accountArea">
+                <a class="login-link" href="login.html">Connexion</a>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-      <label>Mot de passe</label>
-      <input type="password" id="password" placeholder="••••••••" required>
+</header>
+
+<main class="login-main">
+    <div class="login-card">
+        <h1>Espace CFA</h1>
+
+        <p class="intro">
+            Connectez-vous pour accéder au centre de création
+        </p>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="votre@email.com"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="••••••••"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn">
+                Se connecter
+            </button>
+        </form>
+
+        <div class="login-return">
+            <a href="index.html">← Retour à l'accueil</a>
+        </div>
     </div>
-    <button type="submit" class="btn">Se connecter</button>
-  </form>
-  <div class="footer-text">
-    <a href="index.html">← Retour à l'accueil</a>
-  </div>
-</div>
+</main>
+
+<footer>
+    <div class="container footer">
+        <div class="footer-tagline">
+            Apprendre · S’amuser · S’inspirer · Découvrir
+        </div>
+
+        <div class="footer-copyright">
+            © 2026 Collins French Academy (CFA)
+        </div>
+    </div>
+</footer>
+
 <script>
 /* Already connected: go directly to learner space */
 if (sessionStorage.getItem('cfa_logged_in') === 'true') {
-  window.location.replace('dashboard.html');
+    window.location.replace('dashboard.html');
 }
 
 function handleLogin(e) {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  // Set session flags explicitly and use absolute or relative path securely
-  sessionStorage.setItem('cfa_logged_in', 'true');
-  sessionStorage.setItem('cfa_user', email);
-  window.location.replace('dashboard.html');
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+
+    sessionStorage.setItem('cfa_logged_in', 'true');
+    sessionStorage.setItem('cfa_user', email);
+
+    window.location.replace('dashboard.html');
 }
 </script>
 
-<div style="text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">Apprendre • S'amuser • S'inspirer • Découvrir</div>
-
+</body>
+</html>
