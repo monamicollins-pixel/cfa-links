@@ -57,16 +57,16 @@ header{
   transition:background .3s ease, border-color .3s ease;
 }
 .nav{height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:14px;font-weight:850;letter-spacing:.2px}
+.brand{display:flex;align-items:center;gap:14px;font-weight:700;letter-spacing:.2px}
 .logo-container{
   width:48px;height:48px;border-radius:50%;overflow:hidden;
   border:2px solid var(--blue);box-shadow:0 4px 12px rgba(23,78,166,0.15);
   flex-shrink:0;
 }
 .logo-container img { width: 100%; height: 100%; object-fit: cover; }
-.brand small{display:block;color:var(--muted);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.brand small{display:block;color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
 .nav-right{display:flex;align-items:center;gap:16px}
-nav{display:flex;gap:20px;color:var(--muted);font-size:14px;font-weight:650}
+nav{display:flex;gap:20px;color:var(--muted);font-size:14px;font-weight:600}
 nav a{position:relative;transition:color .2s}
 nav a:hover{color:var(--blue)}
 .theme-toggle{
@@ -83,7 +83,7 @@ nav a:hover{color:var(--blue)}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:65px;align-items:center}
 .badge{
   display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;
-  background:var(--line);color:var(--blue);font-size:12px;font-weight:800;margin-bottom:20px;
+  background:var(--line);color:var(--blue);font-size:14px;font-weight:800;margin-bottom:20px;
 }
 h1{font-size:clamp(44px,6vw,72px);line-height:1.02;letter-spacing:-2.8px;margin-bottom:22px}
 h1 span{color:var(--blue)}
@@ -121,8 +121,8 @@ h1 span{color:var(--blue)}
   outline-offset:5px;
 }
 .mock-window{background:var(--card-bg);border:1px solid var(--line);border-radius:22px;padding:24px;color:var(--ink);min-height:410px;overflow:hidden}
-.mock-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-bottom:24px;letter-spacing:0.5px}
-.mock-title{font-size:27px;font-weight:850;line-height:1.1;margin-bottom:8px}
+.mock-top{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:24px;letter-spacing:0.5px}
+.mock-title{font-size:27px;font-weight:700;line-height:1.1;margin-bottom:8px}
 .mock-sub{color:var(--muted);font-size:13.5px;margin-bottom:24px}
 .progress{height:8px;background:var(--line);border-radius:20px;overflow:hidden;margin:12px 0 24px}
 .progress i{display:block;width:64%;height:100%;background:linear-gradient(90deg,#4f83db,var(--red));border-radius:20px}
@@ -274,7 +274,7 @@ main{
 
 section{padding:85px 0}
 .section-head{max-width:680px;margin-bottom:40px}
-.eyebrow{color:var(--red);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.eyebrow{color:var(--red);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
 h2{font-size:38px;letter-spacing:-1.2px;margin:0 0 12px}
 .section-head p{color:var(--muted);font-size:16px}
 
@@ -284,7 +284,7 @@ h2{font-size:38px;letter-spacing:-1.2px;margin:0 0 12px}
   box-shadow:var(--shadow);transition:all .3s ease;
 }
 .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--blue)}
-.card .num{font-size:12px;color:var(--blue);font-weight:900;margin-bottom:25px}
+.card .num{font-size:14px;color:var(--blue);font-weight:700;margin-bottom:25px}
 .card h3{font-size:18px;margin-bottom:8px;letter-spacing:-.3px}
 .card p{font-size:13.5px;color:var(--muted);line-height:1.5}
 
@@ -306,7 +306,7 @@ h2{font-size:38px;letter-spacing:-1.2px;margin:0 0 12px}
 .resource:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--blue)}
 .resource h3{margin-bottom:10px;font-size:20px;letter-spacing:-.4px}
 .resource p{color:var(--muted);font-size:14.5px;margin-bottom:20px}
-.resource a{color:var(--blue);font-size:13.5px;font-weight:850;display:inline-flex;align-items:center;gap:4px}
+.resource a{color:var(--blue);font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .resource a:hover{gap:8px}
 
 .contact{
@@ -353,7 +353,7 @@ footer{
   padding-top:12px;
   border-top:1px solid var(--line);
   min-width:260px;
-  font-size:11px;
+  font-size:13px;
   color:var(--muted);
   line-height:1.5;
 }
@@ -399,7 +399,7 @@ footer{
 <style>
 .brand span, .tagline-sub {
     letter-spacing: 1px;
-    font-size: 10px;
+    font-size: 13px;
     opacity: 0.85;
     text-transform: uppercase;
 }
@@ -408,7 +408,7 @@ footer{
 <style>
 .brand-subtitle, .logo-subtitle, header span, .nav-subtitle, .brand p, .brand div {
     white-space: nowrap;
-    font-size: 8.5px !important;
+    font-size: 13px !important;
     letter-spacing: 0.5px;
 }
 </style>
@@ -425,16 +425,16 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 
 <style>
 .account-links{display:flex;align-items:center;gap:8px;margin-left:15px}
-.login-link,.signup-link{padding:9px 13px;border-radius:10px;font-size:12px;font-weight:850;text-decoration:none}
+.login-link,.signup-link{padding:9px 13px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none}
 .login-link{color:#174ea6}
 .login-link:hover{background:#edf3ff}
 .signup-link{background:#E30613;color:#fff;box-shadow:0 7px 18px rgba(230,6,19,.18)}
 .signup-link:hover{background:#b9000b}
-.user-welcome{font-size:12px;font-weight:750;color:#fff}
-.logout-btn{padding:8px 12px;border-radius:9px;font-size:11px;font-weight:850;cursor:pointer}
+.user-welcome{font-size:14px;font-weight:700;color:#fff}
+.logout-btn{padding:8px 12px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer}
 @media(max-width:700px){
 .account-links{gap:4px;margin-left:5px}
-.login-link,.signup-link{padding:7px 8px;font-size:10px}
+.login-link,.signup-link{padding:7px 8px;font-size:13px}
 }
 </style>
 
