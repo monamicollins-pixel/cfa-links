@@ -9,12 +9,21 @@
 <style>
 :root{
     --blue:#174ea6;
-    --ink:#172033;
-    --muted:#667085;
+    --ink:#10203a;
+    --muted:#64748b;
     --white:#ffffff;
-    --line:#e5e7eb;
-    --bg:#f7f9fc;
+    --line:#e5eaf2;
+    --bg:#f6f9fc;
     --orange:#ff6600;
+}
+
+[data-theme="dark"]{
+    --blue:#4f83db;
+    --ink:#f1f5f9;
+    --muted:#94a3b8;
+    --white:#111c2e;
+    --line:#1e293b;
+    --bg:#0b1320;
 }
 
 *{
@@ -29,8 +38,9 @@ body{
 }
 
 header{
-    background:var(--white);
-    border-bottom:1px solid var(--line);
+    background:var(--cfa-white);
+    color:var(--cfa-ink);
+    border-bottom:1px solid var(--cfa-line);
     position:sticky;
     top:0;
     z-index:10;
@@ -54,7 +64,7 @@ header{
     align-items:center;
     gap:12px;
     text-decoration:none;
-    color:var(--ink);
+    color:var(--cfa-ink);
     font-weight:800;
 }
 
@@ -70,8 +80,9 @@ header{
     border:0;
     border-radius:10px;
     padding:11px 16px;
-    background:#f1f3f7;
-    color:var(--ink);
+    background:var(--cfa-input);
+    color:var(--cfa-ink);
+    border:1px solid var(--cfa-line);
     font-weight:700;
     cursor:pointer;
     text-decoration:none;
