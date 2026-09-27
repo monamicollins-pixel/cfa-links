@@ -4,95 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Connexion — Collins French Academy</title>
+
 <link rel="stylesheet" href="../css/auth.css">
+<link rel="stylesheet" href="../css/cfa-shared-theme.css">
+<script src="../js/cfa-shared-theme.js"></script>
 
-        <style>
-            /* CFA shared theme — preserve the original auth layout */
-            html[data-theme="dark"] body {
-                background: var(--paper) !important;
-                color: var(--ink) !important;
-            }
+<link rel="stylesheet" href="../css/cfa-loader.css" data-cfa-loader="css">
+<script src="../js/cfa-loader.js" defer data-cfa-loader="js"></script>
 
-            html[data-theme="dark"] input,
-            html[data-theme="dark"] textarea,
-            html[data-theme="dark"] select {
-                background: var(--card-bg) !important;
-                color: var(--ink) !important;
-                border-color: var(--line) !important;
-            }
-
-            html[data-theme="dark"] input::placeholder,
-            html[data-theme="dark"] textarea::placeholder {
-                color: var(--muted) !important;
-            }
-
-            html[data-theme="light"] input,
-            html[data-theme="light"] textarea,
-            html[data-theme="light"] select {
-                background: #ffffff !important;
-                color: #10203a !important;
-                border-color: #e5eaf2 !important;
-            }
-        </style>
-        
 <style>
-#mobile-menu-drawer.solid-drawer {
-    background: #070a12 !important;
-    background-color: #070a12 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+/* =========================================================
+   CFA — CONNEXION PAGE
+   Presentation only. Authentication remains unchanged.
+   ========================================================= */
+
+html,
+body {
+    min-height: 100%;
 }
-</style>
 
-
-<style>
-#mobile-menu-drawer {
-    background: #020617 !important;
-    background-color: #020617 !important;
-    opacity: 1 !important;
+body {
+    margin: 0;
 }
-</style>
 
+/* The shared CFA header controls the page navigation. */
+header .nav {
+    flex-direction: row !important;
+    align-items: center !important;
+}
 
-<style>
-.password-wrapper {
-    position: relative;
+header nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+header .brand {
+    text-transform: none !important;
+}
+
+header .brand span {
+    text-transform: none !important;
+}
+
+/* Keep the authentication area visually consistent with CFA. */
+.auth-page {
+    min-height: calc(100vh - 140px);
+    display: grid;
+    place-items: center;
+    padding: 48px 20px;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.auth-card {
+    width: min(460px, 100%);
+    box-sizing: border-box;
+    background: var(--cfa-white);
+    color: var(--cfa-ink);
+    border: 1px solid var(--cfa-line);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 22px 60px rgba(15,35,70,.12);
+}
+
+.auth-logo {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 18px;
+}
+
+.auth-title {
+    text-align: center;
+    margin: 0 0 8px;
+    color: var(--cfa-blue) !important;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--cfa-muted);
+    margin: 0 0 28px;
+}
+
+.auth-form {
     width: 100%;
+    display: grid;
+    gap: 16px;
 }
 
-.password-wrapper input {
+.auth-form label {
+    display: block;
+    color: var(--cfa-ink);
+    font-weight: 600;
+}
+
+.auth-form input {
     width: 100%;
-    padding-right: 48px !important;
+    box-sizing: border-box;
+    background: var(--cfa-input);
+    color: var(--cfa-ink);
+    border: 1px solid var(--cfa-line);
+}
+
+.auth-form input:focus {
+    border-color: var(--cfa-blue);
+    box-shadow: 0 0 0 3px rgba(23,78,166,.10);
+}
+
+.auth-submit {
+    width: 100%;
+    min-height: 48px;
     box-sizing: border-box;
 }
 
+.auth-switch {
+    text-align: center;
+    color: var(--cfa-muted);
+    margin-top: 22px;
+}
+
+.auth-switch a,
+.back-home {
+    color: var(--cfa-blue) !important;
+}
+
+.auth-switch a {
+    font-weight: 700;
+}
+
+.back-home {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
 .password-toggle {
-    position: absolute !important;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
-    max-width: 34px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    color: inherit !important;
-    box-shadow: none !important;
-    cursor: pointer;
-    font-size: 18px !important;
-    line-height: 1;
+    color: var(--cfa-blue) !important;
+}
+
+/* Remove the legacy auth.css mobile header transformation. */
+@media (max-width: 768px) {
+    .auth-page {
+        min-height: calc(100vh - 120px);
+        padding: 32px 16px;
+    }
+
+    .auth-card {
+        padding: 30px 22px;
+        border-radius: 22px;
+    }
 }
 </style>
-
-    <link rel="stylesheet" href="../css/cfa-shared-theme.css">
-    <script src="../js/cfa-shared-theme.js"></script>
-  <link rel="stylesheet" href="../css/cfa-loader.css" data-cfa-loader="css">
-  <script src="../js/cfa-loader.js" defer data-cfa-loader="js"></script>
 </head>
+
 <body>
+
 <div id="cfa-page-loader" aria-label="Chargement de Collins French Academy">
   <div class="cfa-loader-wrap">
     <div class="cfa-loader-core">
@@ -116,68 +186,145 @@
   </div>
 </div>
 
+<header>
+    <div class="container nav">
+        <a class="brand" href="../index.html">
+            <div class="logo-container">
+                <img src="../file.png" alt="CFA Logo">
+            </div>
+            <div>
+                <span>Collins French Academy</span>
+            </div>
+        </a>
 
-<!-- Mobile Navigation Drawer & 3-line Menu Integration -->
-<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    
-</div>
+        <div class="nav-right">
+            <nav>
+                <a href="../index.html#accueil">Accueil</a>
+                <a href="../index.html#cours">Cours</a>
+                <a href="../index.html#ressources">Ressources</a>
+                <a href="compas.html">COMPAS</a>
+                <a href="apropos.html">À propos</a>
+            </nav>
 
-<div id="site-mobile-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; flex-direction: column; padding: 30px; box-sizing: border-box; color: #fff; font-family: inherit;">
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
-        <button id="close-drawer-btn" style="background: none; border: none; color: #fff; font-size: 32px; cursor: pointer;">&times;</button>
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Changer de thème"
+                type="button"
+            >🌙</button>
+
+            <div class="account-links" id="accountArea">
+                <a class="login-link" href="connexion.html">Connexion</a>
+            </div>
+        </div>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 320px; width: 100%; margin: 0 auto;">
-        <div id="drawer-theme-toggle" style="cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 17px;">☀️ Mode clair / sombre</div>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="index.html" style="color: inherit; text-decoration: none; font-size: 17px;">Accueil</a>
-        <a href="index.html#cours" style="color: inherit; text-decoration: none; font-size: 17px;">Cours</a>
-        <a href="pages/apropos.html" style="color: inherit; text-decoration: none; font-size: 17px;">À propos</a>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 5px 0;">
-        <a href="pages/connexion.html" style=" padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; display: block; font-size: 17px;">Connexion</a>
-    </div>
-</div>
+</header>
 
-<style>
-@media (max-width: 768px) {
-    .mobile-menu-icon-container { display: block !important; }
-}
-</style>
+<main class="auth-page">
+
+    <div class="auth-card">
+
+        <img class="auth-logo" src="../file.png" alt="CFA">
+
+        <h1 class="auth-title">Bienvenue à nouveau</h1>
+
+        <p class="auth-subtitle">
+            Connectez-vous pour continuer votre parcours CFA.
+        </p>
+
+        <div id="authMessage" class="auth-message"></div>
+
+        <form class="auth-form" id="loginForm">
+
+            <label>
+                Adresse e-mail
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="vous@example.com"
+                    autocomplete="email"
+                    required
+                >
+            </label>
+
+            <label>
+                Mot de passe
+                <div class="password-wrapper">
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Votre mot de passe"
+                        autocomplete="current-password"
+                        required
+                    >
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="togglePassword"
+                        aria-label="Afficher le mot de passe"
+                    >👁️</button>
+                </div>
+            </label>
+
+            <button class="auth-submit" type="submit">
+                Connexion
+            </button>
+
+            <div style="text-align:right; margin-bottom:15px;">
+                <a
+                    href="mot-de-passe-oublie.html"
+                    style="color:var(--cfa-blue); text-decoration:none;"
+                >Mot de passe oublié ?</a>
+            </div>
+
+        </form>
+
+        <p class="auth-switch">
+            Vous n'avez pas encore de compte ?
+            <a href="sinscrire.html">S'inscrire</a>
+        </p>
+
+        <a class="back-home" href="../index.html">
+            ← Retour à l'accueil
+        </a>
+
+    </div>
+
+</main>
+
+<footer>
+    <div class="container footer">
+        <div class="footer-tagline">
+            Apprendre · S’amuser · S’inspirer · Découvrir
+        </div>
+        <div class="footer-copyright">
+            © 2026 Collins French Academy (CFA)
+        </div>
+    </div>
+</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const trigger = document.getElementById("hamburger-menu-trigger");
-    const drawer = document.getElementById("site-mobile-drawer");
-    const closeBtn = document.getElementById("close-drawer-btn");
-    
-    if (trigger && drawer) {
-        trigger.addEventListener("click", () => {
-            drawer.style.display = "flex";
-        });
-    }
-    if (closeBtn && drawer) {
-        closeBtn.addEventListener("click", () => {
-            drawer.style.display = "none";
-        });
-    }
+/* =========================================================
+   CFA — THEME TOGGLE
+   Same behavior as the homepage.
+   ========================================================= */
+
+const htmlEl = document.documentElement;
+const toggleBtn = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('cfa_theme') || 'light';
+
+htmlEl.setAttribute('data-theme', savedTheme);
+toggleBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+toggleBtn.addEventListener('click', () => {
+  const currentTheme = htmlEl.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+  htmlEl.setAttribute('data-theme', newTheme);
+  localStorage.setItem('cfa_theme', newTheme);
+  toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 });
 </script>
-
-
-<div class="mobile-menu-icon-container" style="display: none; padding: 10px 20px 0 20px; background: inherit;">
-    <button id="hamburger-menu-trigger" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; display: flex; flex-direction: column; gap: 5px;">
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-        <span style="display: block; width: 24px; height: 2px; background-color: white;"></span>
-    </button>
-</div>
-<style>
-@media (max-width: 768px) {
-    .mobile-menu-icon-container { display: block !important; }
-}
-</style>
-
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabase.js"></script>
@@ -250,188 +397,5 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 </script>
-
-<main class="auth-page">
-<div class="auth-card">
-
-<img class="auth-logo" src="../file.png" alt="CFA">
-
-<h1 class="auth-title">Bienvenue à nouveau</h1>
-
-<p class="auth-subtitle">
-Connectez-vous pour continuer votre parcours CFA.
-</p>
-
-<div id="authMessage" class="auth-message"></div>
-
-<form class="auth-form" id="loginForm">
-
-<label>
-Adresse e-mail
-<input id="email" type="email" placeholder="vous@example.com" autocomplete="email" required>
-</label>
-
-<label>
-Mot de passe
-<div class="password-wrapper">
-    <input id="password" type="password" placeholder="Votre mot de passe" autocomplete="current-password" required>
-    <button type="button" class="password-toggle" id="togglePassword" aria-label="Afficher le mot de passe">👁️</button>
-</div>
-</label>
-
-<button class="auth-submit" type="submit">
-Connexion
-</button>
-
-
-        <div style="text-align: right; margin-bottom: 15px;">
-            <a href="mot-de-passe-oublie.html" style="font-size: 0.9rem; color: #0056b3; text-decoration: none;">Mot de passe oublié ?</a>
-        </div>
-        </form>
-
-<p class="auth-switch">
-Vous n'avez pas encore de compte ? <a href="sinscrire.html" style="color: #0056b3; font-weight: bold; text-decoration: underline;">S'inscrire</a>
-
-</p>
-
-<a class="back-home" href="../index.html">
-← Retour à l'accueil
-</a>
-
-</div>
-</main>
-
-
-<script>
-    // Global Dark Mode Synchronizer
-    document.addEventListener("DOMContentLoaded", () => {
-        const isDarkMode = localStorage.getItem("darkMode") === "true";
-        if (isDarkMode) {
-            document.body.classList.add("dark-mode");
-        }
-        
-        // Listen for any theme toggle buttons across pages
-        const toggles = document.querySelectorAll("#darkModeToggle, .dark-mode-toggle, [onclick*=\x27dark\x27]");
-        toggles.forEach(toggle => {
-            toggle.addEventListener("click", () => {
-                document.body.classList.toggle("dark-mode");
-                localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-            });
-        });
-    });
-</script>
-
-<script>
-    // Universal Dark Mode Handler
-    (function() {
-        const currentTheme = localStorage.getItem("theme");
-        if (currentTheme === "dark" || localStorage.getItem("darkMode") === "true") {
-            document.body.classList.add("dark-mode");
-        }
-        
-        // Also sync any dark mode toggle click handlers across pages
-        window.addEventListener("load", () => {
-            const toggleBtn = document.querySelector("#darkModeToggle, .sun-icon, [onclick*=\x27dark\x27], .dark-toggle");
-            if (toggleBtn) {
-                toggleBtn.addEventListener("click", () => {
-                    document.body.classList.toggle("dark-mode");
-                    let isDark = document.body.classList.contains("dark-mode");
-                    localStorage.setItem("theme", isDark ? "dark" : "light");
-                    localStorage.setItem("darkMode", isDark);
-                });
-            }
-        });
-    })();
-</script>
-
-
-<style id="cfa-auth-theme-fix">
-html[data-theme="dark"] body {
-    background: #0b1320 !important;
-    color: #f1f5f9 !important;
-}
-
-html[data-theme="dark"] .card,
-html[data-theme="dark"] .login-container,
-html[data-theme="dark"] .form-container,
-html[data-theme="dark"] .auth-card,
-html[data-theme="dark"] .auth-container {
-    background: #131f33 !important;
-    color: #f1f5f9 !important;
-    border-color: #1e293b !important;
-}
-
-html[data-theme="dark"] label {
-    color: #f1f5f9 !important;
-}
-
-html[data-theme="dark"] input {
-    background: #131f33 !important;
-    color: #f1f5f9 !important;
-    border-color: #334155 !important;
-}
-
-html[data-theme="dark"] input::placeholder {
-    color: #94a3b8 !important;
-}
-
-html[data-theme="dark"] .auth-form {
-    color: #f1f5f9 !important;
-}
-
-html[data-theme="light"] body {
-    background: #f6f9fc !important;
-    color: #10203a !important;
-}
-
-html[data-theme="light"] input {
-    background: #ffffff !important;
-    color: #10203a !important;
-    border-color: #e5eaf2 !important;
-}
-</style>
-
-<style id="cfa-auth-page-background">
-/* CFA — authentication page background */
-
-html[data-theme="dark"] body {
-    background: #0b1320 !important;
-}
-
-html[data-theme="dark"] main,
-html[data-theme="dark"] .auth-page,
-html[data-theme="dark"] .login-page,
-html[data-theme="dark"] .page,
-html[data-theme="dark"] .container {
-    background: transparent !important;
-}
-
-html[data-theme="light"] body {
-    background: #f6f9fc !important;
-}
-
-html[data-theme="light"] main,
-html[data-theme="light"] .auth-page,
-html[data-theme="light"] .login-page,
-html[data-theme="light"] .page,
-html[data-theme="light"] .container {
-    background: transparent !important;
-}
-</style>
-
-<style id="cfa-auth-heading-theme">
-/* CFA warm accent — authentication heading */
-html[data-theme="light"] .auth-card h1,
-html[data-theme="light"] .login-container h1,
-html[data-theme="light"] .form-container h1,
-html[data-theme="light"] main h1 {
-    color: #FF6600 !important;
-}
-
-html[data-theme="dark"] .auth-card h1,
-html[data-theme="dark"] .login-container h1,
-html[data-theme="dark"] .form-container h1,
-html[data-theme="dark"] main h1 {
-    color: #FF6600 !important;
-}
-</style>
+</body>
+</html>
