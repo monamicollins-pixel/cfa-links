@@ -358,13 +358,15 @@ html[data-theme="dark"] .auth-nav-button.auth-nav-active {
 
 @media (max-width: 560px) {
   .auth-page-nav {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
     margin: 20px 0 24px;
   }
 
   .auth-nav-button {
     width: 100%;
     min-height: 44px;
+    padding: 9px 6px;
+    font-size: 0.78rem;
   }
 }
