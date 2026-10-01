@@ -65,8 +65,8 @@ header{
 }
 .logo-container img { width: 100%; height: 100%; object-fit: cover; }
 .brand small{display:block;color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
-.nav-right{display:flex;align-items:center;gap:16px}
-nav{display:flex;gap:20px;color:var(--muted);font-size:14px;font-weight:600}
+.nav-right{display:flex;align-items:center;gap:14px}
+nav{display:flex;gap:16px;color:var(--muted);font-size:14px;font-weight:600}
 nav a{position:relative;transition:color .2s}
 nav a:hover{color:var(--blue)}
 .theme-toggle{
@@ -306,8 +306,8 @@ h2{font-size:38px;letter-spacing:-1.2px;margin:0 0 12px}
 .resource:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--blue)}
 .resource h3{margin-bottom:10px;font-size:20px;letter-spacing:-.4px}
 .resource p{color:var(--muted);font-size:14.5px;margin-bottom:20px}
-.resource a{color:var(--blue);font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
-.resource a:hover{gap:8px}
+.resource-link{color:var(--blue);font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.resource:hover .resource-link{gap:8px}
 
 .contact{
   background:var(--card-bg);
@@ -438,309 +438,9 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
 }
 </style>
 
-<style id="cfa-mobile-fix">
-/* =========================================
-   CFA MOBILE RESPONSIVE FIX
-   ========================================= */
 
-@media (max-width: 768px) {
 
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
 
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    header .nav {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        padding: 0 16px;
-        gap: 8px;
-    }
-
-    header .brand {
-        min-width: 0;
-        max-width: calc(100% - 90px);
-        gap: 9px;
-    }
-
-    header .brand > div:last-child {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    header .brand span {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    header .nav-right {
-        margin-left: auto;
-        flex-shrink: 0;
-        gap: 6px;
-    }
-
-    header .nav-right nav,
-    header .account-links {
-        display: none !important;
-    }
-
-    .theme-toggle {
-        width: 36px;
-        height: 36px;
-        flex-shrink: 0;
-    }
-#hamburger-menu-trigger:hover,
-    #hamburger-menu-trigger:focus {
-        background: rgba(23, 78, 166, 0.12);
-    }
-
-    /* Hero containment */
-    .hero {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-        padding: 52px 0 50px;
-    }
-
-    .hero-grid {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        gap: 32px;
-    }
-
-    .hero-grid > div {
-        min-width: 0;
-        max-width: 100%;
-    }
-
-    .badge {
-        max-width: 100%;
-        white-space: normal;
-    }
-
-    h1 {
-        width: 100%;
-        max-width: 100%;
-        font-size: clamp(38px, 11vw, 48px);
-        line-height: 1.05;
-        letter-spacing: -1.8px;
-        overflow-wrap: anywhere;
-        word-break: normal;
-    }
-
-    .lead {
-        width: 100%;
-        max-width: 100%;
-        overflow-wrap: break-word;
-    }
-
-    .actions {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .actions .btn {
-        max-width: 100%;
-    }
-
-    /* Full-screen drawer */
-    #site-mobile-drawer {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100vw !important;
-        height: 100dvh !important;
-        min-height: 100vh !important;
-        margin: 0 !important;
-        padding: 24px !important;
-        box-sizing: border-box !important;
-
-        background: #020617 !important;
-        background-color: #020617 !important;
-
-        z-index: 2147483647 !important;
-        isolation: isolate !important;
-
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-    }
-
-    #site-mobile-drawer > div {
-        position: relative;
-        z-index: 2;
-    }
-
-    /* =====================================================
-       CFA GLOBAL TEXT SYSTEM
-       All mobile menu text inherits the shared CFA theme.
-       ===================================================== */
-
-    #site-mobile-drawer {
-        background: var(--cfa-white) !important;
-        color: var(--cfa-ink) !important;
-    }
-
-    #site-mobile-drawer a.cfa-mobile-link,
-    #site-mobile-drawer button.cfa-mobile-theme {
-        color: var(--cfa-ink) !important;
-    }
-
-    #site-mobile-drawer a.cfa-mobile-link:hover,
-    #site-mobile-drawer button.cfa-mobile-theme:hover {
-        color: var(--cfa-orange) !important;
-    }
-
-    #site-mobile-drawer .cfa-mobile-header strong {
-        color: var(--cfa-ink) !important;
-    }
-
-    #close-drawer-btn {
-        color: var(--cfa-ink) !important;
-    }
-
-    #close-drawer-btn:hover {
-        color: var(--cfa-orange) !important;
-    }
-
-    /* Action button remains intentionally inverted */
-    #site-mobile-drawer a.cfa-mobile-login {
-        color: #ffffff !important;
-    }
-
-    body.cfa-drawer-open {
-        overflow: hidden !important;
-        height: 100vh !important;
-    }
-}
-
-@media (max-width: 380px) {
-
-    header .nav {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    header .brand {
-        max-width: calc(100% - 82px);
-    }
-
-    header .brand span {
-        font-size: 16px !important;
-    }
-
-    h1 {
-        font-size: 36px;
-        letter-spacing: -1.5px;
-    }
-
-    .hero {
-        padding-top: 42px;
-    }
-}
-</style>
-
-<style id="cfa-hamburger-fix">
-
-/* Desktop: hamburger hidden */
-#hamburger-menu-trigger {
-    display: none !important;
-}
-
-/* Mobile: hamburger visible and clickable */
-@media (max-width: 768px) {
-
-    #hamburger-menu-trigger {
-        display: flex !important;
-        position: relative !important;
-        z-index: 999999 !important;
-
-        width: 42px !important;
-        height: 42px !important;
-        padding: 8px !important;
-        margin: 0 !important;
-
-        border: 1px solid var(--line) !important;
-        border-radius: 10px !important;
-
-        background: var(--white) !important;
-
-        align-items: center !important;
-        justify-content: center !important;
-        flex-direction: column !important;
-        gap: 5px !important;
-
-        cursor: pointer !important;
-        pointer-events: auto !important;
-    }
-
-    #hamburger-menu-trigger span {
-        display: block !important;
-        width: 23px !important;
-        height: 3px !important;
-        border-radius: 3px !important;
-        background: var(--ink) !important;
-        pointer-events: none !important;
-    }
-}
-
-/* =========================================================
-   MOBILE DRAWER — CLOSED BY DEFAULT
-   ========================================================= */
-
-#site-mobile-drawer {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-
-/* =========================================================
-   MOBILE DRAWER — OPEN
-   ========================================================= */
-
-#site-mobile-drawer.cfa-open {
-    position: fixed !important;
-    inset: 0 !important;
-
-    width: 100vw !important;
-    height: 100vh !important;
-    min-height: 100dvh !important;
-
-    display: flex !important;
-    flex-direction: column !important;
-
-    padding: 24px !important;
-    box-sizing: border-box !important;
-
-    background: var(--white) !important;
-    color: var(--ink) !important;
-
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-
-    z-index: 2147483647 !important;
-
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-}
-
-#site-mobile-drawer.cfa-open * {
-    pointer-events: auto;
-}
-
-</style>
 
     <link rel="stylesheet" href="css/cfa-shared-theme.css">
 
@@ -773,13 +473,422 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
   </div>
 </div>
 
+
+<style id="cfa-universal-master-header">
+/* =========================================================
+   CFA — UNIVERSAL MASTER HEADER
+   Single desktop + mobile header system
+   ========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+}
+
+header .nav {
+    min-height: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+header .brand {
+    flex: 0 0 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+header .logo-container {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--blue);
+    box-shadow: 0 4px 12px rgba(23, 78, 166, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+header .logo-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+header .brand > div:last-child {
+    min-width: 0;
+}
+
+header .brand > div:last-child > span {
+    display: block;
+    white-space: nowrap;
+    font-size: 21px !important;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none !important;
+}
+
+header .brand > div:last-child > small {
+    display: block;
+}
+
+header .nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+    min-width: 0;
+}
+
+header .nav-right > nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+}
+
+header .nav-right > nav a {
+    white-space: nowrap;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+header .nav-right > nav a:hover {
+    color: var(--cfa-orange, #ff6600);
+}
+
+header .account-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+header .login-link,
+header .signup-link,
+header .cfa-connexion-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 9px 13px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+header .login-link,
+header .cfa-connexion-link {
+    color: var(--cfa-blue, #174ea6);
+}
+
+header .login-link:hover,
+header .cfa-connexion-link:hover {
+    background: rgba(23, 78, 166, 0.08);
+}
+
+header .signup-link {
+    background: #e30613;
+    color: #fff;
+}
+
+header .user-welcome {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+header .logout-btn {
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Theme button */
+header .theme-toggle {
+    width: auto;
+    min-width: 0;
+    height: 38px;
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--ink);
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+header .theme-toggle:hover {
+    background: rgba(23, 78, 166, 0.07);
+}
+
+/* Hamburger — desktop hidden */
+#hamburger-menu-trigger {
+    display: none;
+}
+
+/* Mobile drawer — completely closed by default */
+#site-mobile-drawer {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =========================================================
+   MOBILE HEADER
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    header .nav {
+        width: 100%;
+        min-width: 0;
+        height: 70px;
+        min-height: 70px;
+        padding: 0 14px;
+        gap: 10px;
+        box-sizing: border-box;
+    }
+
+    header .brand {
+        min-width: 0;
+        max-width: calc(100% - 54px);
+        gap: 9px;
+    }
+
+    header .logo-container {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+    }
+
+    header .brand > div:last-child {
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    header .brand > div:last-child > span {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px !important;
+    }
+
+    header .nav-right {
+        margin-left: auto;
+        gap: 0;
+        flex-shrink: 0;
+    }
+
+    header .nav-right > nav,
+    header .nav-right > .account-links,
+    header .nav-right > .theme-toggle {
+        display: none;
+    }
+
+    #hamburger-menu-trigger {
+        display: flex;
+        flex: 0 0 42px;
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+        margin: 0;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--cfa-blue, #174ea6);
+        color: #fff;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+
+    #hamburger-menu-trigger span {
+        display: block;
+        width: 23px;
+        height: 3px;
+        border-radius: 3px;
+        background: #fff;
+        pointer-events: none;
+    }
+
+    #hamburger-menu-trigger:hover,
+    #hamburger-menu-trigger:focus {
+        background: var(--cfa-blue-dark, #0d2f70);
+    }
+
+    /* Full-screen mobile drawer */
+    #site-mobile-drawer.cfa-open {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 24px;
+        background: var(--white);
+        color: var(--ink);
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 2147483647;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #site-mobile-drawer.cfa-open * {
+        pointer-events: auto;
+    }
+
+    .cfa-mobile-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+    }
+
+    .cfa-mobile-header strong {
+        color: var(--ink);
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    #close-drawer-btn {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font-size: 34px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    #close-drawer-btn:hover {
+        color: var(--cfa-orange, #ff6600);
+    }
+
+    .cfa-mobile-nav {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .cfa-mobile-link,
+    .cfa-mobile-theme {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px 16px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 17px;
+        font-weight: 700;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .cfa-mobile-link:hover,
+    .cfa-mobile-theme:hover {
+        background: rgba(23, 78, 166, 0.07);
+        color: var(--cfa-orange, #ff6600);
+    }
+
+    .cfa-mobile-login {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 10px;
+        background: var(--cfa-blue, #174ea6);
+        color: #fff !important;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    body.cfa-drawer-open {
+        overflow: hidden !important;
+        height: 100vh;
+    }
+}
+
+@media (max-width: 380px) {
+
+    header .nav {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    header .brand {
+        max-width: calc(100% - 52px);
+    }
+
+    header .brand > div:last-child > span {
+        font-size: 15px !important;
+    }
+}
+</style>
+
 <header>
   <div class="container nav">
     <a class="brand" href="#accueil">
       <div class="logo-container">
-        <img src="file.png" alt="CFA Logo">
+        <img src="cfa.jpeg" alt="CFA Logo">
       </div>
-      <div><span style="font-size: 1.12em; font-weight: bold; text-transform: none !important;">Collins French Academy</span></span><small></small></div>
+      <div><span style="font-size: 1.12em; font-weight: bold; text-transform: none !important;">Collins French Academy</span><small></small></div>
     </a>
     <div class="nav-right">
 <button id="hamburger-menu-trigger"
@@ -796,158 +905,17 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
         <a href="#accueil">Accueil</a>
         <a href="#cours">Cours</a>
         <a href="#ressources">Ressources</a>
-        <a href="pages/compas.html">COMPAS</a>
         <a href="pages/apropos.html">À propos</a>
       </nav>
-      <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
       <div class="account-links" id="accountArea">
-  <a class="login-link" href="pages/connexion.html">Connexion</a>
+  <a class="cfa-connexion-link" href="pages/connexion.html">Connexion</a>
 </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">Mode sombre </button>
 
     </div>
   </div>
 
 <!-- CFA MOBILE MENU -->
-<style>
-@media (max-width: 768px) {
-
-    /* Hide desktop navigation on phones */
-    header .nav-right > nav,
-    header .nav-right > .theme-toggle,
-    header .account-links {
-        display: none !important;
-    }
-
-    /* Hamburger */
-    #hamburger-menu-trigger {
-        display: flex !important;
-        width: 42px;
-        height: 42px;
-        padding: 8px;
-        margin: 0;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        background: var(--white);
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        flex-shrink: 0;
-        z-index: 1001;
-    }
-
-    #hamburger-menu-trigger span {
-        display: block;
-        width: 23px;
-        height: 3px;
-        border-radius: 3px;
-        background: var(--ink);
-    }
-
-    /* Keep hero safely inside phone screen */
-    .hero .container {
-        width: 88%;
-        max-width: 100%;
-    }
-
-    h1 {
-        max-width: 100%;
-        overflow-wrap: break-word;
-    }
-}
-
-/* Drawer is completely hidden by default */
-#site-mobile-drawer {
-    display: none;
-}
-
-/* Drawer when opened */
-#site-mobile-drawer.cfa-open {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    background: var(--white);
-    color: var(--ink);
-    z-index: 2147483647;
-    padding: 24px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
-/* Drawer header */
-.cfa-mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.cfa-mobile-header strong {
-    font-size: 22px;
-    color: var(--blue);
-}
-
-#close-drawer-btn {
-    width: 44px;
-    height: 44px;
-    border: 0;
-    background: transparent;
-    color: var(--ink);
-    font-size: 36px;
-    line-height: 1;
-    cursor: pointer;
-}
-
-/* Drawer links */
-.cfa-mobile-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-}
-
-.cfa-mobile-link,
-.cfa-mobile-theme {
-    width: 100%;
-    padding: 15px 16px;
-    box-sizing: border-box;
-    border: 0;
-    border-radius: 12px;
-    background: transparent;
-    color: var(--ink) !important;
-    text-align: left;
-    text-decoration: none;
-    font: inherit;
-    font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.cfa-mobile-link:hover,
-.cfa-mobile-theme:hover {
-    background: var(--line);
-    color: var(--blue) !important;
-}
-
-.cfa-mobile-login {
-    width: 100%;
-    margin-top: 14px;
-    padding: 15px;
-    box-sizing: border-box;
-    border-radius: 12px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 800;
-}
-</style>
-
 <div id="site-mobile-drawer" aria-hidden="true">
 
     <div class="cfa-mobile-header">
@@ -962,48 +930,12 @@ header h1, header .brand-title, header .logo-title, header .brand span:first-chi
     </div>
 
     <nav class="cfa-mobile-nav">
-
-        <button
-            type="button"
-            id="drawer-theme-toggle"
-            class="cfa-mobile-theme">
-            🌙 Mode sombre
-        </button>
-
-        <a class="cfa-mobile-link" href="#accueil">
-            Accueil
-        </a>
-
-        <a class="cfa-mobile-link" href="#cours">
-            Cours
-        </a>
-
-        <a class="cfa-mobile-link" href="#ressources">
-            Ressources
-        </a>
-
-        <a class="cfa-mobile-link" href="pages/compas.html">
-            COMPAS
-        </a>
-
-        <a class="cfa-mobile-link" href="pages/apropos.html">
-            À propos
-        </a>
-
-        <a class="cfa-mobile-link" href="https://chat.whatsapp.com/C5viQ4lgsNiF3tyRRovWMq" target="_blank" rel="noopener">
-            💬 Groupe WhatsApp
-        </a>
-
-        <a class="cfa-mobile-link" href="tel:+254759583038">
-            📞 +254 759 583 038
-        </a>
-
-        <a class="cfa-mobile-login"
-           id="mobileLearnerEntry"
-           href="pages/connexion.html">
-            Connexion
-        </a>
-
+        <a class="cfa-mobile-link" href="#accueil">Accueil</a>
+        <a class="cfa-mobile-link" href="#cours">Cours</a>
+        <a class="cfa-mobile-link" href="#ressources">Ressources</a>
+        <a class="cfa-mobile-link" href="pages/apropos.html">À propos</a>
+        <a class="cfa-mobile-login" id="mobileLearnerEntry" href="pages/connexion.html">Connexion</a>
+        <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">Mode sombre</button>
     </nav>
 </div>
 
@@ -1045,8 +977,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             drawerTheme.textContent =
                 dark
-                    ? "☀️ Mode clair"
-                    : "🌙 Mode sombre";
+                    ? "️ Mode clair"
+                    : "Mode sombre ";
         }
     }
 
@@ -1180,8 +1112,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     desktopTheme.textContent =
                         next === "dark"
-                            ? "☀️"
-                            : "🌙";
+                            ? "Mode clair"
+                            : "Mode sombre";
                 }
 
                 updateThemeButton();
@@ -1217,12 +1149,12 @@ document.addEventListener("DOMContentLoaded", function () {
 <section class="hero" id="accueil">
   <div class="container hero-grid">
     <div>
-      <div class="badge">🎓 Académie de Français en Ligne</div>
+      <div class="badge"> Académie de Français en Ligne</div>
       <h1>Le français,<br><span>tout simplement.</span></h1>
       <p class="lead">Bienvenue à la Collins French Academy — l'académie complète pour apprendre, pratiquer et vivre le français pas à pas, de la découverte à l'autonomie.</p>
       <div class="actions">
         <a class="btn primary" href="#cours">Découvrir les cours</a>
-        <a class="btn secondary" href="#contact">Rejoindre CFA</a>
+        <a class="btn secondary" href="pages/communaute.html">Rejoindre CFA</a>
       </div>
     </div>
     <a class="hero-card learner-entry"
@@ -1253,7 +1185,12 @@ document.addEventListener("DOMContentLoaded", function () {
       <p>Une approche structurée qui transforme chaque leçon en une occasion de comprendre, pratiquer et retenir.</p>
     </div>
     <div class="cards">
-      <article class="card"><div class="num">01</div><h3>Cours structurés</h3><p>Cours complets et leçons progressives adaptés aux niveaux A1, A2, B1 et B2.</p></article>
+      <a class="card cfa-structured-course" href="pages/cours.html">
+  <div class="num">01</div>
+  <h3>Cours structurés</h3>
+  <p>Cours complets et leçons progressives adaptés aux niveaux A1, A2, B1 et B2.</p>
+  <span class="cfa-card-action">Découvrir les cours →</span>
+</a>
             <article class="card"><div class="num">02</div><h3>Culture francophone</h3><p>Découvrez la langue à travers les pays, les traditions et les réalités francophones.</p></article>
             <article class="card"><div class="num">03</div><h3>Espace ludique</h3><p>Quiz, défis et activités pour apprendre sans rendre l'apprentissage lourd.</p></article>
             <article class="card"><div class="num">04</div><h3>Inspiration quotidienne</h3><p>Citations, expressions du jour et motivation pour booster votre pratique.</p></article>
@@ -1262,46 +1199,21 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </section>
 
-<section class="path" id="parcours">
-  <div class="container">
-    <div class="section-head"><div class="eyebrow">Votre parcours</div><h2>De débutant à autonome.</h2><p>Construisez vos compétences progressivement.</p></div>
-    <div class="levels">
-      <a class="level cfa-course-level" href="pages/connexion.html?course=a1" data-cfa-course="a1">
-        <strong>A1</strong><span>Découverte</span>
-      </a>
-      <div class="level cfa-course-level cfa-course-coming-soon" data-cfa-course="a2">
-        <strong>A2</strong><span>Élémentaire</span>
-      </div>
-      <div class="level cfa-course-level cfa-course-coming-soon" data-cfa-course="b1">
-        <strong>B1</strong><span>Intermédiaire</span>
-      </div>
-      <div class="level cfa-course-level cfa-course-coming-soon" data-cfa-course="b2">
-        <strong>B2</strong><span>Avancé</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="ressources">
   <div class="container">
     <div class="section-head"><div class="eyebrow">À découvrir</div><h2>Les univers CFA.</h2><p>Retrouvez les différents formats qui donnent vie à l'apprentissage.</p></div>
     <div class="resource-grid">
-      <article class="resource"><h3>Français Facile</h3><p>Des contenus courts et accessibles pour apprendre et pratiquer le français au quotidien.</p><a href="https://whatsapp.com/channel/0029VbCsnvZEAKWIGVzLE12t" target="_blank">Découvrir →</a></article>
-      <article class="resource" id="compas"><h3>🧭 COMPAS DU JOUR</h3><p>Conseil, Orientation, Motivation, Parole, Apprendre et Sagesse — une dose quotidienne pour avancer.</p><a href="pages/compas.html">Explorer →</a></article>
+      <a class="resource" href="pages/communaute.html">
+  <h3>Français Facile | CFA</h3>
+  <p>Des contenus courts et accessibles pour apprendre et pratiquer le français au quotidien.</p>
+  <span class="resource-link">Découvrir →</span>
+</a>
+      <article class="resource" id="compas"><h3> COMPAS du jour</h3><p>Conseil, Orientation, Motivation, Parole, Apprendre et Sagesse — une dose quotidienne pour avancer.</p><a href="pages/compas.html">Explorer →</a></article>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="contact-box">
-      <div><div class="eyebrow">Rejoignez la communauté</div><h2>Prêt à apprendre ?</h2><p style="color:var(--muted)">Suivez CFA et commencez votre parcours en français.</p></div>
-      <div class="socials">
-        <a class="social whatsapp" href="https://whatsapp.com/channel/0029VbCsnvZEAKWIGVzLE12t" target="_blank">WhatsApp Channel</a>
-      </div>
-    </div>
-  </div>
-</section>
 </main>
 
 <footer>
@@ -1317,7 +1229,7 @@ const htmlEl = document.documentElement;
 
 const savedTheme = localStorage.getItem('cfa_theme') || 'light';
 htmlEl.setAttribute('data-theme', savedTheme);
-toggleBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+toggleBtn.textContent = savedTheme === 'dark' ? 'Mode clair' : 'Mode sombre';
 
 toggleBtn.addEventListener('click', () => {
   const currentTheme = htmlEl.getAttribute('data-theme');
@@ -1325,7 +1237,7 @@ toggleBtn.addEventListener('click', () => {
 
   htmlEl.setAttribute('data-theme', newTheme);
   localStorage.setItem('cfa_theme', newTheme);
-  toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  toggleBtn.textContent = newTheme === 'dark' ? 'Mode clair' : 'Mode sombre';
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1374,7 +1286,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             accountArea.innerHTML = `
                 <a class="login-link" href="#" id="desktopLogout">
-                    🚪 Déconnexion
+                     Déconnexion
                 </a>
             `;
 
@@ -1394,7 +1306,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (learnerLoggedIn) {
 
             mobileLearnerEntry.href = "#";
-            mobileLearnerEntry.textContent = "🚪 Déconnexion";
+            mobileLearnerEntry.textContent = " Déconnexion";
             mobileLearnerEntry.onclick = async function (event) {
 
                 event.preventDefault();
@@ -1514,48 +1426,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<style id="cfa-mobile-menu-theme-fix">
-/* =========================================================
-   CFA MOBILE MENU — FINAL THEME OVERRIDE
-   Must come after page-local hamburger rules.
-   ========================================================= */
 
-#hamburger-menu-trigger{
-    background:var(--cfa-blue) !important;
-    color:#fff !important;
-    border-color:var(--cfa-blue) !important;
-}
 
-#hamburger-menu-trigger:hover,
-#hamburger-menu-trigger:focus{
-    background:var(--cfa-blue-dark) !important;
-    color:#fff !important;
-    border-color:var(--cfa-blue-dark) !important;
-}
 
-#hamburger-menu-trigger span{
-    background:#fff !important;
-    background-color:#fff !important;
-}
-</style>
 
-<style id="cfa-theme-toggle-neutral">
-/* Theme toggle: intentionally different from action buttons */
-button.theme-toggle,
-button#themeToggle,
-#themeToggle{
-    background:transparent !important;
-    color:var(--ink) !important;
-    border:0 !important;
-    box-shadow:none !important;
-}
 
-button.theme-toggle:hover,
-button#themeToggle:hover,
-#themeToggle:hover{
-    background:transparent !important;
-    color:var(--ink) !important;
-    border:0 !important;
-    box-shadow:none !important;
-}
-</style>
+

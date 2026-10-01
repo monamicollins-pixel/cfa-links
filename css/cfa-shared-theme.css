@@ -171,9 +171,31 @@ input[type="reset"]:hover,
 .cta .btn:hover,
 .cfa-mobile-login:hover,
 button[type="submit"]:hover{
-    background:var(--cfa-blue-dark) !important;
+    background:#FF6600 !important;
     color:#fff !important;
-    border-color:var(--cfa-blue-dark) !important;
+    border-color:#FF6600 !important;
+}
+
+/* CFA button click / active state */
+button:not(.theme-toggle):not(#themeToggle):not(#close-drawer-btn):not(.password-toggle):not(#togglePassword):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button):active,
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+.btn:active,
+.primary:active,
+.secondary:active,
+.auth-submit:active,
+.logout:active,
+.back:active,
+.nav-button:active,
+.cta a:active,
+.cta a.primary:active,
+.cta .btn:active,
+.cfa-mobile-login:active,
+button[type="submit"]:active{
+    background:#C8102E !important;
+    color:#fff !important;
+    border-color:#C8102E !important;
 }
 
 
@@ -424,6 +446,60 @@ h5,
 h6 {
     font-weight: 700 !important;
     line-height: 1.3 !important;
+}
+
+/* =========================================================
+   CFA UNIVERSAL HEADER COLOR + TYPOGRAPHY
+   ========================================================= */
+
+html[data-theme="light"] header .brand,
+html[data-theme="light"] header .brand .cfa-brand-name,
+html[data-theme="light"] header nav a,
+html[data-theme="light"] header .login-link,
+html[data-theme="light"] header .signup-link {
+    color: var(--cfa-blue) !important;
+}
+
+html[data-theme="dark"] header .brand,
+html[data-theme="dark"] header .brand .cfa-brand-name,
+html[data-theme="dark"] header nav a,
+html[data-theme="dark"] header .login-link,
+html[data-theme="dark"] header .signup-link {
+    color: var(--cfa-blue-dark) !important;
+}
+
+header .cfa-brand-name {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-transform: none !important;
+    white-space: nowrap !important;
+}
+
+header nav a,
+header .login-link,
+header .signup-link {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+}
+
+html[data-theme="light"] header nav a:hover,
+html[data-theme="light"] header .login-link:hover,
+html[data-theme="light"] header .signup-link:hover {
+    color: var(--cfa-blue-dark) !important;
+}
+
+html[data-theme="dark"] header nav a:hover,
+html[data-theme="dark"] header .login-link:hover,
+html[data-theme="dark"] header .signup-link:hover {
+    color: #a9c4f2 !important;
+}
+
+header .theme-toggle,
+header #themeToggle {
+    font-size: 14px !important;
+    font-weight: 600 !important;
 }
 
 /* Navigation */

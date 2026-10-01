@@ -48,69 +48,6 @@ body {
     margin: auto;
 }
 
-/* HEADER */
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: var(--card);
-    border-bottom: 1px solid var(--line);
-}
-
-.nav {
-    min-height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--ink);
-    text-decoration: none;
-    font-weight: 800;
-}
-
-.logo {
-    width: 44px;
-    height: 44px;
-    object-fit: contain;
-}
-
-.brand-name {
-    font-size: 18px;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.nav-right a {
-    color: var(--ink);
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.nav-right a:hover {
-    color: var(--blue);
-}
-
-.theme-toggle {
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--ink);
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
 /* HERO */
 .hero {
     padding: 100px 0 80px;
@@ -427,204 +364,679 @@ footer{
   <link rel="stylesheet" href="../css/cfa-loader.css" data-cfa-loader="css">
   <script src="../js/cfa-loader.js" defer data-cfa-loader="js"></script>
 
-<style id="cfa-standard-header">
-/* =========================================
-   CFA STANDARD HEADER
-   Matches homepage header appearance
-   ========================================= */
+</head>
 
-header{
-    position:sticky;
-    top:0;
-    z-index:20;
-    background:var(--white);
-    backdrop-filter:blur(16px);
-    border-bottom:1px solid var(--line);
-    transition:background .3s ease, border-color .3s ease;
+<style id="cfa-universal-master-header">
+/* =========================================================
+   CFA — UNIVERSAL MASTER HEADER
+   Single desktop + mobile header system
+   ========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
 }
 
-header .nav{
-    width:min(1160px,92%);
-    height:80px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
+header .nav {
+    min-height: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
-header .brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    font-weight:850;
-    letter-spacing:.2px;
-    text-decoration:none;
-    color:var(--ink);
+header .brand {
+    flex: 0 0 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
 }
 
-header .logo-container{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    overflow:hidden;
-    border:2px solid var(--blue);
-    box-shadow:0 4px 12px rgba(23,78,166,.15);
-    flex-shrink:0;
+header .logo-container {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--blue);
+    box-shadow: 0 4px 12px rgba(23, 78, 166, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
-header .logo-container img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
+header .logo-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-header .brand > span,
-header .brand-name{
-    color:var(--ink);
-    font-size:21px;
-    font-weight:850;
-    letter-spacing:.2px;
-    white-space:nowrap;
+header .brand > div:last-child {
+    min-width: 0;
 }
 
-header .nav-right{
-    display:flex;
-    align-items:center;
-    gap:16px;
+header .brand > div:last-child > span {
+    display: block;
+    white-space: nowrap;
+    font-size: 21px !important;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none !important;
 }
 
-header .nav-right > a:not(.logout):not(.back),
-header .logout,
-header .back,
-header .nav-button{
-    position:relative;
-    text-decoration:none !important;
+header .brand > div:last-child > small {
+    display: block;
 }
 
-header .nav-right > a:not(.logout):not(.back){
-    color:var(--muted);
-    font-size:14px;
-    font-weight:650;
-    transition:color .2s ease;
+header .nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+    min-width: 0;
 }
 
-header .nav-right > a:not(.logout):not(.back):hover{
-    color:var(--blue);
+header .nav-right > nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
 }
 
-/* Page action buttons */
-
-header .logout,
-header .back,
-header .nav-button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:38px;
-    padding:9px 13px;
-    border:0;
-    border-radius:10px;
-    background:var(--line);
-    color:var(--ink) !important;
-    font-size:14px;
-    font-weight:700;
-    text-decoration:none !important;
-    transition:all .2s ease;
+header .nav-right > nav a {
+    white-space: nowrap;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
 }
 
-header .logout:hover,
-header .back:hover,
-header .nav-button:hover{
-    color:var(--blue) !important;
-    transform:translateY(-1px);
+header .nav-right > nav a:hover {
+    color: var(--cfa-orange, #ff6600);
 }
 
-/* COMPAS */
-
-header .nav-actions{
-    margin-left:auto;
-    display:flex;
-    align-items:center;
-    gap:16px;
+header .account-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    flex-shrink: 0;
 }
 
-/* Mobile */
+header .login-link,
+header .signup-link,
+header .cfa-connexion-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 9px 13px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
 
-@media(max-width:768px){
+header .login-link,
+header .cfa-connexion-link {
+    color: var(--cfa-blue, #174ea6);
+}
 
-    header .nav{
-        width:100%;
-        max-width:100%;
-        min-width:0;
-        height:70px;
-        padding:0 16px;
-        gap:8px;
+header .login-link:hover,
+header .cfa-connexion-link:hover {
+    background: rgba(23, 78, 166, 0.08);
+}
+
+header .signup-link {
+    background: #e30613;
+    color: #fff;
+}
+
+header .user-welcome {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+header .logout-btn {
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Theme button */
+header .theme-toggle {
+    width: auto;
+    min-width: 0;
+    height: 38px;
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--ink);
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+header .theme-toggle:hover {
+    background: rgba(23, 78, 166, 0.07);
+}
+
+/* Hamburger — desktop hidden */
+#hamburger-menu-trigger {
+    display: none;
+}
+
+/* Mobile drawer — completely closed by default */
+#site-mobile-drawer {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =========================================================
+   MOBILE HEADER
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
-    header .brand{
-        min-width:0;
-        max-width:calc(100% - 120px);
-        gap:9px;
+    header .nav {
+        width: 100%;
+        min-width: 0;
+        height: 70px;
+        min-height: 70px;
+        padding: 0 14px;
+        gap: 10px;
+        box-sizing: border-box;
     }
 
-    header .logo-container{
-        width:42px;
-        height:42px;
+    header .brand {
+        min-width: 0;
+        max-width: calc(100% - 54px);
+        gap: 9px;
     }
 
-    header .brand > span,
-    header .brand-name{
-        min-width:0;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        font-size:16px;
+    header .logo-container {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
     }
 
-    header .nav-right{
-        margin-left:auto;
-        flex-shrink:0;
-        gap:8px;
+    header .brand > div:last-child {
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
     }
 
-    header .logout,
-    header .back,
-    header .nav-button{
-        min-height:36px;
-        padding:8px 11px;
-        font-size:13px;
+    header .brand > div:last-child > span {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px !important;
     }
 
-    header .nav-actions{
-        gap:8px;
-        flex-shrink:0;
+    header .nav-right {
+        margin-left: auto;
+        gap: 0;
+        flex-shrink: 0;
+    }
+
+    header .nav-right > nav,
+    header .nav-right > .account-links,
+    header .nav-right > .theme-toggle {
+        display: none;
+    }
+
+    #hamburger-menu-trigger {
+        display: flex;
+        flex: 0 0 42px;
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+        margin: 0;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--cfa-blue, #174ea6);
+        color: #fff;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+
+    #hamburger-menu-trigger span {
+        display: block;
+        width: 23px;
+        height: 3px;
+        border-radius: 3px;
+        background: #fff;
+        pointer-events: none;
+    }
+
+    #hamburger-menu-trigger:hover,
+    #hamburger-menu-trigger:focus {
+        background: var(--cfa-blue-dark, #0d2f70);
+    }
+
+    /* Full-screen mobile drawer */
+    #site-mobile-drawer.cfa-open {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 24px;
+        background: var(--white);
+        color: var(--ink);
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 2147483647;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #site-mobile-drawer.cfa-open * {
+        pointer-events: auto;
+    }
+
+    .cfa-mobile-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+    }
+
+    .cfa-mobile-header strong {
+        color: var(--ink);
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    #close-drawer-btn {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font-size: 34px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    #close-drawer-btn:hover {
+        color: var(--cfa-orange, #ff6600);
+    }
+
+    .cfa-mobile-nav {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .cfa-mobile-link,
+    .cfa-mobile-theme {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px 16px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 17px;
+        font-weight: 700;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .cfa-mobile-link:hover,
+    .cfa-mobile-theme:hover {
+        background: rgba(23, 78, 166, 0.07);
+        color: var(--cfa-orange, #ff6600);
+    }
+
+    .cfa-mobile-login {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 10px;
+        background: var(--cfa-blue, #174ea6);
+        color: #fff !important;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    body.cfa-drawer-open {
+        overflow: hidden !important;
+        height: 100vh;
     }
 }
 
-@media(max-width:520px){
+@media (max-width: 380px) {
 
-    header .brand{
-        max-width:calc(100% - 105px);
+    header .nav {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
-    header .brand > span,
-    header .brand-name{
-        font-size:14px;
+    header .brand {
+        max-width: calc(100% - 52px);
     }
 
-    header .logout,
-    header .back,
-    header .nav-button{
-        padding:7px 9px;
-        font-size:12px;
+    header .brand > div:last-child > span {
+        font-size: 15px !important;
     }
 }
 </style>
-
-</head>
-
 <body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="../index.html#accueil">
+      <div class="logo-container">
+        <img src="../cfa.jpeg" alt="CFA Logo">
+      </div>
+      <div><span style="font-size: 1.12em; font-weight: bold; text-transform: none !important;">Collins French Academy</span><small></small></div>
+    </a>
+    <div class="nav-right">
+<button id="hamburger-menu-trigger"
+        class="cfa-mobile-menu-button"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+      <nav>
+        <a href="../index.html#accueil">Accueil</a>
+        <a href="../index.html#cours">Cours</a>
+        <a href="../index.html#ressources">Ressources</a>
+        <a href="apropos.html">À propos</a>
+      </nav>
+      <div class="account-links" id="accountArea">
+  <a class="cfa-connexion-link" href="connexion.html">Connexion</a>
+</div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">Mode sombre </button>
+
+    </div>
+  </div>
+
+<!-- CFA MOBILE MENU -->
+<div id="site-mobile-drawer" aria-hidden="true">
+
+    <div class="cfa-mobile-header">
+        <strong>CFA</strong>
+
+        <button
+            type="button"
+            id="close-drawer-btn"
+            aria-label="Fermer le menu">
+            ×
+        </button>
+    </div>
+
+    <nav class="cfa-mobile-nav">
+        <a class="cfa-mobile-link" href="../index.html#accueil">Accueil</a>
+        <a class="cfa-mobile-link" href="../index.html#cours">Cours</a>
+        <a class="cfa-mobile-link" href="../index.html#ressources">Ressources</a>
+        <a class="cfa-mobile-link" href="apropos.html">À propos</a>
+        <a class="cfa-mobile-login" id="mobileLearnerEntry" href="connexion.html">Connexion</a>
+        <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">Mode sombre</button>
+    </nav>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const trigger =
+        document.getElementById("hamburger-menu-trigger");
+
+    const drawer =
+        document.getElementById("site-mobile-drawer");
+
+    const closeBtn =
+        document.getElementById("close-drawer-btn");
+
+    const drawerTheme =
+        document.getElementById("drawer-theme-toggle");
+
+    const html =
+        document.documentElement;
+
+    console.log("CFA mobile menu initialized:", {
+        trigger: !!trigger,
+        drawer: !!drawer,
+        closeBtn: !!closeBtn
+    });
+
+    if (!trigger || !drawer) {
+        console.error("CFA mobile menu elements missing.");
+        return;
+    }
+
+    function updateThemeButton() {
+
+        const dark =
+            html.getAttribute("data-theme") === "dark";
+
+        if (drawerTheme) {
+
+            drawerTheme.textContent =
+                dark
+                    ? "️ Mode clair"
+                    : "Mode sombre ";
+        }
+    }
+
+    function openMenu() {
+
+        console.log("CFA: opening mobile menu");
+
+        drawer.classList.add("cfa-open");
+
+        drawer.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        trigger.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+        document.body.classList.add(
+            "cfa-drawer-open"
+        );
+
+        document.body.style.overflow = "hidden";
+
+        updateThemeButton();
+    }
+
+    function closeMenu() {
+
+        console.log("CFA: closing mobile menu");
+
+        drawer.classList.remove("cfa-open");
+
+        drawer.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        trigger.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        document.body.classList.remove(
+            "cfa-drawer-open"
+        );
+
+        document.body.style.overflow = "";
+    }
+
+    /* =====================================================
+       HAMBURGER
+       ===================================================== */
+
+    trigger.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (
+                drawer.classList.contains(
+                    "cfa-open"
+                )
+            ) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        },
+        false
+    );
+
+    /* =====================================================
+       CLOSE BUTTON
+       ===================================================== */
+
+    if (closeBtn) {
+
+        closeBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                closeMenu();
+            },
+            false
+        );
+    }
+
+    /* =====================================================
+       THEME
+       ===================================================== */
+
+    if (drawerTheme) {
+
+        drawerTheme.addEventListener(
+            "click",
+            function () {
+
+                const current =
+                    html.getAttribute(
+                        "data-theme"
+                    ) || "light";
+
+                const next =
+                    current === "dark"
+                        ? "light"
+                        : "dark";
+
+                html.setAttribute(
+                    "data-theme",
+                    next
+                );
+
+                localStorage.setItem(
+                    "cfa_theme",
+                    next
+                );
+
+                const desktopTheme =
+                    document.getElementById(
+                        "themeToggle"
+                    );
+
+                if (desktopTheme) {
+
+                    desktopTheme.textContent =
+                        next === "dark"
+                            ? "Mode clair"
+                            : "Mode sombre";
+                }
+
+                updateThemeButton();
+            },
+            false
+        );
+    }
+
+    /* =====================================================
+       CLOSE AFTER NAVIGATION
+       ===================================================== */
+
+    drawer
+        .querySelectorAll(
+            "a.cfa-mobile-link"
+        )
+        .forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+                    closeMenu();
+                }
+            );
+        });
+
+});
+</script>
+
+</header>
+
 <div id="cfa-page-loader" aria-label="Chargement de Collins French Academy">
   <div class="cfa-loader-wrap">
     <div class="cfa-loader-core">
@@ -647,24 +1059,6 @@ header .nav-actions{
     </div>
   </div>
 </div>
-
-
-<header>
-    <div class="container nav">
-
-        <a class="brand" href="../index.html">
-            <div class="logo-container">
-                <img src="../file.png" alt="CFA Logo">
-            </div>
-            <span>Collins French Academy</span>
-        </a>
-
-        <div class="nav-right">
-            <a href="../index.html#accueil">Accueil</a>
-        </div>
-
-    </div>
-</header>
 
 <main>
 
@@ -729,31 +1123,31 @@ header .nav-actions{
         <div class="values">
 
             <div class="value">
-                <div class="value-icon">📖</div>
+                <div class="value-icon"></div>
                 <h3>Facile</h3>
                 <p>Pour que chacun puisse commencer.</p>
             </div>
 
             <div class="value">
-                <div class="value-icon">🌍</div>
+                <div class="value-icon"></div>
                 <h3>Accessible</h3>
                 <p>Pour que chacun puisse apprendre.</p>
             </div>
 
             <div class="value">
-                <div class="value-icon">🧭</div>
+                <div class="value-icon"></div>
                 <h3>Aventureux</h3>
                 <p>Pour que chaque leçon devienne une découverte.</p>
             </div>
 
             <div class="value">
-                <div class="value-icon">💡</div>
+                <div class="value-icon"></div>
                 <h3>Motivant</h3>
                 <p>Pour donner envie de continuer.</p>
             </div>
 
             <div class="value">
-                <div class="value-icon">🎲</div>
+                <div class="value-icon"></div>
                 <h3>Amusant</h3>
                 <p>Pour apprendre avec plaisir.</p>
             </div>
@@ -779,26 +1173,26 @@ header .nav-actions{
         <div class="philosophy-grid">
 
             <div class="philosophy-card">
-                <strong>🌍 Découvrir</strong>
+                <strong> Découvrir</strong>
                 Une nouvelle expression peut ouvrir une conversation.
                 Un mot peut révéler une culture.
                 Une histoire peut donner envie de comprendre davantage.
             </div>
 
             <div class="philosophy-card">
-                <strong>🎲 S'amuser</strong>
+                <strong> S'amuser</strong>
                 Quiz, défis, jeux, histoires, expressions et découvertes :
                 chaque contenu devient une occasion de progresser.
             </div>
 
             <div class="philosophy-card">
-                <strong>❤️ Donner envie</strong>
+                <strong>️ Donner envie</strong>
                 Notre objectif n'est pas seulement de vous faire retenir
                 le français. Nous voulons vous donner envie d'y revenir.
             </div>
 
             <div class="philosophy-card">
-                <strong>🧭 Avancer</strong>
+                <strong> Avancer</strong>
                 Débutant ou avancé, chacun doit pouvoir progresser
                 à son propre rythme et trouver sa place dans l'aventure CFA.
             </div>
@@ -814,7 +1208,7 @@ header .nav-actions{
 
         <div class="section-title">
             <div class="eyebrow">La méthode CFA</div>
-            <h2>🧭 LA MÉTHODE COMPAS</h2>
+            <h2> LA MÉTHODE COMPAS</h2>
             <p>
                 CFA accompagne les apprenants comme une boussole
                 accompagne un voyageur.
@@ -919,7 +1313,6 @@ header .nav-actions{
     <div class="footer-copyright">© 2026 Collins French Academy (CFA)</div>
   </div>
 </footer>
-
 
 </body>
 </html>

@@ -105,31 +105,6 @@
   font-size:12px;
 }
 
-        @media screen and (max-width: 768px) {
-            body {
-                overflow-x: hidden !important;
-            }
-            .nav, header, .navbar, nav {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                gap: 10px !important;
-            }
-.card, .login-container {
-                width: 90% !important;
-                margin: 20px auto !important;
-                padding: 15px !important;
-            }
-        }
-
-        .brand-title, .logo-text, .academy-title, header .logo span {
-            font-size: 1.15rem !important;
-        }
-
-header *, .brand, .logo { text-transform: none !important; }
-
-span[style*="font-size"], .brand, .logo-text, header span { text-transform: none !important; }
-
 /* CFA — Password fields */
 .password-wrapper {
   position: relative;
