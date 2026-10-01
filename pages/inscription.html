@@ -449,6 +449,8 @@ header .theme-toggle:hover {
       </nav>
       <div class="account-links" id="accountArea">
   <a class="cfa-connexion-link" href="connexion.html">Connexion</a>
+  <a class="cfa-connexion-link" href="inscription.html">Inscription</a>
+  <a class="cfa-connexion-link" href="mot-de-passe-oublie.html">Mot de passe oublié</a>
 </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">Mode sombre </button>
 
@@ -475,6 +477,8 @@ header .theme-toggle:hover {
         <a class="cfa-mobile-link" href="../index.html#ressources">Ressources</a>
         <a class="cfa-mobile-link" href="apropos.html">À propos</a>
         <a class="cfa-mobile-login" id="mobileLearnerEntry" href="connexion.html">Connexion</a>
+        <a class="cfa-mobile-link" href="inscription.html">Inscription</a>
+        <a class="cfa-mobile-link" href="mot-de-passe-oublie.html">Mot de passe oublié</a>
         <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">Mode sombre</button>
     </nav>
 </div>
@@ -684,6 +688,151 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 </header>
+
+<main class="auth-page">
+  <div class="auth-card">
+
+    <img class="auth-logo" src="../cfa.jpeg" alt="CFA">
+
+    <h1 class="auth-title">Créer votre compte</h1>
+
+    <p class="auth-subtitle">
+      Rejoignez Collins French Academy et commencez votre parcours.
+    </p>
+
+    <div id="authMessage" class="auth-message"></div>
+
+    <form class="auth-form" id="signupForm">
+
+      <label>
+        Prénom
+        <input
+          id="firstName"
+          type="text"
+          placeholder="Votre prénom"
+          autocomplete="given-name"
+          required>
+      </label>
+
+      <label>
+        Adresse e-mail
+        <input
+          id="email"
+          type="email"
+          placeholder="vous@example.com"
+          autocomplete="email"
+          required>
+      </label>
+
+      <label class="password-field">
+        Mot de passe
+        <div class="password-wrap">
+          <input
+            id="password"
+            type="password"
+            placeholder="Minimum 6 caractères"
+            autocomplete="new-password"
+            required>
+          <button
+            type="button"
+            class="password-toggle"
+            data-password-toggle
+            aria-label="Afficher le mot de passe">
+            👁
+          </button>
+        </div>
+      </label>
+
+      <label class="password-field">
+        Confirmer le mot de passe
+        <div class="password-wrap">
+          <input
+            id="confirmPassword"
+            type="password"
+            placeholder="Répétez votre mot de passe"
+            autocomplete="new-password"
+            required>
+          <button
+            type="button"
+            class="password-toggle"
+            data-password-toggle
+            aria-label="Afficher le mot de passe">
+            👁
+          </button>
+        </div>
+      </label>
+
+      <button class="auth-submit" type="submit">
+        Créer mon compte
+      </button>
+
+    </form>
+
+    <p class="auth-switch">
+      Vous avez déjà un compte ?
+      <a href="connexion.html">Se connecter</a>
+    </p>
+
+    <a class="back-home" href="../index.html">
+      ← Retour à l'accueil
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container footer">
+    <div class="footer-tagline">Apprendre · S’amuser · S’inspirer · Découvrir</div>
+    <div class="footer-copyright">© 2026 Collins French Academy (CFA)</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/name-validation.js"></script>
+<script src="../js/auth.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const passwordFields = [
+        document.getElementById("password"),
+        document.getElementById("confirmPassword")
+    ];
+
+    const toggles =
+        document.querySelectorAll("[data-password-toggle]");
+
+    let visible = false;
+
+    function updatePasswordVisibility() {
+
+        passwordFields.forEach(function (field) {
+            if (field) {
+                field.type = visible ? "text" : "password";
+            }
+        });
+
+        toggles.forEach(function (button) {
+            button.textContent = visible ? "🙈" : "👁";
+            button.setAttribute(
+                "aria-label",
+                visible
+                    ? "Masquer les mots de passe"
+                    : "Afficher les mots de passe"
+            );
+        });
+    }
+
+    toggles.forEach(function (button) {
+        button.addEventListener("click", function () {
+            visible = !visible;
+            updatePasswordVisibility();
+        });
+    });
+
+});
+</script>
 
 
 </body>
