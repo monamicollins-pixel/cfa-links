@@ -873,26 +873,19 @@ Entrez votre adresse e-mail pour réinitialiser votre mot de passe.
 
 <div id="authMessage" class="auth-message"></div>
 
-    <form id="resetForm">
-        <div style="margin-bottom: 20px; text-align: left;">
-            <label for="resetEmail" style="display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem;">
-                Adresse e-mail
-            </label>
-
+    <form class="auth-form" id="resetForm">
+        <label for="resetEmail">
+            Adresse e-mail
             <input
                 id="resetEmail"
                 type="email"
                 required
                 autocomplete="email"
                 placeholder="nom@exemple.com"
-                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
             >
-        </div>
+        </label>
 
-        <button
-            type="submit"
-            style="width: 100%; padding: 12px;  border: none; border-radius: 5px; font-weight: bold; cursor: pointer;"
-        >
+        <button class="auth-submit" type="submit">
             Envoyer le lien de réinitialisation
         </button>
     </form>
