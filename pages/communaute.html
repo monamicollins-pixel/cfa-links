@@ -209,6 +209,104 @@ footer{
     }
 }
 </style>
+
+<!-- CFA MOBILE DRAWER VISIBILITY FIX -->
+<style id="cfa-mobile-drawer-visibility-fix">
+@media (max-width: 768px) {
+
+    /* Light theme */
+    html[data-theme="light"] #site-mobile-drawer.cfa-open,
+    #site-mobile-drawer.cfa-open {
+        background: #ffffff !important;
+        color: #10203a !important;
+        border-left: 1px solid #dbe3ef;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-header strong,
+    #site-mobile-drawer.cfa-open #close-drawer-btn,
+    #site-mobile-drawer.cfa-open .cfa-mobile-link,
+    #site-mobile-drawer.cfa-open .cfa-mobile-theme {
+        color: #10203a !important;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-link,
+    #site-mobile-drawer.cfa-open .cfa-mobile-theme {
+        border: 1px solid #dbe3ef;
+        background: #ffffff;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-link:hover,
+    #site-mobile-drawer.cfa-open .cfa-mobile-theme:hover {
+        background: #f3f7fc !important;
+        color: #ff6600 !important;
+        border-color: #b9cbe3;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-login {
+        background: #174ea6 !important;
+        color: #ffffff !important;
+        border: 1px solid #174ea6;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-login:hover {
+        background: #0d2f70 !important;
+        color: #ffffff !important;
+    }
+
+    /* Dark theme */
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open {
+        background: #0b1320 !important;
+        color: #f1f5f9 !important;
+        border-left: 1px solid #334155;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-header strong,
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open #close-drawer-btn,
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-link,
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-theme {
+        color: #f1f5f9 !important;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-link,
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-theme {
+        border-color: #334155;
+        background: #111c2e;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-link:hover,
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-theme:hover {
+        background: #1b2a41 !important;
+        color: #ff6600 !important;
+        border-color: #4f83db;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-login {
+        background: #174ea6 !important;
+        color: #ffffff !important;
+        border-color: #4f83db;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-login:hover {
+        background: #0d2f70 !important;
+        color: #ffffff !important;
+    }
+
+    /* Clear separation between menu items */
+    #site-mobile-drawer.cfa-open .cfa-mobile-nav {
+        gap: 8px;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-link,
+    #site-mobile-drawer.cfa-open .cfa-mobile-theme {
+        transition:
+            background-color 0.18s ease,
+            border-color 0.18s ease,
+            color 0.18s ease;
+    }
+}
+</style>
+<!-- END CFA MOBILE DRAWER VISIBILITY FIX -->
+
 </head>
 
 <style id="cfa-universal-master-header">
