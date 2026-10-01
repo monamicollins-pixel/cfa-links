@@ -595,9 +595,7 @@ header .theme-toggle:hover {
         <a href="apropos.html">À propos</a>
       </nav>
       <div class="account-links" id="accountArea">
-  <a class="cfa-connexion-link" href="connexion.html">Connexion</a>
-  <a class="cfa-connexion-link" href="inscription.html">Inscription</a>
-  <a class="cfa-connexion-link" href="mot-de-passe-oublie.html">Mot de passe oublié</a>
+
 </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">Mode sombre </button>
 
@@ -624,8 +622,6 @@ header .theme-toggle:hover {
         <a class="cfa-mobile-link" href="../index.html#ressources">Ressources</a>
         <a class="cfa-mobile-link" href="apropos.html">À propos</a>
         <a class="cfa-mobile-login" id="mobileLearnerEntry" href="connexion.html">Connexion</a>
-        <a class="cfa-mobile-link" href="inscription.html">Inscription</a>
-        <a class="cfa-mobile-link" href="mot-de-passe-oublie.html">Mot de passe oublié</a>
         <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">Mode sombre</button>
     </nav>
 </div>
@@ -868,6 +864,12 @@ document.addEventListener("DOMContentLoaded", function () {
 <p class="auth-subtitle">
 Entrez votre adresse e-mail pour réinitialiser votre mot de passe.
 </p>
+
+<div class="auth-page-nav" aria-label="Navigation d’authentification">
+  <a href="connexion.html" class="auth-nav-button">Connexion</a>
+  <a href="inscription.html" class="auth-nav-button">Inscription</a>
+  <a href="mot-de-passe-oublie.html" class="auth-nav-button auth-nav-active">Mot de passe oublié</a>
+</div>
 
 <div id="authMessage" class="auth-message"></div>
 

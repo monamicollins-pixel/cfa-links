@@ -289,3 +289,82 @@
   }
 
 }
+
+/* =========================================================
+   CFA AUTH PAGE NAVIGATION
+   Consistent 3-button navigation across auth pages
+   ========================================================= */
+
+.auth-page-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  margin: 22px 0 26px;
+}
+
+.auth-nav-button {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border: 1px solid #174ea6;
+  border-radius: 8px;
+  background: transparent;
+  color: #174ea6;
+  transition: background-color 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.2s ease;
+}
+
+.auth-nav-button:hover {
+  background: #174ea6;
+  color: #fff;
+  border-color: #174ea6;
+  transform: translateY(-1px);
+}
+
+.auth-nav-button.auth-nav-active {
+  background: #174ea6;
+  color: #fff;
+  border-color: #174ea6;
+  cursor: default;
+}
+
+.auth-nav-button.auth-nav-active:hover {
+  transform: none;
+}
+
+html[data-theme="dark"] .auth-nav-button {
+  border-color: #4f83db;
+  color: #dbeafe;
+}
+
+html[data-theme="dark"] .auth-nav-button:hover,
+html[data-theme="dark"] .auth-nav-button.auth-nav-active {
+  background: #4f83db;
+  color: #fff;
+  border-color: #4f83db;
+}
+
+@media (max-width: 560px) {
+  .auth-page-nav {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 20px 0 24px;
+  }
+
+  .auth-nav-button {
+    width: 100%;
+    min-height: 44px;
+  }
+}
