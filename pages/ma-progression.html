@@ -284,6 +284,53 @@ footer{
 </style>
 <!-- END CFA MOBILE DRAWER VISIBILITY FIX -->
 
+
+<!-- CFA MOBILE DRAWER BUTTON CONSISTENCY FIX -->
+<style id="cfa-mobile-drawer-button-consistency-fix">
+@media (max-width: 768px) {
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-theme,
+    #site-mobile-drawer.cfa-open .cfa-mobile-login {
+        width: 100%;
+        min-height: 50px;
+        box-sizing: border-box;
+        padding: 14px 16px;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.25;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-theme {
+        border: 1px solid #dbe3ef;
+        background: #ffffff;
+        color: #10203a !important;
+    }
+
+    #site-mobile-drawer.cfa-open .cfa-mobile-login {
+        border: 1px solid #174ea6;
+        background: #174ea6 !important;
+        color: #ffffff !important;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-theme {
+        border-color: #334155;
+        background: #111c2e;
+        color: #f1f5f9 !important;
+    }
+
+    html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-login {
+        border-color: #4f83db;
+        background: #174ea6 !important;
+        color: #ffffff !important;
+    }
+</style>
+<!-- END CFA MOBILE DRAWER BUTTON CONSISTENCY FIX -->
+
 </head>
 
 <style id="cfa-universal-master-header">
