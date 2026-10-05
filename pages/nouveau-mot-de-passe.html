@@ -240,6 +240,39 @@ footer {
   }
 }
 </style>
+
+<!-- CFA UNIVERSAL FUNCTIONAL BUTTON TEXT -->
+
+<style id="cfa-universal-functional-button-text">
+/* =========================================================
+   CFA — UNIVERSAL FUNCTIONAL BUTTON TEXT
+   Light theme = black
+   Dark theme  = white
+   Text color only — preserves existing button styling
+   ========================================================= */
+
+:root {
+  --cfa-button-text: #000000;
+}
+
+html[data-theme="dark"] {
+  --cfa-button-text: #ffffff;
+}
+
+.btn,
+.auth-nav-button,
+.auth-submit,
+.cfa-mobile-login,
+.cfa-mobile-menu-button,
+.login-link,
+.logout,
+.nav-button,
+.password-toggle,
+.theme-toggle {
+  color: var(--cfa-button-text) !important;
+}
+</style>
+
 </head>
 
 <style id="cfa-universal-master-header">
