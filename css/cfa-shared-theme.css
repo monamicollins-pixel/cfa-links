@@ -4,6 +4,7 @@
    ========================================================= */
 
 :root {
+    --cfa-button-text: #000000;
     --cfa-blue: #174ea6;
     --cfa-blue-dark: #0d2f70;
     --cfa-red: #e63946;
@@ -39,6 +40,7 @@ html[data-theme="light"] .login-container {
 
 /* Dark theme */
 html[data-theme="dark"] {
+    --cfa-button-text: #ffffff;
     --cfa-paper: #0b1320;
     --cfa-surface: #111c2e;
     --cfa-input: #131f33;
@@ -151,7 +153,7 @@ input[type="reset"],
 .cfa-mobile-login,
 button[type="submit"]{
     background:var(--cfa-blue) !important;
-    color:#fff !important;
+    color:var(--cfa-button-text) !important;
     border-color:var(--cfa-blue) !important;
 }
 
@@ -172,7 +174,7 @@ input[type="reset"]:hover,
 .cfa-mobile-login:hover,
 button[type="submit"]:hover{
     background:#FF6600 !important;
-    color:#fff !important;
+    color:#ffffff !important;
     border-color:#FF6600 !important;
 }
 
@@ -194,7 +196,7 @@ input[type="reset"]:active,
 .cfa-mobile-login:active,
 button[type="submit"]:active{
     background:#C8102E !important;
-    color:#fff !important;
+    color:#ffffff !important;
     border-color:#C8102E !important;
 }
 
@@ -225,7 +227,7 @@ button#themeToggle:hover,
 #hamburger-menu-trigger,
 .cfa-mobile-menu-button{
     background:var(--cfa-blue) !important;
-    color:#fff !important;
+    color:var(--cfa-button-text) !important;
     border-color:var(--cfa-blue) !important;
 }
 
@@ -234,7 +236,7 @@ button#themeToggle:hover,
 .cfa-mobile-menu-button:hover,
 .cfa-mobile-menu-button:focus{
     background:var(--cfa-blue-dark) !important;
-    color:#fff !important;
+    color:#ffffff !important;
     border-color:var(--cfa-blue-dark) !important;
 }
 
@@ -245,41 +247,53 @@ button#themeToggle:hover,
 }
 
 /* =========================================================
-   CFA FINAL BUTTON TEXT ENFORCEMENT
-   Action buttons always use white text in both themes.
-   Special controls remain excluded.
+   CFA UNIVERSAL FUNCTIONAL BUTTON TEXT
+   Light theme = black
+   Dark theme = white
    ========================================================= */
 
-button:not(.theme-toggle):not(#themeToggle):not(#close-drawer-btn):not(.password-toggle):not(#togglePassword):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button),
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-.btn,
-.primary,
-.secondary,
-.auth-submit,
-.logout,
-.back,
-.nav-button,
-.cta a,
-.cta a.primary,
-.cta .btn,
-.cfa-mobile-login,
-button[type="submit"]{
-    color:#fff !important;
-    -webkit-text-fill-color:#fff !important;
+html[data-theme="light"] button:not(.theme-toggle):not(#themeToggle):not(#close-drawer-btn):not(.password-toggle):not(#togglePassword):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button),
+html[data-theme="light"] input[type="button"],
+html[data-theme="light"] input[type="submit"],
+html[data-theme="light"] input[type="reset"],
+html[data-theme="light"] .btn,
+html[data-theme="light"] .primary,
+html[data-theme="light"] .secondary,
+html[data-theme="light"] .auth-submit,
+html[data-theme="light"] .logout,
+html[data-theme="light"] .back,
+html[data-theme="light"] .nav-button,
+html[data-theme="light"] .cta a,
+html[data-theme="light"] .cta a.primary,
+html[data-theme="light"] .cta .btn,
+html[data-theme="light"] .cfa-mobile-login,
+html[data-theme="light"] button[type="submit"],
+html[data-theme="light"] #hamburger-menu-trigger,
+html[data-theme="light"] .cfa-mobile-menu-button {
+    color:#000000 !important;
+    -webkit-text-fill-color:#000000 !important;
 }
 
-#hamburger-menu-trigger,
-.cfa-mobile-menu-button{
-    color:#fff !important;
-    -webkit-text-fill-color:#fff !important;
-}
-
-#hamburger-menu-trigger span,
-.cfa-mobile-menu-button span{
-    color:#fff !important;
-    -webkit-text-fill-color:#fff !important;
+html[data-theme="dark"] button:not(.theme-toggle):not(#themeToggle):not(#close-drawer-btn):not(.password-toggle):not(#togglePassword):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button),
+html[data-theme="dark"] input[type="button"],
+html[data-theme="dark"] input[type="submit"],
+html[data-theme="dark"] input[type="reset"],
+html[data-theme="dark"] .btn,
+html[data-theme="dark"] .primary,
+html[data-theme="dark"] .secondary,
+html[data-theme="dark"] .auth-submit,
+html[data-theme="dark"] .logout,
+html[data-theme="dark"] .back,
+html[data-theme="dark"] .nav-button,
+html[data-theme="dark"] .cta a,
+html[data-theme="dark"] .cta a.primary,
+html[data-theme="dark"] .cta .btn,
+html[data-theme="dark"] .cfa-mobile-login,
+html[data-theme="dark"] button[type="submit"],
+html[data-theme="dark"] #hamburger-menu-trigger,
+html[data-theme="dark"] .cfa-mobile-menu-button {
+    color:#ffffff !important;
+    -webkit-text-fill-color:#ffffff !important;
 }
 
 /* =========================================================

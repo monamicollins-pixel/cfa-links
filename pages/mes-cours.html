@@ -323,7 +323,7 @@ footer{
     #site-mobile-drawer.cfa-open .cfa-mobile-theme {
         border: 1px solid #dbe3ef;
         background: #ffffff;
-        color: #10203a !important;
+        color: var(--cfa-button-text) !important;
     }
 
     #site-mobile-drawer.cfa-open .cfa-mobile-login {
@@ -335,7 +335,7 @@ footer{
     html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-theme {
         border-color: #334155;
         background: #111c2e;
-        color: #f1f5f9 !important;
+        color: var(--cfa-button-text) !important;
     }
 
     html[data-theme="dark"] #site-mobile-drawer.cfa-open .cfa-mobile-login {
@@ -397,43 +397,6 @@ footer {
 </style>
 
 <!-- CFA UNIVERSAL FUNCTIONAL BUTTON TEXT -->
-
-
-
-<style id="cfa-universal-functional-button-text">
-/* =========================================================
-   CFA — UNIVERSAL FUNCTIONAL BUTTON TEXT
-   Light theme = black
-   Dark theme  = white
-   Text color only — preserves existing button styling
-   ========================================================= */
-
-:root {
-  --cfa-button-text: #000000;
-}
-
-html[data-theme="dark"] {
-  --cfa-button-text: #ffffff;
-}
-
-.btn,
-.auth-nav-button,
-.auth-submit,
-.cfa-mobile-login,
-.cfa-mobile-menu-button,
-.cfa-mobile-theme,
-.cfa-connexion-link,
-.login-link,
-.signup-link,
-.logout,
-.logout-btn,
-.nav-button,
-.password-toggle,
-.theme-toggle {
-  color: var(--cfa-button-text) !important;
-}
-</style>
-
 </head>
 
 <style id="cfa-universal-master-header">
@@ -699,7 +662,7 @@ header .theme-toggle:hover {
         border: 1px solid var(--line);
         border-radius: 10px;
         background: var(--cfa-blue, #174ea6);
-        color: #fff;
+        color: var(--cfa-button-text) !important;
         cursor: pointer;
         pointer-events: auto;
     }
