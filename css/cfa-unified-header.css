@@ -1,0 +1,305 @@
+/* =========================================================
+   CFA — ONE SHARED HEADER SYSTEM
+   Desktop:
+   Collins French Academy → Theme → Navigation → Connexion
+
+   Mobile:
+   Hamburger → Theme → Current page → Other links → Connexion
+   ========================================================= */
+
+@media (min-width: 769px) {
+
+  header .container.nav,
+  .auth-site-header .container.nav {
+    width: min(1160px, 92%) !important;
+    min-height: 80px !important;
+    height: 80px !important;
+    margin: 0 auto !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    gap: 0 !important;
+  }
+
+  /* CFA */
+  header .brand,
+  .auth-site-header .brand {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  header .cfa-brand-name,
+  .auth-site-header .cfa-brand-name {
+    white-space: nowrap !important;
+  }
+
+  /* Theme is DIRECTLY after CFA */
+  header .container.nav > #themeToggle,
+  header .container.nav > .theme-toggle,
+  .auth-site-header .container.nav > #themeToggle,
+  .auth-site-header .container.nav > .theme-toggle {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 126px !important;
+    min-width: 126px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+
+    margin: 0 0 0 24px !important;
+    padding: 8px 12px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+    color: #174EA6 !important;
+
+    border: 1px solid #174EA6 !important;
+    border-radius: 9px !important;
+
+    box-shadow: 0 3px 10px rgba(23,78,166,.12) !important;
+
+    font-size: 12.5px !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+
+    white-space: nowrap !important;
+    cursor: pointer !important;
+  }
+
+  html[data-theme="dark"]
+  header .container.nav > #themeToggle,
+
+  html[data-theme="dark"]
+  header .container.nav > .theme-toggle,
+
+  html[data-theme="dark"]
+  .auth-site-header .container.nav > #themeToggle,
+
+  html[data-theme="dark"]
+  .auth-site-header .container.nav > .theme-toggle {
+    background: #111c2e !important;
+    color: #ffffff !important;
+    border-color: #5b8fdc !important;
+  }
+
+  /* Navigation group */
+  header .container.nav > .nav-right,
+  .auth-site-header .container.nav > .nav-right {
+    display: flex !important;
+    flex: 0 1 auto !important;
+
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+
+    margin: 0 0 0 18px !important;
+    padding: 0 !important;
+
+    gap: 18px !important;
+    min-width: 0 !important;
+  }
+
+  header .nav-right > nav,
+  .auth-site-header .nav-right > nav {
+    display: flex !important;
+    flex: 0 1 auto !important;
+
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+
+    gap: 20px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    white-space: nowrap !important;
+  }
+
+  header .nav-right > nav a,
+  .auth-site-header .nav-right > nav a {
+    display: inline-block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    color: #174EA6 !important;
+
+    font-size: 14px !important;
+    font-weight: 700 !important;
+
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  }
+
+  header .nav-right > nav a:hover,
+  .auth-site-header .nav-right > nav a:hover {
+    color: #0D2F70 !important;
+  }
+
+  header .nav-right > nav a.cfa-current-page,
+  header .nav-right > nav a.cfa-active-section,
+  .auth-site-header .nav-right > nav a.cfa-current-page,
+  .auth-site-header .nav-right > nav a.cfa-active-section {
+    color: #E30613 !important;
+    font-weight: 800 !important;
+  }
+
+  /* Connexion */
+  header .nav-right > .account-links,
+  .auth-site-header .nav-right > .account-links {
+    display: flex !important;
+    flex: 0 0 auto !important;
+
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  header .nav-right > .account-links .login-link,
+  .auth-site-header .nav-right > .account-links .login-link {
+    display: inline-block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    color: #174EA6 !important;
+
+    font-size: 14px !important;
+    font-weight: 800 !important;
+
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  }
+
+  header .nav-right > .account-links .login-link:hover,
+  .auth-site-header .nav-right > .account-links .login-link:hover {
+    color: #0D2F70 !important;
+  }
+
+  /* Desktop hamburger hidden */
+  header #hamburger-menu-trigger,
+  .auth-site-header #hamburger-menu-trigger,
+  header .cfa-mobile-menu-button,
+  .auth-site-header .cfa-mobile-menu-button {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Desktop Theme/nav/account hidden */
+  header .container.nav > #themeToggle,
+  header .container.nav > .theme-toggle,
+  header .nav-right > nav,
+  header .nav-right > .account-links,
+
+  .auth-site-header .container.nav > #themeToggle,
+  .auth-site-header .container.nav > .theme-toggle,
+  .auth-site-header .nav-right > nav,
+  .auth-site-header .nav-right > .account-links {
+    display: none !important;
+  }
+
+  /* Hamburger visible */
+  header #hamburger-menu-trigger,
+  .auth-site-header #hamburger-menu-trigger,
+  header .cfa-mobile-menu-button,
+  .auth-site-header .cfa-mobile-menu-button {
+    display: flex !important;
+  }
+
+  /* Mobile drawer */
+  #site-mobile-drawer .cfa-mobile-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+  }
+
+  /* Theme = only mobile button */
+  #site-mobile-drawer .cfa-mobile-theme {
+    order: 0 !important;
+
+    width: 100% !important;
+    min-height: 46px !important;
+
+    margin: 0 !important;
+    padding: 12px 16px !important;
+
+    background: #ffffff !important;
+    color: #174EA6 !important;
+
+    border: 1px solid #174EA6 !important;
+    border-radius: 9px !important;
+
+    box-shadow: 0 3px 10px rgba(23,78,166,.12) !important;
+
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+  }
+
+  html[data-theme="dark"] #site-mobile-drawer .cfa-mobile-theme {
+    background: #111c2e !important;
+    color: #ffffff !important;
+    border-color: #5b8fdc !important;
+  }
+
+  /* Mobile navigation = text only */
+  #site-mobile-drawer .cfa-mobile-link,
+  #site-mobile-drawer .cfa-mobile-login {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 14px 16px !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    color: #174EA6 !important;
+
+    font-size: 17px !important;
+    font-weight: 700 !important;
+
+    text-align: left !important;
+    text-decoration: none !important;
+  }
+
+  #site-mobile-drawer .cfa-mobile-link.cfa-current-page,
+  #site-mobile-drawer .cfa-mobile-link.cfa-active-section,
+  #site-mobile-drawer .cfa-mobile-login.cfa-current-page {
+    color: #E30613 !important;
+    font-weight: 800 !important;
+  }
+}
