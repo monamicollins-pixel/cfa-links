@@ -62,3 +62,41 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
 })();
+
+/* Phone menu: same font on every item (links and the Theme button) */
+(function () {
+  var SEL = '#site-mobile-drawer .cfa-mobile-link, #site-mobile-drawer .cfa-mobile-login, #site-mobile-drawer .cfa-mobile-theme';
+  function fix() {
+    document.querySelectorAll(SEL).forEach(function (e) {
+      e.style.setProperty('font-weight', '700', 'important');
+      e.style.setProperty('font-size', '14px', 'important');
+      e.style.setProperty('font-family', 'inherit', 'important');
+      e.style.setProperty('letter-spacing', '0', 'important');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix); else fix();
+  var d = document.getElementById('site-mobile-drawer');
+  if (d) new MutationObserver(fix).observe(d, { childList: true, subtree: true });
+})();
+
+/* Header takes the page's real background colour, in both themes */
+(function () {
+  var root = document.documentElement;
+  function paint() {
+    var els = [document.body, root];
+    for (var i = 0; i < els.length; i++) {
+      var c = els[i] && getComputedStyle(els[i]).backgroundColor;
+      if (c && c !== 'transparent' && c !== 'rgba(0, 0, 0, 0)') { root.style.setProperty('--cfa-page-bg', c); return; }
+    }
+    root.style.setProperty('--cfa-page-bg', '#fff');
+  }
+  function later() { paint(); setTimeout(paint, 450); }   /* themes fade, so read again after the fade */
+  function start() {
+    later();
+    var o = new MutationObserver(later);
+    o.observe(root, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+    o.observe(document.body, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+    document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('#themeToggle, #drawer-theme-toggle')) later(); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();

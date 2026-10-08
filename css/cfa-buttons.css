@@ -75,3 +75,101 @@ header .nav-right, header .account-links { display: flex; align-items: center; g
   html:root:root { scroll-padding-top: 80px; }
   html:root:root body :is(section, [id])[id] { scroll-margin-top: 80px; }
 }
+
+/* Current page: red background, WHITE text, in every state and theme */
+html:root:root:root body :is(header .nav a, .cfa-mobile-link, .cfa-mobile-login)[aria-current="page"],
+html:root:root:root body :is(header .nav a, .cfa-mobile-link, .cfa-mobile-login)[aria-current="page"] * {
+  background-color: #C8102E !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+html:root:root:root body :is(header .nav a, .cfa-mobile-link, .cfa-mobile-login)[aria-current="page"] * {
+  background: transparent !important;
+}
+
+/* Phone menu: identical text on every item (links and the Theme button) */
+@media (max-width: 900px) {
+  html:root:root:root body #site-mobile-drawer :is(.cfa-mobile-link, .cfa-mobile-login, .cfa-mobile-theme) {
+    font-family: inherit !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    font-style: normal !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    justify-content: center !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+  html:root:root:root body #site-mobile-drawer :is(.cfa-mobile-link, .cfa-mobile-login, .cfa-mobile-theme):not([aria-current="page"]) {
+    color: #000 !important;
+    -webkit-text-fill-color: #000 !important;
+  }
+  html:root:root:root body #site-mobile-drawer :is(.cfa-mobile-link, .cfa-mobile-login, .cfa-mobile-theme):not([aria-current="page"]):active {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+  }
+}
+
+/* Header stays visible while scrolling: PC and phone, every page */
+html:root:root:root body header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background: #fff !important;
+}
+html:root:root:root[data-theme="dark"] body header,
+html:root:root:root body.dark-mode header {
+  background: #000 !important;
+}
+/* "overflow-x: hidden" on html/body stops sticky from working; "clip" avoids the sideways scroll without that problem */
+html:root:root:root, html:root:root:root body { overflow-x: clip !important; }
+/* The phone menu opens above the pinned header */
+html:root:root:root body #site-mobile-drawer { z-index: 1200 !important; }
+/* Section links (#cours, #ressources) stop below the header, not under it */
+html:root:root:root { scroll-padding-top: 90px; }
+html:root:root:root body [id] { scroll-margin-top: 90px; }
+
+/* Header stays visible while scrolling: PC and phone, every page */
+html:root:root:root body header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background: #fff !important;
+}
+html:root:root:root[data-theme="dark"] body header,
+html:root:root:root body.dark-mode header {
+  background: #000 !important;
+}
+/* "overflow-x: hidden" on html/body stops sticky from working; "clip" avoids the sideways scroll without that problem */
+html:root:root:root, html:root:root:root body { overflow-x: clip !important; }
+/* The phone menu opens above the pinned header */
+html:root:root:root body #site-mobile-drawer { z-index: 1200 !important; }
+/* Section links (#cours, #ressources) stop below the header, not under it */
+html:root:root:root { scroll-padding-top: 90px; }
+html:root:root:root body [id] { scroll-margin-top: 90px; }
+
+/* Header blends into the page: same background as the page, no lines */
+html:root:root:root:root:root:root body header {
+  background: var(--cfa-page-bg, inherit) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html:root:root:root body :is(header .container, header .nav, header .nav-right, header nav, .cfa-mobile-header, .cfa-mobile-nav) {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* No divider lines outside cards */
+html:root:root:root body hr {
+  border: 0 !important; height: 0 !important; background: none !important; box-shadow: none !important;
+}
+html:root:root:root body :is(footer, section, main, aside, [class*="divider" i], [class*="separator" i]):not([class*="card" i]):not([class*="card" i] *) {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
