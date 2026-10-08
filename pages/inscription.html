@@ -941,7 +941,7 @@ document.addEventListener("DOMContentLoaded", function () {
             class="password-toggle"
             data-password-toggle
             aria-label="Afficher le mot de passe">
-            👁
+            Afficher
           </button>
         </div>
       </label>
@@ -960,7 +960,7 @@ document.addEventListener("DOMContentLoaded", function () {
             class="password-toggle"
             data-password-toggle
             aria-label="Afficher le mot de passe">
-            👁
+            Afficher
           </button>
         </div>
       </label>
@@ -1008,11 +1008,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         toggles.forEach(function (button) {
-            button.textContent = visible ? "🙈" : "👁";
+            button.textContent = visible ? "Cacher" : "Afficher";
             button.setAttribute(
                 "aria-label",
                 visible
-                    ? "Masquer les mots de passe"
+                    ? "Cacher les mots de passe"
                     : "Afficher les mots de passe"
             );
         });
