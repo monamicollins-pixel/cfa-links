@@ -1023,7 +1023,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             setTimeout(function () {
-                window.location.replace("../dashboard.html");
+                window.location.replace(cfaCourseRedirectUrl());
             }, 1800);
 
             return;
@@ -1033,7 +1033,7 @@ document.addEventListener("DOMContentLoaded", async function () {
          * CFA — Existing authenticated learner
          */
         if (user) {
-            window.location.replace("../dashboard.html");
+            window.location.replace(cfaCourseRedirectUrl());
         }
 
     } catch (error) {
