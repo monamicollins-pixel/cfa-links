@@ -976,3 +976,34 @@ html:root:root body :is(header, .auth-site-header) :is(#hamburger-menu-trigger, 
   min-height: 40px !important;
   padding: 0 !important;
 }
+
+/* Connexion: match ordinary navigation entries on desktop and mobile */
+html:root:root body :is(header, .auth-site-header) .nav-right > .account-links a.cfa-connexion-link,
+html:root:root body #site-mobile-drawer a.cfa-mobile-login {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+html:root:root body :is(header, .auth-site-header) .nav-right > .account-links a.cfa-connexion-link:hover,
+html:root:root body #site-mobile-drawer a.cfa-mobile-login:hover {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: #FF6600 !important;
+  -webkit-text-fill-color: #FF6600 !important;
+}
+
+html:root:root body :is(header, .auth-site-header) .nav-right > .account-links a.cfa-connexion-link:is(.cfa-current-page, .cfa-active-section),
+html:root:root body #site-mobile-drawer a.cfa-mobile-login:is(.cfa-current-page, .cfa-active-section) {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}

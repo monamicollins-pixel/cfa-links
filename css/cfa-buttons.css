@@ -1,216 +1,301 @@
-/* CFA header/menu buttons: ONE shared standard, loaded last on every page.
-   Not included: logo, hamburger, drawer-close (small icon controls). */
+/* =========================================================
+   CFA — Shared header and dropdown
+   One header control on desktop and mobile.
+   Navigation, theme and account options live in the panel.
+   ========================================================= */
 
-html body :is(header .nav a, header .nav button,
-              #site-mobile-drawer .cfa-mobile-link,
-              #site-mobile-drawer .cfa-mobile-login,
-              #site-mobile-drawer .cfa-mobile-theme):not(.brand):not(.logo-container):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button) {
-  --b: #4f83db; --f: #000;                 /* normal */
-  display: inline-flex !important;
-  align-items: center; justify-content: center;
-  box-sizing: border-box;
-  width: 108px; min-height: 32px; margin: 0; padding: 0 6px;
-  border: 0 !important; border-radius: 10px;
-  font-family: inherit; font-weight: 700; font-size: 12px; line-height: 1.2; text-align: center; text-decoration: none; white-space: nowrap;
-  background: var(--b) !important; color: var(--f) !important;
+:root {
+  --cfa-control-blue: #4f83db;
+  --cfa-control-blue-hover: #ff6600;
+  --cfa-control-red: #c8102e;
+  --cfa-control-radius: 10px;
+  --cfa-control-height: 44px;
+}
+
+/* Keep the shared header above page content. */
+html body header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Avoid horizontal overflow without breaking sticky positioning. */
+html {
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* Header layout: brand on the left, one dropdown on the right. */
+html body header .container.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+
+html body header .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+  text-decoration: none;
+}
+
+html body header .brand > div:last-child {
+  min-width: 0;
+}
+
+html body header .brand > div:last-child > span {
+  overflow-wrap: anywhere;
+}
+
+html body header .brand > div:last-child > small {
+  display: none !important;
+}
+
+html body header .logo-container {
+  flex: 0 0 auto;
+}
+
+html body header .nav-right {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  min-width: 0;
+  margin-left: auto;
+  gap: 8px;
+}
+
+/* The legacy controls remain in the HTML for existing scripts,
+   but are not displayed alongside the single dropdown. */
+html body header .nav-right > nav,
+html body header #accountArea,
+html body header #hamburger-menu-trigger,
+html body header .cfa-mobile-menu-button,
+html body #site-mobile-drawer {
+  display: none !important;
+}
+
+/* Dropdown wrapper. */
+html body header #cfa-navdd {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Main dropdown button. */
+html body header #cfa-navdd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 116px;
+  min-height: var(--cfa-control-height);
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--cfa-control-radius);
+  background: var(--cfa-control-blue);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
   cursor: pointer;
-
-  &:hover  { --b: #FF6600; }               /* hover */
-  &:active { --b: #C8102E; --f: #fff; }    /* pressed */
-  &:focus-visible { outline: 3px solid #FF6600; outline-offset: 2px; }
-
-  /* current page: red in every state */
-  &[aria-current="page"],
-  &[aria-current="page"]:is(:hover, :active, :focus, :focus-visible) { --b: #C8102E; --f: #fff; }
+  box-shadow: 0 2px 5px rgb(0 35 102 / 12%);
+  transition: background-color .18s ease, box-shadow .18s ease;
 }
 
-/* Header buttons: equal gaps on PC */
-header .nav-right, header .account-links { display: flex; align-items: center; gap: 10px; }
+html body header #cfa-navdd-btn:hover {
+  background: var(--cfa-control-blue-hover);
+  color: #fff;
+}
 
-@media (max-width: 768px) {
-  /* Phone menu: same width, centred */
-  html body #site-mobile-drawer :is(.cfa-mobile-link, .cfa-mobile-theme) {
-    display: flex !important; width: 100% !important; min-height: 44px !important; font-size: 14px !important; margin: 0 0 10px;
+html body header #cfa-navdd-btn:focus-visible {
+  outline: 3px solid var(--cfa-control-blue);
+  outline-offset: 3px;
+}
+
+html body header #cfa-navdd-btn[aria-expanded="true"] {
+  background: var(--cfa-control-red);
+  color: #fff;
+}
+
+html body header #cfa-navdd-btn svg {
+  display: block;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  transition: transform .18s ease;
+}
+
+html body header #cfa-navdd-btn[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* Dropdown panel. */
+html body header #cfa-navdd-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1100;
+  width: max-content;
+  min-width: 232px;
+  max-width: min(320px, calc(100vw - 24px));
+  max-height: min(70vh, 520px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 8px;
+  border: 1px solid var(--line, #e5eaf2);
+  border-radius: 14px;
+  background: var(--card-bg, #fff);
+  color: var(--ink, #10203a);
+  box-shadow: 0 12px 32px rgb(15 23 42 / 18%);
+}
+
+html body header #cfa-navdd-panel[hidden] {
+  display: none !important;
+}
+
+/* Navigation links, theme action and account actions share one style. */
+html body header #cfa-navdd-panel > a,
+html body header #cfa-navdd-panel > button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink, #10203a);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+html body header #cfa-navdd-panel > a:hover,
+html body header #cfa-navdd-panel > button:hover {
+  background: rgb(79 131 219 / 12%);
+  color: var(--blue, #174ea6);
+}
+
+html body header #cfa-navdd-panel > a:focus-visible,
+html body header #cfa-navdd-panel > button:focus-visible {
+  outline: 2px solid var(--blue, #174ea6);
+  outline-offset: -2px;
+}
+
+
+html body header #cfa-navdd-panel .cfa-navdd-note {
+  padding: 10px 12px;
+  color: var(--muted, #64748b);
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* Theme action is the first row of the dropdown. */
+html body header #cfa-navdd-panel > .cfa-navdd-theme {
+  gap: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--line, #e5eaf2);
+  border-radius: 8px 8px 4px 4px;
+}
+
+html body header #cfa-navdd-panel > .cfa-navdd-theme::before {
+  content: "\25D0";
+  flex: 0 0 auto;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* Keep section destinations clear of the sticky header. */
+html body [id="accueil"],
+html body [id="cours"],
+html body [id="ressources"] {
+  scroll-margin-top: 100px;
+}
+
+/* Compact layout for phones. */
+@media (max-width: 600px) {
+  html body header .container.nav {
+    gap: 8px;
   }
-  /* Phone: no Connexion button inside the menu (the one in the header bar stays) */
-  html body #site-mobile-drawer .cfa-mobile-login { display: none !important; }
-  /* Phone: theme button lives in the menu only, not in the header bar */
-  html:root:root body header .nav-right #themeToggle { display: none !important; }
-}
 
-/* Phone: theme button lives ONLY in the menu, never in the header bar */
-@media (max-width: 900px) {
-  html:root:root:root body header #themeToggle,
-  html:root:root:root body header .nav-right > .theme-toggle,
-  html:root:root:root body header button.theme-toggle[id="themeToggle"] {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-  }
-}
-
-/* Phone and tablet: header stays visible while scrolling */
-@media (max-width: 900px) {
-  html:root:root body header {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1000 !important;
-    background: #fff !important;            /* solid, so content never shows through */
-  }
-  html:root:root[data-theme="dark"] body header,
-  html:root:root body.dark-mode header {
-    background: #000 !important;
+  html body header .brand {
+    gap: 7px;
   }
 
-  /* "overflow-x: hidden" on html/body stops sticky from working; "clip" does the same job without that problem */
-  html:root:root, html:root:root body {
-    overflow-x: clip !important;
-  }
-
-  /* Section links (#cours, #ressources) stop below the header, not under it */
-  html:root:root { scroll-padding-top: 80px; }
-  html:root:root body :is(section, [id])[id] { scroll-margin-top: 80px; }
-}
-
-/* Current page: red background, WHITE text, in every state and theme */
-html:root:root:root body :is(header .nav a, .cfa-mobile-link, .cfa-mobile-login)[aria-current="page"],
-html:root:root:root body :is(header .nav a, .cfa-mobile-link, .cfa-mobile-login)[aria-current="page"] * {
-  background-color: #C8102E !important;
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-}
-html:root:root:root body :is(header .nav a, .cfa-mobile-link, .cfa-mobile-login)[aria-current="page"] * {
-  background: transparent !important;
-}
-
-/* Phone menu: identical text on every item (links and the Theme button) */
-@media (max-width: 900px) {
-  html:root:root:root body #site-mobile-drawer :is(.cfa-mobile-link, .cfa-mobile-login, .cfa-mobile-theme) {
-    font-family: inherit !important;
+  html body header .brand > div:last-child > span {
     font-size: 14px !important;
-    font-weight: 700 !important;
-    font-style: normal !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0 !important;
-    text-transform: none !important;
-    text-decoration: none !important;
-    text-align: center !important;
-    justify-content: center !important;
-    -webkit-appearance: none !important;
-    appearance: none !important;
+    line-height: 1.2;
   }
-  html:root:root:root body #site-mobile-drawer :is(.cfa-mobile-link, .cfa-mobile-login, .cfa-mobile-theme):not([aria-current="page"]) {
-    color: #000 !important;
-    -webkit-text-fill-color: #000 !important;
+
+  html body header .logo-container img {
+    max-width: 40px !important;
+    max-height: 40px !important;
   }
-  html:root:root:root body #site-mobile-drawer :is(.cfa-mobile-link, .cfa-mobile-login, .cfa-mobile-theme):not([aria-current="page"]):active {
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
+
+  html body header #cfa-navdd-btn {
+    min-width: 0;
+    min-height: 42px;
+    gap: 7px;
+    padding: 0 11px;
+    font-size: 13px;
+  }
+
+  html body header #cfa-navdd-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-basis: 14px;
+  }
+
+  html body header #cfa-navdd-panel {
+    min-width: 220px;
+    max-width: calc(100vw - 20px);
   }
 }
 
-/* Header stays visible while scrolling: PC and phone, every page */
-html:root:root:root body header {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  background: #fff !important;
-}
-html:root:root:root[data-theme="dark"] body header,
-html:root:root:root body.dark-mode header {
-  background: #000 !important;
-}
-/* "overflow-x: hidden" on html/body stops sticky from working; "clip" avoids the sideways scroll without that problem */
-html:root:root:root, html:root:root:root body { overflow-x: clip !important; }
-/* The phone menu opens above the pinned header */
-html:root:root:root body #site-mobile-drawer { z-index: 1200 !important; }
-/* Section links (#cours, #ressources) stop below the header, not under it */
-html:root:root:root { scroll-padding-top: 90px; }
-html:root:root:root body [id] { scroll-margin-top: 90px; }
-
-/* Header stays visible while scrolling: PC and phone, every page */
-html:root:root:root body header {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  background: #fff !important;
-}
-html:root:root:root[data-theme="dark"] body header,
-html:root:root:root body.dark-mode header {
-  background: #000 !important;
-}
-/* "overflow-x: hidden" on html/body stops sticky from working; "clip" avoids the sideways scroll without that problem */
-html:root:root:root, html:root:root:root body { overflow-x: clip !important; }
-/* The phone menu opens above the pinned header */
-html:root:root:root body #site-mobile-drawer { z-index: 1200 !important; }
-/* Section links (#cours, #ressources) stop below the header, not under it */
-html:root:root:root { scroll-padding-top: 90px; }
-html:root:root:root body [id] { scroll-margin-top: 90px; }
-
-/* Header blends into the page: same background as the page, no lines */
-html:root:root:root:root:root:root body header {
-  background: var(--cfa-page-bg, inherit) !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-}
-html:root:root:root body :is(header .container, header .nav, header .nav-right, header nav, .cfa-mobile-header, .cfa-mobile-nav) {
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* No divider lines outside cards */
-html:root:root:root body hr {
-  border: 0 !important; height: 0 !important; background: none !important; box-shadow: none !important;
-}
-html:root:root:root body :is(footer, section, main, aside, [class*="divider" i], [class*="separator" i]):not([class*="card" i]):not([class*="card" i] *) {
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  box-shadow: none !important;
-}
-
-/* Header and menu: plain text links in one CFA blue; current page in red */
-:root { --cfa-nav-blue: #3D73CC; --cfa-nav-red: #C8102E; }
-
-html:root:root:root:root body :is(header .nav a, header .nav button, header .theme-toggle,
-    #site-mobile-drawer .cfa-mobile-link, #site-mobile-drawer .cfa-mobile-login, #site-mobile-drawer .cfa-mobile-theme):not(.brand):not(.logo-container):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button):not(#cfa-x):not(#cfa-y) {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  min-width: 0 !important;
-  padding: 0 10px !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
-  color: var(--cfa-nav-blue) !important;
-  -webkit-text-fill-color: var(--cfa-nav-blue) !important;
-
-  &:is(:hover, :focus-visible) { text-decoration: underline !important; text-underline-offset: 6px; }
-  &:focus-visible { outline: 3px solid #FF6600; outline-offset: 2px; }
-
-  /* pressed and current page: red text, in every state */
-  &:active,
-  &[aria-current="page"],
-  &[aria-current="page"]:is(:hover, :active, :focus, :focus-visible) {
-    background: transparent !important;
-    color: var(--cfa-nav-red) !important;
-    -webkit-text-fill-color: var(--cfa-nav-red) !important;
+@media (max-width: 380px) {
+  html body header .container.nav {
+    gap: 6px;
   }
-  &[aria-current="page"] {
-    text-decoration: underline !important;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 6px;
+
+  html body header .brand > div:last-child > span {
+    font-size: 12px !important;
   }
-  & * { color: inherit !important; -webkit-text-fill-color: inherit !important; background: transparent !important; }
+
+  html body header .logo-container img {
+    max-width: 34px !important;
+    max-height: 34px !important;
+  }
+
+  html body header #cfa-navdd-btn {
+    gap: 5px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
 }
 
-/* PC: items size to their text */
-@media (min-width: 901px) {
-  html:root:root:root:root body :is(header .nav a, header .nav button, header .theme-toggle):not(.brand):not(.logo-container):not(#hamburger-menu-trigger):not(.cfa-mobile-menu-button):not(#cfa-x):not(#cfa-y) {
-    width: auto !important;
+@media (prefers-reduced-motion: reduce) {
+  html body header #cfa-navdd-btn,
+  html body header #cfa-navdd-btn svg {
+    transition: none;
   }
 }

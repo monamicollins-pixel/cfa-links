@@ -608,11 +608,18 @@ footer {
   }
 }
 </style>
+<link rel="stylesheet" href="css/cfa-header.css?v=1791603522">
+<link rel="stylesheet" href="css/cfa-header-base.css?v=1791603522">
+<link rel="stylesheet" href="css/cfa-buttons.css?v=1791603522">
+
+
 
 <!-- CFA UNIVERSAL FUNCTIONAL BUTTON TEXT -->
-<script src="js/cfa-current-page.js?v=1791464377" defer></script>
+<script src="js/cfa-current-page.js?v=1791603522" defer></script>
 <script src="js/cfa-swipe-nav.js?v=1791440733" defer></script>
 <script src="js/cfa-scroll-nav.js?v=1791440733" defer></script>
+<script src="js/cfa-nav-dropdown.js?v=1791603522" defer></script>
+<script src="js/cfa-shared-theme.js?v=1791603522" defer></script>
 </head>
 
 <body>
@@ -1048,12 +1055,10 @@ header .theme-toggle:hover {
     }
 }
 </style>
-<link rel="stylesheet" href="css/cfa-header-base.css">
-<link rel="stylesheet" href="css/cfa-buttons.css?v=1791464377">
 
 <header>
   <div class="container nav">
-    <a class="brand" href="#accueil">
+    <a class="brand" href="index.html#accueil">
       <div class="logo-container">
         <img src="cfa.jpeg" alt="CFA Logo">
       </div>
@@ -1071,9 +1076,9 @@ header .theme-toggle:hover {
 </button>
 
       <nav>
-        <a href="#accueil">Accueil</a>
-        <a href="#cours">Cours</a>
-        <a href="#ressources">Ressources</a>
+        <a href="index.html#accueil">Accueil</a>
+        <a href="index.html#cours">Cours</a>
+        <a href="index.html#ressources">Ressources</a>
         <a href="pages/apropos.html">À propos</a>
       </nav>
       <div class="account-links" id="accountArea">
@@ -1099,9 +1104,9 @@ header .theme-toggle:hover {
     </div>
 
     <nav class="cfa-mobile-nav">
-        <a class="cfa-mobile-link" href="#accueil">Accueil</a>
-        <a class="cfa-mobile-link" href="#cours">Cours</a>
-        <a class="cfa-mobile-link" href="#ressources">Ressources</a>
+        <a class="cfa-mobile-link" href="index.html#accueil">Accueil</a>
+        <a class="cfa-mobile-link" href="index.html#cours">Cours</a>
+        <a class="cfa-mobile-link" href="index.html#ressources">Ressources</a>
         <a class="cfa-mobile-link" href="pages/apropos.html">À propos</a>
         <a class="cfa-mobile-login" id="mobileLearnerEntry" href="pages/connexion.html">Connexion</a>
         <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">Mode sombre</button>
@@ -1392,23 +1397,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </footer>
 
-<script>
-const toggleBtn = document.getElementById('themeToggle');
-const htmlEl = document.documentElement;
 
-const savedTheme = localStorage.getItem('cfa_theme') || 'light';
-htmlEl.setAttribute('data-theme', savedTheme);
-toggleBtn.textContent = savedTheme === 'dark' ? 'Mode clair' : 'Mode sombre';
-
-toggleBtn.addEventListener('click', () => {
-  const currentTheme = htmlEl.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-  htmlEl.setAttribute('data-theme', newTheme);
-  localStorage.setItem('cfa_theme', newTheme);
-  toggleBtn.textContent = newTheme === 'dark' ? 'Mode clair' : 'Mode sombre';
-});
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
 

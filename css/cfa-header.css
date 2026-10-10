@@ -1,0 +1,16 @@
+/* CFA header: ONE shared copy, taken from the homepage and loaded on every page.
+   The variables below are scoped to the header so it looks identical everywhere. */
+header {
+  --blue:#174ea6; --blue-dark:#0d2f70; --red:#C8102E; --ink:#10203a; --muted:#64748b;
+  --paper:#f6f9fc; --white:#fff; --line:#e5eaf2; --card-bg:#fff;
+}
+html[data-theme="dark"] header, body.dark-mode header {
+  --blue:#4f83db; --blue-dark:#7aa2e3; --red:#C8102E; --ink:#f1f5f9; --muted:#94a3b8;
+  --paper:#0b1320; --white:#111c2e; --line:#1e293b; --card-bg:#131f33;
+}
+header .container { width:min(1160px,92%); margin:0 auto; }
+header img { max-width:100%; }
+
+header { position:sticky;top:0;z-index:20;background:var(--white); backdrop-filter:blur(16px);border-bottom:1px solid var(--line); transition:background .3s ease, border-color .3s ease; }
+header img, header .logo, header .brand-logo, header svg { max-height: 55px !important; width: auto !important; }
+header h1, header .brand-title, header .logo-title, header .brand span:first-child, header a.brand { font-size: 21px !important; }

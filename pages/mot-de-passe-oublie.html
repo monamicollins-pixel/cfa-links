@@ -11,7 +11,7 @@
         </style>
 
     <link rel="stylesheet" href="../css/cfa-shared-theme.css">
-    <script src="../js/cfa-shared-theme.js"></script>
+    <script src="../js/cfa-shared-theme.js?v=1791603522"></script>
 
   <link rel="stylesheet" href="../css/cfa-loader.css" data-cfa-loader="css">
   <script src="../js/cfa-loader.js" defer data-cfa-loader="js"></script>
@@ -57,65 +57,6 @@
     padding: 7px 8px;
     font-size: 13px;
   }
-}
-
-/* Auth pages: homepage header/footer shell only */
-header.auth-site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: var(--cfa-white);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--cfa-line);
-}
-.auth-site-header .container.nav {
-  width: min(1160px,92%);
-  margin: auto;
-  height: 80px;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-start;
-  gap: 20px;
-}
-.auth-site-header .brand {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 14px;
-  font-weight: 700;
-  letter-spacing: .2px;
-  text-decoration: none;
-}
-.auth-site-header .logo-container {
-  width: 48px !important;
-  height: 48px !important;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--cfa-blue);
-  box-shadow: 0 4px 12px rgba(23,78,166,.15);
-  flex-shrink: 0;
-}
-.auth-site-header .logo-container img {
-  width: 100% !important;
-  height: 100% !important;
-  max-height: none !important;
-  object-fit: cover !important;
-}
-.auth-site-header .brand span {
-  font-size: 21px !important;
-  font-weight: 700 !important;
-  letter-spacing: .2px;
-  text-transform: none !important;
-  white-space: nowrap;
-}
-@media (max-width:520px) {
-  .auth-site-header .container.nav { height: 70px; }
-  .auth-site-header .logo-container {
-    width: 42px !important;
-    height: 42px !important;
-  }
-  .auth-site-header .brand span { font-size: 13px !important; }
 }
 
 /* Auth page shell: keep header, content and footer within the viewport */
@@ -323,11 +264,17 @@ footer {
   }
 }
 </style>
+<link rel="stylesheet" href="../css/cfa-header.css?v=1791603522">
+<link rel="stylesheet" href="../css/cfa-header-base.css?v=1791603522">
+<link rel="stylesheet" href="../css/cfa-buttons.css?v=1791603522">
+
+
 
 <!-- CFA UNIVERSAL FUNCTIONAL BUTTON TEXT -->
-<script src="../js/cfa-current-page.js?v=1791464377" defer></script>
+<script src="../js/cfa-current-page.js?v=1791603522" defer></script>
 <script src="../js/cfa-swipe-nav.js?v=1791440733" defer></script>
 <script src="../js/cfa-scroll-nav.js?v=1791440733" defer></script>
+<script src="../js/cfa-nav-dropdown.js?v=1791603522" defer></script>
 </head>
 <style id="cfa-universal-master-header">
 /* =========================================================
@@ -737,8 +684,6 @@ header .theme-toggle:hover {
     }
 }
 </style>
-<link rel="stylesheet" href="../css/cfa-header-base.css">
-<link rel="stylesheet" href="../css/cfa-buttons.css?v=1791464377">
 <body>
 <header>
   <div class="container nav">
@@ -763,10 +708,10 @@ header .theme-toggle:hover {
         <a href="../index.html#accueil">Accueil</a>
         <a href="../index.html#cours">Cours</a>
         <a href="../index.html#ressources">Ressources</a>
-        <a href="apropos.html">À propos</a>
+        <a href="../pages/apropos.html">À propos</a>
       </nav>
       <div class="account-links" id="accountArea">
-  <a class="cfa-connexion-link" href="mot-de-passe-oublie.html">Réinitialisation</a>
+  <a class="cfa-connexion-link" href="../pages/connexion.html">Connexion</a>
 </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">Mode sombre </button>
 
@@ -791,8 +736,8 @@ header .theme-toggle:hover {
         <a class="cfa-mobile-link" href="../index.html#accueil">Accueil</a>
         <a class="cfa-mobile-link" href="../index.html#cours">Cours</a>
         <a class="cfa-mobile-link" href="../index.html#ressources">Ressources</a>
-        <a class="cfa-mobile-link" href="apropos.html">À propos</a>
-        <a class="cfa-mobile-login" id="mobileLearnerEntry" href="mot-de-passe-oublie.html">Réinitialisation</a>
+        <a class="cfa-mobile-link" href="../pages/apropos.html">À propos</a>
+        <a class="cfa-mobile-login" id="mobileLearnerEntry" href="../pages/connexion.html">Connexion</a>
         <button type="button" id="drawer-theme-toggle" class="cfa-mobile-theme">Mode sombre</button>
     </nav>
 </div>
@@ -1130,7 +1075,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (message) {
                 message.textContent =
-                    "Si cette adresse correspond à un compte CFA, un lien de réinitialisation vient d'être envoyé. Vérifiez votre boîte e-mail.";
+                    "Demande traitée. Si cette adresse e-mail est associée à un compte CFA, un lien de réinitialisation a été envoyé. Vérifiez votre boîte de réception et vos spams.";
                 message.className =
                     "auth-message success";
             }
@@ -1151,7 +1096,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
                 let errorMessage =
-                    "Impossible d'envoyer le lien. Veuillez réessayer.";
+                    "Impossible de traiter la demande. Vérifiez votre adresse e-mail et réessayez dans quelques instants.";
 
                 if (
                     error.message &&
