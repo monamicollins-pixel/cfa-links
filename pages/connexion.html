@@ -1061,11 +1061,53 @@ document.addEventListener("DOMContentLoaded", async function () {
 Connectez-vous pour continuer votre parcours CFA.
 </p>
 
-<div class="auth-page-nav" aria-label="Navigation d’authentification">
-  <a href="connexion.html" class="auth-nav-button auth-nav-active">Connexion</a>
-  <a href="inscription.html" class="auth-nav-button">Inscription</a>
-  <a href="mot-de-passe-oublie.html" class="auth-nav-button">Réinitialisation</a>
+<div class="cfa-auth-options" id="cfa-auth-options">
+  <button type="button" class="cfa-auth-options-btn"
+    id="cfa-auth-options-btn" aria-label="Connexion, autres options" aria-expanded="false"
+    aria-controls="cfa-auth-options-panel">
+    <span>Connexion</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="cfa-auth-options-panel" id="cfa-auth-options-panel" hidden>
+    <a href="inscription.html">Inscription</a>
+    <a href="mot-de-passe-oublie.html">Réinitialisation</a>
+  </div>
 </div>
+<script id="cfa-auth-options-behaviour">
+(function () {
+  var wrap = document.getElementById('cfa-auth-options');
+  if (!wrap) return;
+  var button = document.getElementById('cfa-auth-options-btn');
+  var panel = document.getElementById('cfa-auth-options-panel');
+
+  function setOpen(open) {
+    button.setAttribute('aria-expanded', String(open));
+    panel.hidden = !open;
+  }
+
+  button.addEventListener('click', function () {
+    setOpen(button.getAttribute('aria-expanded') !== 'true');
+  });
+  document.addEventListener('click', function (event) {
+    if (!wrap.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !panel.hidden) {
+      setOpen(false);
+      button.focus();
+    }
+    if (event.key === 'ArrowDown' &&
+        document.activeElement === button && panel.hidden) {
+      event.preventDefault();
+      setOpen(true);
+      panel.querySelector('a').focus();
+    }
+  });
+})();
+</script>
 
 <div id="authMessage" class="auth-message"></div>
 

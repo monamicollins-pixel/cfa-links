@@ -191,7 +191,7 @@
         'inscription.html': 'Inscription',
         'ma-progression.html': 'Ma progression',
         'mes-cours.html': 'Mes cours',
-        'mot-de-passe-oublie.html': 'Mot de passe oublié',
+        'mot-de-passe-oublie.html': 'Réinitialisation',
         'nouveau-mot-de-passe.html': 'Nouveau mot de passe',
         'sinscrire.html': "S'inscrire",
         'suggestions.html': 'Suggestions'

@@ -416,3 +416,122 @@ body.dark-mode .password-toggle:hover {
     font-size: 15px;
   }
 }
+
+/* Compact Ubuntu-inspired authentication menu. */
+.auth-card .cfa-auth-options {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 24px;
+}
+
+.auth-card .cfa-auth-options-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 160px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: #4f83db;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgb(0 35 102 / 12%);
+  transition: background-color .18s ease;
+}
+
+.auth-card .cfa-auth-options-btn:hover { background: #ff6600; }
+.auth-card .cfa-auth-options-btn[aria-expanded="true"] { background: #c8102e; }
+.auth-card .cfa-auth-options-btn:focus-visible {
+  outline: 3px solid #4f83db;
+  outline-offset: 3px;
+}
+
+.auth-card .cfa-auth-options-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform .18s ease;
+}
+
+.auth-card .cfa-auth-options-btn[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.auth-card .cfa-auth-options-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: 1200;
+  width: max-content;
+  min-width: 232px;
+  max-width: calc(100vw - 40px);
+  padding: 8px;
+  border: 1px solid #e5eaf2;
+  border-radius: 14px;
+  background: #fff;
+  color: #10203a;
+  box-shadow: 0 12px 32px rgb(15 23 42 / 18%);
+  transform: translateX(-50%);
+}
+
+.auth-card .cfa-auth-options-panel[hidden] { display: none !important; }
+
+.auth-card .cfa-auth-options-panel > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #10203a;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-card .cfa-auth-options-panel > a:hover {
+  background: rgb(79 131 219 / 12%);
+  color: #174ea6;
+}
+
+.auth-card .cfa-auth-options-panel > a:focus-visible {
+  outline: 2px solid #174ea6;
+  outline-offset: -2px;
+}
+
+html[data-theme="dark"] .auth-card .cfa-auth-options-panel,
+body.dark-mode .auth-card .cfa-auth-options-panel {
+  border-color: #334155;
+  background: #111c2e;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .auth-card .cfa-auth-options-panel > a,
+body.dark-mode .auth-card .cfa-auth-options-panel > a {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .auth-card .cfa-auth-options-panel > a:hover,
+body.dark-mode .auth-card .cfa-auth-options-panel > a:hover {
+  background: rgb(79 131 219 / 18%);
+  color: #dbeafe;
+}
+
+@media (max-width: 600px) {
+  .auth-card .cfa-auth-options { margin-bottom: 22px; }
+  .auth-card .cfa-auth-options-panel {
+    min-width: min(232px, calc(100vw - 48px));
+    max-width: calc(100vw - 48px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-card .cfa-auth-options-btn,
+  .auth-card .cfa-auth-options-btn svg { transition: none; }
+}
