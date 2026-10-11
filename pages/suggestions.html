@@ -189,6 +189,116 @@ html[data-theme="dark"] .note {
     width: 100%;
   }
 }
+
+/* Menus de participation CFA */
+.suggestion-options {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.suggestion-option {
+  overflow: hidden;
+  border: 1px solid var(--cfa-line, #e5eaf2);
+  border-radius: 14px;
+  background: var(--cfa-surface, #fff);
+}
+
+.suggestion-option summary {
+  position: relative;
+  padding: 18px 52px 18px 18px;
+  color: var(--cfa-blue-dark, #0d2f70);
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.suggestion-option summary::-webkit-details-marker {
+  display: none;
+}
+
+.suggestion-option summary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform .2s ease;
+}
+
+.suggestion-option[open] summary::after {
+  transform: translateY(-25%) rotate(225deg);
+}
+
+.suggestion-option summary:focus-visible,
+.community-link:focus-visible {
+  outline: 3px solid var(--cfa-blue, #174ea6);
+  outline-offset: 3px;
+}
+
+.option-content {
+  padding: 0 18px 20px;
+  border-top: 1px solid var(--cfa-line, #e5eaf2);
+}
+
+.option-content p {
+  margin: 14px 0;
+}
+
+.option-content .note {
+  margin: 16px 0;
+}
+
+.community-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--cfa-blue, #174ea6);
+  color: #fff;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.community-link:hover {
+  background: var(--cfa-blue-dark, #0d2f70);
+  transform: translateY(-1px);
+}
+
+.coming-soon {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: var(--cfa-paper, #f6f9fc);
+  color: var(--cfa-muted, #64748b);
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  .community-link {
+    display: flex;
+    width: 100%;
+  }
+
+  .suggestion-option summary {
+    padding-left: 14px;
+  }
+
+  .option-content {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+}
+
 </style>
 <link rel="stylesheet" href="../css/cfa-header.css?v=1791603522">
 <link rel="stylesheet" href="../css/cfa-header-base.css?v=1791603522">
@@ -465,39 +575,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </header>
 <main>
-<div class="eyebrow">Communauté CFA</div>
-<h1>Envoyer une suggestion</h1>
-<p>Une idée pour améliorer les cours, les ressources ou le site ? Partagez-la avec nous.</p>
-<form id="suggestionForm">
-<div class="field">
-<label for="name">Votre nom (facultatif)</label>
-<input id="name" maxlength="100" autocomplete="name">
-</div>
-<div class="field">
-<label for="email">Votre e-mail (facultatif)</label>
-<input id="email" type="email" maxlength="254" autocomplete="email">
-</div>
-<div class="field">
-<label for="topic">Sujet</label>
-<select id="topic" required>
-<option value="">Choisissez un sujet</option>
-<option>Cours et leçons</option>
-<option>Exercices et évaluations</option>
-<option>Site et fonctionnalités</option>
-<option>Communauté et ressources</option>
-<option>Autre suggestion</option>
-</select>
-</div>
-<div class="field">
-<label for="suggestion">Votre suggestion</label>
-<textarea id="suggestion" maxlength="5000" required placeholder="Décrivez votre idée…"></textarea>
-</div>
-<p class="note">WhatsApp s’ouvrira avec votre message prérempli. Vous devrez choisir le contact auquel l’envoyer et confirmer l’envoi. Aucun message n’est envoyé automatiquement.</p>
-<div class="form-actions">
-<button class="btn primary" type="submit">Envoyer une suggestion</button>
-<a class="btn secondary" href="choix-espace.html">Choisir un espace</a>
-</div>
-</form>
+  <div class="eyebrow">Communauté CFA</div>
+  <h1>Participer à la communauté CFA</h1>
+  <p>
+    Échangez avec les autres apprenants, partagez vos idées et contribuez
+    à faire grandir notre communauté francophone.
+  </p>
+
+  <section class="suggestion-options" aria-label="Options de participation">
+    <details class="suggestion-option" open>
+      <summary>Consulter la communauté CFA</summary>
+      <div class="option-content">
+        <p>
+          Rejoignez le groupe WhatsApp CFA pour discuter avec les autres
+          apprenants, partager vos suggestions et donner votre avis.
+        </p>
+        <p class="note">
+          Après avoir partagé une idée dans le groupe, vous pouvez ajouter :
+          « Qu’en pensez-vous ? » pour inviter les autres membres à réagir.
+        </p>
+        <a class="community-link btn primary"
+           href="https://chat.whatsapp.com/C5viQ4lgsNiF3tyRRovWMq"
+           target="_blank"
+           rel="noopener noreferrer">
+          Rejoindre la communauté CFA
+        </a>
+      </div>
+    </details>
+
+    <details class="suggestion-option">
+      <summary>Consulter les admins</summary>
+      <div class="option-content">
+        <p class="coming-soon">Bientôt disponible</p>
+        <p>Les moyens de contacter directement les administrateurs seront annoncés ici.</p>
+      </div>
+    </details>
+
+    <details class="suggestion-option">
+      <summary>Autres moyens de contribuer</summary>
+      <div class="option-content">
+        <p class="coming-soon">Bientôt disponible</p>
+        <p>Les formulaires pour suggérer un cours ou signaler une erreur seront ajoutés ultérieurement.</p>
+      </div>
+    </details>
+  </section>
 </main>
 <footer>
   <div class="container footer">
@@ -505,24 +626,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="footer-copyright">© 2026 Collins French Academy (CFA)</div>
   </div>
 </footer>
-<script>
-document.getElementById("suggestionForm").addEventListener("submit",function(event){
-  event.preventDefault();
-  const topic=document.getElementById("topic").value;
-  const suggestion=document.getElementById("suggestion").value.trim();
-  if(!topic||!suggestion){this.reportValidity();return;}
-  const message=[
-    "Suggestion pour Collins French Academy (CFA)",
-    "",
-    "Sujet : "+topic,
-    "Nom : "+(document.getElementById("name").value.trim()||"Non précisé"),
-    "E-mail : "+(document.getElementById("email").value.trim()||"Non communiqué"),
-    "",
-    "Suggestion :",
-    suggestion
-  ].join("\\n");
-  window.location.assign("https://wa.me/?text="+encodeURIComponent(message));
-});
-</script>
+
 </body>
 </html>
