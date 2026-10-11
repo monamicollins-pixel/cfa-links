@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Choisir un espace | Collins French Academy</title>
+<title>Espace CFA | Collins French Academy</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#f3f6fc;color:#172033;font-family:Inter,"Segoe UI",Arial,sans-serif}
@@ -21,6 +21,161 @@ button{margin-top:22px;padding:10px 15px;border:1px solid #cbd5e1;border-radius:
 #spaceMessage{color:#b42318}
 footer{font-size:.85rem;color:#64748b}
 @media(max-width:580px){.choices{grid-template-columns:1fr}main{padding:22px}}
+
+
+
+/* Homepage-style account buttons: aligned, equal height, theme-aware */
+.account-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.account-actions > .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 48px;
+  min-width: 140px;
+  padding: 14px 24px;
+  margin: 0;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+/* Match the homepage primary button in both themes */
+.account-actions > .btn.primary {
+  background: var(--cfa-blue, var(--blue, #174ea6)) !important;
+  color: #fff !important;
+  border: 1px solid var(--cfa-blue, var(--blue, #174ea6)) !important;
+  box-shadow: 0 10px 24px rgba(23, 78, 166, .25) !important;
+}
+
+.account-actions > .btn.primary:hover {
+  background: var(--cfa-accent, #ff6600) !important;
+  border-color: var(--cfa-accent, #ff6600) !important;
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+.account-actions > .btn.primary:active {
+  background: var(--cfa-red, #c8102e) !important;
+  border-color: var(--cfa-red, #c8102e) !important;
+  transform: translateY(0);
+}
+
+/* Keep the logout button visually consistent with Suggestion */
+.account-actions > .btn.secondary {
+  background: var(--cfa-blue, var(--blue, #174ea6)) !important;
+  color: #fff !important;
+  border: 1px solid var(--cfa-blue, var(--blue, #174ea6)) !important;
+  box-shadow: 0 10px 24px rgba(23, 78, 166, .25) !important;
+}
+
+.account-actions > .btn.secondary:hover {
+  background: var(--cfa-accent, #ff6600) !important;
+  color: #fff !important;
+  border-color: var(--cfa-accent, #ff6600) !important;
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+.account-actions > .btn.secondary:active {
+  background: var(--cfa-red, #c8102e) !important;
+  border-color: var(--cfa-red, #c8102e) !important;
+  transform: translateY(0);
+}
+
+/* CFA HOMEPAGE THEME MATCH — SPACE SELECTION */
+html[data-theme="light"] body {
+  background: #f6f9fc !important;
+  color: #10203a !important;
+}
+html[data-theme="dark"] body {
+  background: #0b1320 !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] main {
+  background: #ffffff !important;
+  color: #10203a !important;
+  border-color: #e5eaf2 !important;
+  box-shadow: 0 18px 50px rgba(15,35,70,.12) !important;
+}
+html[data-theme="dark"] main {
+  background: #111c2e !important;
+  color: #f1f5f9 !important;
+  border-color: #1e293b !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,.3) !important;
+}
+
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] h1 {
+  color: #0d2f70 !important;
+}
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] h1 {
+  color: #f1f5f9 !important;
+}
+html[data-theme="light"] main p {
+  color: #64748b !important;
+}
+html[data-theme="dark"] main p {
+  color: #94a3b8 !important;
+}
+
+/* Keep both choice cards readable in either theme. */
+html[data-theme="light"] main .choice {
+  background: #174ea6 !important;
+  color: #ffffff !important;
+  border-color: #174ea6 !important;
+}
+html[data-theme="light"] main .choice.admin {
+  background: #0d2f70 !important;
+  color: #ffffff !important;
+  border-color: #0d2f70 !important;
+}
+html[data-theme="dark"] main .choice {
+  background: #174ea6 !important;
+  color: #ffffff !important;
+  border-color: #4f83db !important;
+}
+html[data-theme="dark"] main .choice.admin {
+  background: #0d2f70 !important;
+  color: #ffffff !important;
+  border-color: #4f83db !important;
+}
+main .choice {
+  transition: transform .25s ease, box-shadow .25s ease,
+              background-color .25s ease, border-color .25s ease !important;
+}
+main .choice:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(23,78,166,.25);
+}
+html[data-theme="dark"] footer {
+  background: #0b1320 !important;
+  color: #94a3b8 !important;
+}
+html[data-theme="light"] footer {
+  background: #f6f9fc !important;
+  color: #64748b !important;
+}
+/* Ordinary functional buttons retain the shared CFA blue/orange/red
+   states and consistent sizing. Theme controls retain their own style. */
+/* END CFA HOMEPAGE THEME MATCH */
+
 </style>
 <link rel="stylesheet" href="../css/cfa-header.css?v=1791603522">
 <link rel="stylesheet" href="../css/cfa-header-base.css?v=1791603522">
@@ -29,7 +184,7 @@ footer{font-size:.85rem;color:#64748b}
 
 <link rel="stylesheet" href="../css/cfa-shared-theme.css">
 
-<script src="../js/cfa-nav-dropdown.js?v=1791603522" defer></script>
+<script src="../js/cfa-nav-dropdown.js?v=1791699784" defer></script>
 <script src="../js/cfa-shared-theme.js?v=1791603522" defer></script>
 <script src="../js/cfa-current-page.js?v=1791603522" defer></script>
 </head>
@@ -38,7 +193,7 @@ footer{font-size:.85rem;color:#64748b}
   <div class="container nav">
     <a class="brand" href="../index.html#accueil">
       <div class="logo-container">
-        <img src="../cfa.jpeg" alt="CFA Logo">
+        <img src="../cfa-logo.png" alt="CFA Logo">
       </div>
       <div><span style="font-size: 1.12em; font-weight: bold; text-transform: none !important;">Collins French Academy</span><small></small></div>
     </a>
@@ -312,9 +467,10 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>
 </div>
 <p>Vous pouvez également nous transmettre vos idées pour améliorer CFA.</p>
-<a href="suggestions.html">Envoyer une suggestion</a>
-<br>
-<button id="signOutBtn" type="button">Se déconnecter</button>
+<div class="account-actions">
+  <a class="btn primary" href="suggestions.html">Suggestion</a>
+  <button class="btn secondary" id="signOutBtn" type="button">Déconnexion</button>
+</div>
 <p id="spaceMessage" role="status" aria-live="polite"></p>
 </main>
 <footer>© 2026 Collins French Academy (CFA)</footer>

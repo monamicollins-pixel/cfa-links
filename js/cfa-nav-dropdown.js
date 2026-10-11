@@ -147,6 +147,26 @@
         current: here === 'choix-espace.html'
       });
 
+
+      /* Admin and learner sections: own entries, current page marked, short names for the button */
+      var secMatch = location.pathname.match(/^(.*\/)(admin|pages)\/[^\/]*$/);
+      var secBase = secMatch ? secMatch[1] : location.pathname.replace(/[^\/]*$/, '');
+      var secName = secMatch ? secMatch[2] : '';
+      if (user && secName === 'admin') {
+        out.forEach(function (i) { i.current = false; });
+        var editing = /[?&](id|lesson|lesson_id|lessonId)=/.test(location.search);
+        var adminHome = here === 'index.html' || /\/admin\/$/.test(location.pathname);
+        out.push({ note: true, text: 'Administration' });
+        out.push({ text: "Centre d'administration", short: 'Admin', href: secBase + 'admin/index.html', current: adminHome });
+        out.push({ text: 'Gérer les leçons', short: 'Leçons', href: secBase + 'admin/lessons.html', current: here === 'lessons.html' });
+        out.push({ text: 'Nouvelle leçon', short: editing ? 'Éditeur' : 'Nouvelle', href: secBase + 'admin/lesson-editor.html', current: here === 'lesson-editor.html' });
+      } else if (user && ['dashboard.html', 'espace-etudiant.html', 'mes-cours.html', 'ma-progression.html'].indexOf(here) !== -1) {
+        out.push({ note: true, text: 'Espace apprenant' });
+        out.push({ text: 'Mon espace', short: 'Mon espace', href: secBase + 'dashboard.html', current: here === 'dashboard.html' || here === 'espace-etudiant.html' });
+        out.push({ text: 'Mes cours', short: 'Mes cours', href: secBase + 'pages/mes-cours.html', current: here === 'mes-cours.html' });
+        out.push({ text: 'Ma progression', short: 'Progression', href: secBase + 'pages/ma-progression.html', current: here === 'ma-progression.html' });
+      }
+
       return out;
     }
 
@@ -170,7 +190,7 @@
       }
       var cur = '';
       list.forEach(function (it) {
-        if (it.current && !cur) cur = it.text;
+        if (it.current && !cur) cur = it.short || it.text;
         var el;
         if (it.note) { el = document.createElement('div'); el.className = 'cfa-navdd-note'; }
         else if (it.href) { el = document.createElement('a'); el.setAttribute('href', it.href); }
@@ -187,7 +207,10 @@
         'communaute.html': 'Communauté',
         'compas.html': 'COMPAS',
         'connexion.html': 'Connexion',
-        'espace-etudiant.html': 'Espace étudiant',
+        'espace-etudiant.html': 'Mon espace',
+        'dashboard.html': 'Mon espace',
+        'lessons.html': 'Leçons',
+        'lesson-editor.html': 'Éditeur',
         'inscription.html': 'Inscription',
         'ma-progression.html': 'Ma progression',
         'mes-cours.html': 'Mes cours',
@@ -198,6 +221,7 @@
       };
       if (here === 'index.html' && location.hash === '#cours') cur = 'Cours';
       if (here === 'index.html' && location.hash === '#ressources') cur = 'Ressources';
+      if (/\/admin\/[^\/]*$/.test(location.pathname) && here === 'index.html' && !cur) cur = 'Admin';
       label.textContent = cur || pageNames[here] || 'Menu';
     }
 

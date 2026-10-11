@@ -854,6 +854,110 @@ select:not(.admin-typing-ink-select) {
 }
 /* End CFA typing ink colour */
 
+
+
+/* CFA HOMEPAGE THEME MATCH — ADMIN CONTENT ONLY */
+html[data-theme="light"] body {
+  background: #f6f9fc !important;
+  color: #10203a !important;
+}
+html[data-theme="dark"] body {
+  background: #0b1320 !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] main,
+html[data-theme="light"] .wrap {
+  color: #10203a !important;
+}
+html[data-theme="dark"] main,
+html[data-theme="dark"] .wrap {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] .card,
+html[data-theme="light"] .panel,
+html[data-theme="light"] section,
+html[data-theme="light"] article,
+html[data-theme="light"] form,
+html[data-theme="light"] .table-wrap,
+html[data-theme="light"] .status {
+  background: #ffffff !important;
+  color: #10203a !important;
+  border-color: #e5eaf2 !important;
+  box-shadow: 0 10px 28px rgba(15,35,70,.08);
+}
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] section,
+html[data-theme="dark"] article,
+html[data-theme="dark"] form,
+html[data-theme="dark"] .table-wrap,
+html[data-theme="dark"] .status {
+  background: #111c2e !important;
+  color: #f1f5f9 !important;
+  border-color: #1e293b !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,.24);
+}
+
+html[data-theme="light"] .metric,
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4 {
+  color: #0d2f70 !important;
+}
+html[data-theme="dark"] .metric,
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4 {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] .lead,
+html[data-theme="light"] .label,
+html[data-theme="light"] .status {
+  color: #64748b !important;
+}
+html[data-theme="dark"] .lead,
+html[data-theme="dark"] .label,
+html[data-theme="dark"] .status {
+  color: #94a3b8 !important;
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select:not(.admin-typing-ink-select) {
+  background: #ffffff !important;
+  color: #10203a !important;
+  border-color: #e5eaf2 !important;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select:not(.admin-typing-ink-select) {
+  background: #131f33 !important;
+  color: #f1f5f9 !important;
+  border-color: #1e293b !important;
+}
+html[data-theme="light"] th {
+  background: #f6f9fc !important;
+  color: #10203a !important;
+}
+html[data-theme="dark"] th {
+  background: #0b1320 !important;
+  color: #f1f5f9 !important;
+}
+html[data-theme="light"] td {
+  border-color: #e5eaf2 !important;
+}
+html[data-theme="dark"] td {
+  border-color: #1e293b !important;
+}
+/* Functional button colours and hover states remain controlled by
+   the existing shared CFA stylesheet. */
+/* END CFA HOMEPAGE THEME MATCH */
+
 </style>
 <link rel="stylesheet" href="../css/cfa-header.css?v=1791603522">
 <link rel="stylesheet" href="../css/cfa-header-base.css?v=1791603522">
@@ -867,7 +971,7 @@ select:not(.admin-typing-ink-select) {
   <link rel="stylesheet" href="../css/cfa-admin-access.css">
 <script src="../js/cfa-shared-theme.js?v=1791603522" defer></script>
 <script src="../js/cfa-current-page.js?v=1791603522" defer></script>
-<script src="../js/cfa-nav-dropdown.js?v=1791603522" defer></script>
+<script src="../js/cfa-nav-dropdown.js?v=1791699784" defer></script>
 </head>
 <body>
 
@@ -892,7 +996,7 @@ select:not(.admin-typing-ink-select) {
   <div class="container nav">
     <a class="brand" href="../index.html#accueil">
       <div class="logo-container">
-        <img src="../cfa.jpeg" alt="CFA Logo">
+        <img src="../cfa-logo.png" alt="CFA Logo">
       </div>
       <div><span style="font-size: 1.12em; font-weight: bold; text-transform: none !important;">Collins French Academy</span><small></small></div>
     </a>
